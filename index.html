@@ -1,2 +1,253 @@
-<html><head><meta http-equiv="refresh" content="0;url=sportfun-v15-1%20(1).html"></head></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="The Signal — a central hub that teaches you Web3 and Web2 marketing. Cases, playbooks, people, and daily signals.">
+<title>The Signal · Web3 + Web2 Marketing Hub</title>
+<style>
+:root{
+  --ease:cubic-bezier(.4,0,.2,1);--out:cubic-bezier(.16,1,.3,1);
+  --r:16px;--rs:12px;--rx:9px;
+  --font:-apple-system,'SF Pro Display','Segoe UI','Helvetica Neue',sans-serif;
+  --mono:'SF Mono',ui-monospace,Menlo,Monaco,monospace;
+  --w3:#7C5CFF;--w2:#FF7A45;
+}
+[data-theme="black"]{
+  --bg0:#0a0a0c;--bg1:#0e0e11;--bg2:#141417;--bg3:#1a1a1e;
+  --card:#111114;--card2:#16161a;--hover:rgba(255,255,255,.04);--active:rgba(255,255,255,.07);
+  --brd:rgba(255,255,255,.07);--brd2:rgba(255,255,255,.12);
+  --t1:#fff;--t2:rgba(255,255,255,.64);--t3:rgba(255,255,255,.40);
+  --accent:#7C5CFF;--green:#00C853;--red:#FF1744;--yellow:#FFAB00;--blue:#2979FF;
+  --glass:rgba(12,12,15,.82);--shadow:0 2px 20px rgba(0,0,0,.4);--grain:.022;
+}
+[data-theme="light"]{
+  --bg0:#ececed;--bg1:#f2f2f4;--bg2:#f7f7f9;--bg3:#fbfbfd;
+  --card:#fff;--card2:#f7f7f9;--hover:rgba(0,0,0,.03);--active:rgba(0,0,0,.06);
+  --brd:rgba(0,0,0,.09);--brd2:rgba(0,0,0,.14);
+  --t1:#16161a;--t2:rgba(20,20,24,.64);--t3:rgba(20,20,24,.42);
+  --accent:#6A45F5;--green:#00A844;--red:#D32F2F;--yellow:#E07B00;--blue:#1565C0;
+  --glass:rgba(255,255,255,.85);--shadow:0 2px 18px rgba(0,0,0,.08);--grain:.008;
+}
+[data-theme="paper"]{
+  --bg0:#13110d;--bg1:#181510;--bg2:#1f1b14;--bg3:#262017;
+  --card:#1a1610;--card2:#201b13;--hover:rgba(255,230,180,.04);--active:rgba(255,230,180,.07);
+  --brd:rgba(255,225,170,.09);--brd2:rgba(255,225,170,.15);
+  --t1:#f5ecd8;--t2:rgba(245,236,216,.64);--t3:rgba(245,236,216,.40);
+  --accent:#E8B04B;--green:#7BC96F;--red:#FF6B5E;--yellow:#E8B04B;--blue:#6FA8DC;
+  --glass:rgba(19,17,13,.84);--shadow:0 2px 20px rgba(0,0,0,.5);--grain:.03;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--font);background:var(--bg0);color:var(--t1);height:100vh;overflow:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:var(--grain);mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:8px}
+::-webkit-scrollbar-track{background:transparent}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
+/* layout */
+#app{display:flex;flex-direction:column;height:100vh;max-width:1400px;margin:0 auto;position:relative}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:var(--glass);
+  border-bottom:1px solid var(--brd);padding:max(env(safe-area-inset-top),10px) 16px 10px}
+.hrow{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;letter-spacing:-.02em}
+.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--w3),var(--w2));display:grid;place-items:center;font-size:15px;box-shadow:0 0 0 1px var(--brd2),0 4px 14px rgba(124,92,255,.35);flex:none}
+.brand small{display:block;font-size:.62rem;font-weight:500;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+.spacer{flex:1}
+.iconbtn{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--t2);transition:.2s var(--ease);font-size:15px}
+.iconbtn:hover{background:var(--hover);color:var(--t1)}
+.iconbtn:active{transform:scale(.92)}
+
+/* search + channel toggle */
+.toolbar{display:flex;gap:8px;margin-top:10px;align-items:center}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--brd);border-radius:11px;padding:8px 12px;transition:.2s}
+.search:focus-within{border-color:var(--brd2);background:var(--bg3)}
+.search input{flex:1;background:none;border:none;color:var(--t1);font-size:.9rem;outline:none}
+.search input::placeholder{color:var(--t3)}
+.chan{display:flex;background:var(--bg2);border:1px solid var(--brd);border-radius:11px;padding:3px;gap:2px}
+.chan button{padding:6px 11px;border-radius:8px;font-size:.78rem;font-weight:600;color:var(--t3);transition:.2s var(--ease);white-space:nowrap}
+.chan button.on{color:#fff}
+.chan button[data-c="all"].on{background:var(--accent)}
+.chan button[data-c="web3"].on{background:var(--w3)}
+.chan button[data-c="web2"].on{background:var(--w2)}
+
+main{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 16px 96px;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+.view{animation:fade .35s var(--out)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* nav */
+nav{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--brd);display:flex;justify-content:space-around;padding:8px 6px max(env(safe-area-inset-bottom),8px)}
+.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 2px;color:var(--t3);transition:.2s var(--ease);border-radius:10px;max-width:90px}
+.navbtn .ni{font-size:18px;line-height:1}
+.navbtn span{font-size:.62rem;font-weight:600;letter-spacing:.01em}
+.navbtn.on{color:var(--accent)}
+.navbtn:active{transform:scale(.9)}
+
+/* generic */
+.h1{font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.sub{color:var(--t2);font-size:.9rem;line-height:1.5;margin-bottom:18px;max-width:60ch}
+.sec-h{display:flex;align-items:baseline;gap:8px;margin:26px 0 12px}
+.sec-h h2{font-size:1.18rem;font-weight:700;letter-spacing:-.02em}
+.sec-h .cnt{font-size:.72rem;color:var(--t3);font-weight:600}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+.card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:16px;transition:.22s var(--out);position:relative;overflow:hidden}
+.card:hover{border-color:var(--brd2);background:var(--card2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.g3{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:.66rem;font-weight:700;padding:3px 8px;border-radius:99px;letter-spacing:.02em;white-space:nowrap}
+.t-w3{background:rgba(124,92,255,.14);color:var(--w3)}
+.t-w2{background:rgba(255,122,69,.14);color:var(--w2)}
+.t-mut{background:var(--bg2);color:var(--t3);border:1px solid var(--brd)}
+.t-era{background:var(--bg2);color:var(--t2);border:1px solid var(--brd)}
+.dot{width:5px;height:5px;border-radius:99px;background:currentColor;flex:none}
+
+.case-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.case-t{font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin-bottom:3px;line-height:1.25}
+.case-brand{font-size:.78rem;color:var(--t3);font-weight:600;margin-bottom:9px}
+.case-body{font-size:.84rem;color:var(--t2);line-height:1.55}
+.case-body b{color:var(--t1);font-weight:600}
+.lesson{margin-top:11px;padding:10px 12px;background:var(--bg2);border-radius:var(--rs);border-left:2px solid var(--accent);font-size:.8rem;line-height:1.5}
+.lesson b{color:var(--accent);font-weight:700;display:block;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+
+/* learn module */
+.mod{cursor:pointer}
+.mod .num{font-family:var(--mono);font-size:.7rem;color:var(--t3);font-weight:600}
+.mod h3{font-size:1.02rem;font-weight:700;margin:6px 0 5px;letter-spacing:-.01em}
+.mod p{font-size:.82rem;color:var(--t2);line-height:1.5}
+.mod .meta{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+.points{list-style:none;margin-top:10px}
+.points li{font-size:.8rem;color:var(--t2);line-height:1.5;padding-left:18px;position:relative;margin-bottom:6px}
+.points li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:99px;background:var(--accent)}
+.points li b{color:var(--t1);font-weight:600}
+
+/* people */
+.person{display:flex;gap:13px;align-items:flex-start}
+.avi{width:44px;height:44px;border-radius:13px;flex:none;display:grid;place-items:center;font-weight:800;font-size:1rem;color:#fff;letter-spacing:-.02em}
+.person h3{font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.handle{font-size:.74rem;color:var(--t3);font-weight:600}
+.person .role{font-size:.76rem;color:var(--t2);margin:3px 0 7px}
+.person .why{font-size:.8rem;color:var(--t2);line-height:1.5}
+.person .why b{color:var(--t1)}
+
+/* signals / today */
+.digest{background:linear-gradient(135deg,rgba(124,92,255,.10),rgba(255,122,69,.07));border:1px solid var(--brd2);border-radius:var(--r);padding:16px 18px;margin-bottom:20px}
+.digest .kicker{color:var(--t1)}
+.signal{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--brd)}
+.signal:last-child{border-bottom:none}
+.sig-icon{width:40px;height:40px;border-radius:11px;flex:none;display:grid;place-items:center;font-size:17px;background:var(--bg2);border:1px solid var(--brd)}
+.signal h3{font-size:.92rem;font-weight:700;line-height:1.3;margin-bottom:4px}
+.signal p{font-size:.81rem;color:var(--t2);line-height:1.5}
+.sig-meta{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+.score{font-family:var(--mono);font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--bg2);border:1px solid var(--brd)}
+.score.hot{color:var(--red);border-color:rgba(255,23,68,.3)}
+
+/* plays */
+.play-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.play-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:18px;flex:none}
+.play h3{font-size:1.04rem;font-weight:700;letter-spacing:-.01em}
+.play .vert{font-size:.72rem;color:var(--t3);font-weight:600}
+
+/* filters */
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.fbtn{padding:6px 12px;border-radius:99px;font-size:.76rem;font-weight:600;color:var(--t2);background:var(--bg2);border:1px solid var(--brd);transition:.18s}
+.fbtn:hover{border-color:var(--brd2)}
+.fbtn.on{background:var(--t1);color:var(--bg0);border-color:var(--t1)}
+
+/* modal */
+.modal-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center}
+.modal-bg.open{display:flex;animation:fade .25s}
+.modal{background:var(--bg1);border:1px solid var(--brd2);border-radius:22px 22px 0 0;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;padding:8px 20px 40px;animation:up .35s var(--out)}
+@keyframes up{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.grab{width:38px;height:4px;border-radius:99px;background:var(--brd2);margin:8px auto 16px}
+.modal h2{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.modal .mtags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.modal p{font-size:.9rem;color:var(--t2);line-height:1.62;margin-bottom:12px}
+.modal p b,.modal li b{color:var(--t1);font-weight:600}
+.modal h4{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:20px 0 8px}
+.modal ul{list-style:none;margin-bottom:6px}
+.modal ul li{font-size:.88rem;color:var(--t2);line-height:1.55;padding-left:20px;position:relative;margin-bottom:8px}
+.modal ul li::before{content:'';position:absolute;left:3px;top:9px;width:6px;height:6px;border-radius:99px;background:var(--accent)}
+
+.empty{text-align:center;padding:60px 20px;color:var(--t3)}
+.empty .e-ic{font-size:34px;margin-bottom:10px}
+.footer-note{margin:30px 0 10px;padding:14px 16px;background:var(--bg1);border:1px solid var(--brd);border-radius:var(--rs);font-size:.76rem;color:var(--t3);line-height:1.55}
+.footer-note b{color:var(--t2)}
+.review-stamp{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;color:var(--green);background:rgba(0,200,83,.08);border:1px solid rgba(0,200,83,.2);padding:5px 11px;border-radius:99px;margin-top:12px}
+
+@media(min-width:760px){
+  html{font-size:15.5px}
+  main{padding:24px 28px 40px}
+  nav{position:sticky;bottom:auto;top:0;flex-direction:column;justify-content:flex-start;border-top:none}
+  .desktop-wrap{display:flex;flex:1;overflow:hidden}
+  .modal-bg{align-items:center}
+  .modal{border-radius:22px;max-height:84vh}
+}
+.installhint{display:none}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="hrow">
+      <div class="brand">
+        <div class="logo">◎</div>
+        <div>The Signal<small>Marketing intelligence hub</small></div>
+      </div>
+      <div class="spacer"></div>
+      <button class="iconbtn" id="installBtn" title="Install app" style="display:none">⬇</button>
+      <button class="iconbtn" onclick="cycleTheme()" title="Theme">◐</button>
+    </div>
+    <div class="toolbar">
+      <div class="search">
+        <span style="color:var(--t3)">⌕</span>
+        <input id="q" placeholder="Search cases, people, plays, tactics…" oninput="onSearch(this.value)">
+      </div>
+      <div class="chan" id="chan">
+        <button data-c="all" class="on" onclick="setChan('all')">All</button>
+        <button data-c="web3" onclick="setChan('web3')">Web3</button>
+        <button data-c="web2" onclick="setChan('web2')">Web2</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main"></main>
+
+  <nav id="nav">
+    <button class="navbtn on" data-v="today" onclick="go('today')"><span class="ni">◎</span><span>Today</span></button>
+    <button class="navbtn" data-v="learn" onclick="go('learn')"><span class="ni">✸</span><span>Learn</span></button>
+    <button class="navbtn" data-v="cases" onclick="go('cases')"><span class="ni">▣</span><span>Cases</span></button>
+    <button class="navbtn" data-v="plays" onclick="go('plays')"><span class="ni">⚑</span><span>Plays</span></button>
+    <button class="navbtn" data-v="people" onclick="go('people')"><span class="ni">☻</span><span>People</span></button>
+  </nav>
+</div>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+/* ============================================================
+   THE SIGNAL — data layer
+   Built and curated by five working agents:
+   · Builder        — the app shell, rendering, search, install
+   · Organizer      — taxonomy: channels, eras, verticals, modules
+   · Web3 Curator   — onchain cases, CT signals, token playbooks
+   · Web2 Curator   — brand, performance, DTC, AI & betting cases
+   · Critic (QA)    — every entry pressure-tested before ship
+   ============================================================ */
+const DATA = {};
+</script>
+<script src="data.js"></script>
+<script src="render.js"></script>
+</body>
+</html>
