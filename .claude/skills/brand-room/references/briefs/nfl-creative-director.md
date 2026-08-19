@@ -1,14 +1,40 @@
-# Target Brief — NFL, Creative Director (Brand Creative)
+# Target Brief — NFL, Senior Creative Director, Brand Experience
 
-Intel pack for the current target. Everything below is public information gathered in August 2026; **re-verify dates and personnel before anything is sent**, because this calendar moves and a wrong fact in spec work costs more than a missing one. Sources at the bottom.
+Intel pack for the current target. Section 0 is the **actual posted JD** (received Aug 2026) and overrides anything below it. The rest is public research; **re-verify dates and personnel before anything is sent**, because this calendar moves and a wrong fact in spec work costs more than a missing one. Sources at the bottom.
 
 ---
+
+## 0. The posted role — and the rubric hidden inside it
+
+**Title:** Senior Creative Director, NFL Brand Experience. Reports to **VP, Head of Global Brand Experience**. On-site, New York. ~35% travel, weekends during events. **$155,000–$175,000**, hiring "near the middle of the range." (A separately posted Senior Director, Creative role has listed ~$255–315k — different role, don't quote the higher band at this one.)
+
+**How the JD splits.** Roughly 60% leadership/culture/operations, 40% craft. The responsibilities are: fostering team culture, leading multiple design teams, mentorship and career development, representing the team to **Club ownership, internal executives, media, and host cities**, running workflow and the delivery calendar with the Director of Project Management, supporting the department budget, and **documenting and promoting the team's own output** — behind-the-scenes, process, artist-collaboration content, and the annual awards submissions.
+
+**Two doors the JD deliberately leaves open:**
+- *"Deep knowledge of NFL football is helpful, but not a requirement… X's and O's are teachable."* Football fluency is not the bar. **A unique creative point of view and human-first leadership are.** An outsider is explicitly welcome; a person with no POV is not.
+- *"Meaningful engagement with and use of AI as not only a tool for efficiency, but creative empowerment and exploration."* Rare in a league JD, and the single most exploitable gap against a field of traditional agency CDs.
+
+**The stated craft rubric** — treat this as the scorecard any showcase gets marked against:
+
+| # | Required area | How a showcase proves it |
+|---|---|---|
+| 1 | Large scale event and experiential design | A spatial/event build with plan, materials, scale, and crowd flow — not a render |
+| 2 | Identity design and typography | A tentpole/host-city identity system with real type craft and flex rules |
+| 3 | Brand building, brief writing, communication savvy | The written brief itself, published as part of the work |
+| 4 | Design for retail, fashion and consumer products | A capsule / product line with construction and merchandising logic |
+| 5 | Video and motion design | Title/motion system + a film beat |
+| 6 | Budget, workflow, timeline management | An operating page: calendar, team shape, in-house vs. agency, budget tiers |
+| 7 | Photo/video shoot | Shoot direction shown as a treatment: casting, light, lens, grade |
+| 8 | Presentation, public speaking, media | A short recorded walkthrough of the work |
+| 9 | AI as creative empowerment, not just efficiency | The pipeline shown honestly — where AI explored, where humans decided |
+
+**Leadership signals the JD asks for by name:** servant leadership, culture-carrier, mentorship, flexibility and empathy, "protecting how it feels to do the work together." Any showcase that is only artifacts, with no evidence of how the maker runs a room, is answering 40% of the posting.
 
 ## 1. The org you'd be joining
 
 - The NFL runs an **in-house creative agency**, most commonly referred to as **Brand Experience** — the team responsible for setting the creative foundation and story for nearly every expression of the league brand.
 - Its stated scope covers **global events (Super Bowl, Draft, Kickoff), the brands, identities and uniform designs of the 32 clubs, and International Games** — spanning print, decor, digital, social, and experiential.
-- Senior creative roles are New York–based and framed explicitly as **leadership and mentorship** roles: "a mentor and culture-carrier, who is as passionate about how we work as they are with the creative excellence of the work we produce." Posted senior-director-level comp has been listed in the ~$255–315k range.
+- Senior creative roles are New York–based and framed explicitly as **leadership and mentorship** roles: "a mentor and culture-carrier, who is as passionate about how we work as they are with the creative excellence of the work we produce."
 - Leadership reference point: **Chris Stackhouse, VP / Head of Global Brand Experience.**
 - The league also works with **external agencies** — 72andSunny handled the league's Super Bowl LX brand campaign, including a cause spot. So the in-house team's job is partly to *set and hold the frame* that outside agencies execute inside.
 
