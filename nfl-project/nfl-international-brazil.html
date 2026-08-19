@@ -1,0 +1,367 @@
+<title>O PRÓXIMO — NFL International Brazil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800;900&family=Archivo+Expanded:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0B0D; --bg2:#101216; --panel:#121418; --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --t1:#F4F6F5; --t2:rgba(244,246,245,.62); --t3:rgba(244,246,245,.38);
+  --green:#00E676; --green-d:#00B45A; --gold:#FFC400; --ink:#050607;
+  --ease:cubic-bezier(.16,1,.3,1); --easeio:cubic-bezier(.4,0,.2,1);
+  --disp:'Anton',Impact,sans-serif; --exp:'Archivo Expanded','Archivo',sans-serif; --body:'Archivo',system-ui,sans-serif;
+  --max:1180px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--body);line-height:1.5;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px}
+img{max-width:100%;display:block}
+::selection{background:var(--green);color:var(--ink)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{position:relative}
+.eyebrow{font-family:var(--body);font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:'';width:22px;height:2px;background:var(--green);display:block}
+.eyebrow.gold{color:var(--gold)}.eyebrow.gold::before{background:var(--gold)}
+h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:.92;letter-spacing:0;text-transform:uppercase}
+.rev{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;background:linear-gradient(180deg,rgba(10,11,13,.9),rgba(10,11,13,0));backdrop-filter:blur(6px)}
+.nav .brand{font-family:var(--exp);font-weight:900;font-size:15px;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+.nav .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 2.4s var(--easeio) infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.6}}
+.nav .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 60px;overflow:hidden}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.5}
+.hero-glow{position:absolute;width:60vw;height:60vw;max-width:720px;max-height:720px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,230,118,.16),transparent 62%);top:-10%;right:-10%;filter:blur(20px);z-index:0}
+.hero-glow.g2{background:radial-gradient(circle,rgba(255,196,0,.10),transparent 62%);bottom:-20%;left:-15%;top:auto;right:auto}
+.hero .wrap{position:relative;z-index:2}
+.kicker-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
+.flagbar{display:inline-flex;height:15px;border-radius:3px;overflow:hidden;border:1px solid var(--line2)}
+.flagbar i{display:block;width:26px}.flagbar i.g{background:var(--green)}.flagbar i.y{background:var(--gold)}.flagbar i.b{background:#012169}
+.hero h1{font-size:clamp(3.4rem,13vw,11rem);color:var(--t1)}
+.hero h1 .out{-webkit-text-stroke:2px var(--t1);color:transparent;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero-sub{max-width:33em;margin-top:26px;font-size:clamp(1rem,2.4vw,1.35rem);color:var(--t2);font-weight:400}
+.hero-sub b{color:var(--t1);font-weight:800}
+.hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;padding-top:22px;border-top:1px solid var(--line)}
+.hm{display:flex;flex-direction:column;gap:2px}
+.hm .n{font-family:var(--exp);font-weight:900;font-size:clamp(1.4rem,4vw,2.1rem);font-variant-numeric:tabular-nums;line-height:1}
+.hm .n.green{color:var(--green)}.hm .n.gold{color:var(--gold)}
+.hm .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-weight:700}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--t3);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollcue .bar{width:1px;height:34px;background:linear-gradient(var(--green),transparent);animation:drop 2s var(--easeio) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* generic section head */
+.shead{padding:96px 0 40px}
+.shead .big{font-size:clamp(2.4rem,7vw,5.2rem);margin-top:18px}
+.shead .big .green{color:var(--green)}.shead .big .gold{color:var(--gold)}
+.lead{max-width:34em;color:var(--t2);font-size:clamp(1rem,2.2vw,1.15rem);margin-top:20px}
+.idx{font-family:var(--exp);font-weight:900;font-size:12px;color:var(--t3);letter-spacing:.1em}
+
+/* MAP */
+.mapwrap{position:relative;padding:20px 0 90px}
+.map{width:100%;height:auto;filter:drop-shadow(0 0 40px rgba(0,230,118,.06))}
+.node{transform-box:fill-box;transform-origin:center}
+.node circle.core{fill:var(--green)}
+.node circle.ring{fill:none;stroke:var(--green);stroke-width:1.5;opacity:.5;transform-origin:center}
+.node.rio circle.core{fill:var(--gold)}
+.node.rio circle.ring{stroke:var(--gold)}
+.node.on circle.ring{animation:ping 2.6s var(--ease) infinite}
+@keyframes ping{0%{r:5;opacity:.7}100%{r:26;opacity:0}}
+.arc{fill:none;stroke:var(--green);stroke-width:1.4;opacity:.55;stroke-dasharray:1;stroke-dashoffset:1}
+.arc.draw{animation:draw 1.4s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.citylabel{font-family:var(--body);font-weight:800;font-size:11px;letter-spacing:.06em;fill:var(--t2);text-transform:uppercase}
+.citylabel.rio{fill:var(--gold)}
+
+/* FLYWHEEL */
+.flywheel{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 0 40px}
+.fw{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 22px;position:relative;overflow:hidden}
+.fw::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--green)}
+.fw.spike::after{background:var(--t3)}.fw.pay::after{background:var(--gold)}
+.fw .step{font-family:var(--exp);font-weight:900;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.fw h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:1.9rem;margin:12px 0 10px;line-height:.95}
+.fw.grow h4{color:var(--green)}.fw.pay h4{color:var(--gold)}
+.fw p{color:var(--t2);font-size:.95rem}
+.fw .arrowto{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--t3);font-size:20px;z-index:3}
+
+/* CULTURE / references */
+.bridge{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 0 50px}
+.bcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+.bcard:hover{border-color:var(--green);transform:translateY(-3px)}
+.bcard .top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.bcard .soc{font-family:var(--exp);font-weight:900;font-size:.95rem;color:var(--t3);text-transform:uppercase;letter-spacing:.04em}
+.bcard .nfl{font-family:var(--exp);font-weight:900;font-size:.95rem;color:var(--green);text-transform:uppercase;letter-spacing:.04em}
+.bcard .to{color:var(--gold);font-family:var(--disp);font-size:1.1rem}
+.bcard h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:1.5rem;line-height:.98;margin-bottom:8px}
+.bcard p{color:var(--t2);font-size:.92rem}
+.pioneer{margin-top:8px;background:linear-gradient(120deg,var(--panel),rgba(0,230,118,.05));border:1px solid var(--line2);border-radius:16px;padding:30px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.pioneer .num{font-family:var(--disp);font-size:clamp(3rem,10vw,5.5rem);color:var(--green);line-height:.8}
+.pioneer .txt{flex:1;min-width:240px}
+.pioneer .txt h4{font-family:var(--exp);font-weight:900;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px}
+.pioneer .txt p{color:var(--t2)}
+
+/* DECOMPOSE */
+.decompose{padding:20px 0 40px}
+.parts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0 34px}
+.part{aspect-ratio:1;background:radial-gradient(circle at 50% 40%,var(--bg2),var(--ink));border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;transition:transform .35s var(--ease),border-color .35s var(--ease)}
+.part:hover{transform:translateY(-4px) scale(1.02);border-color:var(--green)}
+.part svg{width:46%;height:46%}
+.part .pl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);font-weight:800}
+.part .tag{position:absolute;top:9px;left:9px;font-family:var(--exp);font-weight:900;font-size:9px;color:var(--t3)}
+.recolor{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.rc{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative}
+.rc .viz{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,#15181d,var(--ink))}
+.rc .viz svg{width:62%;height:62%}
+.rc .cap{padding:16px 18px}
+.rc .cap .k{font-family:var(--exp);font-weight:900;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.rc .cap h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:1.25rem;line-height:1}
+.rc .cap p{color:var(--t2);font-size:.85rem;margin-top:6px}
+
+/* PROXIMO close */
+.proximo{padding:100px 0;position:relative;overflow:hidden}
+.proximo .glow{position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 40%,rgba(255,196,0,.08),transparent);z-index:0}
+.proximo .wrap{position:relative;z-index:2;text-align:center}
+.proximo h2{font-size:clamp(2.8rem,11vw,9rem);color:var(--t1)}
+.proximo h2 em{font-style:normal;color:var(--gold)}
+.proximo .big-quote{max-width:20em;margin:26px auto 0;font-size:clamp(1.15rem,3vw,1.7rem);color:var(--t2);font-weight:400}
+.proximo .big-quote b{color:var(--t1);font-weight:800}
+.beachstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:46px}
+.bt{aspect-ratio:3/4;border-radius:12px;border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(160deg,#141821,var(--ink))}
+.bt .field{position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(180deg,transparent,rgba(0,230,118,.14))}
+.bt .yl{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.12)}
+.bt .fig{position:absolute;bottom:20%;left:50%;transform:translateX(-50%);width:22%;height:38%;background:var(--ink);border-radius:40% 40% 30% 30%}
+.bt .num{position:absolute;top:12px;left:12px;font-family:var(--disp);font-size:1.4rem;color:var(--gold);opacity:.5}
+
+/* MODE STRIP (graphic vs real) */
+.modes{display:flex;gap:12px;margin-top:26px;justify-content:center;flex-wrap:wrap}
+.mode{border:1px solid var(--line2);border-radius:100px;padding:9px 18px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--t2)}
+.mode b{color:var(--green)}
+
+/* CTA / FOOTER */
+.cta{padding:70px 0;border-top:1px solid var(--line);text-align:center}
+.cta .line{font-family:var(--disp);font-size:clamp(1.6rem,5vw,3rem);text-transform:uppercase;line-height:1}
+.cta .line .green{color:var(--green)}
+.foot{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--t3);font-size:12px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot a{color:var(--t2);text-decoration:none;border-bottom:1px solid var(--line2)}
+.foot .disc{max-width:40em}
+.refs{padding:26px 0 0;display:flex;gap:10px 26px;flex-wrap:wrap;font-size:11px;color:var(--t3)}
+.refs span{white-space:nowrap}
+
+@media(max-width:820px){
+  .flywheel{grid-template-columns:1fr}.fw .arrowto{display:none}
+  .bridge{grid-template-columns:1fr}
+  .parts{grid-template-columns:repeat(2,1fr)}
+  .recolor{grid-template-columns:1fr}
+  .beachstrip{grid-template-columns:repeat(2,1fr)}
+  .hero-meta{gap:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
+</style>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span>NFL INTERNATIONAL</div>
+  <div class="tag">Brazil · Spec / Unaffiliated</div>
+</nav>
+
+<!-- 1 · OPENING -->
+<section class="hero" id="open">
+  <div class="hero-glow"></div><div class="hero-glow g2"></div>
+  <div class="wrap">
+    <div class="kicker-row rev">
+      <span class="flagbar"><i class="g"></i><i class="y"></i><i class="b"></i></span>
+      <span class="eyebrow">The game has no borders</span>
+    </div>
+    <h1 class="rev d1">THE FIELD<br><em>HAS NO</em> <span class="out">EDGES</span></h1>
+    <p class="hero-sub rev d2">American football is going global. Not by exporting a broadcast — by handing the game to the world. It starts in the country that already lives to play: <b>Brazil.</b></p>
+    <div class="hero-meta rev d3">
+      <div class="hm"><span class="n green">#2</span><span class="l">Int'l market</span></div>
+      <div class="hm"><span class="n">36M+</span><span class="l">Brazilian fans</span></div>
+      <div class="hm"><span class="n gold">SEP 27</span><span class="l">Maracanã · Rio '26</span></div>
+      <div class="hm"><span class="n">9</span><span class="l">Global games '26</span></div>
+    </div>
+  </div>
+  <div class="scrollcue"><div class="bar"></div>SCROLL</div>
+</section>
+
+<!-- 2 · BRAZIL -->
+<section id="brazil">
+  <div class="wrap shead">
+    <span class="idx rev">02 — THE MARKET</span>
+    <h2 class="big rev d1">WHY <span class="green">BRAZIL</span><br>WHY NOW</h2>
+    <p class="lead rev d2">On <b style="color:var(--t1)">September 27, 2026</b>, the Ravens play the Cowboys at the Maracanã — the NFL's first regular-season game in Rio, with a minimum of three games committed over five years. A game creates a spike. What turns a spike into a market is what happens the other 364 days.</p>
+  </div>
+  <div class="wrap mapwrap">
+    <svg class="map" viewBox="0 0 1000 500" role="img" aria-label="World map with NFL 2026 international host cities, Rio de Janeiro highlighted">
+      <!-- stylised continents as soft blocks -->
+      <g fill="#14171c" stroke="rgba(255,255,255,.05)" stroke-width="1">
+        <path d="M120,110 Q180,80 240,110 260,160 220,210 160,230 120,200 100,150Z"/>
+        <path d="M250,250 Q300,230 330,280 340,360 300,430 260,410 240,340 240,290Z"/>
+        <path d="M470,90 Q540,70 600,100 600,150 560,180 500,180 470,140Z"/>
+        <path d="M520,200 Q580,190 610,240 600,320 560,380 520,360 510,280Z"/>
+        <path d="M640,110 Q760,80 860,130 880,200 820,240 720,240 660,190 640,150Z"/>
+        <path d="M820,300 Q880,290 900,330 880,370 840,370 820,340Z"/>
+      </g>
+      <!-- arcs from USA to host cities -->
+      <path class="arc" d="M300,150 Q400,60 520,110"/>
+      <path class="arc" d="M300,150 Q420,90 540,150"/>
+      <path class="arc" d="M300,150 Q460,120 700,150"/>
+      <path class="arc" d="M300,160 Q440,260 560,300"/><!-- to Rio -->
+      <path class="arc" d="M300,160 Q600,320 840,330"/>
+      <!-- nodes -->
+      <g class="node" transform="translate(520,110)"><circle class="ring" r="5"/><circle class="core" r="3.5"/></g>
+      <text class="citylabel" x="528" y="106">LONDON</text>
+      <g class="node" transform="translate(540,150)"><circle class="ring" r="5"/><circle class="core" r="3.5"/></g>
+      <text class="citylabel" x="548" y="160">MADRID · MUNICH</text>
+      <g class="node" transform="translate(700,150)"><circle class="ring" r="5"/><circle class="core" r="3.5"/></g>
+      <text class="citylabel" x="708" y="150">—</text>
+      <g class="node" transform="translate(840,330)"><circle class="ring" r="5"/><circle class="core" r="3.5"/></g>
+      <text class="citylabel" x="770" y="352">MELBOURNE</text>
+      <g class="node rio" transform="translate(560,300)"><circle class="ring" r="6"/><circle class="core" r="4.5"/></g>
+      <text class="citylabel rio" x="500" y="330">RIO · MARACANÃ</text>
+      <g class="node" transform="translate(300,155)"><circle class="core" r="3" fill="rgba(255,255,255,.5)"/></g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <span class="idx rev">THE FLYWHEEL</span>
+    <div class="flywheel">
+      <div class="fw spike rev d1"><span class="step">01 · The spike</span><h4>THE GAME</h4><p>Maracanã, one Sunday. Awareness, spectacle, a nation watching. But a game alone makes spectators — and spectators forget by Monday.</p><span class="arrowto">→</span></div>
+      <div class="fw grow rev d2"><span class="step">02 · The flywheel</span><h4>THE FLAG</h4><p>Flag football is the retention layer: no pads, no barrier, plays on the sand. A kid who <b style="color:var(--t1)">plays</b> becomes a fan for life — and the only path to a homegrown star.</p><span class="arrowto">→</span></div>
+      <div class="fw pay rev d3"><span class="step">03 · The payoff</span><h4>O PRÓXIMO</h4><p>The first Brazilian in the Hall of Fame. A hero a whole country claims. That is what makes a market self-sustaining — not tickets, a face.</p></div>
+    </div>
+    <p class="lead rev" style="max-width:44em">This isn't a proposal for something new — it's the creative system on top of what the NFL is <b style="color:var(--t1)">already building</b>: NFL Flag Brazil runs in 80 schools, trains PE coaches to NFL standard, and just held the country's first U-15 girls' championship. It has everything except one unifying idea.</p>
+  </div>
+</section>
+
+<!-- 3 · REFERENCES / CULTURE -->
+<section id="culture">
+  <div class="wrap shead">
+    <span class="idx rev">03 — THE BRIDGE</span>
+    <h2 class="big rev d1">A COUNTRY THAT<br>ALREADY <span class="green">PLAYS</span></h2>
+    <p class="lead rev d2">Brazil is <em style="font-style:italic;color:var(--t1)">jogo bonito</em> — the beautiful game, barefoot, on sand and in the street. American football looks like the opposite: armor, rules, stoppages. The bridge is the body. Every instinct Brazil already has is a football skill waiting for a new sport.</p>
+  </div>
+  <div class="wrap">
+    <div class="bridge">
+      <div class="bcard rev d1"><div class="top"><span class="soc">FUTSAL FOOTWORK</span><span class="to">→</span><span class="nfl">ROUTE RUNNING</span></div><h4>The cut is the juke</h4><p>The tight, quick-twitch footwork that makes Brazilian futsal players magic is exactly what separates a receiver getting open.</p></div>
+      <div class="bcard rev d2"><div class="top"><span class="soc">CAPOEIRA</span><span class="to">→</span><span class="nfl">THE SPIN MOVE</span></div><h4>Evasion as art</h4><p>A culture that turned dodging into dance already understands the most beautiful thing a ball-carrier can do: not get touched.</p></div>
+      <div class="bcard rev d3"><div class="top"><span class="soc">THE BEACH</span><span class="to">→</span><span class="nfl">THE FIELD</span></div><h4>Copacabana is a stadium</h4><p>Brazil plays on sand by default. Flag football needs no turf, no pads, no gates — just a stretch of beach and a belt.</p></div>
+      <div class="bcard rev d4"><div class="top"><span class="soc">CARNIVAL</span><span class="to">→</span><span class="nfl">GAMEDAY</span></div><h4>Spectacle is native</h4><p>No country stages collective joy better. The NFL's gameday theatre isn't foreign here — it's a Tuesday.</p></div>
+    </div>
+    <div class="pioneer rev">
+      <div class="num">01</div>
+      <div class="txt"><h4>Cairo Santos — the proof it's already happening</h4><p>Born in São Paulo, he played soccer before he ever kicked a football — and became the <b style="color:var(--t1)">first Brazilian-born player in NFL history.</b> One person, the whole soccer-to-football bridge. There are 36 million fans behind him and no icon yet. That's the opening.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · DECOMPOSING THE NFL -->
+<section id="decompose">
+  <div class="wrap shead">
+    <span class="idx rev">04 — THE SYSTEM</span>
+    <h2 class="big rev d1">DECOMPOSE<br>THE <span class="gold">SHIELD</span></h2>
+    <p class="lead rev d2">Take the NFL apart into its icons — the helmet, the ball, the goalpost, the turf, the whistle, the cleats. Cut each one out, intensify it, lay it on the map. Then recolor the language for Brazil: a new ball, a new kit, a stadium reborn in the city. We don't touch the shield — we translate it.</p>
+  </div>
+  <div class="wrap decompose">
+    <div class="parts">
+      <div class="part rev d1"><span class="tag">EL.01</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M18 40c-4-14 8-26 22-24 12 2 12 14 8 20l-6 2-2 6c-8 4-18 2-22-4z"/><path d="M40 38h10" stroke="var(--gold)"/><circle cx="24" cy="34" r="3" fill="var(--green)" stroke="none"/></svg>
+        <span class="pl">Helmet</span></div>
+      <div class="part rev d2"><span class="tag">EL.02</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><ellipse cx="32" cy="32" rx="24" ry="13"/><path d="M22 32h20M26 28v8M32 27v10M38 28v8" stroke="var(--gold)"/></svg>
+        <span class="pl">The Ball</span></div>
+      <div class="part rev d3"><span class="tag">EL.03</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M32 54V26M20 26h24M20 26c0-8 24-8 24 0" /><path d="M32 26V12" stroke="var(--gold)"/></svg>
+        <span class="pl">Goalpost</span></div>
+      <div class="part rev d4"><span class="tag">EL.04</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><rect x="12" y="16" width="40" height="32" rx="2"/><path d="M22 16v32M32 16v32M42 16v32" stroke="var(--gold)"/></svg>
+        <span class="pl">The Turf</span></div>
+      <div class="part rev d1"><span class="tag">EL.05</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><circle cx="28" cy="32" r="12"/><path d="M40 32h12l-4 6" stroke="var(--gold)"/><circle cx="28" cy="32" r="3" fill="var(--gold)" stroke="none"/></svg>
+        <span class="pl">Whistle</span></div>
+      <div class="part rev d2"><span class="tag">EL.06</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M14 40c0-8 6-10 14-10l18 8v6H16z"/><path d="M18 44v4M26 44v4M34 44v4" stroke="var(--gold)"/></svg>
+        <span class="pl">Cleats</span></div>
+      <div class="part rev d3"><span class="tag">EL.07</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M20 52V22l12-8 12 8v30" /><path d="M28 52V38h8v14" stroke="var(--gold)"/></svg>
+        <span class="pl">Goal / Stadium</span></div>
+      <div class="part rev d4"><span class="tag">EL.08</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M16 44l14-24 4 8 4-4 10 20z"/><path d="M24 44l8-14" stroke="var(--gold)"/></svg>
+        <span class="pl">Flag Belt</span></div>
+    </div>
+    <span class="idx rev" style="display:block;margin-bottom:14px">RECOLORED FOR BRAZIL</span>
+    <div class="recolor">
+      <div class="rc rev d1">
+        <div class="viz"><svg viewBox="0 0 120 90" fill="none"><ellipse cx="60" cy="45" rx="46" ry="26" fill="#0e1114" stroke="var(--green)" stroke-width="2"/><path d="M40 45h40" stroke="var(--gold)" stroke-width="3"/><path d="M48 39v12M56 37v16M64 37v16M72 39v12" stroke="var(--gold)" stroke-width="2"/><path d="M18 45q42-20 84 0" stroke="var(--green)" stroke-width="1" opacity=".5"/></svg></div>
+        <div class="cap"><div class="k">Object 01</div><h4>The Rio Ball</h4><p>Green-and-gold panels, a Copacabana wave seam, gold laces. The ball you'd want to pass on the beach.</p></div>
+      </div>
+      <div class="rc rev d2">
+        <div class="viz"><svg viewBox="0 0 120 90" fill="none"><path d="M40 20h40l14 10-8 12-6-3v34H40V39l-6 3-8-12z" fill="#0e1114" stroke="var(--green)" stroke-width="2"/><text x="60" y="58" font-family="Anton" font-size="26" fill="var(--gold)" text-anchor="middle">33</text></svg></div>
+        <div class="cap"><div class="k">Object 02</div><h4>The 33rd Kit</h4><p>32 clubs, one nation joining the game. A jersey in Brazil's colors — worn on the sand, not just the stands.</p></div>
+      </div>
+      <div class="rc rev d3">
+        <div class="viz"><svg viewBox="0 0 120 90" fill="none"><ellipse cx="60" cy="66" rx="46" ry="12" fill="#0e1114" stroke="var(--green)" stroke-width="2"/><ellipse cx="60" cy="52" rx="34" ry="9" fill="none" stroke="var(--green)" stroke-width="1.5" opacity=".7"/><ellipse cx="60" cy="52" rx="16" ry="4" fill="none" stroke="var(--gold)" stroke-width="2"/><path d="M44 52v14M76 52v14" stroke="var(--green)" stroke-width="1.5"/></svg></div>
+        <div class="cap"><div class="k">Object 03</div><h4>Mini Maracanã</h4><p>A pop-up scale replica — the stadium reborn on Copacabana, a real field kids can walk into. The city gets its own arena.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · O PRÓXIMO -->
+<section class="proximo" id="proximo">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow gold rev" style="margin-bottom:20px">05 — The payoff</span>
+    <h2 class="rev d1">O <em>PRÓXIMO</em></h2>
+    <p class="big-quote rev d2">The first Brazilian in the Pro Football Hall of Fame is <b>twelve years old.</b> She's playing flag football on a beach in Rio right now. Our job isn't to sell her a game — <b>it's to hand it to her.</b></p>
+    <div class="modes rev d3">
+      <span class="mode">Rendered two ways — <b>graphic</b> &amp; <b>real imagery</b></span>
+      <span class="mode">Beach · Favela · Schoolyard</span>
+    </div>
+    <div class="beachstrip rev d4">
+      <div class="bt"><span class="num">07</span><div class="field"></div><i class="yl" style="bottom:38%"></i><i class="yl" style="bottom:24%"></i><i class="yl" style="bottom:10%"></i><div class="fig"></div></div>
+      <div class="bt"><span class="num">10</span><div class="field"></div><i class="yl" style="bottom:38%"></i><i class="yl" style="bottom:24%"></i><i class="yl" style="bottom:10%"></i><div class="fig" style="left:38%"></div><div class="fig" style="left:62%;height:32%"></div></div>
+      <div class="bt"><span class="num">22</span><div class="field"></div><i class="yl" style="bottom:38%"></i><i class="yl" style="bottom:24%"></i><i class="yl" style="bottom:10%"></i><div class="fig" style="height:44%"></div></div>
+      <div class="bt"><span class="num">33</span><div class="field"></div><i class="yl" style="bottom:38%"></i><i class="yl" style="bottom:24%"></i><i class="yl" style="bottom:10%"></i><div class="fig" style="left:44%"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <p class="line rev">GIVE BRAZIL THE GAME.<br><span class="green">IT WILL GIVE YOU THE NEXT HUNDRED YEARS.</span></p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;width:100%">
+    <div class="disc">
+      <strong style="color:var(--t2)">O PRÓXIMO — NFL International / Brazil.</strong> Conceptual spec work, created independently and unaffiliated with the National Football League. No official endorsement implied; figures cited are public. Made by Max Vaysbord.
+      <div class="refs">
+        <span>◦ Rio game — NFL.com</span><span>◦ NFL Flag Brazil — Samba Digital</span><span>◦ NBA Mexico model</span><span>◦ Cairo Santos — Wikipedia</span>
+      </div>
+    </div>
+    <div style="text-align:right;min-width:160px"><a href="mailto:vaysbord@gmail.com">vaysbord@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+// map: draw arcs + light nodes when map enters
+const mapSec=document.querySelector('#brazil .map');
+const mio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+  document.querySelectorAll('.arc').forEach((a,i)=>{setTimeout(()=>a.classList.add('draw'),200+i*260)});
+  document.querySelectorAll('.node').forEach((n,i)=>{setTimeout(()=>n.classList.add('on'),600+i*220)});
+  mio.unobserve(e.target)}})},{threshold:.3});
+if(mapSec)mio.observe(mapSec);
+</script>
