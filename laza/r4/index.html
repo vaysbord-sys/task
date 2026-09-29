@@ -3,308 +3,376 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LAZA — Four Places · Round 4</title>
+<title>LAZA — Five Places · Round 4</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600&family=Readex+Pro:wght@400;600&family=Aref+Ruqaa:wght@400;700&family=Libre+Caslon+Display&family=Instrument+Sans:wght@400;500;600&family=Archivo:wdth,wght@62..125,400..900&family=Geist:wght@400;500;600&family=Alexandria:wght@500;700&family=Gloock&family=El+Messiri:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600&family=Readex+Pro:wght@400;600&family=Aref+Ruqaa:wght@400;700&family=Libre+Caslon+Display&family=Instrument+Sans:wght@400;500;600&family=Archivo:wdth,wght@62..125,400..900&family=Geist:wght@400;500;600&family=Alexandria:wght@500;700&family=Gloock&family=El+Messiri:wght@500;700&family=Unbounded:wght@500;700;800&family=Figtree:wght@400;500;600&family=Marhey:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Round 4: r3 structure + palettes. 8pt spacing. Each direction owns its ground, ink and type. */
+/* Round 4 · YONEX-format: near-full-screen image slides with descriptive text; fade in/out on scroll. 8pt spacing. */
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;--s10:128px;
-  --ink:#161616;--mute:#666;--rule:#E6E6E6;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{--ink:#161616;--mute:#666;--rule:#E6E6E6;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--helv:"Helvetica Neue",Helvetica,Arial,sans-serif;color-scheme:light}
+html{scroll-behavior:smooth}
 body{background:#fff;color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
 :focus-visible{outline:2px solid currentColor;outline-offset:3px}
-.eb{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}
-.wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
-.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
-.nav .wrap{height:56px;display:flex;align-items:center;gap:var(--s5)}
-.nav .links{display:flex;gap:var(--s5);overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
-.nav .links::-webkit-scrollbar{display:none}
-.nav b{font:500 12px var(--mono);letter-spacing:.14em;white-space:nowrap}
-.nav a{font:500 14px/1 "Instrument Sans",sans-serif;text-decoration:none;color:var(--mute);white-space:nowrap;display:flex;gap:var(--s2);align-items:center}
-.nav a:hover{color:var(--ink)}
-.nav i{width:10px;height:10px;border-radius:50%;display:inline-block}
-.toggle{display:flex;border:1px solid var(--ink);border-radius:99px;overflow:hidden;flex:none}
-.toggle a{padding:6px 14px;font:500 12px var(--mono);letter-spacing:.08em;color:var(--ink)}
-.toggle a.on{background:var(--ink);color:#fff}
-.intro{padding-block:var(--s10) var(--s8)}
-.intro h1{font:400 clamp(44px,6.4vw,96px)/1 "Gloock",Georgia,serif;letter-spacing:-.02em;max-width:15ch;margin-top:var(--s5)}
-.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.55;max-width:60ch;margin-top:var(--s6);color:#333}
-.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4);margin-top:var(--s8)}
-.four a{text-decoration:none;display:grid;gap:var(--s3)}
-.four .ph{aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#eee}
-.four .ph img{width:100%;height:100%;object-fit:cover}
-.four b{font-size:18px}
-.four span{font-size:14px;color:#444}
-@media (max-width:900px){.four{grid-template-columns:1fr 1fr}}
-.sec{padding-block:var(--s9);border-top:1px solid var(--rule)}
-.sec h2{font:400 clamp(34px,4vw,56px)/1.05 "Gloock",Georgia,serif;max-width:22ch;margin-top:var(--s3)}
-.brief{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5);margin-top:var(--s7)}
-.brief p{font-size:15px;line-height:1.5;color:#333;border-top:1px solid var(--ink);padding-top:var(--s3)}
-.brief b{display:block;font-size:16px;color:var(--ink);margin-bottom:4px}
-@media (max-width:900px){.brief{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.brief{grid-template-columns:1fr}}
-.map{width:100%;border-collapse:collapse;margin-top:var(--s7);font-size:15px;min-width:760px}
-.map th,.map td{text-align:left;vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--rule)}
-.map thead th{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.map tbody th{font-weight:600}
-.scroll{overflow-x:auto}
-.dir{padding-block:var(--s10)}
-.dhead{display:grid;grid-template-columns:1fr auto;gap:var(--s5) var(--s8);align-items:end;padding-bottom:var(--s7);border-bottom:1px solid currentColor}
-.dnum{font:500 12px var(--mono);letter-spacing:.14em}
-.dname{font-size:clamp(64px,10vw,150px);line-height:.9;letter-spacing:-.02em;margin-top:var(--s3)}
-.lens{font:500 12px/1.5 var(--mono);letter-spacing:.06em;margin-top:var(--s4);opacity:.85;max-width:60ch}
-.dline{font-size:clamp(22px,2.4vw,34px);line-height:1.2;max-width:18ch;text-align:right}
-@media (max-width:900px){.dhead{grid-template-columns:1fr}.dline{text-align:left}}
-.blk{display:grid;grid-template-columns:240px minmax(0,1fr);gap:var(--s7);padding-block:var(--s8);border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
-.why{font-size:15px;line-height:1.55;margin-top:var(--s3);opacity:.85;max-width:30ch}
-@media (max-width:900px){.blk{grid-template-columns:1fr;gap:var(--s5)}}
-.roots ul{list-style:none;display:grid;gap:var(--s3)}
-.roots li{font-size:16px;line-height:1.55;padding-left:var(--s5);position:relative;max-width:70ch}
-.roots li::before{content:"";position:absolute;left:0;top:.72em;width:12px;height:2px;background:currentColor}
-.roots li a{font:500 11px var(--mono);letter-spacing:.08em;opacity:.7;text-transform:uppercase;margin-left:6px}
-.so{font-size:clamp(19px,1.8vw,24px);line-height:1.45;margin-top:var(--s6);max-width:52ch}
-.logos{display:grid;grid-template-columns:1.6fr 1fr;gap:var(--s4)}
-.logos figure,.g figure{display:grid;gap:var(--s3);align-content:start}
-.im{border-radius:6px;overflow:hidden;background:rgba(0,0,0,.05);cursor:zoom-in}
-.im img{width:100%;height:100%;object-fit:cover}
-.im.logo{aspect-ratio:16/9}.im.logo.sq{aspect-ratio:1/1;height:100%}
-.im.logo img{object-fit:contain}
+.eb{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:clamp(16px,4vw,56px)}
+
+/* centered thin menu */
+.nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:2px;padding:4px;height:36px;max-width:calc(100vw - 24px);border-radius:99px;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.06),0 6px 24px -12px rgba(0,0,0,.25);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font:500 12px/1 var(--helv);text-decoration:none;color:#444;padding:7px 11px;border-radius:99px;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.nav a:hover{background:rgba(0,0,0,.06);color:#000}
+.nav a.on{background:#161616;color:#fff}
+.nav i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.nav .sep{width:1px;height:18px;background:rgba(0,0,0,.15);margin:0 4px;flex:none}
+.nav .v{font-family:var(--mono);letter-spacing:.06em}
+
+/* reveal: fade in when entering, fade out when leaving */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+/* intro + brief (Helvetica) */
+.intro{min-height:100svh;display:flex;align-items:flex-end;padding-block:120px 64px}
+.intro h1{font:400 clamp(52px,8vw,128px)/.95 "Gloock",Georgia,serif;letter-spacing:-.02em;max-width:14ch}
+.lede{font-size:clamp(18px,1.7vw,22px);line-height:1.55;max-width:62ch;margin-top:32px;color:#333}
+.five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:56px}
+.five a{text-decoration:none;display:grid;gap:10px}
+.five .ph{aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:#eee}
+.five .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.five a:hover img{transform:scale(1.04)}
+.five b{font-size:17px}.five span{font-size:13.5px;color:#555}
+@media (max-width:900px){.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.brief{font-family:var(--helv);padding-block:128px;border-top:1px solid var(--rule)}
+.brief h2{font:700 clamp(36px,4.6vw,68px)/1.02 var(--helv);letter-spacing:-.035em;max-width:18ch;margin-top:16px}
+.bgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 24px;margin-top:56px}
+.bgrid p{font:400 15px/1.5 var(--helv);color:#333;border-top:2px solid #161616;padding-top:12px}
+.bgrid b{display:block;font:700 17px/1.25 var(--helv);color:#161616;margin-bottom:6px;letter-spacing:-.01em}
+@media (max-width:900px){.bgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.bgrid{grid-template-columns:1fr}}
+.map{padding-block:128px;border-top:1px solid var(--rule)}
+.map h2{font:400 clamp(34px,4vw,56px)/1.05 "Gloock",serif;max-width:22ch;margin-top:16px}
+.scroll{overflow-x:auto;margin-top:40px}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--rule)}
+thead th{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+tbody th{font-weight:600}
+
+/* slides */
+.slide{position:relative}
+.full{height:94svh;min-height:520px;margin-block:3svh;overflow:hidden}
+.full .bg{position:absolute;inset:0}
+.full .bg img{width:100%;height:100%;object-fit:cover}
+.full::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);pointer-events:none}
+.full:has(.cap.right)::after{background:linear-gradient(270deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%)}
+.cap{position:absolute;z-index:2;bottom:clamp(24px,6vh,72px);max-width:min(520px,86vw);color:#fff}
+.cap.left{left:clamp(16px,4vw,64px)}.cap.right{right:clamp(16px,4vw,64px)}
+.cap h3{font:600 clamp(24px,2.6vw,36px)/1.1 var(--helv);letter-spacing:-.02em;margin-bottom:12px}
+.cap p{font:400 clamp(15px,1.3vw,18px)/1.55 var(--helv);text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.cap .eb{color:#fff;opacity:.9;margin-bottom:12px}
+.hero{height:100svh;margin-block:0}
+.hero .cap{max-width:min(620px,90vw)}
+.hero .dname{font-size:clamp(72px,12vw,180px);line-height:.88;letter-spacing:-.02em;margin-bottom:12px}
+.hero .dline{font-size:clamp(22px,2.4vw,32px);line-height:1.2;margin-bottom:16px}
+.text{padding-block:112px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:40px}}
+.roots{list-style:none;display:grid;gap:14px;margin-top:20px}
+.roots li{font-size:17px;line-height:1.55;padding-left:22px;position:relative}
+.roots li::before{content:"";position:absolute;left:0;top:.75em;width:12px;height:2px;background:currentColor}
+.roots a{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-left:6px}
+.lens{font:500 12px/1.5 var(--mono);letter-spacing:.06em;margin-top:24px;opacity:.85}
+.so{font-size:clamp(20px,2vw,28px);line-height:1.4;margin-top:20px}
+.logos{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:20px}
+.lg{border-radius:4px;overflow:hidden;aspect-ratio:16/9}.lg.sq{aspect-ratio:auto;height:100%}
+.lg img{width:100%;height:100%;object-fit:contain}
+.logos figure{display:grid;grid-template-rows:1fr auto;gap:10px}
 figcaption{font-size:14px;line-height:1.45;opacity:.85}
-@media (max-width:760px){.logos{grid-template-columns:1fr}}
-.pal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s3)}
-.chip{display:grid;gap:4px}
-.chip .c{height:96px;border-radius:6px}
-.chip b{font-size:15px}.chip span{font:400 12px var(--mono);opacity:.75}.chip em{font-style:normal;font-size:13px;opacity:.8}
+@media (max-width:760px){.logos{grid-template-columns:1fr}.lg.sq{aspect-ratio:1/1;height:auto}}
+.pal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:20px}
+.chip{display:grid;gap:4px}.chip .c{height:120px;border-radius:4px}.chip b{font-size:15px}.chip span{font:400 12px var(--mono);opacity:.75}
 @media (max-width:760px){.pal{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.small{font-size:13.5px;opacity:.8;margin-top:var(--s3)}
-.ty{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s6);align-items:end;margin-top:var(--s6)}
-.ty .d{font-size:clamp(40px,5vw,80px);line-height:1}
-.ty .ar{font-size:clamp(36px,4.4vw,68px);line-height:1.3;text-align:right}
+.small{font-size:13.5px;opacity:.8;margin-top:12px}
+.ty{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-top:48px}
+.ty .d{font-size:clamp(44px,5.6vw,96px);line-height:1}
+.ty .ar{font-size:clamp(40px,5vw,80px);line-height:1.3;text-align:right}
 @media (max-width:760px){.ty{grid-template-columns:1fr}.ty .ar{text-align:left}}
-.g{display:grid;gap:var(--s4)}
-.g-space{grid-template-columns:2fr 1fr 1fr}
-.g-space .wide .im{aspect-ratio:16/9}.g-space figure:not(.wide) .im{aspect-ratio:4/5}
-.g-obj{grid-template-columns:repeat(3,minmax(0,1fr))}.g-obj .im{aspect-ratio:4/5}
-.g-out{grid-template-columns:1fr 2fr}.g-out figure:not(.wide) .im{aspect-ratio:4/5}.g-out .wide .im{aspect-ratio:16/9}
-@media (max-width:900px){.g-space,.g-obj,.g-out{grid-template-columns:1fr}}
-.svc{font-size:16px;line-height:1.55;padding-block:var(--s5) 0;max-width:70ch}
-.svc::before{content:"Service · ";font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase}
-.vo ul{list-style:none;display:grid;gap:var(--s3)}
-.vo li{font-size:clamp(22px,2.4vw,32px);line-height:1.2}
-.E{background:#EFE2CC;color:#5A3A29}.E .dname,.E .dline,.E .so,.E .vo li{font-family:"Young Serif",Georgia,serif}.E{font-family:"Hanken Grotesk",sans-serif}
-.O{background:#F7F0E3;color:#23408E}.O .dname,.O .dline,.O .so,.O .vo li{font-family:"Libre Caslon Display",Georgia,serif}
-.L{background:#EEE9FF;color:#1B1F5E}.L .dname{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.03em}.L .dline,.L .vo li,.L .so{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 110}.L{font-family:Geist,sans-serif}
-.L .ty .d{font-weight:800;font-variation-settings:"wdth" 125}
-.B{background:#FBF7F0;color:#1F3A7A}.B .dname,.B .dline,.B .so,.B .vo li{font-family:"Gloock",Georgia,serif}
-.close{padding-block:var(--s10)}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6);margin-top:var(--s7)}
-.grid3 p{font-size:15px;line-height:1.55;color:#333}
-.grid3 b{display:block;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--ink)}
+.pair{padding-block:3svh}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two figure{display:grid;gap:16px;align-content:start}
+.two .ph{height:78svh;min-height:420px;overflow:hidden;border-radius:2px;background:rgba(0,0,0,.06)}
+.two .ph img{width:100%;height:100%;object-fit:cover}
+.two h3{font:600 22px/1.2 var(--helv);letter-spacing:-.01em;margin-bottom:6px}
+.two p{font:400 15.5px/1.55 var(--helv);max-width:52ch}
+@media (max-width:760px){.two{grid-template-columns:1fr}.two .ph{height:auto;aspect-ratio:4/5;min-height:0}}
+.vo{list-style:none;display:grid;gap:14px;margin-top:20px}
+.vo li{font-size:clamp(24px,2.6vw,36px);line-height:1.15}
+.bg img,.ph img,.lg img{cursor:zoom-in}
+
+/* direction themes */
+.E{background:#EFE2CC;color:#5A3A29;font-family:"Hanken Grotesk",sans-serif}.E .dname,.E .so,.E .vo li{font-family:"Young Serif",Georgia,serif}
+.O{background:#F7F0E3;color:#23408E}.O .dname,.O .so,.O .vo li{font-family:"Libre Caslon Display",Georgia,serif}
+.L{background:#EEE9FF;color:#1B1F5E;font-family:Geist,sans-serif}.L .dname{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.03em}.L .so,.L .vo li{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 110}.L .ty .d{font-weight:800;font-variation-settings:"wdth" 125}
+.B{background:#EAF4FD;color:#1F3A7A}.B .dname,.B .so,.B .vo li{font-family:"Gloock",Georgia,serif}
+.Y{background:#FFF8E6;color:#14285C;font-family:Figtree,sans-serif}.Y .dname,.Y .vo li{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-.03em}.Y .so{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}.Y .ty .d{font-weight:800}
+.Y .text{background:#FFC21A}
+.hero .dname,.hero .dline{color:#fff}
+
+.close{padding-block:128px;border-top:1px solid var(--rule)}
+.close h2{font:400 clamp(34px,4vw,56px)/1.05 "Gloock",serif;max-width:22ch}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:48px}
+.grid3 p{font:400 15px/1.55 var(--helv);color:#333}
+.grid3 b{display:block;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;color:#161616}
 @media (max-width:900px){.grid3{grid-template-columns:1fr}}
-footer{padding-block:var(--s7);border-top:1px solid var(--rule);font:400 12px/1.6 var(--mono);color:var(--mute)}
-.lb{position:fixed;inset:0;z-index:60;background:rgba(10,10,10,.92);display:none;align-items:center;justify-content:center;padding:24px}
+footer{padding-block:48px;border-top:1px solid var(--rule);font:400 12px/1.6 var(--mono);color:var(--mute)}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(10,10,10,.94);display:none;align-items:center;justify-content:center;padding:24px}
 .lb.open{display:flex}
-.lb img{max-width:94vw;max-height:90vh;object-fit:contain}
-.lb button{position:absolute;top:16px;right:18px;border:0;background:#fff;border-radius:99px;padding:8px 14px;font:600 14px "Instrument Sans",sans-serif;cursor:pointer}
+.lb img{max-width:96vw;max-height:92vh;object-fit:contain}
+.lb button{position:absolute;top:16px;right:18px;border:0;background:#fff;border-radius:99px;padding:8px 14px;font:600 14px var(--helv);cursor:pointer}
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<nav class="nav" aria-label="Sections"><div class="wrap">
-  <b>LAZA · R4</b>
-  <div class="links">
-    <a href="#brief">Brief</a><a href="#map">The four places</a>
-    <a href="#oasis"><i style="background:#C4623A"></i>Oasis</a>
-    <a href="#teta"><i style="background:#B7283A"></i>Teta</a>
-    <a href="#aegean"><i style="background:#2438D6"></i>Aegean</a>
-    <a href="#island"><i style="background:#4F86E8"></i>Island</a>
-    <a href="#next">Next</a>
-  </div>
-  <div class="toggle" role="group" aria-label="Version"><a class="on" href="./" aria-current="page">New</a><a href="./old/">Old</a></div>
-</div></nav>
+<nav class="nav" aria-label="Sections">
+  <a href="#brief">Brief</a>
+  <a href="#oasis"><i style="background:#C4623A"></i>Oasis</a>
+  <a href="#teta"><i style="background:#B7283A"></i>Teta</a>
+  <a href="#aegean"><i style="background:#2438D6"></i>Aegean</a>
+  <a href="#island"><i style="background:#9CCBF2"></i>Island</a>
+  <a href="#yalla"><i style="background:#FFC21A"></i>Yalla</a>
+  <a href="#next">Next</a>
+  <span class="sep"></span>
+  <a class="v on" href="./" aria-current="page">New</a><a class="v" href="./old/">Old</a>
+</nav>
 
 <header class="intro"><div class="wrap">
   <p class="eb" style="color:var(--mute)">Laza Dessert Café · Round 4 · 29 Sep 2026</p>
-  <h1>Four places Laza can take you.</h1>
-  <p class="lede">Each direction is a place people already feel something about: an oasis, grandma's kitchen, the Turkish coast, an island. We researched where each comes from and let that shape the logo, the room, the uniform and the cup. Warm, cozy and generous first; cool second. Everything shown was made for Laza.</p>
-  <div class="four">
-    <a href="#oasis"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_15d1f226-524a-43f3-a6f5-c04d2df0d68e.png" alt="Oasis interior"></div><b>01 Oasis</b><span>Desert oasis × Dubai chocolate</span></a>
-    <a href="#teta"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_42aaef80-53b1-4aec-a73a-324696d3534e.png" alt="Teta interior"></div><b>02 Teta</b><span>Grandma's kitchen × Turkish lokanta</span></a>
-    <a href="#aegean"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_e04bc1a7-879f-4b13-93d2-c8777f99a10a.png" alt="Aegean interior"></div><b>03 Aegean</b><span>The Turkish coast</span></a>
-    <a href="#island"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_6a20c1fa-60f5-42f7-8254-8ccab2559c10.png" alt="Island interior"></div><b>04 Island</b><span>A tropical island, Brooklyn hours</span></a>
+  <h1>Five places Laza can take you.</h1>
+  <p class="lede">An oasis, grandma's kitchen, the Turkish coast, an island, and pure sunshine. For each we researched where the feeling comes from, then let that shape the logo, the room, the uniform and the cup. Warm, cozy and generous first; cool second. Everything here was made for Laza.</p>
+  <div class="five">
+    <a href="#oasis"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_15d1f226-524a-43f3-a6f5-c04d2df0d68e.png" alt="Oasis"></div><b>01 Oasis</b><span>Desert oasis × Dubai chocolate</span></a>
+    <a href="#teta"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_42aaef80-53b1-4aec-a73a-324696d3534e.png" alt="Teta"></div><b>02 Teta</b><span>Grandma's kitchen × lokanta</span></a>
+    <a href="#aegean"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_e04bc1a7-879f-4b13-93d2-c8777f99a10a.png" alt="Aegean"></div><b>03 Aegean</b><span>The Turkish coast</span></a>
+    <a href="#island"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_6a20c1fa-60f5-42f7-8254-8ccab2559c10.png" alt="Island"></div><b>04 Island</b><span>Baby blue, mango core</span></a>
+    <a href="#yalla"><div class="ph"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150643_c5d6be7a-a159-4f49-96d8-535cd287297a.png" alt="Yalla"></div><b>05 Yalla</b><span>Sun yellow first, blue second</span></a>
   </div>
 </div></header>
 
-<section id="brief" class="sec"><div class="wrap">
+<section id="brief" class="brief"><div class="wrap">
   <p class="eb" style="color:var(--mute)">Moose's brief, extracted</p>
   <h2>People come to feel Laza, not just for dessert.</h2>
-  <div class="brief">
-    <p><b>Lift the mood</b>Exciting, happy, playful, cozy, energized from the moment you walk in.</p>
-    <p><b>One color that carries it</b>La La Land's yellow was the model. A lighter, happier blue replaces the royal blue.</p>
+  <div class="bgrid">
+    <p><b>Lift the mood</b>Exciting, happy, playful, cozy and energized from the moment you walk in.</p>
+    <p><b>One color that carries it</b>La La Land's yellow is the model. A lighter, happier blue replaces the royal blue.</p>
     <p><b>Oak and chrome</b>The warmth of a beautiful home, the energy of now. Tile welcome.</p>
     <p><b>The 20-minute hang</b>Close seating, music and movement. A day-club feeling without the club.</p>
     <p><b>One WOW on entry</b>Photogenic at 8 or 9 out of 10, without trying. No neon or flower walls.</p>
     <p><b>High design, accessible</b>No gold, marble or hotel luxury. Not cheap, not childish.</p>
-    <p><b>A whole world</b>Cups, uniforms, menus, music, social, furniture. Recognizable without the logo.</p>
+    <p><b>A whole world</b>Cups, uniforms, menus, music, social and furniture. Recognizable without the logo.</p>
     <p><b>The persona</b>The person everyone wants to be around. Twenty minutes with them and your day is better.</p>
   </div>
 </div></section>
 
-<section id="map" class="sec"><div class="wrap">
-  <p class="eb" style="color:var(--mute)">The four places</p>
-  <h2>Each place, a studio lens, and the brief it serves.</h2>
-  <div class="scroll"><table class="map">
-    <thead><tr><th>Direction</th><th>Place</th><th>Studio lens</th><th>Brief it answers best</th><th>Logo rule</th></tr></thead>
+<section class="map"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">The five places</p>
+  <h2>Each place, a studio lens, and the part of the brief it serves.</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Direction</th><th>Place</th><th>Studio lens</th><th>Answers best</th><th>Logo</th></tr></thead>
     <tbody>
-      <tr><th>01 Oasis</th><td>Desert oasis, inside a Dubai chocolate bar</td><td>Arabic-contemporary · Mythology storytelling</td><td>Rest, generosity, the 2am stop</td><td>Kashida stretch · Clay only</td></tr>
-      <tr><th>02 Teta</th><td>Grandma's kitchen, Turkish lokanta</td><td>Brooklyn · Red Antler warmth</td><td>"Makes you feel seen", welcoming to all</td><td>Nuqta dot · Pomegranate only</td></tr>
-      <tr><th>03 Aegean</th><td>Bodrum to Kaş coastline</td><td>Northern European · Koto restraint</td><td>The happier blue, photogenic without trying</td><td>Crescent counter · Ultramarine only</td></tr>
-      <tr><th>04 Island</th><td>A tropical island, on Brooklyn hours</td><td>LA · Media.Monks social energy</td><td>Mood lift, the unhurried hang</td><td>Naskh curl · Cornflower only</td></tr>
+      <tr><th>01 Oasis</th><td>Desert oasis, inside a Dubai chocolate bar</td><td>Arabic-contemporary · Mythology</td><td>Rest, generosity, the 2am stop</td><td>Kashida wordmark · dallah symbol</td></tr>
+      <tr><th>02 Teta</th><td>Grandma's kitchen, Turkish lokanta</td><td>Brooklyn · Red Antler</td><td>"Makes you feel seen"</td><td>Nuqta wordmark · teapot symbol</td></tr>
+      <tr><th>03 Aegean</th><td>Bodrum to Kaş</td><td>Northern European · Koto</td><td>Photogenic without trying</td><td>Crescent wordmark · maraş cone</td></tr>
+      <tr><th>04 Island</th><td>A tropical island, Brooklyn hours</td><td>LA · Media.Monks</td><td>The happier blue, the unhurried hang</td><td>Naskh-curl wordmark · mango kunafa</td></tr>
+      <tr><th>05 Yalla</th><td>Sunshine you can walk into</td><td>New York pop · Brooklyn × LA</td><td>La La Land's yellow, with the blue</td><td>Floating-dot wordmark · ma'amoul</td></tr>
     </tbody>
   </table></div>
-  <p class="small" style="margin-top:16px;color:#555">Every blue sits with oak and a warm lead color. Wordmarks are one color; symbols are three. All Arabic still needs native proofing. The precedents in our research are marked unverified where their studio or year couldn't be confirmed.</p>
+  <p class="small" style="margin-top:16px;color:#555">Every blue sits with oak and a warm lead color. Wordmarks are one color; symbols are three, round and smooth. All Arabic needs native proofing, and precedents we couldn't verify are marked unverified.</p>
 </div></section>
 
 
-<section id="oasis" class="dir E"><div class="wrap">
-  <div class="dhead"><div><p class="dnum">DIRECTION 01 · A DESERT OASIS, AND THE INSIDE OF A DUBAI CHOCOLATE BAR</p><h2 class="dname">Oasis</h2><p class="lens">Arabic-contemporary lens · storytelling in the spirit of Mythology · evolved from round 3 "Earthy"</p></div><p class="dline">Rest here.</p></div>
+<div id="oasis" class="dir E">
+<section class="slide full hero rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_15d1f226-524a-43f3-a6f5-c04d2df0d68e.png" alt="Oasis"></div>
+  <div class="cap left big"><p class="eb">Direction 01 · A desert oasis, and the inside of a Dubai chocolate bar</p><h2 class="dname">Oasis</h2><p class="dline">Rest here.</p><p>A still pool under a round skylight, two date palms, and low oak benches around it. People sit close, the light is late-afternoon gold at any hour, and nobody rushes you.</p></div></section>
 
-  <div class="blk"><div><p class="eb">Roots</p><p class="why">Research, then the idea it gives us.</p></div>
-    <div class="roots"><ul><li>Caravans stopped at oases to replenish water and food; Al-Ahsa, the world&#x27;s largest, holds about 2.5 million date palms. <a href="https://whc.unesco.org/en/list/1563/" target="_blank" rel="noopener">source</a></li><li>Kunafa&#x27;s origin is disputed (Palestine, Egypt, Syria); a common account places it in the 10th-century Fatimid court. Nablus is the touchstone. <a href="https://www.cadburydessertscorner.com/articles/tracing-the-origins-of-kunafa-the-popular-middle-eastern-dessert" target="_blank" rel="noopener">source</a></li><li>Fix Dessert Chocolatier launched the pistachio-kunafa bar in Dubai in 2021; one TikTok passed 80M+ views and the founder reports 30,000 orders in an hour. <a href="https://officialfixdessertchocolatier.com/blogs/news/who-is-sarah-hamouda-meet-the-woman-behind-dubais-viral-chocolate-bar" target="_blank" rel="noopener">source</a></li></ul><p class="so">Laza becomes the oasis on 5th Avenue: the 2am rest stop where water and something sweet arrive before you ask. The wordmark stretches like a kashida stroke, a caravan road. The symbol is dune, water and sun. The WOW is a counter built like a cross-section of the chocolate bar: layers you can see, a crunch you can hear.</p></div></div>
+<section class="slide text rv"><div class="wrap cols">
+  <div><p class="eb">Roots · research</p><ul class="roots"><li>Caravans stopped at oases to replenish water and food. Al-Ahsa, the world&#x27;s largest, holds about 2.5 million date palms. <a href="https://whc.unesco.org/en/list/1563/" target="_blank" rel="noopener">source</a></li><li>Kunafa&#x27;s origin is disputed (Palestine, Egypt, Syria). A common account places it in the 10th-century Fatimid court, and Nablus is the touchstone. <a href="https://www.cadburydessertscorner.com/articles/tracing-the-origins-of-kunafa-the-popular-middle-eastern-dessert" target="_blank" rel="noopener">source</a></li><li>Fix Dessert Chocolatier launched the pistachio-kunafa bar in Dubai in 2021. One TikTok passed 80M+ views, and the founder reports 30,000 orders in an hour. <a href="https://officialfixdessertchocolatier.com/blogs/news/who-is-sarah-hamouda-meet-the-woman-behind-dubais-viral-chocolate-bar" target="_blank" rel="noopener">source</a></li></ul><p class="lens">Arabic-contemporary lens · storytelling in the spirit of Mythology</p></div>
+  <div><p class="eb">What it means for Laza</p><p class="so">Laza becomes the oasis on 5th Avenue: the 2am rest stop where water and something sweet arrive before you ask. The wordmark stretches like a kashida stroke, a caravan road. The symbol is the dallah, the coffee pot of welcome. The WOW moment is a counter built like a cross-section of the chocolate bar: layers you can see, a crunch you can hear.</p></div></div></section>
 
-  <div class="blk"><div><p class="eb">Logo</p><p class="why">The wordmark is lettering in one color, thick and well spaced, with one Arabic cue. The symbol is three colors and built to work at 16 px.</p></div>
-    <div class="logos">
-      <figure><div class="im logo" style="background:#EFE2CC"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_23557141-3920-4659-920e-09c7a9ef3627.svg" alt="Oasis wordmark"></div><figcaption>Kashida stretch between z and a · one color: Clay</figcaption></figure>
-      <figure><div class="im logo sq" style="background:#EFE2CC"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144110_7346daac-daed-44eb-9a37-f28cb6e644df.svg" alt="Oasis symbol"></div><figcaption>Dune · water · sun, in three colors</figcaption></figure>
-    </div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Logo · a one-color wordmark and a three-color symbol</p>
+  <div class="logos"><figure><div class="lg" style="background:#EFE2CC"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_23557141-3920-4659-920e-09c7a9ef3627.svg" alt="Oasis wordmark"></div><figcaption>Kashida stretch between z and a · one color: Clay</figcaption></figure>
+  <figure><div class="lg sq" style="background:#EFE2CC"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150556_e388ccc3-63e9-4189-aeed-19b5d0952a4b.svg" alt="Oasis symbol"></div><figcaption>The dallah, a round Arabic coffee pot · clay, saffron, olive</figcaption></figure></div></div></section>
 
-  <div class="blk"><div><p class="eb">Color + type</p><p class="why">Analogous warms (clay, saffron, date) with an olive counterpoint.</p></div>
-    <div><div class="pal"><div class="chip"><div class="c" style="background:#C4623A;color:#fff"></div><b>Clay</b><span>#C4623A</span><em>Primary</em></div><div class="chip"><div class="c" style="background:#EFE2CC;color:#1a1a1a;border:1px solid rgba(0,0,0,.08)"></div><b>Sand</b><span>#EFE2CC</span><em>Ground</em></div><div class="chip"><div class="c" style="background:#F2A93B;color:#1a1a1a"></div><b>Saffron</b><span>#F2A93B</span><em>Warm lead</em></div><div class="chip"><div class="c" style="background:#7A7D4A;color:#fff"></div><b>Olive</b><span>#7A7D4A</span><em>Secondary</em></div><div class="chip"><div class="c" style="background:#5A3A29;color:#fff"></div><b>Date</b><span>#5A3A29</span><em>Text</em></div><div class="chip"><div class="c" style="background:#B98A5E;color:#1a1a1a"></div><b>Oak</b><span>#B98A5E</span><em>Material</em></div></div><p class="small">Date on Sand 7.9:1 · Clay on Sand 3.2:1, display only.</p>
-    <div class="ty"><p class="d" style="font-family:'Young Serif',serif">Warm from the tray.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Readex Pro',sans-serif">دافئة من الصينية</p></div>
-    <p class="small">Display Young Serif · Text Hanken Grotesk · Arabic Readex Pro (native proof pending)</p></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Color · Analogous warms with an olive counterpoint</p><div class="pal"><div class="chip"><div class="c" style="background:#C4623A"></div><b>Clay</b><span>#C4623A · Primary</span></div><div class="chip"><div class="c" style="background:#EFE2CC;border:1px solid rgba(0,0,0,.1)"></div><b>Sand</b><span>#EFE2CC · Ground</span></div><div class="chip"><div class="c" style="background:#F2A93B"></div><b>Saffron</b><span>#F2A93B · Warm lead</span></div><div class="chip"><div class="c" style="background:#7A7D4A"></div><b>Olive</b><span>#7A7D4A · Secondary</span></div><div class="chip"><div class="c" style="background:#5A3A29"></div><b>Date</b><span>#5A3A29 · Text</span></div><div class="chip"><div class="c" style="background:#B98A5E"></div><b>Oak</b><span>#B98A5E · Material</span></div></div><p class="small">Date on Sand 7.9:1 · Clay on Sand 3.2:1, display only.</p>
+  <div class="ty"><p class="d" style="font-family:'Young Serif',serif">Warm from the tray.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Readex Pro',sans-serif">دافئة من الصينية</p></div>
+  <p class="small">Display Young Serif · Text Hanken Grotesk · Arabic Readex Pro (native proof pending)</p></div></section>
 
-  <div class="blk"><div><p class="eb">Space + people</p><p class="why">Where the 20-minute hang happens, and who looks after you.</p></div>
-    <div class="g g-space"><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_15d1f226-524a-43f3-a6f5-c04d2df0d68e.png" alt="Interior · people hanging out"></div><figcaption>Interior · people hanging out</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_9057f78c-2036-4c9d-bb06-7653625eb51a.png" alt="The WOW moment"></div><figcaption>The WOW moment</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_7cab1317-b899-4fa9-9637-3c250b01b984.png" alt="What the team wears"></div><figcaption>What the team wears</figcaption></figure></div></div>
-  <p class="svc">Every guest gets a glass of water and one date on arrival, the oasis welcome. Linen shirts in sand, aprons in olive.</p>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150644_0595d029-0f00-4778-8c11-feb333db02aa.png" alt="Walking in"></div>
+<div class="cap right"><h3>Walking in</h3><p>Clay limewash curves into soft niches. A shallow water channel leads the eye to the chocolate-layered counter at the back. Woven palm-fibre lamps keep it warm after dark.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_9057f78c-2036-4c9d-bb06-7653625eb51a.png" alt="The WOW: a counter you can taste"></div>
+<div class="cap left"><h3>The WOW: a counter you can taste</h3><p>The counter is a cross-section of a Dubai chocolate bar: chocolate plaster, a pistachio band and a golden kataifi crunch layer. The bar on top is cut to show the same layers.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150614_5817e805-7d5d-4088-86b6-3bc50530cc75.png" alt="The lounge"></div>
+<div class="cap right"><h3>The lounge</h3><p>A sunken nook of low oak platforms and saffron cushions, made for the 20-minute hang. Mint tea glasses, dates and kunafa on a low round table.</p></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_7cab1317-b899-4fa9-9637-3c250b01b984.png" alt="The welcome"></div><figcaption><h3>The welcome</h3><p>Sand linen and an olive apron. The first thing the host offers is water and a single date, before you order.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_9451ac41-30f6-424c-aeb7-9826ea6c02e6.png" alt="Cups"></div><figcaption><h3>Cups</h3><p>Sand cups with a terracotta lid, carrying the one-color clay wordmark. Nothing else on the cup.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_d03d02ff-3cfb-418f-82cb-e10b85f3ded2.png" alt="Plates and cookware"></div><figcaption><h3>Plates and cookware</h3><p>Terracotta plates, olive-glazed bowls and the round kunafa tray. Made to be handled, and warm to the touch.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_bd74ace3-ae07-4fb5-b92e-7a9a71893b97.png" alt="Merch"></div><figcaption><h3>Merch</h3><p>A sand canvas tote and an olive cap. Worn on a normal day, not only as a souvenir.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_d029ee6c-d70f-4404-b760-36f323c095ad.png" alt="Advertising"></div><figcaption><h3>Advertising</h3><p>One photo, one line: &quot;Rest here.&quot; The crunch sells itself.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_65198d26-c94e-425e-8236-99250b6fed30.png" alt="The street"></div><figcaption><h3>The street</h3><p>A clay-plaster façade, an oak door and a potted date palm. The sign is the wordmark in relief.</p></figcaption></figure></div></section>
 
-  <div class="blk"><div><p class="eb">Objects</p><p class="why">Cups, tableware and merch, all carrying the real mark.</p></div>
-    <div class="g g-obj"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_9451ac41-30f6-424c-aeb7-9826ea6c02e6.png" alt="Cups · to-go and froyo"></div><figcaption>Cups · to-go and froyo</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_d03d02ff-3cfb-418f-82cb-e10b85f3ded2.png" alt="Plates and cookware"></div><figcaption>Plates and cookware</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_bd74ace3-ae07-4fb5-b92e-7a9a71893b97.png" alt="Merch"></div><figcaption>Merch</figcaption></figure></div></div>
+<section class="slide text rv"><div class="wrap cols"><div><p class="eb">Voice</p><ul class="vo"><li>Rest here.</li><li>Water first. Then kunafa.</li><li>We pull it from the oven when it&#x27;s ready, not when the timer says.</li></ul></div>
+  <div><p class="eb">Service</p><p class="so">Every guest gets a glass of water and one date on arrival, the oasis welcome. Linen shirts in sand, aprons in olive.</p></div></div></section>
+</div>
+<div id="teta" class="dir O">
+<section class="slide full hero rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_42aaef80-53b1-4aec-a73a-324696d3534e.png" alt="Teta"></div>
+  <div class="cap left big"><p class="eb">Direction 02 · Grandma&#x27;s kitchen, and a Turkish esnaf lokanta</p><h2 class="dname">Teta</h2><p class="dline">Teta says: eat.</p><p>Indigo and ivory tile, a steam-table counter full of trays, open shelves of mismatched china, and long shared oak tables. It&#x27;s loud in the best way.</p></div></section>
 
-  <div class="blk"><div><p class="eb">Out in the world</p><p class="why">Advertising and the street.</p></div>
-    <div class="g g-out"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_d029ee6c-d70f-4404-b760-36f323c095ad.png" alt="Advertising"></div><figcaption>Advertising</figcaption></figure><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_65198d26-c94e-425e-8236-99250b6fed30.png" alt="Storefront"></div><figcaption>Storefront</figcaption></figure></div></div>
+<section class="slide text rv"><div class="wrap cols">
+  <div><p class="eb">Roots · research</p><ul class="roots"><li>&#x27;Ahlan wa sahlan&#x27; joins ahl (family) and sahl (easy path): you are family, and may your way be easy. <a href="https://speakrealarabic.com/post/ahlan-wa-sahlan-meaning-levantine-arabic" target="_blank" rel="noopener">source</a></li><li>Hospitality (karam) is treated as a sacred obligation, rooted in the Bedouin ethic of caring for travelers. <a href="https://www.arabiclanguageonline.com/blog/arabic-coffee-culture/" target="_blank" rel="noopener">source</a></li><li>The esnaf lokantası is a tradesmen&#x27;s canteen with a steam table of ready dishes, often family-run, with staff of 20 or more years. The principle is that you should feel at home. <a href="https://www.theguideistanbul.com/istanbul-lokanta-culture/" target="_blank" rel="noopener">source</a></li></ul><p class="lens">Brooklyn lens · human, neighborhood-proud, in the spirit of Red Antler</p></div>
+  <div><p class="eb">What it means for Laza</p><p class="so">Teta (grandmother) feeds you before you ask, and the lokanta keeps the trays warm and visible. The brand is a name-tag, not a crest: a friendly Ruq&#x27;ah-cut wordmark with one diamond dot, and a round Turkish teapot for the symbol. The room is the tray wall: loud, warm, and tiled like a kitchen.</p></div></div></section>
 
-  <div class="blk"><div><p class="eb">Voice</p><p class="why">Short, sensory, specific.</p></div><div class="vo"><ul><li>Rest here.</li><li>Water first. Then kunafa.</li><li>We pull it from the oven when it&#x27;s ready, not when the timer says.</li></ul></div></div>
-</div></section>
-<section id="teta" class="dir O"><div class="wrap">
-  <div class="dhead"><div><p class="dnum">DIRECTION 02 · GRANDMA&#X27;S KITCHEN, AND A TURKISH ESNAF LOKANTA</p><h2 class="dname">Teta</h2><p class="lens">Brooklyn lens · human, neighborhood-proud, in the spirit of Red Antler · evolved from round 3 "Arabic"</p></div><p class="dline">Teta says: eat.</p></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Logo · a one-color wordmark and a three-color symbol</p>
+  <div class="logos"><figure><div class="lg" style="background:#F7F0E3"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_0bb8da4e-442f-4657-a6c3-791e9044b941.svg" alt="Teta wordmark"></div><figcaption>Ruq&#x27;ah teardrop terminals and one nuqta dot · one color: Pomegranate</figcaption></figure>
+  <figure><div class="lg sq" style="background:#F7F0E3"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150559_43ec166a-bdf5-4df3-bfc5-6c262a3281f5.svg" alt="Teta symbol"></div><figcaption>Turkish double teapot and a tulip glass · pomegranate, saffron, indigo</figcaption></figure></div></div></section>
 
-  <div class="blk"><div><p class="eb">Roots</p><p class="why">Research, then the idea it gives us.</p></div>
-    <div class="roots"><ul><li>&#x27;Ahlan wa sahlan&#x27; joins ahl (family) and sahl (easy path): you are family, and may your way be easy. <a href="https://speakrealarabic.com/post/ahlan-wa-sahlan-meaning-levantine-arabic" target="_blank" rel="noopener">source</a></li><li>Hospitality (karam) is treated as a sacred obligation, rooted in the Bedouin ethic of caring for travelers. <a href="https://www.arabiclanguageonline.com/blog/arabic-coffee-culture/" target="_blank" rel="noopener">source</a></li><li>The esnaf lokantası is a tradesmen&#x27;s canteen with a steam table of ready dishes, often family-run, with staff of 20 or more years. The principle is that you should feel at home. <a href="https://www.theguideistanbul.com/istanbul-lokanta-culture/" target="_blank" rel="noopener">source</a></li></ul><p class="so">Teta (grandmother) feeds you before you ask, and the lokanta keeps the trays warm and visible. The brand is a name-tag, not a crest: a friendly Ruq&#x27;ah-cut wordmark with one diamond dot, and a three-petal ma&#x27;amoul flower pressed into plates and aprons. The room is the tray wall, loud and warm, tiled like a kitchen.</p></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Color · Triadic: red, yellow, blue; indigo always sits with oak and saffron</p><div class="pal"><div class="chip"><div class="c" style="background:#B7283A"></div><b>Pomegranate</b><span>#B7283A · Primary</span></div><div class="chip"><div class="c" style="background:#F7F0E3;border:1px solid rgba(0,0,0,.1)"></div><b>Ivory</b><span>#F7F0E3 · Ground</span></div><div class="chip"><div class="c" style="background:#23408E"></div><b>Indigo Tile</b><span>#23408E · Blue</span></div><div class="chip"><div class="c" style="background:#F4B23E"></div><b>Saffron</b><span>#F4B23E · Warm lead</span></div><div class="chip"><div class="c" style="background:#F2B8C2"></div><b>Rosewater</b><span>#F2B8C2 · Tint</span></div><div class="chip"><div class="c" style="background:#A8774D"></div><b>Oak</b><span>#A8774D · Material</span></div></div><p class="small">Indigo on Ivory 8.4:1 · Pomegranate on Ivory 5.5:1.</p>
+  <div class="ty"><p class="d" style="font-family:'Libre Caslon Display',serif">Ahlan, come in.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Aref Ruqaa',sans-serif">أهلاً وسهلاً</p></div>
+  <p class="small">Display Libre Caslon Display · Text Instrument Sans · Arabic Aref Ruqaa (native proof pending)</p></div></section>
 
-  <div class="blk"><div><p class="eb">Logo</p><p class="why">The wordmark is lettering in one color, thick and well spaced, with one Arabic cue. The symbol is three colors and built to work at 16 px.</p></div>
-    <div class="logos">
-      <figure><div class="im logo" style="background:#F7F0E3"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_0bb8da4e-442f-4657-a6c3-791e9044b941.svg" alt="Teta wordmark"></div><figcaption>Ruq&#x27;ah teardrop terminals and one nuqta dot · one color: Pomegranate</figcaption></figure>
-      <figure><div class="im logo sq" style="background:#F7F0E3"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_0ad1e6f3-390d-46e4-bcb8-9d2852790514.svg" alt="Teta symbol"></div><figcaption>Three-petal ma&#x27;amoul flower, in three colors</figcaption></figure>
-    </div></div>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150610_0ebcd752-f769-4a72-a078-e5b5a44fe071.png" alt="Teta&#x27;s kitchen"></div>
+<div class="cap right"><h3>Teta&#x27;s kitchen</h3><p>Hanging trays and wooden ma&#x27;amoul moulds line the wall behind an open kitchen, over a big family table with mismatched chairs. You can see and smell everything being made.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_5271bc65-64b9-437b-ae76-d47a559f4710.png" alt="The WOW: the tray wall"></div>
+<div class="cap left"><h3>The WOW: the tray wall</h3><p>A glass-fronted warm counter of round trays: kunafa, baklava, ma&#x27;amoul and qatayef. Every slice is served with a pull of cheese.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150643_319c572d-46f2-4f48-bff9-d69be91065b7.png" alt="The window seat"></div>
+<div class="cap right"><h3>The window seat</h3><p>An ivory-tiled banquette with pomegranate cushions by the street window. Tea glasses, a newspaper, and two friends splitting a plate.</p></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_7ed79b8f-3ea4-445f-bb0f-a0bf3d9ee4b9.png" alt="The host"></div><figcaption><h3>The host</h3><p>Ivory shirt, pomegranate apron and indigo trim. The job is to make you feel like family in the first ten seconds.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_40783869-905c-4505-a7a4-6f788bc3257c.png" alt="Cups"></div><figcaption><h3>Cups</h3><p>Ivory cups with a pomegranate sleeve, carrying the one-color wordmark and its single diamond dot.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_8baf45af-9f0a-4f72-bf14-350862334d4b.png" alt="Plates and cookware"></div><figcaption><h3>Plates and cookware</h3><p>Enamel plates with an indigo rim and pomegranate bowls. The platter carries the brand symbol, as if it came from Teta&#x27;s cupboard.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f519a664-5b66-4679-8fc7-9b232bbe2798.png" alt="Merch"></div><figcaption><h3>Merch</h3><p>Tea towel, enamel mug and tote. Kitchen things people actually use.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_c0402d25-0ea7-4b38-88ab-014b72decdb9.png" alt="Advertising"></div><figcaption><h3>Advertising</h3><p>&quot;Teta says: eat.&quot; Grandma&#x27;s hands, one square of kunafa, on the subway.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f8e74179-bb39-46b3-a4ae-b9dfb9fc9b75.png" alt="The street"></div><figcaption><h3>The street</h3><p>An indigo tile façade and a pomegranate awning. The window full of trays is the sign.</p></figcaption></figure></div></section>
 
-  <div class="blk"><div><p class="eb">Color + type</p><p class="why">Triadic: red, yellow and blue. Indigo always sits with oak and saffron.</p></div>
-    <div><div class="pal"><div class="chip"><div class="c" style="background:#B7283A;color:#fff"></div><b>Pomegranate</b><span>#B7283A</span><em>Primary</em></div><div class="chip"><div class="c" style="background:#F7F0E3;color:#1a1a1a;border:1px solid rgba(0,0,0,.08)"></div><b>Ivory</b><span>#F7F0E3</span><em>Ground</em></div><div class="chip"><div class="c" style="background:#23408E;color:#fff"></div><b>Indigo Tile</b><span>#23408E</span><em>Blue</em></div><div class="chip"><div class="c" style="background:#F4B23E;color:#1a1a1a"></div><b>Saffron</b><span>#F4B23E</span><em>Warm lead</em></div><div class="chip"><div class="c" style="background:#F2B8C2;color:#1a1a1a"></div><b>Rosewater</b><span>#F2B8C2</span><em>Tint</em></div><div class="chip"><div class="c" style="background:#A8774D;color:#1a1a1a"></div><b>Oak</b><span>#A8774D</span><em>Material</em></div></div><p class="small">Indigo on Ivory 8.4:1 · Pomegranate on Ivory 5.5:1.</p>
-    <div class="ty"><p class="d" style="font-family:'Libre Caslon Display',serif">Ahlan, come in.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Aref Ruqaa',sans-serif">أهلاً وسهلاً</p></div>
-    <p class="small">Display Libre Caslon Display · Text Instrument Sans · Arabic Aref Ruqaa (native proof pending)</p></div></div>
+<section class="slide text rv"><div class="wrap cols"><div><p class="eb">Voice</p><ul class="vo"><li>Teta says: eat.</li><li>A second plate, whether you asked or not.</li><li>No one leaves hungry. It&#x27;s a rule.</li></ul></div>
+  <div><p class="eb">Service</p><p class="so">Guests are served first, and regulars are greeted by name. The team wears pomegranate aprons with indigo trim and a small embroidered teapot on the chest.</p></div></div></section>
+</div>
+<div id="aegean" class="dir L">
+<section class="slide full hero rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_e04bc1a7-879f-4b13-93d2-c8777f99a10a.png" alt="Aegean"></div>
+  <div class="cap left big"><p class="eb">Direction 03 · The Turkish coastline, from Bodrum to Kaş</p><h2 class="dname">Aegean</h2><p class="dline">Beyond the sea. Open till 2am.</p><p>Lime-white walls, ultramarine doors and shutters, and bougainvillea overhead. Cobalt glass lamps hang over long oak tables. It feels like a house in Bodrum, on a Queens street.</p></div></section>
 
-  <div class="blk"><div><p class="eb">Space + people</p><p class="why">Where the 20-minute hang happens, and who looks after you.</p></div>
-    <div class="g g-space"><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_42aaef80-53b1-4aec-a73a-324696d3534e.png" alt="Interior · people hanging out"></div><figcaption>Interior · people hanging out</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144218_5271bc65-64b9-437b-ae76-d47a559f4710.png" alt="The WOW moment"></div><figcaption>The WOW moment</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_7ed79b8f-3ea4-445f-bb0f-a0bf3d9ee4b9.png" alt="What the team wears"></div><figcaption>What the team wears</figcaption></figure></div></div>
-  <p class="svc">Guests are served first and regulars greeted by name. Pomegranate aprons with indigo trim carry the petal embroidered on the chest.</p>
+<section class="slide text rv"><div class="wrap cols">
+  <div><p class="eb">Roots · research</p><ul class="roots"><li>&#x27;Ultramarine&#x27; is Middle Latin for &#x27;beyond the sea&#x27;. The pigment came from lapis mined in Badakhshan, Afghanistan, and was once worth more than gold in Europe. <a href="https://storiedcolors.com/color/ultramarine/" target="_blank" rel="noopener">source</a></li><li>In Bodrum, walls are whitewashed against insects and windows are painted blue against the evil eye, with bougainvillea over the doors. <a href="https://www.hurriyetdailynews.com/bodrums-white-against-insects-blue-against-the-evil-eye-117393" target="_blank" rel="noopener">source</a></li><li>Maraş dondurma is stretchy ice cream made with salep and mastic. Its vendors turn serving into a playful street show. <a href="https://www.cnn.com/travel/maras-dondurma-turkish-ice-cream" target="_blank" rel="noopener">source</a></li></ul><p class="lens">Northern-European lens · restraint in the spirit of Koto</p></div>
+  <div><p class="eb">What it means for Laza</p><p class="so">The blue has come a long way, and so has Laza, from the Levant to Astoria. A heavy, calm, generously spaced wordmark with one crescent-cut counter. The symbol is a round maraş cone with a drooping scoop. The ritual is the stretch-and-flip at the ice-cream counter, modernized: striped linen, not a costume.</p></div></div></section>
 
-  <div class="blk"><div><p class="eb">Objects</p><p class="why">Cups, tableware and merch, all carrying the real mark.</p></div>
-    <div class="g g-obj"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144219_40783869-905c-4505-a7a4-6f788bc3257c.png" alt="Cups · to-go and froyo"></div><figcaption>Cups · to-go and froyo</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_8baf45af-9f0a-4f72-bf14-350862334d4b.png" alt="Plates and cookware"></div><figcaption>Plates and cookware</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f519a664-5b66-4679-8fc7-9b232bbe2798.png" alt="Merch"></div><figcaption>Merch</figcaption></figure></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Logo · a one-color wordmark and a three-color symbol</p>
+  <div class="logos"><figure><div class="lg" style="background:#EEE9FF"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_86de6be2-64a3-4911-8ffe-0564b8e1d562.svg" alt="Aegean wordmark"></div><figcaption>Crescent-cut counter in the final a · one color: Ultramarine</figcaption></figure>
+  <figure><div class="lg sq" style="background:#EEE9FF"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150558_a28e9ab3-2655-449a-b859-6399743c3a2a.svg" alt="Aegean symbol"></div><figcaption>Round maraş cone with a drooping scoop · ultramarine, violet, apricot</figcaption></figure></div></div></section>
 
-  <div class="blk"><div><p class="eb">Out in the world</p><p class="why">Advertising and the street.</p></div>
-    <div class="g g-out"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_c0402d25-0ea7-4b38-88ab-014b72decdb9.png" alt="Advertising"></div><figcaption>Advertising</figcaption></figure><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f8e74179-bb39-46b3-a4ae-b9dfb9fc9b75.png" alt="Storefront"></div><figcaption>Storefront</figcaption></figure></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Color · Split-complementary: blue-violet against apricot, grounded by oak</p><div class="pal"><div class="chip"><div class="c" style="background:#2438D6"></div><b>Ultramarine</b><span>#2438D6 · Primary</span></div><div class="chip"><div class="c" style="background:#EEE9FF;border:1px solid rgba(0,0,0,.1)"></div><b>Lilac</b><span>#EEE9FF · Ground</span></div><div class="chip"><div class="c" style="background:#7A4DF2"></div><b>Violet</b><span>#7A4DF2 · Bougainvillea</span></div><div class="chip"><div class="c" style="background:#FF8A3D"></div><b>Apricot</b><span>#FF8A3D · Warm lead</span></div><div class="chip"><div class="c" style="background:#1B1F5E"></div><b>Lapis Ink</b><span>#1B1F5E · Text</span></div><div class="chip"><div class="c" style="background:#B8875A"></div><b>Oak</b><span>#B8875A · Material</span></div></div><p class="small">Ultramarine on Chalk 7.3:1 · Lapis Ink on Apricot 6.4:1.</p>
+  <div class="ty"><p class="d" style="font-family:'Archivo',serif">Open till 2. Obviously.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Alexandria',sans-serif">مفتوح حتى الثانية</p></div>
+  <p class="small">Display Archivo · Text Geist · Arabic Alexandria (native proof pending)</p></div></section>
 
-  <div class="blk"><div><p class="eb">Voice</p><p class="why">Short, sensory, specific.</p></div><div class="vo"><ul><li>Teta says: eat.</li><li>A second plate, whether you asked or not.</li><li>No one leaves hungry. It&#x27;s a rule.</li></ul></div></div>
-</div></section>
-<section id="aegean" class="dir L"><div class="wrap">
-  <div class="dhead"><div><p class="dnum">DIRECTION 03 · THE TURKISH COASTLINE, FROM BODRUM TO KAŞ</p><h2 class="dname">Aegean</h2><p class="lens">Northern-European lens · restraint in the spirit of Koto · evolved from round 3 "Ultramarine + Violet"</p></div><p class="dline">Beyond the sea. Open till 2am.</p></div>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150610_1bf5b0c8-f025-498e-bc6a-d220901ef4d1.png" alt="Looking back"></div>
+<div class="cap right"><h3>Looking back</h3><p>Oak beams, the ultramarine tile counter along one side and a long communal table. The light stays calm and sea-bright into the evening.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_2fdc3bbc-2019-434e-97dc-e1e7572a8da7.png" alt="The WOW: the stretch"></div>
+<div class="cap left"><h3>The WOW: the stretch</h3><p>Maraş-style ice cream is pulled high on a steel paddle while the guest reaches for the cone. It&#x27;s the moment people film.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150610_30a46834-9a90-4319-8334-aace459c4979.png" alt="The terrace inside"></div>
+<div class="cap right"><h3>The terrace inside</h3><p>Whitewashed stepped seating with striped cushions and apricot side tables, under violet bougainvillea. Built for dusk.</p></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f31c6aca-97f0-4261-9fa0-f0cecb6c0ff3.png" alt="The team"></div><figcaption><h3>The team</h3><p>Ultramarine-and-white striped linen and an apricot neckerchief. Crisp, relaxed and coastal.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_15b88c86-6bda-4394-bfa1-42c606c37122.png" alt="Cups"></div><figcaption><h3>Cups</h3><p>A white cup with an ultramarine lid and a violet froyo cup. The one-color wordmark does all the work.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_5d344251-ff5c-4fed-b162-caded0b7bc27.png" alt="Plates and cookware"></div><figcaption><h3>Plates and cookware</h3><p>White plates with an ultramarine rim, cobalt glass tumblers and violet-glazed bowls of apricots, in hard Aegean sunlight.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_dc1e5b09-ec9f-47cb-96ba-619289fa629e.png" alt="Merch"></div><figcaption><h3>Merch</h3><p>A violet cap and an ultramarine tote, from a rooftop by the sea.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_575ba06a-b5d8-49c9-8b85-cd31732edc29.png" alt="Advertising"></div><figcaption><h3>Advertising</h3><p>&quot;Beyond the sea. Open till 2am.&quot; One scoop, one petal, one blue.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_91acf685-2cc8-4061-85f1-89c823f04698.png" alt="The street"></div><figcaption><h3>The street</h3><p>A whitewash and ultramarine façade with bougainvillea planters, and apricot light spilling out at dusk.</p></figcaption></figure></div></section>
 
-  <div class="blk"><div><p class="eb">Roots</p><p class="why">Research, then the idea it gives us.</p></div>
-    <div class="roots"><ul><li>&#x27;Ultramarine&#x27; is Middle Latin for &#x27;beyond the sea&#x27;. The pigment came from lapis mined in Badakhshan, Afghanistan, and was once worth more than gold in Europe. <a href="https://storiedcolors.com/color/ultramarine/" target="_blank" rel="noopener">source</a></li><li>In Bodrum, walls are whitewashed against insects and windows painted blue against the evil eye, with bougainvillea over the doors. <a href="https://www.hurriyetdailynews.com/bodrums-white-against-insects-blue-against-the-evil-eye-117393" target="_blank" rel="noopener">source</a></li><li>Maraş dondurma is stretchy ice cream made with salep and mastic. Its vendors turn serving into a playful street show. <a href="https://www.cnn.com/travel/maras-dondurma-turkish-ice-cream" target="_blank" rel="noopener">source</a></li></ul><p class="so">The blue has come a long way, and Laza&#x27;s has too, from the Levant to Astoria. A heavy, calm, generously spaced wordmark with one crescent-cut counter; a symbol where a wave curls into a scoop. The ritual is the stretch-and-flip at the ice-cream counter, modernized: striped linen, not a costume.</p></div></div>
+<section class="slide text rv"><div class="wrap cols"><div><p class="eb">Voice</p><ul class="vo"><li>Beyond the sea. Open till 2am.</li><li>Stretch it. Flip it. Eat it.</li><li>The lights go violet at eleven.</li></ul></div>
+  <div><p class="eb">Service</p><p class="so">A stretch-and-flip moment at the ice-cream counter. The team wears ultramarine-and-white striped linen with an apricot neckerchief.</p></div></div></section>
+</div>
+<div id="island" class="dir B">
+<section class="slide full hero rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_6a20c1fa-60f5-42f7-8254-8ccab2559c10.png" alt="Island"></div>
+  <div class="cap left big"><p class="eb">Direction 04 · A tropical island, on Brooklyn hours</p><h2 class="dname">Island</h2><p class="dline">Island time. Brooklyn hours.</p><p>Blue tile, an oak deck-plank floor, rattan chairs, slow fans and banana plants. Friends lounge over mango desserts at 2pm, all year.</p></div></section>
 
-  <div class="blk"><div><p class="eb">Logo</p><p class="why">The wordmark is lettering in one color, thick and well spaced, with one Arabic cue. The symbol is three colors and built to work at 16 px.</p></div>
-    <div class="logos">
-      <figure><div class="im logo" style="background:#EEE9FF"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_86de6be2-64a3-4911-8ffe-0564b8e1d562.svg" alt="Aegean wordmark"></div><figcaption>Crescent-cut counter in the final a · one color: Ultramarine</figcaption></figure>
-      <figure><div class="im logo sq" style="background:#EEE9FF"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_8a491166-003f-42fb-b50b-455ad14a3870.svg" alt="Aegean symbol"></div><figcaption>Wave into scoop, a petal and a sun, in three colors</figcaption></figure>
-    </div></div>
+<section class="slide text rv"><div class="wrap cols">
+  <div><p class="eb">Roots · research</p><ul class="roots"><li>Tiki began in 1933–34 in Hollywood and Oakland as a fantasy tropics, and is now widely critiqued as cultural appropriation. So there are no masks, no totems and no pseudo-Polynesian type. <a href="https://en.wikipedia.org/wiki/Tiki_culture" target="_blank" rel="noopener">source</a></li><li>Mango kunafa (kataifi, mango, cream, rose syrup) is an established modern twist that spread on TikTok and Instagram. <a href="https://amiraspantry.com/knafeh-mango-cream/" target="_blank" rel="noopener">source</a></li><li>Island time means slowness and sun. Laza&#x27;s version is the unhurried 20-minute hang Moose asked for. (inference)</li></ul><p class="lens">LA lens · sunny, social and content-first in the spirit of Media.Monks</p></div>
+  <div><p class="eb">What it means for Laza</p><p class="so">Baby blue is the sky and the sea: the primary color, the one Moose asked for. Mango is the warm core that makes it sing. The escape comes from the fruit, the light and the pace, not a costume. A bubbly wordmark whose l curls like a Naskh stroke, and a round mango-kunafa symbol.</p></div></div></section>
 
-  <div class="blk"><div><p class="eb">Color + type</p><p class="why">Split-complementary: blue-violet against apricot, grounded by oak.</p></div>
-    <div><div class="pal"><div class="chip"><div class="c" style="background:#2438D6;color:#fff"></div><b>Ultramarine</b><span>#2438D6</span><em>Primary</em></div><div class="chip"><div class="c" style="background:#EEE9FF;color:#1a1a1a;border:1px solid rgba(0,0,0,.08)"></div><b>Lilac</b><span>#EEE9FF</span><em>Ground</em></div><div class="chip"><div class="c" style="background:#7A4DF2;color:#fff"></div><b>Violet</b><span>#7A4DF2</span><em>Bougainvillea</em></div><div class="chip"><div class="c" style="background:#FF8A3D;color:#1a1a1a"></div><b>Apricot</b><span>#FF8A3D</span><em>Warm lead</em></div><div class="chip"><div class="c" style="background:#1B1F5E;color:#fff"></div><b>Lapis Ink</b><span>#1B1F5E</span><em>Text</em></div><div class="chip"><div class="c" style="background:#B8875A;color:#1a1a1a"></div><b>Oak</b><span>#B8875A</span><em>Material</em></div></div><p class="small">Ultramarine on Chalk 7.3:1 · Lapis Ink on Apricot 6.4:1.</p>
-    <div class="ty"><p class="d" style="font-family:'Archivo',serif">Open till 2. Obviously.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Alexandria',sans-serif">مفتوح حتى الثانية</p></div>
-    <p class="small">Display Archivo · Text Geist · Arabic Alexandria (native proof pending)</p></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Logo · a one-color wordmark and a three-color symbol</p>
+  <div class="logos"><figure><div class="lg" style="background:#FBF7F0"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_c2f3771f-3d59-41eb-93f0-5f06812711f4.svg" alt="Island wordmark"></div><figcaption>Naskh-curl l, bubbly terminals · one color: Cornflower</figcaption></figure>
+  <figure><div class="lg sq" style="background:#FFF6E0"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150553_9a5034ff-bf27-4862-9ecc-45473eaa8879.svg" alt="Island symbol"></div><figcaption>Round mango kunafa with a leaf · mango, coral, leaf green</figcaption></figure></div></div></section>
 
-  <div class="blk"><div><p class="eb">Space + people</p><p class="why">Where the 20-minute hang happens, and who looks after you.</p></div>
-    <div class="g g-space"><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_e04bc1a7-879f-4b13-93d2-c8777f99a10a.png" alt="Interior · people hanging out"></div><figcaption>Interior · people hanging out</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_2fdc3bbc-2019-434e-97dc-e1e7572a8da7.png" alt="The WOW moment"></div><figcaption>The WOW moment</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_f31c6aca-97f0-4261-9fa0-f0cecb6c0ff3.png" alt="What the team wears"></div><figcaption>What the team wears</figcaption></figure></div></div>
-  <p class="svc">A stretch-and-flip moment at the ice-cream counter. Ultramarine-and-white striped linen shirts with an apricot neckerchief.</p>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Color · Baby blue leads; mango is the warm core; coral and oak warm it further</p><div class="pal"><div class="chip"><div class="c" style="background:#9CCBF2"></div><b>Baby Blue</b><span>#9CCBF2 · Primary</span></div><div class="chip"><div class="c" style="background:#EAF4FD;border:1px solid rgba(0,0,0,.1)"></div><b>Sky Wash</b><span>#EAF4FD · Ground</span></div><div class="chip"><div class="c" style="background:#FFB627"></div><b>Mango</b><span>#FFB627 · Warm core</span></div><div class="chip"><div class="c" style="background:#FF6F59"></div><b>Coral</b><span>#FF6F59 · Secondary</span></div><div class="chip"><div class="c" style="background:#1F3A7A"></div><b>Deep Blue</b><span>#1F3A7A · Text</span></div><div class="chip"><div class="c" style="background:#B8875A"></div><b>Oak</b><span>#B8875A · Material</span></div></div><p class="small">Deep Blue on Baby Blue 6.3:1 · on Mango 6.2:1 · on Sky Wash 9.7:1.</p>
+  <div class="ty"><p class="d" style="font-family:'Gloock',serif">Pick a side, or take both.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'El Messiri',sans-serif">حلو يا حلو</p></div>
+  <p class="small">Display Gloock · Text Instrument Sans · Arabic El Messiri (native proof pending)</p></div></section>
 
-  <div class="blk"><div><p class="eb">Objects</p><p class="why">Cups, tableware and merch, all carrying the real mark.</p></div>
-    <div class="g g-obj"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_15b88c86-6bda-4394-bfa1-42c606c37122.png" alt="Cups · to-go and froyo"></div><figcaption>Cups · to-go and froyo</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_5d344251-ff5c-4fed-b162-caded0b7bc27.png" alt="Plates and cookware"></div><figcaption>Plates and cookware</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144250_dc1e5b09-ec9f-47cb-96ba-619289fa629e.png" alt="Merch"></div><figcaption>Merch</figcaption></figure></div></div>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150846_463233bd-7bb3-451e-95af-cf626393c5ad.png" alt="The bar"></div>
+<div class="cap right"><h3>The bar</h3><p>Baby-blue tile and ceiling, a curved oak bar with rattan stools, mango-yellow lamps and a coral terrazzo floor. Late afternoon, every afternoon.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_e0959d92-d0ef-4c27-979b-1735cca5ec13.png" alt="The WOW: the fruit stand"></div>
+<div class="cap left"><h3>The WOW: the fruit stand</h3><p>An oak counter piled with ripe mangoes, mango hedgehog cuts and trays of mango kunafa. The fruit is the decoration.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150846_89c89bf0-3f05-4701-bffb-f99a0adfad8f.png" alt="The daybed"></div>
+<div class="cap right"><h3>The daybed</h3><p>A built-in oak daybed with blue and mango striped cushions. Put your feet up; it&#x27;s island time.</p></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_af524e2d-345d-4ab0-851b-b64f7df2cfcb.png" alt="The team"></div><figcaption><h3>The team</h3><p>A blue camp-collar shirt and a mango apron. Sunny, relaxed and quick to smile.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144333_3b147520-9dba-4d22-b38d-a2fd6c56b145.png" alt="Cups"></div><figcaption><h3>Cups</h3><p>A cream cup with a blue lid and a mango froyo cup, carrying the curled-l wordmark.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_d803157c-e7d4-47f1-8a73-97a3a18280d3.png" alt="Plates and cookware"></div><figcaption><h3>Plates and cookware</h3><p>Coral and cream speckled plates and blue-glazed bowls under palm-leaf shadows. The symbol is stamped on the plate.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144334_75c950f1-0d36-43fa-9509-8b4a2a2473c4.png" alt="Merch"></div><figcaption><h3>Merch</h3><p>A striped beach-towel tote and a mango cap, on a sunny Brooklyn sidewalk.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_82014bf5-6302-46a4-be36-9d7814170c99.png" alt="Advertising"></div><figcaption><h3>Advertising</h3><p>&quot;Island time. Brooklyn hours.&quot; Mango kunafa, one bite missing.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_91455637-e84c-4622-8fd1-64b61e9383bd.png" alt="The street"></div><figcaption><h3>The street</h3><p>A tiled façade, oak frames, a coral-and-cream awning and banana plants by the door.</p></figcaption></figure></div></section>
 
-  <div class="blk"><div><p class="eb">Out in the world</p><p class="why">Advertising and the street.</p></div>
-    <div class="g g-out"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_575ba06a-b5d8-49c9-8b85-cd31732edc29.png" alt="Advertising"></div><figcaption>Advertising</figcaption></figure><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144251_91acf685-2cc8-4061-85f1-89c823f04698.png" alt="Storefront"></div><figcaption>Storefront</figcaption></figure></div></div>
+<section class="slide text rv"><div class="wrap cols"><div><p class="eb">Voice</p><ul class="vo"><li>Island time. Brooklyn hours.</li><li>Cold froyo, hot kunafa. Pick a side, or take both.</li><li>Bring a friend. Split nothing.</li></ul></div>
+  <div><p class="eb">Service</p><p class="so">Nobody rushes you, and the specials follow the fruit. The team wears blue camp-collar shirts with mango aprons.</p></div></div></section>
+</div>
+<div id="yalla" class="dir Y">
+<section class="slide full hero rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150643_c5d6be7a-a159-4f49-96d8-535cd287297a.png" alt="Yalla"></div>
+  <div class="cap left big"><p class="eb">Direction 05 · Sunny yellow first, blue second: Laza&#x27;s own La La Land</p><h2 class="dname">Yalla</h2><p class="dline">Yalla. Good mood, open till 2am.</p><p>Sun-yellow walls and ceiling, a long cornflower-tiled counter with an oak top, and chrome stools. People of every age sit close. This is the La La Land feeling, built as a room.</p></div></section>
 
-  <div class="blk"><div><p class="eb">Voice</p><p class="why">Short, sensory, specific.</p></div><div class="vo"><ul><li>Beyond the sea. Open till 2am.</li><li>Stretch it. Flip it. Eat it.</li><li>The lights go violet at eleven.</li></ul></div></div>
-</div></section>
-<section id="island" class="dir B"><div class="wrap">
-  <div class="dhead"><div><p class="dnum">DIRECTION 04 · A TROPICAL ISLAND, ON BROOKLYN HOURS</p><h2 class="dname">Island</h2><p class="lens">LA lens · sunny, social and content-first in the spirit of Media.Monks · evolved from round 3 "Blue"</p></div><p class="dline">Island time. Brooklyn hours.</p></div>
+<section class="slide text rv"><div class="wrap cols">
+  <div><p class="eb">Roots · research</p><ul class="roots"><li>Moose&#x27;s emotional model is La La Land&#x27;s yellow: one saturated color carrying the feeling across costume and set. Here the yellow is mango-warm, not lemon.</li><li>&#x27;Yalla&#x27; is the everyday Arabic for &#x27;come on, let&#x27;s go&#x27;. It is used from Beirut to Brooklyn and is instantly social. (inference)</li><li>The ma&#x27;amoul, a round, stamped, shared cookie, is the holiday sweet of Levantine homes. It becomes the symbol. (inference)</li></ul><p class="lens">New York lens · pop, social and joyful, a merge of Brooklyn warmth and LA energy</p></div>
+  <div><p class="eb">What it means for Laza</p><p class="so">Yellow is the mood and blue is the promise Moose asked for. Together they&#x27;re the happiest pairing on the color wheel: yellow-orange against blue. A round, thick, generously spaced wordmark with a floating dot and a flick. The room is sunlight you can walk into, day or 1am.</p></div></div></section>
 
-  <div class="blk"><div><p class="eb">Roots</p><p class="why">Research, then the idea it gives us.</p></div>
-    <div class="roots"><ul><li>Tiki began in 1933–34 in Hollywood and Oakland as a fantasy tropics, and is now widely critiqued as cultural appropriation. So no masks, no totems, no pseudo-Polynesian type. <a href="https://en.wikipedia.org/wiki/Tiki_culture" target="_blank" rel="noopener">source</a></li><li>Mango kunafa (kataifi, mango, cream, rose syrup) is an established modern twist, spread on TikTok and Instagram. <a href="https://amiraspantry.com/knafeh-mango-cream/" target="_blank" rel="noopener">source</a></li><li>Island time means slowness and sun. Laza&#x27;s version is the unhurried 20-minute hang Moose asked for. (inference)</li></ul><p class="so">The escape is the fruit, the light and the pace, not a costume. A bubbly, heavy, well-spaced wordmark whose l curls like a Naskh stroke. A symbol of mango, leaf and sun. Oak decking and cornflower tile make the room feel like 2pm by the water, all year.</p></div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Logo · a one-color wordmark and a three-color symbol</p>
+  <div class="logos"><figure><div class="lg" style="background:#FFC21A"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150558_4dfa9974-f692-4479-9ea5-297b2b293075.svg" alt="Yalla wordmark"></div><figcaption>Floating nuqta over the z and a soft flick on the a · one color: Cornflower on Sun</figcaption></figure>
+  <figure><div class="lg sq" style="background:#FFF8E6"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150601_af1b992a-06aa-4ff7-a7bf-c00f4178b620.svg" alt="Yalla symbol"></div><figcaption>The round ma&#x27;amoul · mango yellow, cornflower, oak</figcaption></figure></div></div></section>
 
-  <div class="blk"><div><p class="eb">Logo</p><p class="why">The wordmark is lettering in one color, thick and well spaced, with one Arabic cue. The symbol is three colors and built to work at 16 px.</p></div>
-    <div class="logos">
-      <figure><div class="im logo" style="background:#FBF7F0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_c2f3771f-3d59-41eb-93f0-5f06812711f4.svg" alt="Island wordmark"></div><figcaption>Naskh-curl l, bubbly terminals · one color: Cornflower</figcaption></figure>
-      <figure><div class="im logo sq" style="background:#FBF7F0"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144020_d409725b-6529-41ca-817d-011d524b3516.svg" alt="Island symbol"></div><figcaption>Mango · leaf · sun, in three colors</figcaption></figure>
-    </div></div>
+<section class="slide text rv"><div class="wrap">
+  <p class="eb">Color · Complementary: sunny yellow-orange with cornflower blue, grounded by oak</p><div class="pal"><div class="chip"><div class="c" style="background:#FFC21A"></div><b>Sun</b><span>#FFC21A · Primary</span></div><div class="chip"><div class="c" style="background:#FFF8E6;border:1px solid rgba(0,0,0,.1)"></div><b>Cream</b><span>#FFF8E6 · Ground</span></div><div class="chip"><div class="c" style="background:#2F6BDB"></div><b>Cornflower</b><span>#2F6BDB · Second</span></div><div class="chip"><div class="c" style="background:#14285C"></div><b>Navy</b><span>#14285C · Text</span></div><div class="chip"><div class="c" style="background:#9A6A3F"></div><b>Oak</b><span>#9A6A3F · Material</span></div><div class="chip"><div class="c" style="background:#C9D1DB"></div><b>Chrome</b><span>#C9D1DB · Finish</span></div></div><p class="small">Navy on Sun 8.7:1 · Navy on Cream 13.3:1 · Cornflower on Sun 3.1:1, logo and display only.</p>
+  <div class="ty"><p class="d" style="font-family:'Unbounded',serif">Yalla, come in.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'Marhey',sans-serif">يلا، تعال</p></div>
+  <p class="small">Display Unbounded · Text Figtree · Arabic Marhey (native proof pending)</p></div></section>
 
-  <div class="blk"><div><p class="eb">Color + type</p><p class="why">Split-complementary: blue against mango and coral.</p></div>
-    <div><div class="pal"><div class="chip"><div class="c" style="background:#4F86E8;color:#fff"></div><b>Cornflower</b><span>#4F86E8</span><em>Primary</em></div><div class="chip"><div class="c" style="background:#FBF7F0;color:#1a1a1a;border:1px solid rgba(0,0,0,.08)"></div><b>Cream</b><span>#FBF7F0</span><em>Ground</em></div><div class="chip"><div class="c" style="background:#FFB627;color:#1a1a1a"></div><b>Mango</b><span>#FFB627</span><em>Warm lead</em></div><div class="chip"><div class="c" style="background:#FF6F59;color:#1a1a1a"></div><b>Coral</b><span>#FF6F59</span><em>Secondary</em></div><div class="chip"><div class="c" style="background:#1F3A7A;color:#fff"></div><b>Deep Blue</b><span>#1F3A7A</span><em>Text</em></div><div class="chip"><div class="c" style="background:#B8875A;color:#1a1a1a"></div><b>Oak</b><span>#B8875A</span><em>Material</em></div></div><p class="small">Deep Blue on Cream 10.1:1 · Cornflower on Cream 3.3:1, display only.</p>
-    <div class="ty"><p class="d" style="font-family:'Gloock',serif">Pick a side, or take both.</p><p class="ar" lang="ar" dir="rtl" style="font-family:'El Messiri',sans-serif">حلو يا حلو</p></div>
-    <p class="small">Display Gloock · Text Instrument Sans · Arabic El Messiri (native proof pending)</p></div></div>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_4a21e085-af62-429d-928a-8d8abf80b17c.png" alt="The bleachers"></div>
+<div class="cap right"><h3>The bleachers</h3><p>Oak stepped seating under a yellow barrel ceiling, with a cornflower kunafa bar across the room. Friends and families share the steps.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150644_b39c8008-bfff-47c3-b4df-b7fca4cb6fb3.png" alt="The WOW: the pull under the sun"></div>
+<div class="cap left"><h3>The WOW: the pull under the sun</h3><p>A round cornflower-tiled kunafa bar under a huge yellow dome light. The cheese pull happens on the hour, and everyone films it.</p></div></section>
+<section class="slide full rv"><div class="bg"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_fcb7ff0b-5129-418d-b511-1780c5aa8eb8.png" alt="The window bar at night"></div>
+<div class="cap right"><h3>The window bar at night</h3><p>An oak window counter facing the street, with glowing yellow walls behind. The best seat in Brooklyn at 1am.</p></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150644_1fd547fb-04ca-4685-ae46-f9e87882e69e.png" alt="The team"></div><figcaption><h3>The team</h3><p>A sun-yellow work jacket over a blue tee, with an oak apron. Energetic, never loud.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_1b2de786-996f-4506-9c58-2fff13c238b6.png" alt="Cups"></div><figcaption><h3>Cups</h3><p>A yellow cup with a blue lid and a blue froyo cup. The wordmark flips color so both cups read as Laza.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150644_3a2b3cc7-589e-434a-85e2-e3b42e8842ba.png" alt="Plates and cookware"></div><figcaption><h3>Plates and cookware</h3><p>Yellow enamel plates, blue bowls and a blue Turkish teapot with tulip glasses, on an oak tray of ma&#x27;amoul and qatayef.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_425143cd-c819-438d-80d7-d38926039420.png" alt="Merch"></div><figcaption><h3>Merch</h3><p>A yellow hoodie and a blue tote on a Brooklyn stoop. Merch that works as a uniform for the regulars.</p></figcaption></figure></div></section>
+<section class="slide pair"><div class="wrap two"><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_3d4fcb66-9be2-49ee-8359-323600c2d556.png" alt="Advertising"></div><figcaption><h3>Advertising</h3><p>&quot;Yalla. Good mood, open till 2am.&quot; Friends mid-laugh, on the subway.</p></figcaption></figure><figure class="rv"><div class="ph"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150728_0b1d07f8-a368-4ddc-a472-0b0c3f9d80d2.png" alt="The street"></div><figcaption><h3>The street</h3><p>A sun-yellow façade on 5th Avenue under a cornflower awning. It glows at golden hour and at midnight.</p></figcaption></figure></div></section>
 
-  <div class="blk"><div><p class="eb">Space + people</p><p class="why">Where the 20-minute hang happens, and who looks after you.</p></div>
-    <div class="g g-space"><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_6a20c1fa-60f5-42f7-8254-8ccab2559c10.png" alt="Interior · people hanging out"></div><figcaption>Interior · people hanging out</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_e0959d92-d0ef-4c27-979b-1735cca5ec13.png" alt="The WOW moment"></div><figcaption>The WOW moment</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_af524e2d-345d-4ab0-851b-b64f7df2cfcb.png" alt="What the team wears"></div><figcaption>What the team wears</figcaption></figure></div></div>
-  <p class="svc">Nobody rushes you. Fruit-forward specials. Cornflower camp-collar shirts with mango aprons.</p>
-
-  <div class="blk"><div><p class="eb">Objects</p><p class="why">Cups, tableware and merch, all carrying the real mark.</p></div>
-    <div class="g g-obj"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144333_3b147520-9dba-4d22-b38d-a2fd6c56b145.png" alt="Cups · to-go and froyo"></div><figcaption>Cups · to-go and froyo</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_d803157c-e7d4-47f1-8a73-97a3a18280d3.png" alt="Plates and cookware"></div><figcaption>Plates and cookware</figcaption></figure><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144334_75c950f1-0d36-43fa-9509-8b4a2a2473c4.png" alt="Merch"></div><figcaption>Merch</figcaption></figure></div></div>
-
-  <div class="blk"><div><p class="eb">Out in the world</p><p class="why">Advertising and the street.</p></div>
-    <div class="g g-out"><figure class=""><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_82014bf5-6302-46a4-be36-9d7814170c99.png" alt="Advertising"></div><figcaption>Advertising</figcaption></figure><figure class="wide"><div class="im"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_144318_91455637-e84c-4622-8fd1-64b61e9383bd.png" alt="Storefront"></div><figcaption>Storefront</figcaption></figure></div></div>
-
-  <div class="blk"><div><p class="eb">Voice</p><p class="why">Short, sensory, specific.</p></div><div class="vo"><ul><li>Island time. Brooklyn hours.</li><li>Cold froyo, hot kunafa. Pick a side, or take both.</li><li>Bring a friend. Split nothing.</li></ul></div></div>
-</div></section>
+<section class="slide text rv"><div class="wrap cols"><div><p class="eb">Voice</p><ul class="vo"><li>Yalla. Good mood, open till 2am.</li><li>Come for dessert. Stay for the mood.</li><li>Bad day? Yalla, sit down.</li></ul></div>
+  <div><p class="eb">Service</p><p class="so">Music up after 9pm and a kunafa-pull show on the hour. The team wears sun-yellow jackets over blue tees, with oak aprons.</p></div></div></section>
+</div>
 
 <section id="next" class="close"><div class="wrap">
   <p class="eb" style="color:var(--mute)">Next</p>
-  <h2 style="font:400 clamp(34px,4vw,56px)/1.05 'Gloock',serif;max-width:22ch">Pick a place. We'll build the whole world around it.</h2>
+  <h2>Pick a place. We'll build the whole world around it.</h2>
   <div class="grid3">
-    <p><b>Our read</b><strong>Teta</strong> answers "they make you feel seen" most directly and is the hardest to copy. <strong>Aegean</strong> is the strongest answer to "a happier blue". A Teta room with an Aegean blue counter is a strong merge to explore.</p>
-    <p><b>Full execution</b>Production redraw of the wordmark with Latin and Arabic drawn together, the symbol set, packaging dielines, uniform tech packs, signage, menu, social templates, interior plan on the Bay Ridge footprint, and a motion sting.</p>
-    <p><b>Caveats</b>Marks and images are AI-generated concept work. They need a type-designer pass and a native Arabic proof before trademark filing and production. Menu items and lines are illustrative.</p>
+    <p><b>Our read</b>Yalla is the most direct answer to the La La Land brief. Teta is the hardest to copy and the most human. A Yalla color system inside a Teta room, with its tray wall and its host, is the strongest merge to explore next.</p>
+    <p><b>Full execution</b>Production redraw of the wordmark with Latin and Arabic drawn together, the symbol set, packaging dielines, uniform tech packs, signage, menu, social templates, an interior plan on the Bay Ridge footprint, and a motion sting.</p>
+    <p><b>Caveats</b>Marks and images are AI-generated concept work. They need a type-designer pass and a native Arabic proof before trademark filing or production. Menu items and lines are illustrative.</p>
   </div>
 </div></section>
-<footer><div class="wrap">Laza · Round 4 · Logos, symbols and imagery generated bespoke in Higgsfield (Recraft V4.1 vector, GPT Image 2.5) with the real wordmarks as references. Research sources are linked inline. <a href="./old/">See round 3 →</a></div></footer>
+<footer><div class="wrap">Laza · Round 4 · Logos, symbols and imagery generated bespoke in Higgsfield (Recraft V4.1 vector, GPT Image 2.5), with the real wordmarks as references. Research sources are linked inline. <a href="./old/">Round 3 →</a></div></footer>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="lbx">Close</button><img id="lbi" alt=""></div>
 <script>
-var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
-document.querySelectorAll('.im img').forEach(function(im){im.tabIndex=0;function o(){lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');document.getElementById('lbx').focus();}im.addEventListener('click',o);im.addEventListener('keydown',function(e){if(e.key==='Enter')o();});});
-document.getElementById('lbx').addEventListener('click',function(){lb.classList.remove('open');});
-lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
-addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting);});},{threshold:0.18});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  var links=[].slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.dir,#brief,#next').forEach(function(s){so.observe(s);});
+  var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+  document.querySelectorAll('.bg img,.ph img,.lg img').forEach(function(im){im.tabIndex=0;function o(){lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');document.getElementById('lbx').focus();}im.addEventListener('click',o);im.addEventListener('keydown',function(e){if(e.key==='Enter')o();});});
+  document.getElementById('lbx').addEventListener('click',function(){lb.classList.remove('open');});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+})();
 </script>
 </body>
 </html>
