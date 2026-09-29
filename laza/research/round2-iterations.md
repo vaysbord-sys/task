@@ -22,3 +22,10 @@ Base: https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_2
 ## Arabic companion
 Recraft can't be trusted with Arabic letterforms. The لذة lockup gets built from real bilingual fonts (npm @fontsource):
 Marhey and Lemonada are the best fits (playful, drawn as a Latin/Arabic pair). Lalezar, Readex Pro and Alexandria are the backups.
+
+## R2-A refinement: reference 102, "friendly, minimal, a little Middle Eastern, SoHo" (GPT Image 2.5, 4 variants)
+- 140522_2a8f7d87-69f1-438a-b672-cc5d65e202ea.png
+- 140521_1538fc24-c91c-43b5-9e13-7b429a66080b.png
+- 140521_c05dffa3-e85e-4287-970b-706638d55e1b.png
+- 140521_95f27f2e-370f-4aa9-9bd9-e62ae0c79ef6.png
+QA: all spelled correctly. The variants converge on the reference, and the Middle Eastern cue is too subtle. Next pass: exaggerate one terminal detail and loosen the reference weight.
