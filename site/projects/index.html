@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAYS STUDIOS — Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --grey: rgba(255, 255, 255, 0.5);
+    --hairline: rgba(255, 255, 255, 0.1);
+    --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #000;
+    color: var(--white);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .caps {
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .page { max-width: 1440px; margin: 0 auto; }
+
+  .hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 32px;
+  }
+  .wordmark, .nav a {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav a { color: var(--grey); }
+  .nav a[aria-current="page"], .nav a:hover { color: var(--white); }
+  .nav a + a { margin-left: 40px; }
+
+  .intro { padding: 72px 32px 40px; }
+  .intro h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(40px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .tile {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #131313;
+    overflow: hidden;
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .tile img { filter: grayscale(1) contrast(1.05); transition: transform .6s ease, filter .6s ease; }
+  .tile:hover img { transform: scale(1.04); filter: none; }
+  .tile::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 55%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%);
+  }
+  .tile-cap { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2; }
+  .tile-cap h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tile-cap span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  /* LAZA leads the grid: double width, full color */
+  .tile.lead { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .tile.lead img { filter: none; }
+  .tile.lead .tile-cap { left: 32px; bottom: 28px; }
+  .tile.lead h3 { font-size: clamp(28px, 4vw, 56px); font-weight: 800; letter-spacing: 0.01em; margin-bottom: 10px; }
+  .tile.lead span { font-size: 11px; color: rgba(255,255,255,0.8); }
+  .tile.lead .open {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 4px;
+  }
+
+  footer { padding: 72px 32px 80px; }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .tile.lead { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 5; }
+    .nav a + a { margin-left: 20px; }
+    .hdr { padding: 20px 16px; }
+    .intro, footer { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hdr">
+    <a class="wordmark" href="/">VAYS STUDIOS</a>
+    <nav class="nav"><a href="/#work">WORK</a><a href="/projects/" aria-current="page">PROJECTS</a><a href="/#contact">CONTACT</a></nav>
+  </header>
+
+  <section class="intro">
+    <p class="caps">/PROJECTS — BRAND · FILM · AI</p>
+    <h1>Projects</h1>
+  </section>
+
+  <div class="grid">
+    <a class="tile lead" href="/projects/laza/">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_150643_c5d6be7a-a159-4f49-96d8-535cd287297a.png" alt="Laza Dessert Café, Yalla direction interior">
+      <div class="tile-cap">
+        <h3>Laza Dessert Café</h3>
+        <span>Brand identity · Five directions · Bay Ridge &amp; Astoria · 2026</span><br>
+        <span class="open">VIEW PROJECT →</span>
+      </div>
+    </a>
+    <a class="tile" href="https://www.youtube.com/watch?v=rSkxbmsJZu8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/rSkxbmsJZu8/maxresdefault.jpg" alt="Red Bull Racing"><div class="tile-cap"><h3>Red Bull Racing</h3><span>AZUKI · 2023</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=Vmo512oOwYw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Vmo512oOwYw/maxresdefault.jpg" alt="Twin Tigers"><div class="tile-cap"><h3>Twin Tigers</h3><span>AZUKI · 2023</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=Oy_8jxgC9x0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Oy_8jxgC9x0/maxresdefault.jpg" alt="Golden Skateboards"><div class="tile-cap"><h3>Golden Skateboards</h3><span>AZUKI · 2023</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=tPmOgw2MM9Y" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/tPmOgw2MM9Y/maxresdefault.jpg" alt="Enter The Garden"><div class="tile-cap"><h3>Enter The Garden</h3><span>AZUKI · 2024</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=yRux0r1Wamc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/yRux0r1Wamc/maxresdefault.jpg" alt="SHOWstudio Winner"><div class="tile-cap"><h3>SHOWstudio Winner</h3><span>OUTLAW · 2016</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=3xBPR1ZtSMM" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/3xBPR1ZtSMM/maxresdefault.jpg" alt="Beats by Dre"><div class="tile-cap"><h3>Beats by Dre</h3><span>2017</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=X8Ms_HqybMw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/X8Ms_HqybMw/maxresdefault.jpg" alt="PUMA × Outlaw"><div class="tile-cap"><h3>PUMA × Outlaw</h3><span>2018</span></div></a>
+    <a class="tile" href="https://www.youtube.com/watch?v=ukEXjro8Alg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ukEXjro8Alg/maxresdefault.jpg" alt="AMBUSH"><div class="tile-cap"><h3>AMBUSH</h3><span>2018</span></div></a>
+  </div>
+
+  <footer><p class="caps">© 2026 VAYS STUDIOS · <a href="mailto:hello@vaysstudios.com" style="color:inherit">hello@vaysstudios.com</a></p></footer>
+</div>
+</body>
+</html>
