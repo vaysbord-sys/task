@@ -29,3 +29,9 @@ Marhey and Lemonada are the best fits (playful, drawn as a Latin/Arabic pair). L
 - 140521_c05dffa3-e85e-4287-970b-706638d55e1b.png
 - 140521_95f27f2e-370f-4aa9-9bd9-e62ae0c79ef6.png
 QA: all spelled correctly. The variants converge on the reference, and the Middle Eastern cue is too subtle. Next pass: exaggerate one terminal detail and loosen the reference weight.
+
+## R2-A push: reference v1 (140522_2a8f7d87), four Middle Eastern cues
+- p1 teardrop z · 140742_f08cca9b-8cac-4ac6-a561-4975983da1e4.png · not yet QA'd
+- p2 kashida swash under the word · 140744_61da81b9-e427-4fba-b869-6c800e06aec0.png · swash reads clearly
+- p3 qalam contrast · 140748_fe66bc48-4489-46c1-a842-5cce68c5d5c1.png · sharper and more calligraphic
+- p4 bilingual laza / لذة · 140743_d4ca7a88-f3f1-474e-99bf-aaeea7d8d75e.png · Arabic looks right at thumbnail size; needs a native-reader check
