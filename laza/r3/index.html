@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAZA — Four Directions · First Iterations</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600&family=Readex+Pro:wght@400;600&family=Aref+Ruqaa:wght@400;700&family=Libre+Caslon+Display&family=Instrument+Sans:wght@400;500;600&family=Archivo:wdth,wght@62..125,400..900&family=Geist:wght@400;500;600&family=Alexandria:wght@500;700&family=Gloock&family=El+Messiri:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Frame: neutral, quiet, 8pt spacing. Each direction section owns its palette + type. */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;--s10:128px;
+  --paper:#FFFFFF;--ink:#161616;--mute:#6B6B6B;--rule:#E6E6E6;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.eb{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav .wrap{height:56px;display:flex;align-items:center;gap:var(--s5);overflow-x:auto;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav b{font:500 12px var(--mono);letter-spacing:.14em;white-space:nowrap}
+.nav a{font:500 14px/1 "Instrument Sans",sans-serif;text-decoration:none;color:var(--mute);white-space:nowrap;display:flex;gap:var(--s2);align-items:center}
+.nav a:hover{color:var(--ink)}
+.nav i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* intro */
+.intro{padding-block:var(--s10) var(--s9)}
+.intro h1{font:400 clamp(44px,6.4vw,96px)/1 "Gloock",Georgia,serif;letter-spacing:-.02em;max-width:14ch;margin-top:var(--s5)}
+.intro .lede{font-size:clamp(18px,1.6vw,21px);line-height:1.55;max-width:58ch;margin-top:var(--s6);color:#333}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5);margin-top:var(--s8);border-top:1px solid var(--ink);padding-top:var(--s5)}
+.rules p{font-size:15px;line-height:1.5;color:#333}
+.rules b{display:block;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--ink)}
+@media (max-width:900px){.rules{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.rules{grid-template-columns:1fr}}
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3);margin-top:var(--s8)}
+.four a{text-decoration:none;display:grid;gap:var(--s3)}
+.four .sw{display:flex;height:120px;border-radius:4px;overflow:hidden}
+.four .sw i{display:block}
+.four span{font-size:15px}
+.four span b{display:block;font-size:17px}
+@media (max-width:900px){.four{grid-template-columns:1fr 1fr}}
+
+/* direction */
+.dir{padding-block:var(--s10)}
+.dhead{display:grid;grid-template-columns:auto 1fr;gap:var(--s5) var(--s8);align-items:end;padding-bottom:var(--s7);border-bottom:1px solid currentColor}
+.dnum{font:500 12px var(--mono);letter-spacing:.14em}
+.dname{font-size:clamp(64px,10vw,152px);line-height:.9;letter-spacing:-.02em}
+.dline{font-size:clamp(22px,2.4vw,34px);line-height:1.2;max-width:22ch;justify-self:end;text-align:right}
+@media (max-width:900px){.dhead{grid-template-columns:1fr}.dline{justify-self:start;text-align:left}}
+.blk{display:grid;grid-template-columns:240px 1fr;gap:var(--s7);padding-block:var(--s8);border-bottom:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+.blk>.eb{padding-top:var(--s2)}
+.blk .why{font-size:15px;line-height:1.55;margin-top:var(--s3);opacity:.8;max-width:30ch;text-transform:none;letter-spacing:0;font-family:inherit;font-weight:400}
+@media (max-width:900px){.blk{grid-template-columns:1fr;gap:var(--s5)}}
+
+/* identity */
+.id{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:var(--s4)}
+.id figure{display:grid;gap:var(--s3)}
+.id .im{border-radius:6px;overflow:hidden;aspect-ratio:1/1;background:rgba(0,0,0,.04)}
+.id .im.wide{aspect-ratio:4/5;height:auto}
+.id .im img{width:100%;height:100%;object-fit:cover}
+.id .im.logo img{object-fit:contain}
+.id figcaption{font-size:14px;line-height:1.45;opacity:.8}
+@media (max-width:900px){.id{grid-template-columns:1fr}.id .im.wide{aspect-ratio:4/5}}
+
+/* palette */
+.pal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s3)}
+.chip{display:grid;gap:var(--s2)}
+.chip .c{height:136px;border-radius:6px;display:flex;align-items:flex-end;padding:var(--s3);font:500 11px var(--mono)}
+.chip b{font-size:15px}
+.chip span{font:400 12px/1.4 var(--mono);opacity:.75}
+.chip em{font-style:normal;font-size:13px;opacity:.8}
+.ratio{display:flex;height:12px;border-radius:99px;overflow:hidden;margin-top:var(--s5)}
+.ratio i{display:block}
+.scheme{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);margin-top:var(--s6)}
+.scheme p{font-size:14.5px;line-height:1.5}
+.scheme b{display:block;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--s1)}
+@media (max-width:900px){.pal{grid-template-columns:repeat(3,minmax(0,1fr))}.scheme{grid-template-columns:1fr}}
+
+/* type */
+.ty{display:grid;gap:var(--s5)}
+.ty .d{line-height:.98;letter-spacing:-.01em}
+.ty .row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:end}
+.ty .ar{direction:rtl;text-align:right;line-height:1.3}
+.ty .t{font-size:18px;line-height:1.6;max-width:56ch}
+.ty .meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5);border-top:1px solid color-mix(in srgb,currentColor 18%,transparent);padding-top:var(--s4)}
+.ty .meta p{font-size:14px;line-height:1.5}
+.ty .meta b{display:block;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--s1)}
+@media (max-width:900px){.ty .row,.ty .meta{grid-template-columns:1fr}}
+
+/* voice */
+.vo{display:grid;gap:var(--s4)}
+.vo .lead{font-size:clamp(28px,3.4vw,48px);line-height:1.12;max-width:24ch}
+.vo ul{list-style:none;display:grid;gap:var(--s3)}
+.vo li{font-size:19px;line-height:1.45;padding-left:var(--s5);position:relative;max-width:52ch}
+.vo li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:currentColor}
+.vo .menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);margin-top:var(--s4)}
+.vo .menu div{border-radius:6px;padding:var(--s4);font-size:15px;line-height:1.45}
+.vo .menu b{display:block;font-size:17px;margin-bottom:var(--s1)}
+@media (max-width:900px){.vo .menu{grid-template-columns:1fr}}
+
+/* spacing */
+.sp{display:grid;gap:var(--s2)}
+.sp div{display:grid;grid-template-columns:64px 1fr;align-items:center;gap:var(--s4);font:400 12px var(--mono)}
+.sp i{display:block;height:10px;border-radius:2px;background:currentColor;opacity:.85}
+
+/* directions */
+.E{background:#EFE2CC;color:#5A3A29}
+.E .dname,.E .dline,.E .vo .lead,.E .ty .d{font-family:"Young Serif",Georgia,serif;font-weight:400}
+.O{background:#F7F0E3;color:#23408E}
+.O .dname,.O .ty .d{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400}
+.O .dline,.O .vo .lead{font-family:"Libre Caslon Display",Georgia,serif}
+.O .ar{font-family:"Aref Ruqaa",serif}
+.L{background:#EEE9FF;color:#1B1F5E}
+.L .dname,.L .ty .d{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.03em}
+.L .dline,.L .vo .lead{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 112}
+.L,.L .t,.L li{font-family:Geist,system-ui,sans-serif}
+.L .ar{font-family:Alexandria,sans-serif;font-weight:700}
+.B{background:#FBF7F0;color:#1F3A7A}
+.B .dname,.B .dline,.B .vo .lead,.B .ty .d{font-family:"Gloock",Georgia,serif;font-weight:400}
+.B .ar{font-family:"El Messiri",serif;font-weight:700}
+.E .ar{font-family:"Readex Pro",sans-serif;font-weight:600}
+.E,.E .t,.E li{font-family:"Hanken Grotesk",system-ui,sans-serif}
+
+.close{padding-block:var(--s10)}
+.close h2{font:400 clamp(36px,4.4vw,64px)/1.05 "Gloock",Georgia,serif;max-width:20ch}
+.close .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6);margin-top:var(--s7)}
+.close .grid p{font-size:15px;line-height:1.55;color:#333}
+.close .grid b{display:block;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--ink)}
+@media (max-width:900px){.close .grid{grid-template-columns:1fr}}
+footer{padding-block:var(--s7);border-top:1px solid var(--rule);font:400 12px/1.6 var(--mono);color:var(--mute)}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(10,10,10,.9);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:90vh;object-fit:contain}
+.lb button{position:absolute;top:16px;right:18px;border:0;background:#fff;border-radius:99px;padding:8px 14px;font:600 14px "Instrument Sans",sans-serif;cursor:pointer}
+.im{cursor:zoom-in}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Directions"><div class="wrap">
+  <b>LAZA · R3</b>
+  <a href="#earthy"><i style="background:#C4623A"></i>01 Earthy</a>
+  <a href="#oriental"><i style="background:#B7283A"></i>02 Arabic</a>
+  <a href="#lapis"><i style="background:#2438D6"></i>03 Ultramarine + Violet</a>
+  <a href="#blue"><i style="background:#4F86E8"></i>04 Blue</a>
+  <a href="#next">Next</a>
+</div></nav>
+
+<header class="intro"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">Laza Dessert Café · Round 3 · First iterations · 29 Sep 2026</p>
+  <h1>Four directions, built from the ground up.</h1>
+  <p class="lede">Every mark and photograph here was made for Laza. Each direction is a full system: a color scheme built on color theory, a type trio, a spacing scale and a voice. On your note, every blue sits next to oak and a brighter, warmer lead color. These are first iterations, shown before the full build.</p>
+  <div class="rules">
+    <p><b>Bespoke only</b>No stock imagery and no reused marks. Marks are drawn in Higgsfield vector; stills are art-directed per direction with no text or logos.</p>
+    <p><b>Blue is never alone</b>Wherever blue appears, oak and a warm lead color (saffron, apricot or mango) come with it.</p>
+    <p><b>Contrast-checked</b>Every text/ground pair is measured against WCAG. Colors under 4.5:1 are used for large display type only.</p>
+    <p><b>Copy from the category</b>Lines follow the patterns of the category leaders: short, sensory, specific, never "crafted with love".</p>
+  </div>
+  <div class="four">
+    <a href="#earthy"><div class="sw"><i style="flex:5;background:#C4623A"></i><i style="flex:2;background:#F2A93B"></i><i style="flex:2;background:#7A7D4A"></i><i style="flex:1;background:#B98A5E"></i></div><span><b>01 Earthy</b>Sun-baked clay, saffron, olive, oak.</span></a>
+    <a href="#oriental"><div class="sw"><i style="flex:4;background:#B7283A"></i><i style="flex:3;background:#23408E"></i><i style="flex:2;background:#F4B23E"></i><i style="flex:1;background:#A8774D"></i></div><span><b>02 Arabic</b>Pomegranate, indigo tile, saffron.</span></a>
+    <a href="#lapis"><div class="sw"><i style="flex:5;background:#2438D6"></i><i style="flex:2;background:#7A4DF2"></i><i style="flex:2;background:#FF8A3D"></i><i style="flex:1;background:#B8875A"></i></div><span><b>03 Ultramarine + Violet</b>Lapis and lilac, lit apricot.</span></a>
+    <a href="#blue"><div class="sw"><i style="flex:5;background:#4F86E8"></i><i style="flex:2;background:#FFB627"></i><i style="flex:2;background:#FF6F59"></i><i style="flex:1;background:#B8875A"></i></div><span><b>04 Blue</b>Cornflower, mango, coral.</span></a>
+  </div>
+</div></header>
+
+<!-- 01 EARTHY -->
+<section id="earthy" class="dir E"><div class="wrap">
+  <div class="dhead"><div><p class="dnum">DIRECTION 01 · EARTHY</p><h2 class="dname">Sunbaked</h2></div><p class="dline">Baked until the edges go the colour of late afternoon.</p></div>
+  <div class="blk"><div><p class="eb">Identity</p><p class="why">A serif that looks pressed into clay. Its seal is a coil of kunafa strands with one olive leaf, stamped on every box.</p></div>
+    <div class="id">
+      <figure><div class="im wide"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_152864fe-f7ca-4a4e-8997-de4be3e33755.png" alt="Kunafa tray on sand lime plaster with terracotta tiles and oak, low sun"></div><figcaption>Brand still · kunafa on lime plaster, terracotta and oak</figcaption></figure>
+      <figure><div class="im logo" style="background:#EFE2CC"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_933b4f40-557a-4b26-b914-c775bb5e004d.svg" alt="Terracotta serif laza wordmark on sand"></div><figcaption>Wordmark · clay serif</figcaption></figure>
+      <figure><div class="im logo" style="background:#C4623A"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_704bab29-0364-4e8e-bf35-df617df5cdbd.svg" alt="Round seal: kunafa strand spiral with olive leaf on terracotta"></div><figcaption>Seal · the kunafa coil</figcaption></figure>
+    </div></div>
+  <div class="blk"><div><p class="eb">Color</p><p class="why">Analogous warms (clay, saffron, date) held down by an olive counterpoint. No blue, so there's nothing to balance.</p></div>
+    <div>
+      <div class="pal">
+        <div class="chip"><div class="c" style="background:#C4623A;color:#EFE2CC">60</div><b>Clay</b><span>#C4623A</span><em>Primary · walls, boxes</em></div>
+        <div class="chip"><div class="c" style="background:#EFE2CC;border:1px solid #d9c9ae">—</div><b>Sand</b><span>#EFE2CC</span><em>Ground</em></div>
+        <div class="chip"><div class="c" style="background:#F2A93B">30</div><b>Saffron</b><span>#F2A93B</span><em>Warm lead · light, labels</em></div>
+        <div class="chip"><div class="c" style="background:#7A7D4A;color:#fff">10</div><b>Olive</b><span>#7A7D4A</span><em>Secondary · counterpoint</em></div>
+        <div class="chip"><div class="c" style="background:#5A3A29;color:#EFE2CC">T</div><b>Date</b><span>#5A3A29</span><em>Text</em></div>
+        <div class="chip"><div class="c" style="background:#B98A5E;color:#1a1a1a">M</div><b>Oak</b><span>#B98A5E</span><em>Material</em></div>
+      </div>
+      <div class="ratio"><i style="flex:45;background:#C4623A"></i><i style="flex:25;background:#EFE2CC"></i><i style="flex:15;background:#F2A93B"></i><i style="flex:8;background:#B98A5E"></i><i style="flex:5;background:#7A7D4A"></i><i style="flex:2;background:#5A3A29"></i></div>
+      <div class="scheme"><p><b>Scheme</b>Analogous, red-orange to yellow, with a yellow-green counterpoint.</p><p><b>Contrast</b>Date on Sand 7.9:1 (body). Clay on Sand 3.2:1, display only.</p><p><b>Material</b>Lime plaster, terracotta tile, oak, raw linen.</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Typography</p><p class="why">Young Serif carries the heavy, friendly bakery warmth of a Cooper without the kitsch. Hanken Grotesk keeps menus clean.</p></div>
+    <div class="ty">
+      <div class="row"><p class="d" style="font-size:clamp(48px,6vw,92px)">Warm from the tray.</p><p class="ar" style="font-size:clamp(40px,4.6vw,68px)" lang="ar">دافئة من الصينية</p></div>
+      <p class="t">Kunafa with pistachio and orange-blossom syrup. Crepes folded to order. Frozen yogurt, matcha and coffee until 2am.</p>
+      <div class="meta"><p><b>Display</b>Young Serif 400 · 40–120px</p><p><b>Text</b>Hanken Grotesk 400/500 · 16–20px</p><p><b>Arabic</b>Readex Pro 600 · native proof pending</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Voice</p><p class="why">Patient and specific. Ingredients over adjectives.</p></div>
+    <div class="vo">
+      <p class="lead">We pull it from the oven when it's ready, not when the timer says.</p>
+      <ul><li>Pistachio, honey, butter. Nothing you need a footnote for.</li><li>Late-afternoon light, all day long.</li><li>Take the corner piece. It's the best one.</li></ul>
+      <div class="menu"><div style="background:#fff"><b>The Tray</b>Classic kunafa, Nabulsi cheese, orange-blossom syrup</div><div style="background:#F2A93B"><b>Saffron Hour</b>Saffron froyo, honeycomb, pistachio</div><div style="background:#C4623A;color:#EFE2CC"><b>Olive Oil Crepe</b>Date molasses, sea salt, tahini</div></div>
+    </div></div>
+</div></section>
+
+<!-- 02 ARABIC / ORIENTAL -->
+<section id="oriental" class="dir O"><div class="wrap">
+  <div class="dhead"><div><p class="dnum">DIRECTION 02 · ARABIC + ORIENTAL</p><h2 class="dname">Ahlan</h2></div><p class="dline">Sit. Someone is bringing you something warm.</p></div>
+  <div class="blk"><div><p class="eb">Identity</p><p class="why">Latin letters cut with Ruq'ah reed-pen contrast and one calligraphic dot. The pattern is four l's turning into a tile rosette, owned by Laza and not borrowed from a star pattern.</p></div>
+    <div class="id">
+      <figure><div class="im wide"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_b3974c0d-18dc-40e4-804b-bccac3e2aacb.png" alt="Indigo glazed tile counter with pomegranate tray of kunafa and rosewater syrup pour"></div><figcaption>Brand still · indigo tile, pomegranate tray, the pour</figcaption></figure>
+      <figure><div class="im logo" style="background:#F7F0E3"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142057_31eb5c4c-4677-4d61-96fe-deb8941f29c5.svg" alt="Pomegranate red calligraphic laza with diamond dot and saffron rule"></div><figcaption>Wordmark · Ruq'ah contrast, diamond dot</figcaption></figure>
+      <figure><div class="im logo" style="background:#F7F0E3"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_5d30e301-f036-441c-8a77-a5687b457d96.svg" alt="Tile rosette from four rotating l shapes in indigo, saffron, pomegranate, rose"></div><figcaption>Rosette · four l's, one tile</figcaption></figure>
+    </div></div>
+  <div class="blk"><div><p class="eb">Color</p><p class="why">A triad of red, yellow and blue from the souk: pomegranate, saffron, indigo. Indigo always travels with oak and saffron.</p></div>
+    <div>
+      <div class="pal">
+        <div class="chip"><div class="c" style="background:#B7283A;color:#F7F0E3">60</div><b>Pomegranate</b><span>#B7283A</span><em>Primary · brand red</em></div>
+        <div class="chip"><div class="c" style="background:#F7F0E3;border:1px solid #e3d8c3">—</div><b>Ivory</b><span>#F7F0E3</span><em>Ground</em></div>
+        <div class="chip"><div class="c" style="background:#23408E;color:#F7F0E3">30</div><b>Indigo Tile</b><span>#23408E</span><em>Blue · tile, type</em></div>
+        <div class="chip"><div class="c" style="background:#F4B23E">10</div><b>Saffron</b><span>#F4B23E</span><em>Warm lead</em></div>
+        <div class="chip"><div class="c" style="background:#F2B8C2">+</div><b>Rosewater</b><span>#F2B8C2</span><em>Secondary tint</em></div>
+        <div class="chip"><div class="c" style="background:#A8774D;color:#1a1a1a">M</div><b>Oak</b><span>#A8774D</span><em>Material</em></div>
+      </div>
+      <div class="ratio"><i style="flex:30;background:#F7F0E3"></i><i style="flex:25;background:#B7283A"></i><i style="flex:20;background:#23408E"></i><i style="flex:10;background:#A8774D"></i><i style="flex:10;background:#F4B23E"></i><i style="flex:5;background:#F2B8C2"></i></div>
+      <div class="scheme"><p><b>Scheme</b>Triadic: red, yellow, blue. Pistachio #A7B96A is a flavor color only.</p><p><b>Contrast</b>Indigo on Ivory 8.4:1 · Pomegranate on Ivory 5.5:1 · Indigo on Saffron 5.1:1.</p><p><b>Material</b>Handmade glazed tile, oak, lime wash, copper-free ceramic.</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Typography</p><p class="why">Arabic leads here. Aref Ruqaa brings real calligraphic Ruq'ah. Libre Caslon Display gives the Latin an old-world confectioner's elegance without luxury.</p></div>
+    <div class="ty">
+      <div class="row"><p class="d" style="font-size:clamp(48px,6vw,96px)">Ahlan, come in.</p><p class="ar" style="font-size:clamp(52px,6vw,96px)" lang="ar">أهلاً وسهلاً</p></div>
+      <p class="t" style="font-family:'Instrument Sans',sans-serif">Our kunafa, the way a grandmother would insist on it. Rose water, orange blossom, and a second plate whether you asked or not.</p>
+      <div class="meta"><p><b>Arabic display</b>Aref Ruqaa 400/700 · native proof pending</p><p><b>Latin display</b>Libre Caslon Display</p><p><b>Text</b>Instrument Sans 400/500</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Voice</p><p class="why">The host's voice: generous, bossy in the nicest way.</p></div>
+    <div class="vo">
+      <p class="lead">A second plate, whether you asked or not.</p>
+      <ul><li>Sit. Someone is bringing you something warm.</li><li>Our kunafa, the way a grandmother would insist on it.</li><li>No one leaves hungry. It's a rule.</li></ul>
+      <div class="menu"><div style="background:#fff"><b>Nabulsi</b>Kunafa, salty cheese, rose syrup</div><div style="background:#F4B23E"><b>Saffron Qatayef</b>Folded pancakes, ashta cream, pistachio</div><div style="background:#23408E;color:#F7F0E3"><b>Midnight Mahalabia</b>Milk pudding, rosewater, pomegranate</div></div>
+    </div></div>
+</div></section>
+
+<!-- 03 ULTRAMARINE + VIOLET -->
+<section id="lapis" class="dir L"><div class="wrap">
+  <div class="dhead"><div><p class="dnum">DIRECTION 03 · ULTRAMARINE + VIOLET</p><h2 class="dname" style="font-size:clamp(56px,8.6vw,132px)">Lapis</h2></div><p class="dline">Sugar hits different after midnight.</p></div>
+  <div class="blk"><div><p class="eb">Identity</p><p class="why">A wide, confident wordmark where both a's hold a violet scoop. The symbol is a crescent carved out of a scoop, for the late-night brand with Levantine roots.</p></div>
+    <div class="id">
+      <figure><div class="im wide"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142057_ca66d04a-35c6-40eb-9c7b-31d2c4314271.png" alt="Ultramarine lacquered café with violet tile bar, oak top and apricot pendant light"></div><figcaption>Brand still · lapis walls, violet tile, apricot light</figcaption></figure>
+      <figure><div class="im logo" style="background:#D9CCFF"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142057_7cf8a3f4-d3af-4eb6-b985-8bb365547432.svg" alt="Wide ultramarine laza with violet scoop counters and apricot dot on lilac"></div><figcaption>Wordmark · scoop counters</figcaption></figure>
+      <figure><div class="im logo" style="background:#2438D6"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_e85f2c1e-056e-4b4f-9d88-2eb799f3d290.svg" alt="Crescent moon scoop on a cone, apricot and lilac on ultramarine"></div><figcaption>Symbol · the crescent scoop</figcaption></figure>
+    </div></div>
+  <div class="blk"><div><p class="eb">Color</p><p class="why">Analogous cools (ultramarine to violet) split-complemented by apricot, the warm lead. Oak grounds it. The ground is lilac, not black, so it stays bright.</p></div>
+    <div>
+      <div class="pal">
+        <div class="chip"><div class="c" style="background:#2438D6;color:#fff">60</div><b>Ultramarine</b><span>#2438D6</span><em>Primary</em></div>
+        <div class="chip"><div class="c" style="background:#D9CCFF">—</div><b>Lilac</b><span>#D9CCFF</span><em>Ground</em></div>
+        <div class="chip"><div class="c" style="background:#7A4DF2;color:#fff">30</div><b>Violet</b><span>#7A4DF2</span><em>Secondary</em></div>
+        <div class="chip"><div class="c" style="background:#FF8A3D">10</div><b>Apricot</b><span>#FF8A3D</span><em>Warm lead · light, lids</em></div>
+        <div class="chip"><div class="c" style="background:#1B1F5E;color:#fff">T</div><b>Lapis Ink</b><span>#1B1F5E</span><em>Text</em></div>
+        <div class="chip"><div class="c" style="background:#B8875A;color:#1a1a1a">M</div><b>Oak</b><span>#B8875A</span><em>Material</em></div>
+      </div>
+      <div class="ratio"><i style="flex:35;background:#2438D6"></i><i style="flex:25;background:#D9CCFF"></i><i style="flex:15;background:#7A4DF2"></i><i style="flex:12;background:#FF8A3D"></i><i style="flex:10;background:#B8875A"></i><i style="flex:3;background:#1B1F5E"></i></div>
+      <div class="scheme"><p><b>Scheme</b>Split-complementary: blue-violet against orange.</p><p><b>Contrast</b>Ultramarine on Chalk 7.3:1 · Lapis Ink on Apricot 6.4:1 · Ultramarine on Apricot 3.4:1, avoid for text.</p><p><b>Material</b>Lacquer, violet-glazed tile, oak, brushed steel.</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Typography</p><p class="why">Archivo at full width stands in for extended grotesks like GT America Extended, loud and warm. Geist keeps small text crisp.</p></div>
+    <div class="ty">
+      <div class="row"><p class="d" style="font-size:clamp(40px,5.2vw,84px)">Open till 2. Obviously.</p><p class="ar" style="font-size:clamp(40px,4.6vw,72px)" lang="ar">مفتوح حتى الثانية</p></div>
+      <p class="t">Matcha at 1:40am. We're not judging. Kunafa, crepes and froyo under ultramarine light.</p>
+      <div class="meta"><p><b>Display</b>Archivo 800 · width 112–125</p><p><b>Text</b>Geist 400/500</p><p><b>Arabic</b>Alexandria 700 · native proof pending</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Voice</p><p class="why">The late-night friend: dry, quick, generous.</p></div>
+    <div class="vo">
+      <p class="lead">The lights go violet at eleven. The crepes get better.</p>
+      <ul><li>Matcha at 1:40am. We're not judging.</li><li>Sugar hits different after midnight.</li><li>Last call is a suggestion.</li></ul>
+      <div class="menu"><div style="background:#fff"><b>After Eleven</b>Violet ube froyo, black sesame crumble</div><div style="background:#FF8A3D;color:#1B1F5E"><b>Apricot Moon</b>Kunafa, apricot jam, clotted cream</div><div style="background:#2438D6;color:#fff"><b>Lapis Latte</b>Butterfly-pea matcha, oat milk</div></div>
+    </div></div>
+</div></section>
+
+<!-- 04 BLUE -->
+<section id="blue" class="dir B"><div class="wrap">
+  <div class="dhead"><div><p class="dnum">DIRECTION 04 · BLUE</p><h2 class="dname">Cornflower</h2></div><p class="dline">Brooklyn's sweetest afternoon starts at 2.</p></div>
+  <div class="blk"><div><p class="eb">Identity</p><p class="why">A friendly editorial serif with a mango sun resting on the z. The symbol, an l that curls into a soft-serve wave, is in progress.</p></div>
+    <div class="id" style="grid-template-columns:1.35fr 2fr">
+      <figure><div class="im wide"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_88228e05-10b0-47fc-9c80-2b08ce2ec27a.png" alt="Cornflower cup of froyo, crepe and mango napkin on oak table with cornflower wall"></div><figcaption>Brand still · cornflower wall, oak, mango</figcaption></figure>
+      <figure><div class="im logo" style="background:#FBF7F0"><img loading="lazy" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_142056_8c3e3a97-607c-490c-9114-9798fdfe6142.svg" alt="Cornflower serif laza with mango sun on the z"></div><figcaption>Wordmark · the mango sun</figcaption></figure>
+      
+    </div></div>
+  <div class="blk"><div><p class="eb">Color</p><p class="why">The complement of blue is orange: cornflower against mango, with coral as the warm neighbor. Oak takes it out of the nursery.</p></div>
+    <div>
+      <div class="pal">
+        <div class="chip"><div class="c" style="background:#4F86E8;color:#fff">60</div><b>Cornflower</b><span>#4F86E8</span><em>Primary · walls, cups</em></div>
+        <div class="chip"><div class="c" style="background:#FBF7F0;border:1px solid #e8e0d2">—</div><b>Cream</b><span>#FBF7F0</span><em>Ground</em></div>
+        <div class="chip"><div class="c" style="background:#FFB627">30</div><b>Mango</b><span>#FFB627</span><em>Warm lead</em></div>
+        <div class="chip"><div class="c" style="background:#FF6F59">10</div><b>Coral</b><span>#FF6F59</span><em>Secondary warm</em></div>
+        <div class="chip"><div class="c" style="background:#1F3A7A;color:#fff">T</div><b>Deep Blue</b><span>#1F3A7A</span><em>Text</em></div>
+        <div class="chip"><div class="c" style="background:#B8875A;color:#1a1a1a">M</div><b>Oak</b><span>#B8875A</span><em>Material</em></div>
+      </div>
+      <div class="ratio"><i style="flex:40;background:#4F86E8"></i><i style="flex:22;background:#FBF7F0"></i><i style="flex:15;background:#FFB627"></i><i style="flex:12;background:#B8875A"></i><i style="flex:7;background:#FF6F59"></i><i style="flex:4;background:#1F3A7A"></i></div>
+      <div class="scheme"><p><b>Scheme</b>Split-complementary: blue against yellow-orange and red-orange.</p><p><b>Contrast</b>Deep Blue on Cream 10.1:1 · on Mango 6.2:1. Cornflower on Cream 3.3:1, display only.</p><p><b>Material</b>Painted plaster, oak, terrazzo with mango chips, chrome.</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Typography</p><p class="why">Gloock is a warm, high-contrast serif in the spirit of Canela and GT Super: editorial and friendly. El Messiri is its Arabic partner.</p></div>
+    <div class="ty">
+      <div class="row"><p class="d" style="font-size:clamp(48px,6vw,96px)">Pick a side, or take both.</p><p class="ar" style="font-size:clamp(40px,4.6vw,72px)" lang="ar">حلو يا حلو</p></div>
+      <p class="t" style="font-family:'Instrument Sans',sans-serif">Cold froyo, hot kunafa. Crepes, matcha, coffee. Bring a friend and split nothing.</p>
+      <div class="meta"><p><b>Display</b>Gloock 400 · 40–120px</p><p><b>Text</b>Instrument Sans 400/500</p><p><b>Arabic</b>El Messiri 700 · native proof pending</p></div>
+    </div></div>
+  <div class="blk"><div><p class="eb">Voice</p><p class="why">Sunny, quick and a little cheeky.</p></div>
+    <div class="vo">
+      <p class="lead">Cold froyo, hot kunafa. Pick a side, or take both.</p>
+      <ul><li>Brooklyn's sweetest afternoon starts at 2.</li><li>Bring a friend. Split nothing.</li><li>Good mood, open late.</li></ul>
+      <div class="menu"><div style="background:#fff"><b>The Cornflower</b>Vanilla froyo, blueberry, lemon curd</div><div style="background:#FFB627"><b>Mango Hour</b>Mango sorbet, chili salt, lime</div><div style="background:#4F86E8;color:#fff"><b>Blue Plate Kunafa</b>Kunafa, mascarpone, honey</div></div>
+    </div></div>
+</div></section>
+
+<section id="next" class="close"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">Next</p>
+  <h2>Pick one or two directions, and we build the full world.</h2>
+  <div class="grid">
+    <p><b>Full execution</b>Production vector redraw of the wordmark with Latin and Arabic drawn together, a secondary mark set, the full color system, cups, box, bag, uniform, signage, menu, social templates, interior renders and a motion sting.</p>
+    <p><b>Spacing system</b>The 8-point scale (4, 8, 12, 16, 24, 32, 48, 64, 96, 128) used on this page carries into menus, packaging grids and signage.</p>
+    <p><b>Caveats</b>Marks are AI-drafted and need a type-designer pass before trademark filing. A native reader must proof all Arabic. Menu items are illustrative until Laza confirms them.</p>
+  </div>
+</div></section>
+<footer><div class="wrap">Laza · Round 3 · First iterations · Marks and stills generated bespoke in Higgsfield (Recraft V4.1 vector, GPT Image 2.5). Fonts: Google Fonts.</div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="lbx">Close</button><img id="lbi" alt=""></div>
+<script>
+var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+document.querySelectorAll('.im img').forEach(function(im){im.addEventListener('click',function(){lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');});});
+document.getElementById('lbx').addEventListener('click',function(){lb.classList.remove('open');});
+lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
+addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+</script>
+</body>
+</html>

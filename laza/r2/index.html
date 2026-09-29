@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAZA — Round 2 · Identity</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marhey:wght@400;600;700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Round 2 deck: one full-screen slide per gesture. Idea: "the sun in the sky": a sunny wordmark living in a sky-blue world. */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sky:#8EC3F2; --sky-2:#CFE4FA; --sun:#FFD34E; --night:#16306B; --milk:#F6F9FD; --oak:#C08A57; --chrome:#C9D1DB; --rose:#F5A3B7;
+  --f-d:Marhey,"Figtree",system-ui,sans-serif; --f-b:Figtree,system-ui,-apple-system,sans-serif; --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --bar:58px;
+}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--milk);-webkit-text-size-adjust:100%}
+@media (max-width:760px){html{scroll-snap-type:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--milk);color:var(--night);font:16px/1.55 var(--f-b);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--night);outline-offset:3px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--sun);z-index:40}
+.bar{position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:30;display:flex;align-items:center;gap:4px;padding:0 18px;background:rgba(246,249,253,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(22,48,107,.1);overflow-x:auto;scrollbar-width:none}
+.bar::-webkit-scrollbar{display:none}
+.bar .home{font:700 22px/1 var(--f-d);margin-right:12px;background:none;border:0;color:var(--night);cursor:pointer}
+.bar button.k{font:500 13px var(--f-b);padding:7px 12px;border-radius:99px;border:0;background:none;color:#51618a;cursor:pointer;white-space:nowrap}
+.bar button.k:hover{background:var(--sky-2);color:var(--night)}
+.bar button.k.on{background:var(--night);color:#fff}
+.bar .hint{margin-left:auto;font:400 11px var(--f-m);color:#6b7aa0;white-space:nowrap;padding-left:10px}
+@media (max-width:760px){.bar .hint{display:none}}
+.slide{position:relative;min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;padding:calc(var(--bar) + 28px) clamp(18px,4vw,64px) 36px;overflow:hidden}
+.in{width:100%;max-width:1360px;margin:0 auto}
+.eb{font:500 12px var(--f-m);letter-spacing:.12em;text-transform:uppercase}
+.head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding-bottom:12px;margin-bottom:22px;border-bottom:2px solid currentColor}
+.h{font:700 clamp(40px,5.6vw,84px)/1 var(--f-d);letter-spacing:-.01em;text-wrap:balance}
+.lede{font-size:clamp(17px,1.5vw,20px);line-height:1.55;max-width:60ch}
+p{max-width:66ch}
+.tile{border-radius:20px;overflow:hidden;position:relative}
+.tile img{width:100%;height:100%;object-fit:cover}
+.cap{font:500 11px var(--f-m);letter-spacing:.08em;text-transform:uppercase}
+.tile .cap{position:absolute;left:14px;bottom:12px}
+
+/* cover */
+.cover{background:var(--sky)}
+.cover .in{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:center}
+.cover .logo{border-radius:28px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(22,48,107,.45)}
+.cover .meta{display:grid;gap:18px}
+.cover .meta .h{font-size:clamp(44px,5vw,76px)}
+.cover .rows{display:grid;gap:8px;font:500 13px var(--f-m);letter-spacing:.06em}
+.cover .rows div{display:flex;justify-content:space-between;border-top:1px solid rgba(22,48,107,.25);padding-top:8px}
+@media (max-width:900px){.cover .in{grid-template-columns:1fr}}
+
+/* idea */
+.idea .in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center}
+.idea .big{font:700 clamp(46px,6.4vw,104px)/.98 var(--f-d)}
+.idea .big em{font-style:normal;background:var(--sun);padding:0 .12em;border-radius:.18em}
+.pillars{display:grid;gap:14px}
+.pillars div{display:grid;grid-template-columns:40px 1fr;gap:14px;padding-top:12px;border-top:1px solid rgba(22,48,107,.18)}
+.pillars b{display:block;font-size:17px}
+.pillars span.n{font:500 12px var(--f-m);opacity:.6;padding-top:3px}
+@media (max-width:900px){.idea .in{grid-template-columns:1fr}}
+
+/* mark */
+.mark .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;height:min(64vh,620px)}
+.mark .side{display:grid;grid-template-rows:1fr auto;gap:16px}
+.mark .notes{background:#fff;border-radius:20px;padding:22px;display:grid;gap:10px;align-content:start}
+.mark .notes li{margin-left:18px;font-size:15px;line-height:1.5}
+@media (max-width:900px){.mark .grid{grid-template-columns:1fr;height:auto}.mark .grid>.tile{aspect-ratio:4/3}}
+
+/* process */
+.proc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.proc figure{display:grid;gap:10px}
+.proc .tile{aspect-ratio:4/3}
+.proc figcaption{font-size:14px;line-height:1.45}
+.proc figcaption b{display:block;font:500 11px var(--f-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.arrow{font:700 20px var(--f-d);opacity:.5}
+@media (max-width:900px){.proc{grid-template-columns:1fr 1fr}}
+
+/* lockups */
+.locks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.locks .tile{aspect-ratio:4/3}
+.locks figcaption{margin-top:8px;font-size:14px}
+@media (max-width:900px){.locks{grid-template-columns:1fr}}
+
+/* color */
+.pal{display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr 1fr;grid-template-rows:1fr;gap:12px;height:min(46vh,420px)}
+.chip{border-radius:20px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.chip b{font:700 22px/1.1 var(--f-d)}
+.chip span{font:400 12px var(--f-m)}
+.chip small{font-size:13px;margin-top:6px;max-width:30ch}
+.ratio{display:flex;height:16px;border-radius:99px;overflow:hidden;margin-top:16px}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.rules div{background:#fff;border-radius:16px;padding:16px;font-size:14.5px;line-height:1.5}
+.rules b{display:block;font:500 11px var(--f-m);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+@media (max-width:900px){.pal{grid-template-columns:1fr 1fr;height:auto}.chip{min-height:140px}.rules{grid-template-columns:1fr}}
+
+/* type */
+.type .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.spec{background:#fff;border-radius:20px;padding:clamp(18px,2.4vw,30px);display:grid;gap:12px;align-content:start}
+.spec .d{font:700 clamp(44px,5.2vw,88px)/.95 var(--f-d)}
+.spec .ar{font:700 clamp(40px,4.4vw,72px)/1.15 var(--f-d);direction:rtl;color:#2F6FC6}
+.spec .t{font:500 18px/1.55 var(--f-b);max-width:52ch}
+.spec .m{font:400 13px/1.6 var(--f-m);opacity:.75}
+.scale{display:grid;gap:10px}
+.scale div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid rgba(22,48,107,.12);padding-top:10px}
+.scale span{font:400 12px var(--f-m);opacity:.6;white-space:nowrap}
+@media (max-width:900px){.type .grid{grid-template-columns:1fr}}
+
+/* assets */
+.assets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.assets .tile{aspect-ratio:1/1}
+.assets figcaption{margin-top:8px;font-size:14px}
+@media (max-width:900px){.assets{grid-template-columns:1fr 1fr}}
+
+/* world */
+.world{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:calc(100svh - var(--bar) - 170px);min-height:440px}
+.world .tile .cap{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.world .w0{grid-column:1/3;grid-row:1/3}
+@media (max-width:760px){.world{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:220px;height:auto}.world .w0{grid-column:1/3;grid-row:auto}}
+.note{font:400 12px/1.6 var(--f-m);opacity:.7;margin-top:12px;max-width:100ch}
+
+/* voice */
+.voice{background:var(--night);color:#fff}
+.lines{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.lines span{font:700 clamp(22px,2.6vw,38px)/1.1 var(--f-d);padding:14px 22px;border-radius:99px}
+
+/* review */
+.rev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rev div{background:#fff;border-radius:16px;padding:16px;display:grid;gap:6px;align-content:start}
+.rev b{font:500 11px var(--f-m);letter-spacing:.1em;text-transform:uppercase}
+.rev p{font-size:14.5px;line-height:1.5}
+.rev em{font-style:normal;font:600 12px var(--f-m);padding:2px 8px;border-radius:99px;background:#DCF1E2;color:#14532D;justify-self:start}
+.rev em.fix{background:#FFE9C7;color:#6A4300}
+@media (max-width:900px){.rev{grid-template-columns:1fr}}
+.next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{background:#fff;border-radius:18px;padding:22px}
+.card h3{font:700 22px var(--f-d);margin-bottom:10px}
+.card ol{padding-left:20px;display:grid;gap:8px;font-size:15px}
+@media (max-width:900px){.next{grid-template-columns:1fr}}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(10,20,45,.92);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:88vh;object-fit:contain;border-radius:12px}
+.lb button{position:absolute;top:16px;right:18px;border:0;border-radius:99px;padding:8px 14px;font:600 14px var(--f-b);cursor:pointer}
+.zoom{cursor:zoom-in}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<nav class="bar" id="bar" aria-label="Chapters">
+  <button class="home" data-key="cover">laza</button>
+  <button class="k" data-key="idea">Idea</button>
+  <button class="k" data-key="mark">Wordmark</button>
+  <button class="k" data-key="color">Color</button>
+  <button class="k" data-key="type">Type</button>
+  <button class="k" data-key="assets">Assets</button>
+  <button class="k" data-key="world">In the world</button>
+  <button class="k" data-key="review">Review</button>
+  <button class="k" data-key="next">Next</button>
+  <span class="hint">↑ ↓ to move</span>
+</nav>
+<main id="deck">
+
+<section class="slide cover" data-key="cover"><div class="in">
+  <div class="logo zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140744_61da81b9-e427-4fba-b869-6c800e06aec0.png" alt="LAZA wordmark: chunky navy lowercase laza with a sweeping swash beneath, on sunny yellow"></div>
+  <div class="meta">
+    <span class="eb">Laza Dessert Café · Identity · Round 2</span>
+    <h1 class="h">The sun in the sky.</h1>
+    <p class="lede">A friendly, custom-lettered wordmark with one Arabic-calligraphy gesture, living in a lighter, happier blue world.</p>
+    <div class="rows"><div><span>Client</span><span>Moose · Laza</span></div><div><span>Stores</span><span>Bay Ridge · Astoria</span></div><div><span>Stage</span><span>Wordmark + system, first pass</span></div><div><span>Date</span><span>29 Sep 2026</span></div></div>
+  </div>
+</div></section>
+
+<section class="slide idea" data-key="idea"><div class="in">
+  <div>
+    <span class="eb">The idea</span>
+    <p class="big" style="margin-top:18px">Laza is the <em>sun</em> in a sky-blue day.</p>
+  </div>
+  <div class="pillars">
+    <p class="lede">Moose asked for Laza's version of La La Land's yellow, delivered through a lighter, happier blue. We use both. The world is <b>Laza Sky</b>: walls, cups, uniforms. The brand itself is the sun inside it, a warm yellow wordmark that makes you smile when you see it.</p>
+    <div><span class="n">01</span><p><b>Friendly first</b>Chunky, soft, lowercase. It reads like a person saying hello, not a logo trying to be cool.</p></div>
+    <div><span class="n">02</span><p><b>One Levantine gesture</b>A single swash under the word, borrowed from the stretched stroke of Arabic calligraphy. That's the only ornament.</p></div>
+    <div><span class="n">03</span><p><b>SoHo, not souvenir</b>Two colors, flat, confident. Premium but accessible, never gold and never kitsch.</p></div>
+  </div>
+</div></section>
+
+<section class="slide mark" data-key="mark"><div class="in">
+  <div class="head"><span class="eb">Primary wordmark</span><span class="eb" style="opacity:.6">Custom lettering · Higgsfield</span></div>
+  <div class="grid">
+    <div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140744_61da81b9-e427-4fba-b869-6c800e06aec0.png" alt="Primary wordmark with swash"><span class="cap">Primary · navy on sun</span></div>
+    <div class="side">
+      <div class="notes">
+        <span class="eb">Anatomy</span>
+        <ul>
+          <li><b>Soft chunky lowercase:</b> heavy, rounded, open counters. Legible at cup-stamp size.</li>
+          <li><b>The swash:</b> the final a sweeps back under the word, a nod to the Arabic kashida. It underlines the name like a smile.</li>
+          <li><b>Two colors only:</b> Night on Sun, or Sun on Night. No outlines, gradients or shadows.</li>
+          <li><b>Round 3:</b> redraw as a production vector (optical kerning, swash taper, small-size cut without the swash).</li>
+        </ul>
+      </div>
+      <div class="tile zoom" style="aspect-ratio:16/9"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140743_d4ca7a88-f3f1-474e-99bf-aaeea7d8d75e.png" alt="Bilingual lockup laza over Arabic لذة"><span class="cap">Bilingual lockup · laza / لذة</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="slide" data-key="mark"><div class="in">
+  <div class="head"><span class="eb">How we got here</span><span class="eb" style="opacity:.6">Round 2 iterations</span></div>
+  <div class="proc">
+    <figure><div class="tile zoom" style="background:#FFD34E"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140059_fa03b620-607a-46d7-8d55-eb525f35db39.svg" alt="Exploration 102"></div><figcaption><b>01 · Exploration</b>Chunky 1970s supergraphic lowercase. Warm, but generic.</figcaption></figure>
+    <figure><div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140522_2a8f7d87-69f1-438a-b672-cc5d65e202ea.png" alt="Refinement v1"></div><figcaption><b>02 · Refinement</b>Friendlier and more balanced, with SoHo restraint. Still missing Laza's roots.</figcaption></figure>
+    <figure><div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140748_fe66bc48-4489-46c1-a842-5cce68c5d5c1.png" alt="Calligraphic contrast variant"></div><figcaption><b>03 · Tested</b>Reed-pen contrast. More Arabic, but it loses the friendliness.</figcaption></figure>
+    <figure><div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140744_61da81b9-e427-4fba-b869-6c800e06aec0.png" alt="Chosen swash variant"></div><figcaption><b>04 · Chosen</b>One swash gesture. Friendly first, Levantine second.</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="slide" data-key="color"><div class="in">
+  <div class="head"><span class="eb">Color</span><span class="eb" style="opacity:.6">Named after the day</span></div>
+  <div class="pal">
+    <div class="chip" style="background:var(--sky)"><b>Laza Sky</b><span>#8EC3F2</span><small>The world. Walls, vault, cups, uniforms. A clear blue, never Tiffany or baby blue.</small></div>
+    <div class="chip" style="background:var(--sun)"><b>Sun</b><span>#FFD34E</span><small>The brand. Wordmark ground, box interiors, the one warm hit in every scene.</small></div>
+    <div class="chip" style="background:var(--night);color:#fff"><b>Night</b><span>#16306B</span><small>Type and wordmark. A lighter heir to today's royal blue.</small></div>
+    <div class="chip" style="background:var(--oak);color:#fff"><b>Oak</b><span>#C08A57</span><small>Touch: counters, benches.</small></div>
+    <div class="chip" style="background:linear-gradient(140deg,#F4F7FA,#AEB8C4 55%,#EEF2F6)"><b>Chrome</b><span>finish</span><small>Bar, pulls, stools.</small></div>
+  </div>
+  <div class="ratio" aria-label="Color ratio"><i style="flex:50;background:var(--sky)"></i><i style="flex:18;background:#fff"></i><i style="flex:12;background:var(--sun)"></i><i style="flex:10;background:var(--oak)"></i><i style="flex:6;background:var(--chrome)"></i><i style="flex:4;background:var(--night)"></i></div>
+  <div class="rules">
+    <div><b>Rule 1</b>Sky never appears without Sun or Oak nearby, so the blue stays warm at 1am.</div>
+    <div><b>Rule 2</b>The wordmark lives on Sun or on Night, never on Sky, so it always reads as the sun in the sky.</div>
+    <div><b>Rule 3</b>Flavor colors (pistachio, rose, matcha) only appear on the menu and in the product, never in the brand system.</div>
+  </div>
+</div></section>
+
+<section class="slide type" data-key="type"><div class="in">
+  <div class="head"><span class="eb">Typography</span><span class="eb" style="opacity:.6">Latin + Arabic from one family</span></div>
+  <div class="grid">
+    <div class="spec">
+      <span class="eb" style="opacity:.6">Display · Marhey (Latin + Arabic, one family)</span>
+      <div class="d">Good mood,<br>open till 2.</div>
+      <div class="ar" lang="ar">أهلاً، مزاجك علينا</div>
+      <div class="t">Kunafa with rose syrup, crepes, froyo and matcha. Served fast, eaten slow, shared with whoever you came with.</div>
+      <div class="m">Figtree 500 for text · IBM Plex Mono for prices and labels</div>
+    </div>
+    <div class="spec">
+      <span class="eb" style="opacity:.6">Scale</span>
+      <div class="scale">
+        <div><span style="font:700 48px/1 var(--f-d);opacity:1">Headline</span><span>Marhey 700 · 48–120</span></div>
+        <div><span style="font:600 28px/1 var(--f-d);opacity:1">Menu item</span><span>Marhey 600 · 24–32</span></div>
+        <div><span style="font:500 18px/1.4 var(--f-b);opacity:1">Body copy, descriptions</span><span>Figtree 500 · 16–20</span></div>
+        <div><span style="font:500 13px var(--f-m);letter-spacing:.1em;opacity:1">KUNAFA · $[PRICE]</span><span>Plex Mono 500 · 11–14</span></div>
+      </div>
+      <p style="font-size:14.5px;line-height:1.5;margin-top:6px">Marhey is drawn for Latin and Arabic together, so bilingual menus and signs match without two fonts fighting. The wordmark stays custom lettering and is never typeset.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="slide" data-key="assets"><div class="in">
+  <div class="head"><span class="eb">Secondary assets</span><span class="eb" style="opacity:.6">Symbol · pattern · badge</span></div>
+  <div class="assets">
+    <figure><div class="tile zoom" style="background:#16306B"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140058_79f101c9-ccf8-42e3-9719-2f300644fd5c.svg" alt="Monogram: l with soft-serve swirl"></div><figcaption><b>Symbol:</b> the l topped with a swirl. App icon, cup stamp, lid emboss.</figcaption></figure>
+    <figure><div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140058_1771ec77-7321-404e-9055-ce2c89ce77d1.svg" alt="Kunafa strand pattern"></div><figcaption><b>Pattern:</b> kunafa strands. Box liners, tissue, tile inlay. To be recolored into Sky, Sun and Night.</figcaption></figure>
+    <figure><div class="tile zoom" style="background:#F08A2B"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_140059_4bde4a48-fb1f-4588-84fd-af99e23903fd.svg" alt="Tray badge with brush l"></div><figcaption><b>Badge:</b> the scalloped kunafa tray. For kunafa packaging only.</figcaption></figure>
+  </div>
+  <p class="note">The symbol, pattern and badge are round-2 explorations. They still carry their exploration colors, and round 3 recolors them into the system.</p>
+</div></section>
+
+<section class="slide" data-key="world"><div class="in">
+  <div class="head"><span class="eb">In the world</span><span class="eb" style="opacity:.6">Spatial direction · Blue Hour</span></div>
+  <div class="world">
+    <div class="tile w0 zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133248_47e46340-c033-476a-b6fd-b533c4888a80.png" alt="Sky-blue vaulted interior at night"><span class="cap">The Sky · vaulted ceiling, 9pm</span></div>
+    <div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133246_fb164706-e730-4a5f-baba-be270a3824b7.png" alt="Storefront at dusk"><span class="cap">Storefront · 5th Ave</span></div>
+    <div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133605_4fa8c6fe-8926-48b7-8a89-fe7bb5c64707.png" alt="Kunafa pull at the counter"><span class="cap">The Pull Bar · ritual</span></div>
+    <div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133244_116b6438-ccc2-45bd-90ac-c3c7cae7719d.png" alt="Friends on oak bleachers"><span class="cap">Oak bleachers · social</span></div>
+    <div class="tile zoom"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133242_bb5a75ce-b089-4dae-b1ac-2f67737afe16.png" alt="Material board"><span class="cap">Materials · lacquer, oak, chrome, tile</span></div>
+  </div>
+  <p class="note">These spatial renders come from round 1 and still carry the old placeholder lettering. Round 3 re-renders storefront, cups and box with the new wordmark.</p>
+</div></section>
+
+<section class="slide voice" data-key="world"><div class="in">
+  <div class="head" style="border-color:rgba(255,255,255,.4)"><span class="eb">Voice</span><span class="eb" style="opacity:.6">Warm first, cool second</span></div>
+  <div class="lines">
+    <span style="background:var(--sun);color:var(--night)">Good mood, open till 2.</span>
+    <span style="background:var(--sky);color:var(--night)">Stay for the good part.</span>
+    <span style="background:#fff;color:var(--night)">Bad day? Sit down.</span>
+    <span style="background:var(--oak);color:#fff">Tonight's forecast: kunafa.</span>
+    <span style="background:transparent;border:2px solid #fff" lang="ar" dir="rtl">أهلاً، مزاجك علينا</span>
+  </div>
+</div></section>
+
+<section class="slide" data-key="review"><div class="in">
+  <div class="head"><span class="eb">Studio review</span><span class="eb" style="opacity:.6">Six seats, before the client</span></div>
+  <div class="rev" id="review">
+    <!--REVIEW-->
+  </div>
+</div></section>
+
+<section class="slide" data-key="next"><div class="in">
+  <div class="head"><span class="eb">Next</span><span class="eb" style="opacity:.6">Round 3</span></div>
+  <div class="next">
+    <div class="card"><h3>Decisions for Moose</h3><ol><li>Approve the swash wordmark as the direction.</li><li>Confirm the name origin, لذّة ("delight"), and the Arabic spelling.</li><li>Confirm the Sky + Sun split: the world is blue, the brand is the sun.</li></ol></div>
+    <div class="card"><h3>Round 3 build</h3><ol><li>Production vector redraw of the wordmark, plus a small-size cut.</li><li>Recolor symbol, pattern and badge into the system.</li><li>Re-render storefront, cups, box and uniform with the real mark.</li><li>Guidelines PDF and a kit of parts for store 20.</li></ol></div>
+    <div class="card"><h3>Caveats</h3><ol><li>The wordmark is AI-drafted lettering. It needs a type-designer pass before trademark filing.</li><li>A native reader must proof all Arabic.</li><li>Renders show mood and direction, not architecture.</li></ol></div>
+  </div>
+</div></section>
+
+</main>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="lbx">Close</button><img id="lbi" alt=""></div>
+<script>
+var bar=document.getElementById('bar'),btns=[].slice.call(bar.querySelectorAll('button[data-key]')),slides=[].slice.call(document.querySelectorAll('#deck .slide'));
+function go(k){var t=document.querySelector('#deck .slide[data-key="'+k+'"]');if(t)t.scrollIntoView({behavior:'smooth'});}
+btns.forEach(function(b){b.addEventListener('click',function(){go(b.dataset.key);});});
+function cur(){var c=0,bd=1e9;slides.forEach(function(s,i){var d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;c=i;}});return c;}
+var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+addEventListener('keydown',function(e){if(lb.classList.contains('open')){if(e.key==='Escape')lb.classList.remove('open');return;}
+  var d=0;if(e.key==='ArrowDown'||e.key==='PageDown')d=1;else if(e.key==='ArrowUp'||e.key==='PageUp')d=-1;else return;
+  e.preventDefault();slides[Math.max(0,Math.min(slides.length-1,cur()+d))].scrollIntoView({behavior:'smooth'});});
+var prog=document.getElementById('prog');
+function on(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%';var k=slides[cur()].dataset.key;btns.forEach(function(b){var a=b.dataset.key===k&&b.classList.contains('k');b.classList.toggle('on',a);if(a)bar.scrollLeft=b.offsetLeft-80;});}
+addEventListener('scroll',on,{passive:true});on();
+[].slice.call(document.querySelectorAll('.zoom img')).forEach(function(im){im.addEventListener('click',function(){lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');});});
+document.getElementById('lbx').addEventListener('click',function(){lb.classList.remove('open');});lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
+</script>
+</body>
+</html>

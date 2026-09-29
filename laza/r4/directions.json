@@ -1,0 +1,677 @@
+[
+ {
+  "id": "oasis",
+  "n": "01",
+  "pre": "1",
+  "name": "Oasis",
+  "cls": "E",
+  "atmos": "A desert oasis, and the inside of a Dubai chocolate bar",
+  "lens": "Arabic-contemporary lens · storytelling in the spirit of Mythology",
+  "line": "Rest here.",
+  "roots": [
+   [
+    "Caravans stopped at oases to replenish water and food. Al-Ahsa, the world's largest, holds about 2.5 million date palms.",
+    "https://whc.unesco.org/en/list/1563/"
+   ],
+   [
+    "Kunafa's origin is disputed (Palestine, Egypt, Syria). A common account places it in the 10th-century Fatimid court, and Nablus is the touchstone.",
+    "https://www.cadburydessertscorner.com/articles/tracing-the-origins-of-kunafa-the-popular-middle-eastern-dessert"
+   ],
+   [
+    "Fix Dessert Chocolatier launched the pistachio-kunafa bar in Dubai in 2021. One TikTok passed 80M+ views, and the founder reports 30,000 orders in an hour.",
+    "https://officialfixdessertchocolatier.com/blogs/news/who-is-sarah-hamouda-meet-the-woman-behind-dubais-viral-chocolate-bar"
+   ]
+  ],
+  "so": "Laza becomes the oasis on 5th Avenue: the 2am rest stop where water and something sweet arrive before you ask. The wordmark stretches like a kashida stroke, a caravan road. The symbol is the dallah, the coffee pot of welcome. The WOW moment is a counter built like a cross-section of the chocolate bar: layers you can see, a crunch you can hear.",
+  "wm_bg": "#EFE2CC",
+  "sym": "S1",
+  "sym_bg": "#EFE2CC",
+  "wm_note": "Kashida stretch between z and a · one color: Clay",
+  "sym_note": "The dallah, a round Arabic coffee pot · clay, saffron, olive",
+  "pal": [
+   [
+    "Clay",
+    "#C4623A",
+    "Primary",
+    0
+   ],
+   [
+    "Sand",
+    "#EFE2CC",
+    "Ground",
+    1
+   ],
+   [
+    "Saffron",
+    "#F2A93B",
+    "Warm lead",
+    0
+   ],
+   [
+    "Olive",
+    "#7A7D4A",
+    "Secondary",
+    0
+   ],
+   [
+    "Date",
+    "#5A3A29",
+    "Text",
+    0
+   ],
+   [
+    "Oak",
+    "#B98A5E",
+    "Material",
+    0
+   ]
+  ],
+  "scheme": "Analogous warms with an olive counterpoint",
+  "contrast": "Date on Sand 7.9:1 · Clay on Sand 3.2:1, display only.",
+  "type": [
+   "Young Serif",
+   "Hanken Grotesk",
+   "Readex Pro",
+   "Warm from the tray.",
+   "دافئة من الصينية"
+  ],
+  "voice": [
+   "Rest here.",
+   "Water first. Then kunafa.",
+   "We pull it from the oven when it's ready, not when the timer says."
+  ],
+  "service": "Every guest gets a glass of water and one date on arrival, the oasis welcome. Linen shirts in sand, aprons in olive.",
+  "cap": {
+   "01": [
+    "01",
+    "The courtyard",
+    "A still pool under a round skylight, two date palms, and low oak benches around it. People sit close, the light is late-afternoon gold at any hour, and nobody rushes you."
+   ],
+   "11": [
+    "11",
+    "Walking in",
+    "Clay limewash curves into soft niches. A shallow water channel leads the eye to the chocolate-layered counter at the back. Woven palm-fibre lamps keep it warm after dark."
+   ],
+   "02": [
+    "02",
+    "The WOW: a counter you can taste",
+    "The counter is a cross-section of a Dubai chocolate bar: chocolate plaster, a pistachio band and a golden kataifi crunch layer. The bar on top is cut to show the same layers."
+   ],
+   "12": [
+    "12",
+    "The lounge",
+    "A sunken nook of low oak platforms and saffron cushions, made for the 20-minute hang. Mint tea glasses, dates and kunafa on a low round table."
+   ],
+   "03": [
+    "03",
+    "The welcome",
+    "Sand linen and an olive apron. The first thing the host offers is water and a single date, before you order."
+   ],
+   "04": [
+    "04",
+    "Cups",
+    "Sand cups with a terracotta lid, carrying the one-color clay wordmark. Nothing else on the cup."
+   ],
+   "05": [
+    "05",
+    "Plates and cookware",
+    "Terracotta plates, olive-glazed bowls and the round kunafa tray. Made to be handled, and warm to the touch."
+   ],
+   "06": [
+    "06",
+    "Merch",
+    "A sand canvas tote and an olive cap. Worn on a normal day, not only as a souvenir."
+   ],
+   "07": [
+    "07",
+    "Advertising",
+    "One photo, one line: \"Rest here.\" The crunch sells itself."
+   ],
+   "08": [
+    "08",
+    "The street",
+    "A clay-plaster façade, an oak door and a potted date palm. The sign is the wordmark in relief."
+   ]
+  }
+ },
+ {
+  "id": "teta",
+  "n": "02",
+  "pre": "2",
+  "name": "Teta",
+  "cls": "O",
+  "atmos": "Grandma's kitchen, and a Turkish esnaf lokanta",
+  "lens": "Brooklyn lens · human, neighborhood-proud, in the spirit of Red Antler",
+  "line": "Teta says: eat.",
+  "roots": [
+   [
+    "'Ahlan wa sahlan' joins ahl (family) and sahl (easy path): you are family, and may your way be easy.",
+    "https://speakrealarabic.com/post/ahlan-wa-sahlan-meaning-levantine-arabic"
+   ],
+   [
+    "Hospitality (karam) is treated as a sacred obligation, rooted in the Bedouin ethic of caring for travelers.",
+    "https://www.arabiclanguageonline.com/blog/arabic-coffee-culture/"
+   ],
+   [
+    "The esnaf lokantası is a tradesmen's canteen with a steam table of ready dishes, often family-run, with staff of 20 or more years. The principle is that you should feel at home.",
+    "https://www.theguideistanbul.com/istanbul-lokanta-culture/"
+   ]
+  ],
+  "so": "Teta (grandmother) feeds you before you ask, and the lokanta keeps the trays warm and visible. The brand is a name-tag, not a crest: a friendly Ruq'ah-cut wordmark with one diamond dot, and a round Turkish teapot for the symbol. The room is the tray wall: loud, warm, and tiled like a kitchen.",
+  "wm_bg": "#F7F0E3",
+  "sym": "S2",
+  "sym_bg": "#F7F0E3",
+  "wm_note": "Ruq'ah teardrop terminals and one nuqta dot · one color: Pomegranate",
+  "sym_note": "Turkish double teapot and a tulip glass · pomegranate, saffron, indigo",
+  "pal": [
+   [
+    "Pomegranate",
+    "#B7283A",
+    "Primary",
+    0
+   ],
+   [
+    "Ivory",
+    "#F7F0E3",
+    "Ground",
+    1
+   ],
+   [
+    "Indigo Tile",
+    "#23408E",
+    "Blue",
+    0
+   ],
+   [
+    "Saffron",
+    "#F4B23E",
+    "Warm lead",
+    0
+   ],
+   [
+    "Rosewater",
+    "#F2B8C2",
+    "Tint",
+    0
+   ],
+   [
+    "Oak",
+    "#A8774D",
+    "Material",
+    0
+   ]
+  ],
+  "scheme": "Triadic: red, yellow, blue; indigo always sits with oak and saffron",
+  "contrast": "Indigo on Ivory 8.4:1 · Pomegranate on Ivory 5.5:1.",
+  "type": [
+   "Libre Caslon Display",
+   "Instrument Sans",
+   "Aref Ruqaa",
+   "Ahlan, come in.",
+   "أهلاً وسهلاً"
+  ],
+  "voice": [
+   "Teta says: eat.",
+   "A second plate, whether you asked or not.",
+   "No one leaves hungry. It's a rule."
+  ],
+  "service": "Guests are served first, and regulars are greeted by name. The team wears pomegranate aprons with indigo trim and a small embroidered teapot on the chest.",
+  "cap": {
+   "01": [
+    "01",
+    "The canteen",
+    "Indigo and ivory tile, a steam-table counter full of trays, open shelves of mismatched china, and long shared oak tables. It's loud in the best way."
+   ],
+   "11": [
+    "11",
+    "Teta's kitchen",
+    "Hanging trays and wooden ma'amoul moulds line the wall behind an open kitchen, over a big family table with mismatched chairs. You can see and smell everything being made."
+   ],
+   "02": [
+    "02",
+    "The WOW: the tray wall",
+    "A glass-fronted warm counter of round trays: kunafa, baklava, ma'amoul and qatayef. Every slice is served with a pull of cheese."
+   ],
+   "12": [
+    "12",
+    "The window seat",
+    "An ivory-tiled banquette with pomegranate cushions by the street window. Tea glasses, a newspaper, and two friends splitting a plate."
+   ],
+   "03": [
+    "03",
+    "The host",
+    "Ivory shirt, pomegranate apron and indigo trim. The job is to make you feel like family in the first ten seconds."
+   ],
+   "04": [
+    "04",
+    "Cups",
+    "Ivory cups with a pomegranate sleeve, carrying the one-color wordmark and its single diamond dot."
+   ],
+   "05": [
+    "05",
+    "Plates and cookware",
+    "Enamel plates with an indigo rim and pomegranate bowls. The platter carries the brand symbol, as if it came from Teta's cupboard."
+   ],
+   "06": [
+    "06",
+    "Merch",
+    "Tea towel, enamel mug and tote. Kitchen things people actually use."
+   ],
+   "07": [
+    "07",
+    "Advertising",
+    "\"Teta says: eat.\" Grandma's hands, one square of kunafa, on the subway."
+   ],
+   "08": [
+    "08",
+    "The street",
+    "An indigo tile façade and a pomegranate awning. The window full of trays is the sign."
+   ]
+  }
+ },
+ {
+  "id": "aegean",
+  "n": "03",
+  "pre": "3",
+  "name": "Aegean",
+  "cls": "L",
+  "atmos": "The Turkish coastline, from Bodrum to Kaş",
+  "lens": "Northern-European lens · restraint in the spirit of Koto",
+  "line": "Beyond the sea. Open till 2am.",
+  "roots": [
+   [
+    "'Ultramarine' is Middle Latin for 'beyond the sea'. The pigment came from lapis mined in Badakhshan, Afghanistan, and was once worth more than gold in Europe.",
+    "https://storiedcolors.com/color/ultramarine/"
+   ],
+   [
+    "In Bodrum, walls are whitewashed against insects and windows are painted blue against the evil eye, with bougainvillea over the doors.",
+    "https://www.hurriyetdailynews.com/bodrums-white-against-insects-blue-against-the-evil-eye-117393"
+   ],
+   [
+    "Maraş dondurma is stretchy ice cream made with salep and mastic. Its vendors turn serving into a playful street show.",
+    "https://www.cnn.com/travel/maras-dondurma-turkish-ice-cream"
+   ]
+  ],
+  "so": "The blue has come a long way, and so has Laza, from the Levant to Astoria. A heavy, calm, generously spaced wordmark with one crescent-cut counter. The symbol is a round maraş cone with a drooping scoop. The ritual is the stretch-and-flip at the ice-cream counter, modernized: striped linen, not a costume.",
+  "wm_bg": "#EEE9FF",
+  "sym": "S3",
+  "sym_bg": "#EEE9FF",
+  "wm_note": "Crescent-cut counter in the final a · one color: Ultramarine",
+  "sym_note": "Round maraş cone with a drooping scoop · ultramarine, violet, apricot",
+  "pal": [
+   [
+    "Ultramarine",
+    "#2438D6",
+    "Primary",
+    0
+   ],
+   [
+    "Lilac",
+    "#EEE9FF",
+    "Ground",
+    1
+   ],
+   [
+    "Violet",
+    "#7A4DF2",
+    "Bougainvillea",
+    0
+   ],
+   [
+    "Apricot",
+    "#FF8A3D",
+    "Warm lead",
+    0
+   ],
+   [
+    "Lapis Ink",
+    "#1B1F5E",
+    "Text",
+    0
+   ],
+   [
+    "Oak",
+    "#B8875A",
+    "Material",
+    0
+   ]
+  ],
+  "scheme": "Split-complementary: blue-violet against apricot, grounded by oak",
+  "contrast": "Ultramarine on Chalk 7.3:1 · Lapis Ink on Apricot 6.4:1.",
+  "type": [
+   "Archivo",
+   "Geist",
+   "Alexandria",
+   "Open till 2. Obviously.",
+   "مفتوح حتى الثانية"
+  ],
+  "voice": [
+   "Beyond the sea. Open till 2am.",
+   "Stretch it. Flip it. Eat it.",
+   "The lights go violet at eleven."
+  ],
+  "service": "A stretch-and-flip moment at the ice-cream counter. The team wears ultramarine-and-white striped linen with an apricot neckerchief.",
+  "cap": {
+   "01": [
+    "01",
+    "The whitewashed room",
+    "Lime-white walls, ultramarine doors and shutters, and bougainvillea overhead. Cobalt glass lamps hang over long oak tables. It feels like a house in Bodrum, on a Queens street."
+   ],
+   "11": [
+    "11",
+    "Looking back",
+    "Oak beams, the ultramarine tile counter along one side and a long communal table. The light stays calm and sea-bright into the evening."
+   ],
+   "02": [
+    "02",
+    "The WOW: the stretch",
+    "Maraş-style ice cream is pulled high on a steel paddle while the guest reaches for the cone. It's the moment people film."
+   ],
+   "12": [
+    "12",
+    "The terrace inside",
+    "Whitewashed stepped seating with striped cushions and apricot side tables, under violet bougainvillea. Built for dusk."
+   ],
+   "03": [
+    "03",
+    "The team",
+    "Ultramarine-and-white striped linen and an apricot neckerchief. Crisp, relaxed and coastal."
+   ],
+   "04": [
+    "04",
+    "Cups",
+    "A white cup with an ultramarine lid and a violet froyo cup. The one-color wordmark does all the work."
+   ],
+   "05": [
+    "05",
+    "Plates and cookware",
+    "White plates with an ultramarine rim, cobalt glass tumblers and violet-glazed bowls of apricots, in hard Aegean sunlight."
+   ],
+   "06": [
+    "06",
+    "Merch",
+    "A violet cap and an ultramarine tote, from a rooftop by the sea."
+   ],
+   "07": [
+    "07",
+    "Advertising",
+    "\"Beyond the sea. Open till 2am.\" One scoop, one petal, one blue."
+   ],
+   "08": [
+    "08",
+    "The street",
+    "A whitewash and ultramarine façade with bougainvillea planters, and apricot light spilling out at dusk."
+   ]
+  }
+ },
+ {
+  "id": "island",
+  "n": "04",
+  "pre": "4",
+  "name": "Island",
+  "cls": "B",
+  "atmos": "A tropical island, on Brooklyn hours",
+  "lens": "LA lens · sunny, social and content-first in the spirit of Media.Monks",
+  "line": "Island time. Brooklyn hours.",
+  "roots": [
+   [
+    "Tiki began in 1933–34 in Hollywood and Oakland as a fantasy tropics, and is now widely critiqued as cultural appropriation. So there are no masks, no totems and no pseudo-Polynesian type.",
+    "https://en.wikipedia.org/wiki/Tiki_culture"
+   ],
+   [
+    "Mango kunafa (kataifi, mango, cream, rose syrup) is an established modern twist that spread on TikTok and Instagram.",
+    "https://amiraspantry.com/knafeh-mango-cream/"
+   ],
+   [
+    "Island time means slowness and sun. Laza's version is the unhurried 20-minute hang Moose asked for. (inference)",
+    ""
+   ]
+  ],
+  "so": "Baby blue is the sky and the sea: the primary color, the one Moose asked for. Mango is the warm core that makes it sing. The escape comes from the fruit, the light and the pace, not a costume. A bubbly wordmark whose l curls like a Naskh stroke, and a round mango-kunafa symbol.",
+  "wm_bg": "#FBF7F0",
+  "sym": "S4",
+  "sym_bg": "#FFF6E0",
+  "wm_note": "Naskh-curl l, bubbly terminals · one color: Cornflower",
+  "sym_note": "Round mango kunafa with a leaf · mango, coral, leaf green",
+  "pal": [
+   [
+    "Baby Blue",
+    "#9CCBF2",
+    "Primary",
+    0
+   ],
+   [
+    "Sky Wash",
+    "#EAF4FD",
+    "Ground",
+    1
+   ],
+   [
+    "Mango",
+    "#FFB627",
+    "Warm core",
+    0
+   ],
+   [
+    "Coral",
+    "#FF6F59",
+    "Secondary",
+    0
+   ],
+   [
+    "Deep Blue",
+    "#1F3A7A",
+    "Text",
+    0
+   ],
+   [
+    "Oak",
+    "#B8875A",
+    "Material",
+    0
+   ]
+  ],
+  "scheme": "Baby blue leads; mango is the warm core; coral and oak warm it further",
+  "contrast": "Deep Blue on Baby Blue 6.3:1 · on Mango 6.2:1 · on Sky Wash 9.7:1.",
+  "type": [
+   "Gloock",
+   "Instrument Sans",
+   "El Messiri",
+   "Pick a side, or take both.",
+   "حلو يا حلو"
+  ],
+  "voice": [
+   "Island time. Brooklyn hours.",
+   "Cold froyo, hot kunafa. Pick a side, or take both.",
+   "Bring a friend. Split nothing."
+  ],
+  "service": "Nobody rushes you, and the specials follow the fruit. The team wears blue camp-collar shirts with mango aprons.",
+  "cap": {
+   "01": [
+    "01",
+    "The deck",
+    "Blue tile, an oak deck-plank floor, rattan chairs, slow fans and banana plants. Friends lounge over mango desserts at 2pm, all year."
+   ],
+   "11": [
+    "41",
+    "The bar",
+    "Baby-blue tile and ceiling, a curved oak bar with rattan stools, mango-yellow lamps and a coral terrazzo floor. Late afternoon, every afternoon."
+   ],
+   "02": [
+    "02",
+    "The WOW: the fruit stand",
+    "An oak counter piled with ripe mangoes, mango hedgehog cuts and trays of mango kunafa. The fruit is the decoration."
+   ],
+   "12": [
+    "42",
+    "The daybed",
+    "A built-in oak daybed with blue and mango striped cushions. Put your feet up; it's island time."
+   ],
+   "03": [
+    "03",
+    "The team",
+    "A blue camp-collar shirt and a mango apron. Sunny, relaxed and quick to smile."
+   ],
+   "04": [
+    "04",
+    "Cups",
+    "A cream cup with a blue lid and a mango froyo cup, carrying the curled-l wordmark."
+   ],
+   "05": [
+    "05",
+    "Plates and cookware",
+    "Coral and cream speckled plates and blue-glazed bowls under palm-leaf shadows. The symbol is stamped on the plate."
+   ],
+   "06": [
+    "06",
+    "Merch",
+    "A striped beach-towel tote and a mango cap, on a sunny Brooklyn sidewalk."
+   ],
+   "07": [
+    "07",
+    "Advertising",
+    "\"Island time. Brooklyn hours.\" Mango kunafa, one bite missing."
+   ],
+   "08": [
+    "08",
+    "The street",
+    "A tiled façade, oak frames, a coral-and-cream awning and banana plants by the door."
+   ]
+  }
+ },
+ {
+  "id": "yalla",
+  "n": "05",
+  "pre": "6",
+  "name": "Yalla",
+  "cls": "Y",
+  "atmos": "Sunny yellow first, blue second: Laza's own La La Land",
+  "lens": "New York lens · pop, social and joyful, a merge of Brooklyn warmth and LA energy",
+  "line": "Yalla. Good mood, open till 2am.",
+  "roots": [
+   [
+    "Moose's emotional model is La La Land's yellow: one saturated color carrying the feeling across costume and set. Here the yellow is mango-warm, not lemon.",
+    ""
+   ],
+   [
+    "'Yalla' is the everyday Arabic for 'come on, let's go'. It is used from Beirut to Brooklyn and is instantly social. (inference)",
+    ""
+   ],
+   [
+    "The ma'amoul, a round, stamped, shared cookie, is the holiday sweet of Levantine homes. It becomes the symbol. (inference)",
+    ""
+   ]
+  ],
+  "so": "Yellow is the mood and blue is the promise Moose asked for. Together they're the happiest pairing on the color wheel: yellow-orange against blue. A round, thick, generously spaced wordmark with a floating dot and a flick. The room is sunlight you can walk into, day or 1am.",
+  "wm_bg": "#FFC21A",
+  "sym": "S5",
+  "sym_bg": "#FFF8E6",
+  "wm_note": "Floating nuqta over the z and a soft flick on the a · one color: Cornflower on Sun",
+  "sym_note": "The round ma'amoul · mango yellow, cornflower, oak",
+  "pal": [
+   [
+    "Sun",
+    "#FFC21A",
+    "Primary",
+    0
+   ],
+   [
+    "Cream",
+    "#FFF8E6",
+    "Ground",
+    1
+   ],
+   [
+    "Cornflower",
+    "#2F6BDB",
+    "Second",
+    0
+   ],
+   [
+    "Navy",
+    "#14285C",
+    "Text",
+    0
+   ],
+   [
+    "Oak",
+    "#9A6A3F",
+    "Material",
+    0
+   ],
+   [
+    "Chrome",
+    "#C9D1DB",
+    "Finish",
+    0
+   ]
+  ],
+  "scheme": "Complementary: sunny yellow-orange with cornflower blue, grounded by oak",
+  "contrast": "Navy on Sun 8.7:1 · Navy on Cream 13.3:1 · Cornflower on Sun 3.1:1, logo and display only.",
+  "type": [
+   "Unbounded",
+   "Figtree",
+   "Marhey",
+   "Yalla, come in.",
+   "يلا، تعال"
+  ],
+  "voice": [
+   "Yalla. Good mood, open till 2am.",
+   "Come for dessert. Stay for the mood.",
+   "Bad day? Yalla, sit down."
+  ],
+  "service": "Music up after 9pm and a kunafa-pull show on the hour. The team wears sun-yellow jackets over blue tees, with oak aprons.",
+  "cap": {
+   "01": [
+    "01",
+    "Walking into sunshine",
+    "Sun-yellow walls and ceiling, a long cornflower-tiled counter with an oak top, and chrome stools. People of every age sit close. This is the La La Land feeling, built as a room."
+   ],
+   "11": [
+    "11",
+    "The bleachers",
+    "Oak stepped seating under a yellow barrel ceiling, with a cornflower kunafa bar across the room. Friends and families share the steps."
+   ],
+   "02": [
+    "02",
+    "The WOW: the pull under the sun",
+    "A round cornflower-tiled kunafa bar under a huge yellow dome light. The cheese pull happens on the hour, and everyone films it."
+   ],
+   "12": [
+    "12",
+    "The window bar at night",
+    "An oak window counter facing the street, with glowing yellow walls behind. The best seat in Brooklyn at 1am."
+   ],
+   "03": [
+    "03",
+    "The team",
+    "A sun-yellow work jacket over a blue tee, with an oak apron. Energetic, never loud."
+   ],
+   "04": [
+    "04",
+    "Cups",
+    "A yellow cup with a blue lid and a blue froyo cup. The wordmark flips color so both cups read as Laza."
+   ],
+   "05": [
+    "05",
+    "Plates and cookware",
+    "Yellow enamel plates, blue bowls and a blue Turkish teapot with tulip glasses, on an oak tray of ma'amoul and qatayef."
+   ],
+   "06": [
+    "06",
+    "Merch",
+    "A yellow hoodie and a blue tote on a Brooklyn stoop. Merch that works as a uniform for the regulars."
+   ],
+   "07": [
+    "07",
+    "Advertising",
+    "\"Yalla. Good mood, open till 2am.\" Friends mid-laugh, on the subway."
+   ],
+   "08": [
+    "08",
+    "The street",
+    "A sun-yellow façade on 5th Avenue under a cornflower awning. It glows at golden hour and at midnight."
+   ]
+  }
+ }
+]

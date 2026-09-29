@@ -1,0 +1,637 @@
+<title>Laza World Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&family=Lalezar&family=Reem+Kufi:wght@500;700&display=swap">
+<style>
+/* Layout: an agency handoff deck as one long scroll. A sticky chapter menu on top, and each chapter is a full "page".
+   The frame stays quiet. The two directions carry their own scoped palettes. Deliberately single-theme (light), because the brief bans dark. */
+:root{
+  --paper:#F6F8FB; --ink:#14223D; --muted:#5B6781; --line:#DCE2EC; --card:#FFFFFF; --hi:#2F6FE0;
+  /* Direction A — Blue Hour */
+  --a-sky:#7FB2F0; --a-sky-2:#B9D6F8; --a-ink:#16306B; --a-lamp:#FFD34E; --a-milk:#F4F8FD; --a-chrome:#C9D1DB; --a-oak:#C08A57;
+  /* Direction B — Ahlan */
+  --b-tile:#4FB0E0; --b-tile-2:#A9DBF2; --b-ink:#0F3550; --b-kunafa:#F08A2B; --b-rose:#F5A3B7; --b-chalk:#F8F7F3; --b-oak:#B98252;
+  --f-display:"Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-serif:"Young Serif", Georgia, serif;
+  --f-ar-b:"Lalezar", "Reem Kufi", "Geeza Pro", sans-serif;
+  --f-ar-a:"Reem Kufi", "Geeza Pro", sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important; transition:none!important}}
+body{background:var(--paper); color:var(--ink); font:16px/1.6 var(--f-body); margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hi); outline-offset:3px; border-radius:4px}
+
+/* menu */
+.nav{position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:rgba(246,248,251,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px; margin:0 auto; padding:0 16px; display:flex; align-items:center; gap:18px; height:56px}
+.nav-brand{font:800 20px/1 var(--f-display); letter-spacing:-.02em; text-decoration:none; white-space:nowrap}
+.nav-brand small{font:500 11px var(--f-mono); color:var(--muted); letter-spacing:.06em; margin-left:6px}
+.nav ol{list-style:none; margin:0; padding:0; display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; flex:1; min-width:0}
+.nav ol::-webkit-scrollbar{display:none}
+.nav li a{display:block; padding:7px 11px; border-radius:99px; text-decoration:none; font:500 13px var(--f-body); color:var(--muted); white-space:nowrap}
+.nav li a:hover{color:var(--ink); background:var(--line)}
+.nav li a.on{background:var(--ink); color:#fff}
+.nav li a .n{font:500 10px var(--f-mono); opacity:.6; margin-right:5px}
+
+.wrap{max-width:1180px; margin:0 auto; padding-inline:16px}
+section.page{padding-block:88px 72px; border-bottom:1px solid var(--line)}
+.eyebrow{font:500 12px var(--f-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 14px}
+h1,h2,h3{text-wrap:balance; margin:0}
+h2{font:800 clamp(34px,5vw,60px)/1.02 var(--f-display); letter-spacing:-.03em; font-variation-settings:"wdth" 85}
+h3{font:700 21px/1.25 var(--f-body); letter-spacing:-.01em}
+.lede{font-size:clamp(18px,2vw,21px); line-height:1.55; max-width:62ch; color:var(--ink); margin:22px 0 0}
+p{max-width:66ch}
+.muted{color:var(--muted)}
+.grid{display:grid; gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.grid > *{min-width:0}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px}
+.card h3{margin-bottom:8px}
+.card p{margin:0}
+.tag{display:inline-block; font:500 11px var(--f-mono); letter-spacing:.05em; padding:3px 8px; border-radius:99px; background:var(--line); color:var(--ink)}
+.tag.warn{background:#FFE9C7; color:#6A4300}
+.tag.ok{background:#D8F0DF; color:#14532D}
+.src{font:400 12px var(--f-mono); color:var(--muted); word-break:break-word}
+.src a{color:var(--muted)}
+ul.clean{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+ul.clean li{padding-left:18px; position:relative}
+ul.clean li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:7px; border-radius:50%; background:var(--hi)}
+.spacer{height:28px}
+
+/* cover */
+.cover{padding-block:72px 64px; background:
+  radial-gradient(120% 90% at 85% 0%, var(--a-sky-2) 0%, transparent 55%),
+  radial-gradient(90% 80% at 0% 100%, #FFE7A8 0%, transparent 55%), var(--paper)}
+.cover h1{font:800 clamp(56px,11vw,150px)/.9 var(--f-display); letter-spacing:-.045em; font-variation-settings:"wdth" 80}
+.cover h1 span{color:var(--a-sky); -webkit-text-stroke:0}
+.cover .meta{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:34px; font:500 13px var(--f-mono); color:var(--muted)}
+.cover .meta b{color:var(--ink); font-weight:500}
+.duo{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:16px; margin-top:44px}
+.duo a{display:flex; gap:18px; align-items:center; text-decoration:none; padding:18px; border-radius:16px; border:1px solid var(--line); background:var(--card); transition:transform .2s}
+.duo a:hover{transform:translateY(-3px)}
+.duo .sw{width:64px; height:64px; border-radius:14px; flex:none}
+.duo b{display:block; font:800 22px/1.1 var(--f-display)}
+.duo span{font-size:14px; color:var(--muted)}
+
+/* brief */
+.need{display:grid; grid-template-columns:120px 1fr; gap:6px 20px; padding-block:16px; border-top:1px solid var(--line)}
+.need:last-child{border-bottom:1px solid var(--line)}
+.need dt{font:500 12px var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-top:3px}
+.need dd{margin:0}
+@media (max-width:560px){.need{grid-template-columns:1fr}}
+.nots{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.nots span{font:500 13px var(--f-body); padding:6px 12px; border-radius:99px; border:1.5px dashed #E0A8A8; color:#8A2E2E; text-decoration:line-through; text-decoration-thickness:1.5px}
+
+/* room */
+.role{display:flex; flex-direction:column; gap:10px}
+.role .who{display:flex; align-items:center; gap:10px}
+.role .av{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; font:700 13px var(--f-mono); color:#fff; flex:none}
+.role .who b{display:block; font:700 15px var(--f-body)}
+.role .who span{font:400 12px var(--f-mono); color:var(--muted)}
+.role blockquote{margin:0; font:500 16px/1.5 var(--f-body)}
+
+/* references */
+.ref{display:flex; flex-direction:column; gap:10px}
+.ref .steal{background:var(--paper); border-radius:10px; padding:12px 14px; font-size:15px}
+.ref .steal b{font:500 11px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--hi); display:block; margin-bottom:3px}
+.slop{background:#1B1F2A; color:#EDEFF4; border-radius:18px; padding:28px}
+.slop h3{color:#fff}
+.slop ol{margin:14px 0 0; padding-left:22px; display:grid; gap:10px}
+.slop li::marker{font-family:var(--f-mono); color:#FF8A8A}
+
+/* direction shells */
+.dir{position:relative; overflow:hidden}
+.dir-head{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr)); gap:36px; align-items:end}
+.dir .big{font:800 clamp(52px,9vw,120px)/.88 var(--f-display); letter-spacing:-.045em; font-variation-settings:"wdth" 78}
+.sub{font:500 12px var(--f-mono); letter-spacing:.1em; text-transform:uppercase; margin:56px 0 18px; padding-top:18px; border-top:2px solid currentColor; display:flex; justify-content:space-between; gap:12px}
+.sub span{opacity:.6}
+
+.A{background:var(--a-milk); color:var(--a-ink)}
+.A .card{border-color:#D5E3F5}
+.A .sub{color:var(--a-ink)}
+.B{background:var(--b-chalk); color:var(--b-ink)}
+.B .card{border-color:#E5E1D6}
+.B .big{font-family:var(--f-serif); font-weight:400; letter-spacing:-.03em; font-variation-settings:normal}
+.B .sub{color:var(--b-ink)}
+
+/* logo stage */
+.stage{border-radius:18px; padding:clamp(24px,5vw,56px); display:grid; place-items:center; min-height:300px}
+.stage svg{width:100%; max-width:520px; height:auto}
+.logo-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr)); gap:14px; margin-top:14px}
+.logo-row > div{border-radius:14px; aspect-ratio:1/1; display:grid; place-items:center; padding:18px; max-width:100%}
+.logo-row svg{width:78%; height:auto}
+.note{font:400 13px/1.5 var(--f-mono); opacity:.75; margin-top:10px; max-width:70ch}
+
+/* palette */
+.pal{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr)); gap:10px}
+.chip{border-radius:14px; padding:14px; min-height:150px; display:flex; flex-direction:column; justify-content:flex-end; gap:2px}
+.chip b{font:700 15px var(--f-body)}
+.chip span{font:400 12px var(--f-mono); opacity:.85}
+.chip.lead{grid-column:span 2; min-height:220px}
+@media (max-width:520px){.chip.lead{grid-column:auto}}
+.ratio{display:flex; height:16px; border-radius:99px; overflow:hidden; margin-top:12px}
+.ratio i{display:block}
+
+/* type specimen */
+.spec{border-radius:18px; padding:28px; display:grid; gap:14px}
+.spec .l{font:500 11px var(--f-mono); letter-spacing:.08em; text-transform:uppercase; opacity:.6}
+
+/* plan */
+.plan svg{width:100%; height:auto; display:block}
+.plan-wrap{overflow-x:auto}
+
+/* touchpoints */
+.tp{border-radius:16px; padding:22px 16px 16px; display:flex; flex-direction:column; align-items:center; gap:14px; min-height:290px; justify-content:space-between}
+.tp .cap{font:500 12px var(--f-mono); letter-spacing:.05em; text-align:center; opacity:.85}
+.cup{width:110px; height:150px; position:relative}
+.cup .body{position:absolute; inset:18px 0 0; clip-path:polygon(0 0,100% 0,86% 100%,14% 100%); display:grid; place-items:center}
+.cup .lid{position:absolute; left:-6px; right:-6px; top:4px; height:18px; border-radius:10px 10px 4px 4px}
+.box{width:150px; height:110px; border-radius:10px; position:relative; display:grid; place-items:center; overflow:hidden}
+.sign{width:140px; height:140px; border-radius:50%; display:grid; place-items:center; box-shadow:inset 0 0 0 6px rgba(255,255,255,.55)}
+.tee{width:150px; height:140px; display:grid; place-items:center; clip-path:polygon(28% 0,72% 0,100% 18%,88% 36%,80% 30%,80% 100%,20% 100%,20% 30%,12% 36%,0 18%)}
+
+/* voice */
+.voice{display:flex; flex-wrap:wrap; gap:10px}
+.voice span{padding:10px 16px; border-radius:99px; font:600 16px var(--f-body)}
+
+/* compare */
+.cmp{width:100%; border-collapse:collapse; font-size:15px; min-width:720px}
+.cmp th,.cmp td{text-align:left; padding:14px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+.cmp thead th{font:500 12px var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.cmp tbody th{font-weight:600; width:22%}
+.pick{background:var(--ink); color:#fff; border-radius:18px; padding:30px}
+.pick h3{font:800 30px/1.1 var(--f-display); letter-spacing:-.02em}
+.pick p{color:#D9DEEA}
+
+/* handoff */
+.steps{counter-reset:s; display:grid; gap:12px}
+.steps li{list-style:none; counter-increment:s; display:grid; grid-template-columns:44px 1fr; gap:14px; padding:16px 0; border-top:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero); font:500 13px var(--f-mono); color:var(--hi); padding-top:3px}
+.steps{padding:0; margin:0}
+.prompt{font:400 13px/1.55 var(--f-mono); background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; white-space:pre-wrap; margin:0}
+.copy{font:500 12px var(--f-mono); border:1px solid var(--line); background:var(--paper); border-radius:99px; padding:5px 12px; cursor:pointer; color:var(--ink)}
+.copy:hover{background:var(--line)}
+footer{padding-block:40px 60px; font:400 13px var(--f-mono); color:var(--muted)}
+</style>
+
+<nav class="nav" aria-label="Chapters">
+  <div class="nav-in">
+    <a class="nav-brand" href="#cover">laza<small>WORLD v1</small></a>
+    <ol>
+      <li><a href="#brief"><span class="n">01</span>Brief</a></li>
+      <li><a href="#room"><span class="n">02</span>The room</a></li>
+      <li><a href="#research"><span class="n">03</span>Research</a></li>
+      <li><a href="#blue-hour"><span class="n">A</span>Blue Hour</a></li>
+      <li><a href="#ahlan"><span class="n">B</span>Ahlan</a></li>
+      <li><a href="#compare"><span class="n">04</span>Compare</a></li>
+      <li><a href="#handoff"><span class="n">05</span>Handoff</a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- COVER -->
+<header id="cover" class="cover">
+  <div class="wrap">
+    <p class="eyebrow">Brand world proposal · for Moose, Laza Dessert Café · Bay Ridge + Astoria</p>
+    <h1>Come for dessert.<br>Stay for the <span>mood.</span></h1>
+    <p class="lede">Two complete directions for the next Laza: logo, color, type, space, a WOW moment, touchpoints and voice. Each is built to answer one test from the brief. Walk into any of 20 Laza locations with the logo covered, and you still know where you are.</p>
+    <div class="meta"><span><b>Stage</b> Directions, round 1</span><span><b>Scope</b> Identity + interior concept</span><span><b>Open</b> 2pm – 2am, daily</span><span><b>Date</b> 29 Sep 2026</span></div>
+    <div class="duo">
+      <a href="#blue-hour"><div class="sw" style="background:linear-gradient(160deg,var(--a-sky-2),var(--a-sky) 55%,var(--a-ink))"></div><div><b>A · Blue Hour</b><span>Own a blue the way La La Land owns yellow. The room changes mood from 2pm to 2am.</span></div></a>
+      <a href="#ahlan"><div class="sw" style="background:conic-gradient(var(--b-tile) 0 50%,var(--b-kunafa) 0 75%,var(--b-rose) 0)"></div><div><b>B · Ahlan</b><span>The Levantine sweet shop rebuilt for New York at 1am. Hospitality is the brand.</span></div></a>
+    </div>
+  </div>
+</header>
+
+<!-- 01 BRIEF -->
+<section id="brief" class="page">
+  <div class="wrap">
+    <p class="eyebrow">01 · The brief, distilled</p>
+    <h2>What Moose is actually asking for</h2>
+    <p class="lede">This is not an interior refresh. It is a brand world that can scale to 20 stores. Its job is emotional: people leave in a better mood than they arrived in.</p>
+    <div class="spacer"></div>
+    <dl>
+      <div class="need"><dt>The job</dt><dd><b>Lift the mood on entry.</b> The room should feel exciting, happy, playful, cozy and energized. People should come for the feeling, and the dessert is the reason to walk in.</dd></div>
+      <div class="need"><dt>The model</dt><dd><b>La La Land's yellow.</b> One color carries the emotion. He is not asking to copy the film's look. Laza needs its own version of that feeling.</dd></div>
+      <div class="need"><dt>Color</dt><dd><b>A lighter, happier blue</b> to replace the heavy royal blue. He liked the blue in the tennis project. He is not locked to a shade and trusts the studio to choose it and the full palette.</dd></div>
+      <div class="need"><dt>Materials</dt><dd><b>Oak for warmth, chrome for youth.</b> Tile is also welcome. The studio chooses the materials.</dd></div>
+      <div class="need"><dt>Social</dt><dd><b>A 20–30 minute visit, not a laptop café.</b> Closer seating, movement, music, day-club energy without looking like a club. The references are Mimi's and Yo-Chi. People should feel like they are <i>somewhere</i>.</dd></div>
+      <div class="need"><dt>Photo</dt><dd><b>An 8–9/10 on Instagram without trying.</b> The moments should come from architecture, color, packaging, light and product. <b>One major WOW moment</b> at the entrance that can become part of the brand.</dd></div>
+      <div class="need"><dt>Price feel</dt><dd><b>High design, accessible.</b> Premium but never luxury, and never cheap.</dd></div>
+      <div class="need"><dt>Audience</dt><dd><b>Styled for 20–30-year-olds, welcoming to everyone.</b> Families, teens and older guests should all feel at home.</dd></div>
+      <div class="need"><dt>System</dt><dd><b>Every touchpoint from one personality:</b> cups, packaging, uniforms, menus, signage, phrases, music, furniture, social and stores. Laza needs owned elements that work without the logo.</dd></div>
+      <div class="need"><dt>Persona</dt><dd><b>The person everyone wants to be around.</b> Happy, confident, playful and social, without trying hard to be cool. They make you feel seen, and 20 minutes with them fixes a bad day.</dd></div>
+    </dl>
+    <p class="eyebrow" style="margin-top:34px">Hard no's</p>
+    <div class="nots"><span>dark colors dominating</span><span>generic modern coffee shop</span><span>boring minimalism</span><span>overly sophisticated</span><span>gold / marble luxury</span><span>childish</span><span>neon + flower walls</span><span>a trend that dates in 2 years</span></div>
+    <div class="spacer"></div>
+    <div class="grid g3">
+      <div class="card"><span class="tag warn">Insight from research</span><h3 style="margin-top:10px">Laza is a night brand</h3><p class="muted">Both stores are open 2pm to 2am. The busiest hours are after dark, so the blue has to feel happy under evening light, not only in a daylight render. This shaped both directions.</p></div>
+      <div class="card"><span class="tag warn">Insight from research</span><h3 style="margin-top:10px">Kunafa is crowded</h3><p class="muted">The "Dubai chocolate" wave made pistachio green with gold the default kunafa look. Laza already has the product. It needs a look nobody else in the category is using.</p></div>
+      <div class="card"><span class="tag warn">Insight from research</span><h3 style="margin-top:10px">Two Instagram handles</h3><p class="muted">@lazacafe and @laza.cafe each show roughly 130K followers. Consolidating them is a quick win for the rebrand launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ROOM -->
+<section id="room" class="page">
+  <div class="wrap">
+    <p class="eyebrow">02 · The room</p>
+    <h2>Six seats at the table, one call each</h2>
+    <p class="lede">We ran the brief through six agency roles. Each one made the call that shaped both directions.</p>
+    <div class="spacer"></div>
+    <div class="grid g3">
+      <div class="card role"><div class="who"><div class="av" style="background:#2F6FE0">ST</div><div><b>Strategist</b><span>positioning</span></div></div><blockquote>"Laza doesn't sell dessert. It sells the next 30 minutes of your night. Position it as a <b>mood destination</b>, and every design choice has to earn a smile."</blockquote></div>
+      <div class="card role"><div class="who"><div class="av" style="background:#16306B">BD</div><div><b>Brand Director</b><span>world + voice</span></div></div><blockquote>"The persona is our spec. Warm first, cool second, never trying. If a line or object feels like it's performing for Instagram, cut it."</blockquote></div>
+      <div class="card role"><div class="who"><div class="av" style="background:#C08A57">HD</div><div><b>Head of Design</b><span>space + system</span></div></div><blockquote>"The WOW has to be architecture or ritual, not decoration. It should be something you can't strip out in the 2028 refresh, because it <i>is</i> the store."</blockquote></div>
+      <div class="card role"><div class="who"><div class="av" style="background:#F08A2B">HL</div><div><b>Head of Logo</b><span>marks</span></div></div><blockquote>"The mark has to work as a sticker, a lid emboss, a door handle and a 20-foot wall. It should be one simple, friendly shape that people draw from memory."</blockquote></div>
+      <div class="card role"><div class="who"><div class="av" style="background:#4FB0E0">HC</div><div><b>Head of Color</b><span>palette</span></div></div><blockquote>"Pick a blue with a <i>name and a time of day</i>, not a pastel off a swatch card. It needs a warm partner, or light blue alone turns cold at 1am."</blockquote></div>
+      <div class="card role"><div class="who"><div class="av" style="background:#1B1F2A">RS</div><div><b>Researcher</b><span>slop filter</span></div></div><blockquote>"No arches, no neon script, no pistachio with gold, no star patterns used as 'Arabic flavor'. Every reference below is a real project with a link."</blockquote></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RESEARCH -->
+<section id="research" class="page">
+  <div class="wrap">
+    <p class="eyebrow">03 · Research</p>
+    <h2>What we're borrowing, and from whom</h2>
+    <p class="lede">For each reference we name the one craft move we're taking. Items marked unverified still need a check before this goes to the client.</p>
+
+    <p class="sub"><b>The four agencies</b><span>benchmark studios</span></p>
+    <div class="grid g2">
+      <div class="card ref"><h3>Mythology · NYC</h3><p class="muted">Formerly Partners &amp; Spade, renamed in 2018. Launch-era work for Harry's, Warby Parker, Sweetgreen and Allbirds.</p><div class="steal"><b>Steal</b>Retail as media. The store is the ad, and every object in it tells the story. For Laza the cup and the room are the campaign.</div><p class="src"><a href="https://www.fastcompany.com/90385968/this-agency-helped-boost-harrys-and-sweetgreen-now-its-ditching-advertising-to-make-brands-of-its-own" target="_blank" rel="noopener">fastcompany.com</a> · Note: the current Sweetgreen identity is by Collins, not Mythology.</p></div>
+      <div class="card ref"><h3>Koto · Gustini</h3><p class="muted">An Italian food retailer. The palette is named <i>sky, sun, sea, sand, soil</i> and is tactile and texture-led rather than flat digital.</p><div class="steal"><b>Steal</b>Name the colors after a place and a time. Add physical texture so a blue-led brand doesn't read as an app.</div><p class="src"><a href="https://bpando.org/2024/03/12/italian-online-food-retail-branding-gustini-koto/" target="_blank" rel="noopener">bpando.org</a></p></div>
+      <div class="card ref"><h3>Red Antler · Allbirds, Casper</h3><p class="muted">Built from zero: an evocative name, a soft flowing logotype and packaging that surprises when you open it.</p><div class="steal"><b>Steal</b>One soft, friendly wordmark, and packaging that makes you smile at the unboxing. Here that means the kunafa box.</div><p class="src"><a href="https://www.redantler.com/work/allbirds" target="_blank" rel="noopener">redantler.com/work/allbirds</a></p></div>
+      <div class="card ref"><h3>Media.Monks · KFC Bucket, Beyond Meat</h3><p class="muted">The KFC bucket became a pop-culture object with Rolling Stone. #GoBeyond was social-first and reacted in real time.</p><div class="steal"><b>Steal</b>Make one hero object into a social prop. For Laza, the cup or the kunafa pull should be the thing people film.</div><p class="src"><a href="https://www.monks.com/case-studies/kfc-bucket-brand-engagement-pop-culture" target="_blank" rel="noopener">monks.com · KFC</a> · <a href="https://www.monks.com/case-studies/gobeyond" target="_blank" rel="noopener">GoBeyond</a></p></div>
+    </div>
+
+    <p class="sub"><b>Category + emotional references</b><span>named in the brief, plus our adds</span></p>
+    <div class="grid g3">
+      <div class="card ref"><h3>La La Land's yellow</h3><p class="muted">Mary Zophres' canary dress was matched to the set colors. The palette descends from Demy's <i>Umbrellas of Cherbourg</i>.</p><div class="steal"><b>Steal</b>One saturated color coordinated across costume and set. For Laza: uniform, cup and wall in one blue.</div><p class="src"><a href="https://www.awardsdaily.com/2017/01/04/interview-la-la-lands-costume-designer-mary-zophres-opening-number-wanted-appetizer-rest-movie/" target="_blank" rel="noopener">awardsdaily.com</a></p></div>
+      <div class="card ref"><h3>Mimi's Frozen Yogurt</h3><p class="muted">231 Lafayette St, SoHo. Built on a cult Australian brand. It reads as a store, not a froyo counter, and sells apparel.</p><div class="steal"><b>Steal</b>Merch as a lifestyle label. Laza gear should be something people wear on a normal Tuesday.</div><p class="src"><a href="https://mimis.nyc/shop" target="_blank" rel="noopener">mimis.nyc</a> · <span class="tag warn">Brief said LA; it's NYC</span></p></div>
+      <div class="card ref"><h3>Yo-Chi</h3><p class="muted">An Australian self-serve froyo and açaí chain with a social, communal energy.</p><div class="steal"><b>Steal</b>Self-serve as social theater. Build movement into the room.</div><p class="src"><a href="https://yochi.com.au/" target="_blank" rel="noopener">yochi.com.au</a> · <span class="tag warn">Confirm this is the "Yochi" Moose meant</span></p></div>
+      <div class="card ref"><h3>Van Leeuwen · Pentagram</h3><p class="muted">Started as a yellow truck. Today it's a logo, a decisive palette and flavor colors you recognize at a glance.</p><div class="steal"><b>Steal</b>Flavor colors. Kunafa, matcha, crepe and froyo each get a color that stays inside the master palette.</div><p class="src"><a href="https://www.pentagram.com/work/van-leeuwen" target="_blank" rel="noopener">pentagram.com</a></p></div>
+      <div class="card ref"><h3>Blank Street · Wolff Olins, 2025</h3><p class="muted">Moved from mint to a deeper green with time-of-day secondaries. The one owned device is the cart window.</p><div class="steal"><b>Steal</b>One color, one device, and product shot like a sneaker drop. Plus time-of-day color, which is the core idea of Direction A.</div><p class="src"><a href="https://abduzeedo.com/blank-street-coffee-unveils-new-brand-identity-wolff-olins" target="_blank" rel="noopener">abduzeedo.com</a></p></div>
+      <div class="card ref"><h3>Glossier stores</h3><p class="muted">Pink plaster walls with red accents. A color carried all the way into the architecture.</p><div class="steal"><b>Steal + warning</b>Color as architecture works. A lone pastel with no partner turns into a trope, so our blue always travels with a warm color.</div><p class="src"><a href="https://www.dezeen.com/tag/glossier/" target="_blank" rel="noopener">dezeen.com</a></p></div>
+    </div>
+
+    <p class="sub"><b>Culture we can own</b><span>Levantine sweet-shop life</span></p>
+    <div class="grid g3">
+      <div class="card"><h3>Nablus, capital of sweets</h3><p class="muted">Nabulsi kunafa uses salty local cheese. The counter theater of the pull and flip is the ritual. <span class="src"><a href="https://www.arabnews.com/node/1850476/lifestyle" target="_blank" rel="noopener">arabnews.com</a></span></p></div>
+      <div class="card"><h3>The evening window</h3><p class="muted">Shop windows fill with qatayef every Ramadan evening before iftar. A window that changes with the hour is native to this culture.</p></div>
+      <div class="card"><h3>Kunafa as home</h3><p class="muted">For many Levantine families it's a symbol of home and heritage, which is a warmer story than "viral dessert". <span class="src"><a href="https://news.rakwa.com/2025/04/07/kunafa-the-iconic-middle-eastern-dessert-taking-america-by-storm/" target="_blank" rel="noopener">rakwa.com</a></span></p></div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="slop">
+      <p class="eyebrow" style="color:#9AA3B5">Researcher · slop filter</p>
+      <h3>Five things neither direction is allowed to do</h3>
+      <ol>
+        <li>Neon script signs, flower walls or pink "photo walls" built for the camera.</li>
+        <li>Pistachio green with gold foil. That's the Dubai-chocolate look and already the kunafa default.</li>
+        <li>Generic arabesque stars, calligraphy-style fonts used as flavor, crowns, lanterns or "royal" gold.</li>
+        <li>Soft pastel gradient, rounded sans and nothing else. That's the default 2025 café rebrand.</li>
+        <li>Tiffany or baby-blue pulled off a swatch card. Our blue needs a specific hue, a name and a warm partner.</li>
+      </ol>
+      <p style="color:#9AA3B5; margin-top:14px; font-size:14px">We also dropped the arch shape, which is the most overused café device of 2021 to 2025.</p>
+    </div>
+  </div>
+</section>
+
+<!-- A · BLUE HOUR -->
+<section id="blue-hour" class="page dir A">
+  <div class="wrap">
+    <div class="dir-head">
+      <div>
+        <p class="eyebrow" style="color:var(--a-ink)">Direction A</p>
+        <div class="big">Blue<br><span style="color:var(--a-sky)">Hour.</span></div>
+      </div>
+      <div>
+        <p class="lede" style="margin:0"><b>The idea.</b> La La Land owns golden hour. Laza owns the <b>blue hour</b>, the stretch after sunset when the sky goes soft blue, the streetlights come on and the night is still ahead. That's exactly when Laza is busiest. We take one clear, airy blue and put it on the ceiling, the cup, the uniform and the feed, so the whole brand feels like a good night about to start.</p>
+        <p style="margin-top:14px; font:600 18px var(--f-body)">Line: <i>"Stay for the good part."</i></p>
+      </div>
+    </div>
+
+    <p class="sub"><b>Logo · "The Rise"</b><span>A.1</span></p>
+    <div class="grid g2">
+      <div class="stage" style="background:var(--a-sky)">
+        <svg viewBox="0 0 520 220" role="img" aria-label="Laza Blue Hour logo: a rising sun-scoop over a smile, beside the lowercase laza wordmark">
+          <circle cx="100" cy="88" r="46" fill="var(--a-lamp)"/>
+          <path d="M34 124 Q100 196 166 124" fill="none" stroke="var(--a-ink)" stroke-width="22" stroke-linecap="round"/>
+          <text x="196" y="150" font-family="Bricolage Grotesque, Figtree, sans-serif" font-weight="800" font-size="138" letter-spacing="-8" fill="var(--a-ink)" style="font-variation-settings:'wdth' 80">laza</text>
+        </svg>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:12px">
+        <h3>A scoop, a sun and a smile in one shape</h3>
+        <p>The mark is a circle rising over a curve. It reads as a scoop in a cup, a sun coming up over the horizon, and a smile. That makes the mood-lift promise literal. It's simple enough to draw from memory and to cut from chrome.</p>
+        <p>The wordmark is a heavy, slightly condensed lowercase: confident and friendly without going childish. Custom-draw the final version. The <b>z</b> gets a soft-serve curl at its terminal as the only flourish.</p>
+        <p class="note">Owned without the logo: the Rise shape as door pulls, lid emboss, pastry stencil and table inlays.</p>
+      </div>
+    </div>
+    <div class="logo-row">
+      <div style="background:var(--a-ink)"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="82" r="44" fill="var(--a-sky)"/><path d="M36 118 Q100 190 164 118" fill="none" stroke="var(--a-lamp)" stroke-width="20" stroke-linecap="round"/></svg></div>
+      <div style="background:var(--a-lamp)"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="82" r="44" fill="var(--a-milk)"/><path d="M36 118 Q100 190 164 118" fill="none" stroke="var(--a-ink)" stroke-width="20" stroke-linecap="round"/></svg></div>
+      <div style="background:linear-gradient(180deg,#EEF2F6,#AEB8C4 60%,#E9EDF1)"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="82" r="44" fill="none" stroke="#fff" stroke-width="8"/><path d="M36 118 Q100 190 164 118" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round"/><text x="100" y="186" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5B6781">CHROME DOOR PULL</text></svg></div>
+      <div style="background:var(--a-milk); border:1px solid #D5E3F5"><svg viewBox="0 0 200 200" aria-hidden="true"><text x="100" y="92" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="64" fill="var(--a-ink)">laza</text><text x="100" y="150" text-anchor="middle" font-family="Reem Kufi, sans-serif" font-weight="700" font-size="48" fill="var(--a-sky)">لذة</text></svg></div>
+    </div>
+
+    <p class="sub"><b>Color · named after the hour</b><span>A.2</span></p>
+    <div class="pal">
+      <div class="chip lead" style="background:var(--a-sky); color:var(--a-ink)"><b>Laza Sky</b><span>#7FB2F0 · 7:40pm in July</span><span>The owned color. Walls, ceiling, cups, uniforms.</span></div>
+      <div class="chip" style="background:var(--a-ink); color:#fff"><b>Night Ink</b><span>#16306B · type only</span><span>Keeps a thread to today's royal blue.</span></div>
+      <div class="chip" style="background:var(--a-lamp); color:var(--a-ink)"><b>Streetlamp</b><span>#FFD34E · the warm partner</span></div>
+      <div class="chip" style="background:var(--a-sky-2); color:var(--a-ink)"><b>Soft Sky</b><span>#B9D6F8 · tints, packaging</span></div>
+      <div class="chip" style="background:var(--a-oak); color:#fff"><b>Oak</b><span>#C08A57 · warmth, touch</span></div>
+      <div class="chip" style="background:linear-gradient(135deg,#F3F6F9,#AEB8C4 55%,#EEF2F6); color:var(--a-ink)"><b>Chrome</b><span>finish, not paint</span></div>
+    </div>
+    <div class="ratio" aria-label="Color ratio: 55% sky, 15% milk, 12% oak, 8% chrome, 6% ink, 4% streetlamp"><i style="flex:55;background:var(--a-sky)"></i><i style="flex:15;background:var(--a-milk)"></i><i style="flex:12;background:var(--a-oak)"></i><i style="flex:8;background:var(--a-chrome)"></i><i style="flex:6;background:var(--a-ink)"></i><i style="flex:4;background:var(--a-lamp)"></i></div>
+    <p class="note">Rule: Sky never appears without a warm partner, either Streetlamp or Oak. That keeps a light blue from reading as clinical under 1am lighting. Flavor colors in the style of Van Leeuwen, all within the palette: kunafa = Streetlamp, matcha = Sky + Oak, froyo = Soft Sky.</p>
+
+    <p class="sub"><b>Type</b><span>A.3</span></p>
+    <div class="spec card" style="background:#fff">
+      <span class="l">Display · Bricolage Grotesque 800, condensed (placeholder for a custom cut)</span>
+      <div style="font:800 clamp(40px,7vw,84px)/.95 var(--f-display); letter-spacing:-.04em; font-variation-settings:'wdth' 78">Good mood, open till 2.</div>
+      <span class="l">Text · Figtree · Arabic companion · Reem Kufi</span>
+      <div style="font:500 18px/1.5 var(--f-body); max-width:60ch">Kunafa with rose syrup, crepes, froyo, matcha. Served fast, eaten slow, shared with whoever you came with.</div>
+      <div dir="rtl" style="font:700 30px var(--f-ar-a); color:var(--a-sky)">أهلاً — مزاجك علينا</div>
+    </div>
+
+    <p class="sub"><b>Space · the WOW is the ceiling</b><span>A.4</span></p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>The Sky</h3>
+        <p>A continuous barrel-vault ceiling in lacquered Laza Sky, lit from a hidden cove. The cove is programmed to the store's hours:</p>
+        <ul class="clean" style="margin-top:12px">
+          <li><b>2pm</b> Clear daylight blue, bright and fresh</li>
+          <li><b>8pm</b> Blue hour. Sky deepens and Streetlamp sconces warm up</li>
+          <li><b>12am–2am</b> Deep blue with a warm glow at table height</li>
+        </ul>
+        <p style="margin-top:12px">The WOW is the room itself, and it looks different every time you visit. It photographs naturally, needs no sign, and works in any footprint as a signature for store 20.</p>
+      </div>
+      <div class="card">
+        <h3>Materials + social layout</h3>
+        <ul class="clean">
+          <li><b>Mirror-chrome bar front</b> that reflects the Sky. The youthful note Moose asked for.</li>
+          <li><b>Oak "bleachers"</b>: three wide steps of social seating along one wall, like a day club or tennis stands. People sit close, face the room and watch the flow.</li>
+          <li><b>High oak rail</b> at the window for 10-minute visits.</li>
+          <li><b>Sky glazed tile floor band</b> leading from the door to the counter, so the path is the brand.</li>
+          <li><b>Terry and chrome stools</b>, a nod to the tennis project.</li>
+          <li><b>Music:</b> Arabic disco and funk (the Habibi Funk catalog) into current R&amp;B and house. Volume rises after 9pm.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card plan" style="margin-top:20px">
+      <p class="eyebrow">Zoning diagram · typical 1,400 sq ft store</p>
+      <div class="plan-wrap"><svg viewBox="0 0 640 300" role="img" aria-label="Plan for Blue Hour: entry on the left, sky tile path to chrome bar at the back, oak bleachers on the right wall, window rail at front">
+        <rect x="10" y="10" width="620" height="280" rx="10" fill="#EAF2FC" stroke="#16306B" stroke-width="2"/>
+        <rect x="10" y="10" width="620" height="280" rx="10" fill="none" stroke="#7FB2F0" stroke-width="8" stroke-dasharray="2 10" opacity=".5"/>
+        <rect x="40" y="250" width="200" height="16" rx="4" fill="#C08A57"/><text x="140" y="245" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#16306B">window rail</text>
+        <rect x="270" y="275" width="70" height="15" fill="#FFD34E"/><text x="305" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#16306B">ENTRY</text>
+        <path d="M305 272 L305 110" stroke="#7FB2F0" stroke-width="30" opacity=".75"/><text x="318" y="190" font-family="IBM Plex Mono" font-size="11" fill="#16306B">sky tile path</text>
+        <rect x="190" y="40" width="250" height="48" rx="24" fill="#C9D1DB" stroke="#16306B" stroke-width="2"/><text x="315" y="69" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#16306B">CHROME BAR · order + pull</text>
+        <g fill="#C08A57"><rect x="500" y="40" width="110" height="30"/><rect x="520" y="80" width="90" height="30" opacity=".85"/><rect x="540" y="120" width="70" height="30" opacity=".7"/></g><text x="555" y="175" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#16306B">oak bleachers</text>
+        <g fill="#fff" stroke="#16306B"><circle cx="100" cy="90" r="18"/><circle cx="160" cy="150" r="18"/><circle cx="90" cy="180" r="18"/><circle cx="460" cy="220" r="18"/><circle cx="530" cy="240" r="18"/></g>
+        <text x="130" y="60" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#16306B">close 2-tops</text>
+        <text x="320" y="24" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#16306B" opacity=".7">— the Sky: vault over entire room —</text>
+      </svg></div>
+    </div>
+
+    <p class="sub"><b>Touchpoints</b><span>A.5</span></p>
+    <div class="grid g4">
+      <div class="tp" style="background:#fff"><div class="cup"><div class="lid" style="background:#fff; border:2px solid var(--a-chrome)"></div><div class="body" style="background:var(--a-sky)"><svg viewBox="0 0 100 80" width="62" aria-hidden="true"><circle cx="50" cy="30" r="17" fill="var(--a-lamp)"/><path d="M24 46 Q50 76 76 46" fill="none" stroke="var(--a-ink)" stroke-width="8" stroke-linecap="round"/></svg></div></div><span class="cap">Froyo / matcha cup<br>all-over Sky, no wordmark</span></div>
+      <div class="tp" style="background:#fff"><div class="box" style="background:var(--a-sky-2)"><div style="position:absolute; inset:auto 0 0; height:38%; background:var(--a-lamp)"></div><span style="position:relative; font:800 34px var(--f-display); color:var(--a-ink); letter-spacing:-.03em">laza</span></div><span class="cap">Kunafa box<br>opens to a yellow "sunrise" inside lid</span></div>
+      <div class="tp" style="background:#fff"><div class="tee" style="background:var(--a-sky)"><span style="font:800 20px var(--f-display); color:var(--a-ink); margin-top:10px">stay for the<br>good part</span></div><span class="cap">Team: Sky terry polo + oak apron<br>Merch: same shirt, sold</span></div>
+      <div class="tp" style="background:#fff"><div class="sign" style="background:var(--a-ink)"><svg viewBox="0 0 100 100" width="92" aria-hidden="true"><circle cx="50" cy="42" r="20" fill="var(--a-lamp)"/><path d="M20 58 Q50 92 80 58" fill="none" stroke="var(--a-sky)" stroke-width="9" stroke-linecap="round"/></svg></div><span class="cap">Blade sign · lit Streetlamp at night<br>readable from 5th Ave</span></div>
+    </div>
+
+    <p class="sub"><b>Voice</b><span>A.6</span></p>
+    <div class="voice">
+      <span style="background:var(--a-sky)">Good mood, open till 2.</span>
+      <span style="background:var(--a-lamp)">Stay for the good part.</span>
+      <span style="background:#fff; border:1px solid #D5E3F5">Tonight's forecast: kunafa.</span>
+      <span style="background:var(--a-ink); color:#fff">Bad day? Sit down.</span>
+      <span style="background:var(--a-sky-2)">It's always blue hour somewhere. Here.</span>
+    </div>
+    <p class="note" style="margin-top:16px">Social format: the "Sky Report". A 7-second daily clip of the ceiling at 8pm plus tonight's special. Every store posts the same format, so the Sky becomes the recurring character.</p>
+  </div>
+</section>
+
+<!-- B · AHLAN -->
+<section id="ahlan" class="page dir B">
+  <div class="wrap">
+    <div class="dir-head">
+      <div>
+        <p class="eyebrow" style="color:var(--b-ink)">Direction B</p>
+        <div class="big">Ahlan<span style="color:var(--b-kunafa)">.</span></div>
+        <div dir="rtl" style="font:400 clamp(40px,7vw,86px)/1 var(--f-ar-b); color:var(--b-tile); margin-top:6px">أهلاً</div>
+      </div>
+      <div>
+        <p class="lede" style="margin:0"><b>The idea.</b> In the Levant, you're welcomed before you're served. Direction B takes the loud, bustling sweet shop of Nablus and Damascus, with trays in the window, strangers talking across counters and kunafa flipped in front of you, and rebuilds it for Bay Ridge and Astoria at 1am. The persona Moose described, "they make you feel seen", is Arabic hospitality. Here that is the brand.</p>
+        <p style="margin-top:14px; font:600 18px var(--f-body)">Line: <i>"Ahlan. Come as you are, leave sweeter."</i></p>
+      </div>
+    </div>
+
+    <p class="sub"><b>Logo · "The Tray"</b><span>B.1</span></p>
+    <div class="grid g2">
+      <div class="stage" style="background:var(--b-tile)">
+        <svg viewBox="0 0 260 260" role="img" aria-label="Laza Ahlan logo: a scalloped round tray badge with laza in Latin and Arabic">
+          <g class="tray" data-cx="130" data-cy="130" data-r="104" data-n="18" data-sr="18" fill="var(--b-chalk)"></g>
+          <circle cx="130" cy="130" r="82" fill="none" stroke="var(--b-kunafa)" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round"/>
+          <text x="130" y="128" text-anchor="middle" font-family="Young Serif, Georgia, serif" font-size="62" fill="var(--b-ink)">laza</text>
+          <text x="130" y="186" text-anchor="middle" font-family="Lalezar, sans-serif" font-size="50" fill="var(--b-kunafa)">لذة</text>
+        </svg>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:12px">
+        <h3>The kunafa tray is the shape</h3>
+        <p>Every Levantine sweet shop has one: the round, fluted copper tray (seniyeh) that kunafa is baked and flipped in. Its <b>scalloped edge</b> becomes Laza's badge and, more importantly, its system. It shows up on lids, table edges, the awning fringe, menu borders and receipt tear-offs.</p>
+        <p>The lockup is bilingual at <b>equal weight</b>. Arabic isn't decoration here. It's half the name. The Latin is a warm, soft serif. The Arabic is Lalezar, a joyful display face, so the pair reads fun rather than formal.</p>
+        <p class="note">Name check: we're assuming Laza comes from لذّة (ladhdha, "delight" or "pleasure"). Confirm with Moose. If true, it's the brand's best story.</p>
+      </div>
+    </div>
+    <div class="logo-row">
+      <div style="background:var(--b-kunafa)"><svg viewBox="0 0 200 200" aria-hidden="true"><g class="tray" data-cx="100" data-cy="100" data-r="72" data-n="16" data-sr="13" fill="var(--b-chalk)"></g><text x="100" y="118" text-anchor="middle" font-family="Lalezar, sans-serif" font-size="52" fill="var(--b-ink)">لذة</text></svg></div>
+      <div style="background:var(--b-ink)"><svg viewBox="0 0 200 200" aria-hidden="true"><g class="tray" data-cx="100" data-cy="100" data-r="72" data-n="16" data-sr="13" fill="var(--b-tile)"></g><text x="100" y="114" text-anchor="middle" font-family="Young Serif, serif" font-size="40" fill="var(--b-chalk)">laza</text></svg></div>
+      <div style="background:var(--b-rose)"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="strand" width="40" height="14" patternUnits="userSpaceOnUse"><path d="M0 7 Q10 0 20 7 T40 7" fill="none" stroke="#F08A2B" stroke-width="3"/></pattern></defs><rect x="20" y="20" width="160" height="160" rx="16" fill="url(#strand)"/><text x="100" y="192" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#0F3550">KUNAFA STRAND PATTERN</text></svg></div>
+      <div style="background:var(--b-chalk); border:1px solid #E5E1D6"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M10 60 H190" stroke="#0F3550" stroke-width="2"/><g class="tray-edge" data-y="60" data-x0="10" data-x1="190" data-sr="10" fill="#4FB0E0"></g><text x="100" y="130" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#0F3550">SCALLOP EDGE</text><text x="100" y="148" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#0F3550">awning · table · menu</text></svg></div>
+    </div>
+
+    <p class="sub"><b>Color · the sweet shop at night</b><span>B.2</span></p>
+    <div class="pal">
+      <div class="chip lead" style="background:var(--b-tile); color:var(--b-ink)"><b>Tile Blue</b><span>#4FB0E0 · glazed Levantine tile</span><span>A lighter, greener blue that glows under warm light.</span></div>
+      <div class="chip" style="background:var(--b-kunafa); color:var(--b-ink)"><b>Kunafa</b><span>#F08A2B · the crust</span></div>
+      <div class="chip" style="background:var(--b-rose); color:var(--b-ink)"><b>Rose Syrup</b><span>#F5A3B7 · the drizzle</span></div>
+      <div class="chip" style="background:var(--b-ink); color:#fff"><b>Deep Tile</b><span>#0F3550 · type only</span></div>
+      <div class="chip" style="background:var(--b-oak); color:#fff"><b>Oak</b><span>#B98252 · long tables</span></div>
+      <div class="chip" style="background:var(--b-chalk); color:var(--b-ink); border:1px solid #E5E1D6"><b>Chalk</b><span>#F8F7F3 · ground</span></div>
+    </div>
+    <div class="ratio" aria-label="Color ratio: 45% tile blue, 20% chalk, 14% oak, 10% kunafa, 6% rose, 5% deep tile"><i style="flex:45;background:var(--b-tile)"></i><i style="flex:20;background:var(--b-chalk)"></i><i style="flex:14;background:var(--b-oak)"></i><i style="flex:10;background:var(--b-kunafa)"></i><i style="flex:6;background:var(--b-rose)"></i><i style="flex:5;background:var(--b-ink)"></i></div>
+    <p class="note">The palette is taken from the product itself: crust, syrup, tile and wood. Pistachio stays a <i>flavor</i> color on the menu only and never touches gold. That keeps us out of the Dubai-chocolate look.</p>
+
+    <p class="sub"><b>Type</b><span>B.3</span></p>
+    <div class="spec card" style="background:#fff">
+      <span class="l">Display · Young Serif · Arabic display · Lalezar</span>
+      <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 24px">
+        <span style="font:400 clamp(38px,6.5vw,76px)/1 var(--f-serif); letter-spacing:-.02em">Leave sweeter.</span>
+        <span dir="rtl" style="font:400 clamp(40px,7vw,80px)/1 var(--f-ar-b); color:var(--b-kunafa)">أهلاً وسهلاً</span>
+      </div>
+      <span class="l">Text · Figtree</span>
+      <div style="font:500 18px/1.5 var(--f-body); max-width:60ch">Nabulsi-style kunafa, pulled to order. Crepes, froyo, matcha and coffee until 2am. Pull up a stool, there's always room for one more.</div>
+    </div>
+
+    <p class="sub"><b>Space · the WOW is a ritual</b><span>B.4</span></p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>The Pull Bar</h3>
+        <p>A long, open kunafa counter in <b>Tile Blue glazed tile with a chrome top</b>, set right at the entrance. Trays come out of the oven, get flipped, and the cheese is pulled under a single warm spotlight, in front of you. Behind it, a slowly rotating chrome turntable of whole trays sits in the window, a modern version of the Nablus evening window.</p>
+        <p style="margin-top:12px">This is the Media.Monks lesson: one hero object, a stretching cheese pull, turned into the thing people film. It's content that is real product, not decoration, so it can't date.</p>
+      </div>
+      <div class="card">
+        <h3>Materials + social layout</h3>
+        <ul class="clean">
+          <li><b>Handmade glazed tile</b> in Tile Blue, laid in a simple stacked grid. Texture comes from the glaze, not from a pattern.</li>
+          <li><b>Long shared oak tables</b> (sofra) down the middle. Strangers sit near each other, which is how the conversation starts.</li>
+          <li><b>Built-in perimeter bench</b> (majlis) with Rose Syrup cushions. The whole room faces inward.</li>
+          <li><b>Scalloped chrome edges</b> on tables and the awning, pulled from the logo.</li>
+          <li><b>Warm globe pendants</b> that pool light on the tables, so the blue glows and never goes cold.</li>
+          <li><b>Music:</b> current Arab pop and Khaleeji into Afrobeats and R&amp;B. Host greets every guest with "ahlan" at the door.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card plan" style="margin-top:20px">
+      <p class="eyebrow">Zoning diagram · typical 1,400 sq ft store</p>
+      <div class="plan-wrap"><svg viewBox="0 0 640 300" role="img" aria-label="Plan for Ahlan: Pull Bar counter along the front window by the entry, long shared tables centre, perimeter bench wrapping back walls">
+        <rect x="10" y="10" width="620" height="280" rx="10" fill="#F3F0E8" stroke="#0F3550" stroke-width="2"/>
+        <rect x="40" y="215" width="280" height="44" rx="6" fill="#4FB0E0" stroke="#0F3550" stroke-width="2"/><text x="180" y="242" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="#0F3550">THE PULL BAR · tile + chrome</text>
+        <circle cx="80" cy="275" r="12" fill="#C9D1DB" stroke="#0F3550"/><text x="104" y="286" font-family="IBM Plex Mono" font-size="10" fill="#0F3550">turntable in window</text>
+        <rect x="400" y="275" width="80" height="15" fill="#F08A2B"/><text x="440" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#0F3550">ENTRY · "ahlan"</text>
+        <rect x="200" y="100" width="300" height="34" rx="6" fill="#B98252"/><rect x="200" y="150" width="300" height="34" rx="6" fill="#B98252"/><text x="350" y="92" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#0F3550">shared sofra tables</text>
+        <path d="M24 200 V24 H616 V200" fill="none" stroke="#F5A3B7" stroke-width="18" stroke-linejoin="round"/><text x="320" y="44" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#0F3550">perimeter majlis bench</text>
+        <rect x="560" y="70" width="44" height="110" rx="6" fill="#fff" stroke="#0F3550"/><text x="582" y="130" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#0F3550" transform="rotate(-90 582 126)">froyo · coffee</text>
+      </svg></div>
+    </div>
+
+    <p class="sub"><b>Touchpoints</b><span>B.5</span></p>
+    <div class="grid g4">
+      <div class="tp" style="background:#fff"><div class="cup"><div class="lid" style="background:var(--b-kunafa)"></div><div class="body" style="background:var(--b-tile)"><span dir="rtl" style="font:400 30px var(--f-ar-b); color:var(--b-chalk)">أهلاً</span></div></div><span class="cap">Cup greets you<br>"ahlan" in Arabic, name in Latin</span></div>
+      <div class="tp" style="background:#fff"><svg viewBox="0 0 160 160" width="140" aria-hidden="true"><g class="tray" data-cx="80" data-cy="80" data-r="62" data-n="16" data-sr="11" fill="var(--b-kunafa)"></g><circle cx="80" cy="80" r="44" fill="var(--b-tile)"/><text x="80" y="90" text-anchor="middle" font-family="Young Serif, serif" font-size="28" fill="var(--b-chalk)">laza</text></svg><span class="cap">Kunafa box = the tray<br>round, scalloped, a gift to carry</span></div>
+      <div class="tp" style="background:#fff"><div class="tee" style="background:var(--b-kunafa)"><span style="font:400 22px var(--f-serif); color:var(--b-ink); margin-top:10px; text-align:center">leave<br>sweeter</span></div><span class="cap">Team: Kunafa apron, Tile Blue tee<br>Merch: tray tote + tee</span></div>
+      <div class="tp" style="background:#fff"><div style="width:150px; background:var(--b-chalk); border:1px solid #E5E1D6; padding:12px; font:400 11px/1.6 var(--f-mono); color:var(--b-ink)"><div style="text-align:center; font:400 20px var(--f-ar-b); color:var(--b-kunafa)">شكراً</div>1× kunafa, rose ... 9.50<br>1× matcha ........ 6.00<br>—<br>Come back soon.<br>You're family now.</div><span class="cap">Receipt signs off<br>like a host would</span></div>
+    </div>
+
+    <p class="sub"><b>Voice</b><span>B.6</span></p>
+    <div class="voice">
+      <span style="background:var(--b-tile)">Ahlan. Come as you are.</span>
+      <span style="background:var(--b-kunafa)">Leave sweeter.</span>
+      <span style="background:var(--b-rose)">Always room for one more.</span>
+      <span style="background:var(--b-ink); color:#fff">Pulled to order. Watched by everyone.</span>
+      <span style="background:#fff; border:1px solid #E5E1D6">You're family now.</span>
+    </div>
+    <p class="note" style="margin-top:16px">Social format: "The Pull". One unbroken vertical shot of the cheese pull each night, with a regular's first name on screen. It shows the product, the ritual and the "we see you" persona in one format.</p>
+  </div>
+</section>
+
+<!-- 04 COMPARE -->
+<section id="compare" class="page">
+  <div class="wrap">
+    <p class="eyebrow">04 · Compare</p>
+    <h2>Scored against the brief</h2>
+    <div class="spacer"></div>
+    <div style="overflow-x:auto">
+      <table class="cmp">
+        <thead><tr><th>Brief test</th><th>A · Blue Hour</th><th>B · Ahlan</th></tr></thead>
+        <tbody>
+          <tr><th>One color owns the feeling (La La Land test)</th><td><span class="tag ok">Strongest</span> Sky is the whole idea, on ceiling, cup and uniform.</td><td><span class="tag">Good</span> Tile Blue leads, but shares the stage with Kunafa and Rose.</td></tr>
+          <tr><th>Recognizable without the logo, at store 20</th><td><span class="tag ok">Strong</span> The Sky ceiling plus the Rise shape.</td><td><span class="tag ok">Strong</span> The Pull Bar plus the scallop edge.</td></tr>
+          <tr><th>WOW moment</th><td>Architecture: a ceiling that changes with the hour.</td><td><span class="tag ok">Most filmable</span> Ritual: the live kunafa pull.</td></tr>
+          <tr><th>Social, 20–30 min energy</th><td>Oak bleachers, close 2-tops, rising music.</td><td><span class="tag ok">Strongest</span> Shared tables and a majlis bench. Strangers sit together.</td></tr>
+          <tr><th>Premium, not luxury</th><td>Chrome and oak, no gold.</td><td>Glazed tile and oak, no gold.</td></tr>
+          <tr><th>Won't date in 2 years</th><td>Color and light are timeless. The risk is a generic pastel blue, prevented by the named hue and the warm partner.</td><td>Ritual is timeless. The risk is heritage cliché, prevented by the slop filter.</td></tr>
+          <tr><th>Welcoming to everyone</th><td>Universal. Culture is a light layer.</td><td>Culturally specific, in a warm and open way. Families will love it.</td></tr>
+          <tr><th>Build cost / complexity</th><td>Medium-high: vault ceiling plus tunable lighting.</td><td>Medium: tile, joinery, one turntable.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="spacer"></div>
+    <div class="pick">
+      <p class="eyebrow" style="color:#9AA3B5">Our recommendation</p>
+      <h3>Lead with A, and bring in B's two best assets.</h3>
+      <p style="margin-top:12px; max-width:70ch">Blue Hour answers the brief's central ask most directly: a lighter blue that owns a feeling the way yellow does for La La Land. It also scales to 20 stores and every audience. It's missing a ritual, and B has the best one. Take <b>the Pull Bar</b> (clad in Sky tile with a chrome top) and <b>the equal-weight bilingual lockup</b> into A. That gives you a color people feel, a ritual people film, and a name with a real story.</p>
+      <p style="margin-top:10px; max-width:70ch">If Moose wants the heritage to be the headline rather than a layer, present B as a full alternative. It's the braver and more distinctive route.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 HANDOFF -->
+<section id="handoff" class="page">
+  <div class="wrap">
+    <p class="eyebrow">05 · Handoff</p>
+    <h2>What the studio does next</h2>
+    <div class="grid g2" style="margin-top:28px">
+      <div>
+        <h3 style="margin-bottom:6px">Questions for Moose before round 2</h3>
+        <ol class="steps">
+          <li><div><b>Does Laza come from لذّة ("delight")?</b> If yes, the name becomes the brand story in both directions.</div></li>
+          <li><div><b>Which "Yochi"?</b> We found Yo-Chi, the Australian chain. Is that the one he meant?</div></li>
+          <li><div><b>Which tennis-project blue?</b> Send the hex or a photo, and we'll test it against Laza Sky.</div></li>
+          <li><div><b>Which Instagram handle is official?</b> @lazacafe or @laza.cafe. We'll plan to consolidate at launch.</div></li>
+          <li><div><b>Is "Laza by Chocolate Factory" on Apple Maps</b> related, and is the 2am close the same at every future location?</div></li>
+        </ol>
+      </div>
+      <div>
+        <h3 style="margin-bottom:6px">Round 2 deliverables</h3>
+        <ol class="steps">
+          <li><div><b>Custom wordmark</b> for the chosen route: Latin and Arabic drawn together, not a set font.</div></li>
+          <li><div><b>Blue test on real material:</b> lacquer, glazed tile and printed cup, under 2700K and 4000K light at night.</div></li>
+          <li><div><b>Photoreal renders:</b> entrance WOW, counter and seating, at 3pm and 11pm.</div></li>
+          <li><div><b>Packaging dummies:</b> cup family, kunafa box, bag, sticker sheet.</div></li>
+          <li><div><b>Voice and music guide:</b> 30 lines and 3 playlists by daypart.</div></li>
+          <li><div><b>Kit of parts:</b> which 6 elements every store must have, so store 20 still feels like Laza.</div></li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="sub" style="color:var(--ink)"><b>Ready-to-run render prompts</b><span>Higgsfield / image model</span></p>
+    <p class="muted" style="margin-bottom:14px">We haven't spent any generation credits. These are written for photoreal interiors, and each one costs about one image generation.</p>
+    <div class="grid g2">
+      <div class="card" style="display:grid; gap:10px"><div style="display:flex; justify-content:space-between; align-items:center; gap:10px"><b>A · Blue Hour interior, 9pm</b><button class="copy" type="button" data-for="pA">Copy</button></div>
+<pre class="prompt" id="pA">Photoreal interior of a small New York dessert café at night, 1400 sq ft. Continuous barrel-vault ceiling lacquered in clear airy sky blue (#7FB2F0), softly lit from a hidden perimeter cove. Mirror-polished chrome bar front reflecting the blue ceiling. Three wide oak stepped "bleacher" seats along the right wall with young people sitting close, laughing, holding sky-blue cups. Warm yellow sconces, oak window rail, sky-blue glazed tile floor path from door to counter. No gold, no marble, no neon, no plants wall. Editorial architectural photography, 24mm, eye level, natural grain, lively but not crowded.</pre></div>
+      <div class="card" style="display:grid; gap:10px"><div style="display:flex; justify-content:space-between; align-items:center; gap:10px"><b>B · Ahlan Pull Bar, 11pm</b><button class="copy" type="button" data-for="pB">Copy</button></div>
+<pre class="prompt" id="pB">Photoreal interior of a contemporary Levantine dessert café in Brooklyn at 11pm. Long open counter clad in handmade glazed tile in light bright blue (#4FB0E0) with a brushed chrome top; a baker flips a round copper tray of kunafa and pulls stretching cheese under one warm spotlight. Scalloped chrome table edges, long shared oak tables, built-in perimeter bench with rose-pink cushions, warm globe pendants. Diverse group of 20-somethings and a family sharing dessert. No gold, no arches, no lanterns, no star patterns. Editorial photography, 35mm, shallow depth, warm and joyful.</pre></div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">Laza World · Round 1 directions · Prepared for the studio handoff · Research links above were checked on 29 Sep 2026. Items tagged are unverified.</footer>
+
+<script>
+// scalloped tray badges
+document.querySelectorAll('g.tray').forEach(g=>{
+  const cx=+g.dataset.cx, cy=+g.dataset.cy, r=+g.dataset.r, n=+g.dataset.n, sr=+g.dataset.sr, ns='http://www.w3.org/2000/svg';
+  const c=document.createElementNS(ns,'circle'); c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',r-sr*.35); g.appendChild(c);
+  for(let i=0;i<n;i++){const a=i/n*Math.PI*2, s=document.createElementNS(ns,'circle');
+    s.setAttribute('cx',cx+Math.cos(a)*(r-sr*.6)); s.setAttribute('cy',cy+Math.sin(a)*(r-sr*.6)); s.setAttribute('r',sr); g.appendChild(s);}
+});
+document.querySelectorAll('g.tray-edge').forEach(g=>{
+  const y=+g.dataset.y, x0=+g.dataset.x0, x1=+g.dataset.x1, sr=+g.dataset.sr, ns='http://www.w3.org/2000/svg';
+  for(let x=x0+sr;x<=x1-sr+.1;x+=sr*2){const s=document.createElementNS(ns,'circle'); s.setAttribute('cx',x); s.setAttribute('cy',y); s.setAttribute('r',sr); g.appendChild(s);}
+  const r=document.createElementNS(ns,'rect'); r.setAttribute('x',x0); r.setAttribute('y',y-40); r.setAttribute('width',x1-x0); r.setAttribute('height',40); g.insertBefore(r,g.firstChild);
+});
+// scrollspy
+const links=[...document.querySelectorAll('.nav li a')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>{const on=l.getAttribute('href')==='#'+e.target.id; l.classList.toggle('on',on); if(on){const ol=l.closest('ol'); ol.scrollLeft=l.offsetLeft-ol.offsetLeft-16;}});}});},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section.page').forEach(s=>io.observe(s));
+// copy
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.for);
+  navigator.clipboard.writeText(el.textContent).then(()=>{b.textContent='Copied'; setTimeout(()=>b.textContent='Copy',1600);})
+  .catch(()=>{const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected';});
+}));
+</script>

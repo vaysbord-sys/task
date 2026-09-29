@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAZA — Four Worlds · Brand Concept Round 1</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&family=Lalezar&family=Bowlby+One&family=Unbounded:wght@600;800&display=swap">
+<style>
+/* Deck: one full-screen slide per gesture (YONEX round-3 format). Light by brief: "no dark colors dominating". */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--milk:#F5F7FA;--ink:#14223D;--muted:#5B6781;--line:#DDE2EA;--sky:#7FB2F0;--lamp:#FFD34E;--bar:60px;
+  --f-d:"Bricolage Grotesque",Figtree,system-ui,sans-serif;--f-b:Figtree,system-ui,-apple-system,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--milk);-webkit-text-size-adjust:100%}
+@media (max-width:720px){html{scroll-snap-type:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--milk);color:var(--ink);font:16px/1.55 var(--f-b);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--sky),var(--lamp));z-index:40}
+.bar{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:30;display:flex;align-items:center;gap:6px;padding:0 20px;background:rgba(245,247,250,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.bar::-webkit-scrollbar{display:none}
+.bar .logo{font:800 22px/1 var(--f-d);letter-spacing:-.04em;margin-right:14px;cursor:pointer;background:none;border:0;color:var(--ink)}
+.bar button.k{font:500 13px var(--f-b);padding:7px 12px;border-radius:99px;border:0;background:none;color:var(--muted);white-space:nowrap;cursor:pointer;display:flex;gap:7px;align-items:center}
+.bar button.k:hover{background:var(--line);color:var(--ink)}
+.bar button.k.on{background:var(--ink);color:#fff}
+.bar i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.hint{margin-left:auto;font:400 11px var(--f-m);color:var(--muted);white-space:nowrap;padding-left:12px}
+@media (max-width:720px){.hint{display:none}}
+
+.slide{position:relative;min-height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;padding:calc(var(--bar) + 28px) clamp(20px,4vw,64px) 36px;overflow:hidden}
+.in{width:100%;max-width:1400px;margin:0 auto}
+.eb{font:500 12px var(--f-m);letter-spacing:.12em;text-transform:uppercase}
+.eb.dim{opacity:.55}.eb.light{color:#fff}
+.shead{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;margin-bottom:18px;border-bottom:2px solid currentColor}
+h1,h2,h3{text-wrap:balance}
+.big{font:800 clamp(52px,8.4vw,132px)/.88 var(--f-d);letter-spacing:-.05em;font-variation-settings:"wdth" 78}
+.lede{font-size:clamp(17px,1.6vw,21px);line-height:1.5;max-width:62ch;margin-top:22px;color:#34405C}
+p{max-width:66ch}
+
+/* intro */
+.intro{background:radial-gradient(90% 80% at 85% 10%,#CFE2FA 0%,transparent 60%),radial-gradient(70% 70% at 5% 100%,#FFEBB0 0%,transparent 60%),var(--milk)}
+.intro .in{text-align:center;display:flex;flex-direction:column;align-items:center}
+.wm{font:800 clamp(120px,22vw,320px)/.8 var(--f-d);letter-spacing:-.07em;font-variation-settings:"wdth" 76}
+.intro .sub{margin-top:28px;font:500 13px var(--f-m);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.intro .by{margin-top:44px;font:500 12px var(--f-m);letter-spacing:.14em;color:var(--muted)}
+.swatch4{display:flex;gap:10px;margin-top:40px}
+.swatch4 span{width:46px;height:46px;border-radius:50%}
+
+/* place */
+.maps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.maps figure{border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.maps iframe{width:100%;height:min(52vh,460px);border:0;display:block}
+.maps figcaption{padding:12px 16px;font:500 13px var(--f-m);display:flex;justify-content:space-between;gap:10px}
+@media (max-width:720px){.maps{grid-template-columns:1fr}}
+
+/* explore / refs tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.tile{border-radius:16px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tile b{font:700 18px/1.2 var(--f-b)}
+.tile span{font-size:14px;line-height:1.45}
+.tile small{font:500 11px var(--f-m);letter-spacing:.08em;opacity:.75}
+@media (max-width:900px){.tiles{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.tiles{grid-template-columns:1fr}}
+.heard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:22px}
+.heard div{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+.heard em{font:500 12px var(--f-m);font-style:normal;color:var(--muted);padding-top:3px}
+.heard b{display:block;font-size:16px}
+.heard span{font-size:14.5px;color:#3A4661}
+@media (max-width:760px){.heard{grid-template-columns:1fr}}
+.nos{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.nos span{font:500 13px var(--f-b);padding:5px 12px;border-radius:99px;border:1.5px dashed #D9A0A0;color:#8A2E2E;text-decoration:line-through}
+
+/* worlds overview */
+.quad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}
+.quad button{position:relative;border:0;padding:0;border-radius:18px;overflow:hidden;height:min(56vh,520px);cursor:pointer;text-align:left;color:#fff;background:#cfd8e6}
+.quad img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.quad button:hover img{transform:scale(1.04)}
+.quad .qt{position:absolute;inset:auto 0 0 0;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.quad .qt small{display:block;font:500 11px var(--f-m);letter-spacing:.12em;margin-bottom:6px}
+.quad .qt b{display:block;font:800 26px/1 var(--f-d);letter-spacing:-.02em}
+.quad .qt span{display:block;font-size:13.5px;line-height:1.4;margin-top:8px;opacity:.92}
+@media (max-width:900px){.quad{grid-template-columns:1fr 1fr}.quad button{height:320px}}
+
+/* concept cover */
+.cover-c{padding:0;align-items:flex-end}
+.cover-c .full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover-ov{position:relative;width:100%;padding:clamp(24px,5vw,72px);background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));color:#fff}
+.cname{font-size:clamp(68px,13vw,200px);line-height:.84;margin-top:10px}
+.cline{font-size:clamp(22px,2.6vw,36px);line-height:1.15;margin-top:14px}
+.A .cname,.A .cline,.A .wow{font-family:var(--f-d);font-weight:800;letter-spacing:-.045em;font-variation-settings:"wdth" 78}
+.A .cline,.A .wow{font-weight:700;letter-spacing:-.02em}
+.B .cname,.B .cline,.B .wow{font-family:"Young Serif",Georgia,serif;font-weight:400;letter-spacing:-.02em}
+.C .cname,.C .cline,.C .wow{font-family:"Bowlby One",Impact,sans-serif;font-weight:400}
+.D .cname,.D .cline,.D .wow{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-.04em}
+.D .cname{font-size:clamp(54px,10vw,150px)}
+.D .cline,.D .wow{font-weight:700;letter-spacing:-.02em}
+.A{background:#F4F8FD;color:#16306B}.B{background:#F8F7F3;color:#0F3550}.C{background:#FFFFFF;color:#1F5FA8}.D{background:#F3F4FA;color:#1A1F4A}
+.cover-c.A,.cover-c.B,.cover-c.C,.cover-c.D{color:#fff;background:#222}
+
+/* idea */
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,80px);align-items:start}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.idea{font-size:clamp(19px,1.9vw,25px);line-height:1.5;margin-top:18px;max-width:40ch}
+.in-line{margin-top:26px}
+.facts{display:grid;gap:18px}
+.fact{border-top:2px solid currentColor;padding-top:10px}
+.fact .eyebrow{font:500 12px var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.fact p{font-size:16px;line-height:1.5}
+
+/* identity */
+.idgrid{display:grid;grid-template-columns:1.45fr 1fr;gap:14px;height:min(58vh,560px)}
+@media (max-width:900px){.idgrid{grid-template-columns:1fr;height:auto}}
+.stage{border-radius:22px;display:flex;align-items:center;justify-content:center;padding:clamp(24px,4vw,56px);position:relative;min-height:320px}
+.stage svg{width:100%;max-width:520px;max-height:100%;height:auto}
+.stage .cap{position:absolute;left:18px;bottom:14px;font:500 11px var(--f-m);letter-spacing:.08em}
+.pal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;min-height:300px}
+.chip{border-radius:14px;padding:12px;display:flex;flex-direction:column;justify-content:flex-end}
+.chip b{font:700 14px var(--f-b)}.chip span{font:400 11px var(--f-m);opacity:.85}
+.chip.big{grid-column:span 2;grid-row:span 2}.chip.big b{font-size:20px}
+.voice{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.voice span{padding:9px 16px;border-radius:99px;font:600 15px var(--f-b)}
+
+/* space */
+.space{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
+@media (max-width:900px){.space{grid-template-columns:1fr}}
+.plan{background:#fff;border-radius:22px;padding:clamp(16px,3vw,40px);border:1px solid rgba(0,0,0,.06)}
+.plan svg{width:100%;height:auto;display:block}
+.wow{font-size:clamp(40px,5vw,72px);line-height:.95;margin-bottom:18px}
+.space p{font-size:17px;line-height:1.55}
+.space ul{margin-top:16px;padding-left:18px;display:grid;gap:8px;font-size:15.5px}
+
+/* views */
+.views{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:calc(100svh - var(--bar) - 150px);min-height:420px}
+.views figure{position:relative;border-radius:16px;overflow:hidden;background:rgba(0,0,0,.06);cursor:zoom-in}
+.views img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.views figure:hover img{transform:scale(1.03)}
+.views figcaption{position:absolute;left:12px;right:12px;bottom:10px;font:500 11px var(--f-m);letter-spacing:.06em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.views .v0{grid-column:1/3;grid-row:1/3}
+.views.n4 .v1,.views.n3 .v1{grid-column:3/4;grid-row:1/3}
+.views.n3 .v2{grid-column:4/5;grid-row:1/3}
+@media (max-width:720px){.views{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:220px;height:auto}.views .v0{grid-column:1/3;grid-row:auto}.views.n4 .v1,.views.n3 .v1,.views.n3 .v2{grid-column:auto;grid-row:auto}}
+
+/* compare */
+.cmpw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:12px 12px;border-bottom:1px solid var(--line)}
+thead th{font:500 11px var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tbody th{font-weight:600;width:19%}
+.pill{display:inline-block;font:500 11px var(--f-m);padding:2px 8px;border-radius:99px;background:#DCF1E2;color:#14532D;margin-bottom:3px}
+.pill.r{background:#FFE9C7;color:#6A4300}
+.rec{background:var(--ink);color:#fff}
+.rec .in{max-width:1100px}
+.rec h2{font:800 clamp(34px,4.6vw,68px)/1.02 var(--f-d);letter-spacing:-.035em;margin-top:16px}
+.rec p{color:#D5DBE8;font-size:clamp(16px,1.5vw,19px);margin-top:20px;max-width:70ch}
+.rec .combo{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.rec .combo span{padding:10px 16px;border-radius:99px;font:600 15px var(--f-b)}
+.next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.next{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:18px;padding:22px}
+.card h3{font:700 18px var(--f-b);margin-bottom:12px}
+.card ol{padding-left:20px;display:grid;gap:9px;font-size:15px;line-height:1.45}
+.links a{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);text-decoration:none;font-weight:600}
+.links a span{font:400 12px var(--f-m);color:var(--muted)}
+.fine{font:400 12px/1.6 var(--f-m);color:var(--muted);margin-top:22px;max-width:100ch}
+.thanks .in{text-align:center}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(10,16,30,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:min(94vw,1800px);max-height:84vh;object-fit:contain;border-radius:10px}
+.lb p{color:#fff;font:500 12px var(--f-m);letter-spacing:.08em}
+.lb button{position:absolute;top:16px;right:20px;background:#fff;border:0;border-radius:99px;padding:8px 14px;font:600 14px var(--f-b);cursor:pointer}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<nav class="bar" id="bar" aria-label="Chapters">
+  <button class="logo" data-key="intro">laza</button>
+  <button class="k" data-key="brief">Brief</button>
+  <button class="k" data-key="worlds">Four worlds</button>
+  <button class="k" data-key="c1"><i style="background:#7FB2F0"></i>Blue Hour</button>
+  <button class="k" data-key="c2"><i style="background:#4FB0E0"></i>Ahlan</button>
+  <button class="k" data-key="c3"><i style="background:#A9DDF3"></i>Pool Club</button>
+  <button class="k" data-key="c4"><i style="background:#6C8CFF"></i>Laza Radio</button>
+  <button class="k" data-key="compare">Compare</button>
+  <button class="k" data-key="next">Next</button>
+  <span class="hint">↑ ↓ to move</span>
+</nav>
+<main id="deck">
+
+<section class="slide intro" data-key="intro"><div class="in">
+  <div class="wm">laza</div>
+  <div class="sub">Dessert Café · Brand World · Concept Round 1</div>
+  <div class="swatch4" aria-hidden="true"><span style="background:#7FB2F0"></span><span style="background:#4FB0E0"></span><span style="background:#A9DDF3"></span><span style="background:#6C8CFF"></span></div>
+  <div class="by">Bay Ridge · Astoria · 29 September 2026</div>
+</div></section>
+
+<section class="slide" data-key="brief"><div class="in">
+  <div class="shead"><span class="eb">Location</span><span class="eb" style="opacity:.55">Two stores · open 2pm–2am daily</span></div>
+  <div class="maps">
+    <figure><iframe src="https://maps.google.com/maps?q=6740+5th+Ave,+Brooklyn,+NY+11220&amp;z=16&amp;hl=en&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Laza Bay Ridge map"></iframe><figcaption><b>Laza Bay Ridge</b><span>6740 5th Ave · Brooklyn</span></figcaption></figure>
+    <figure><iframe src="https://maps.google.com/maps?q=25-33+Steinway+St,+Astoria,+NY&amp;z=16&amp;hl=en&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Laza Astoria map"></iframe><figcaption><b>Laza Astoria</b><span>25-33 Steinway St · Queens</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="slide" data-key="brief"><div class="in">
+  <span class="eb">Exploration · Brooklyn × the Levant, open till 2am</span>
+  <h2 class="big" style="font-size:clamp(44px,6vw,92px);margin-top:14px">Where Laza's feeling comes from</h2>
+  <div class="tiles">
+    <div class="tile" style="background:#FFE2B8"><small>CULTURE</small><b>The sweet shops of Nablus + Damascus</b><span>Nablus is called the capital of sweets. There the counter is theater: trays in the window, the flip and the pull in front of you.</span></div>
+    <div class="tile" style="background:#16306B;color:#fff"><small>TIME</small><b>A night brand</b><span>Laza is open 2pm to 2am. Its best hours come after sunset, so the blue has to glow under evening light, not only in a daylight render.</span></div>
+    <div class="tile" style="background:#FFD34E"><small>FEELING</small><b>La La Land's yellow</b><span>One saturated hue coordinated across costume and set (Mary Zophres). Laza needs its own hue that lifts the mood the same way.</span></div>
+    <div class="tile" style="background:#DCEBFB"><small>SOCIAL</small><b>Froyo as a hangout</b><span>Mimi's (SoHo) reads as a lifestyle store and sells apparel. Yo-Chi makes self-serve a social ritual. Both are 20–30 minute visits.</span></div>
+    <div class="tile" style="background:#E9D8C4"><small>MATERIAL</small><b>Oak for home, chrome for now</b><span>Oak brings the warmth of a beautiful home, chrome the youth of 2026. Glazed tile adds craft and a way to carry color.</span></div>
+    <div class="tile" style="background:#fff;border:1.5px dashed #D9A0A0"><small>SLOP FILTER</small><b>What everyone else is doing</b><span>Neon script, flower walls, pistachio with gold (the Dubai-chocolate look), arabesque stars, arches and pastel gradients. None of it appears here.</span></div>
+  </div>
+</div></section>
+
+<section class="slide" data-key="brief"><div class="in">
+  <span class="eb">References · the studios we benchmarked</span>
+  <div class="tiles">
+    <div class="tile" style="background:#fff"><small>MYTHOLOGY · NYC</small><b>Retail as media</b><span>Harry's and Warby Parker launch work: the store is the ad. For Laza, the cup and the room are the campaign.</span></div>
+    <div class="tile" style="background:#fff"><small>KOTO · GUSTINI</small><b>A palette named after a place</b><span>"Sky, sun, sea, sand, soil", tactile rather than digital. We name every Laza color after an hour or an ingredient.</span></div>
+    <div class="tile" style="background:#fff"><small>RED ANTLER · ALLBIRDS</small><b>One soft symbol, surprising packaging</b><span>A friendly mark people can draw from memory, plus an unboxing that makes you smile.</span></div>
+    <div class="tile" style="background:#fff"><small>MEDIA.MONKS · KFC BUCKET</small><b>Hero object as social prop</b><span>One object that people film on their own: the cheese pull, the vault at 8pm, the pit.</span></div>
+    <div class="tile" style="background:#fff"><small>WOLFF OLINS · BLANK STREET</small><b>Time-of-day color</b><span>One owned color with secondary tones that shift through the day. This is the backbone of concept 01.</span></div>
+    <div class="tile" style="background:#fff"><small>BUILT PRECEDENTS</small><b>Daughter, Brooklyn · Common Breads, London</b><span>Indoor stoop seating (Christopher Al-Jumah) and Lebanese tile counters (MA Studio). Both prove the moves work at café scale.</span></div>
+  </div>
+</div></section>
+
+<section class="slide" data-key="brief"><div class="in">
+  <span class="eb">What we heard · Moose's brief, distilled</span>
+  <h2 class="big" style="font-size:clamp(40px,5.4vw,84px);margin-top:14px">People should come to <span style="color:var(--sky)">feel Laza</span>, not only for dessert.</h2>
+  <div class="heard">
+    <div><em>01</em><p><b>Lift the mood on entry</b><span>Exciting, happy, playful, cozy, energized.</span></p></div>
+    <div><em>02</em><p><b>Laza's version of La La Land's yellow</b><span>A lighter, happier blue, chosen by the studio.</span></p></div>
+    <div><em>03</em><p><b>Oak + chrome (+ tile)</b><span>Warmth of a home, energy of now.</span></p></div>
+    <div><em>04</em><p><b>Social, 20–30 minutes</b><span>Day-club energy without looking like a club.</span></p></div>
+    <div><em>05</em><p><b>One WOW moment, photogenic without trying</b><span>8–9/10, driven by architecture, light and product.</span></p></div>
+    <div><em>06</em><p><b>High design, accessible</b><span>Premium but never luxury. Styled for 20–30, open to all.</span></p></div>
+    <div><em>07</em><p><b>A Laza world</b><span>Cups, uniforms, menus, music and social from one personality.</span></p></div>
+    <div><em>08</em><p><b>The persona</b><span>Everyone wants to be around them. 20 minutes, better mood.</span></p></div>
+  </div>
+  <div class="nos"><span>dark dominating</span><span>generic coffee shop</span><span>boring minimalism</span><span>gold + marble</span><span>childish</span><span>trend that dates</span></div>
+</div></section>
+
+<section class="slide" data-key="worlds"><div class="in">
+  <div class="shead"><span class="eb">Four worlds</span><span class="eb" style="opacity:.55">One pillar of the brief each</span></div>
+  <div class="quad">
+    <button data-key="c1"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133248_47e46340-c033-476a-b6fd-b533c4888a80.png" alt="Blue Hour interior"><span class="qt"><small>01 · LIGHT</small><b>Blue Hour</b><span>Own the sky after sunset. The room changes color from 2pm to 2am.</span></span></button>
+    <button data-key="c2"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133605_4fa8c6fe-8926-48b7-8a89-fe7bb5c64707.png" alt="Ahlan Pull Bar"><span class="qt"><small>02 · HOSPITALITY</small><b>Ahlan</b><span>The Levantine sweet shop at 1am. The kunafa pull is the show.</span></span></button>
+    <button data-key="c3"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133602_96fd8f21-8333-40fc-8646-8b3f3b9b7bd2.png" alt="Pool Club pit"><span class="qt"><small>03 · ARCHITECTURE</small><b>Pool Club</b><span>A sunken tiled pit where everyone sits together.</span></span></button>
+    <button data-key="c4"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xojXnccJM2OM83CuOEuH3U88is/hf_20260929_133600_2d5fb9c1-fbb9-4fcd-8c8b-fcde3ba8a680.png" alt="Laza Radio record wall"><span class="qt"><small>04 · MUSIC</small><b>Laza Radio</b><span>A listening bar for dessert. On air till 2am.</span></span></button>
+  </div>
+</div></section>
+
+<!--CONCEPTS-->
+
+<section class="slide" data-key="compare"><div class="in">
+  <div class="shead"><span class="eb">Compare</span><span class="eb" style="opacity:.55">Scored against the brief</span></div>
+  <div class="cmpw"><table>
+    <thead><tr><th>Brief test</th><th>01 Blue Hour</th><th>02 Ahlan</th><th>03 Pool Club</th><th>04 Laza Radio</th></tr></thead>
+    <tbody>
+      <tr><th>A blue that owns the feeling</th><td><span class="pill">Strongest</span><br>The blue is the idea.</td><td>Tile Blue shares the stage with Kunafa.</td><td>Strong, but pastel-leaning.</td><td>Distinctive, leans cooler.</td></tr>
+      <tr><th>Recognizable with no logo, at store 20</th><td>The Sky ceiling + the Rise.</td><td><span class="pill">Strongest</span><br>The Pull Bar + scallop.</td><td>The Pit + cabana stripe.</td><td>The record wall + Dial.</td></tr>
+      <tr><th>WOW moment</th><td>Light that changes by the hour.</td><td><span class="pill">Most filmable</span><br>A live ritual.</td><td>The boldest architecture.</td><td>Sound and a booth.</td></tr>
+      <tr><th>Social, 20–30 min</th><td>Bleachers, close tables.</td><td>Shared tables.</td><td><span class="pill">Strongest</span><br>Everyone faces in.</td><td>Music-led energy.</td></tr>
+      <tr><th>Won't date in 2 years</th><td>Color and light are timeless.</td><td>Ritual is timeless.</td><td><span class="pill r">Risk</span><br>Retro-pool trend.</td><td><span class="pill r">Risk</span><br>The listening-bar wave of 2023–25.</td></tr>
+      <tr><th>Everyone welcome, not childish</th><td>Universal.</td><td>Warm and family-strong.</td><td>Playful; needs restraint.</td><td>Skews nightlife.</td></tr>
+      <tr><th>Build complexity</th><td>Medium-high (vault, light).</td><td>Medium (tile, joinery).</td><td><span class="pill r">High</span><br>Sunken floor, access.</td><td>Medium (joinery, audio).</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="slide rec" data-key="compare"><div class="in">
+  <span class="eb" style="color:#9AA6BF">Studio recommendation</span>
+  <h2>Take Blue Hour and Ahlan into round 2. Lead with Blue Hour, and give it Ahlan's Pull Bar.</h2>
+  <p>Blue Hour answers the central ask most directly: a lighter blue that does what yellow does for La La Land, and it scales to 20 stores and every audience. It lacks a ritual, and Ahlan has the best one in the set. A Pull Bar in Sky tile under the vault gives Laza a color people feel and a moment people film. The bilingual لذة lockup gives the name a real story.</p>
+  <p>Pool Club and Laza Radio each carry one idea worth keeping inside the lead route without their trend risk: the free membership card and one shared in-store Laza playlist.</p>
+  <div class="combo"><span style="background:#7FB2F0;color:#16306B">Blue Hour: color + vault</span><span style="background:#4FB0E0;color:#0F3550">+ Ahlan: Pull Bar + لذة</span><span style="background:#A9DDF3;color:#1F5FA8">+ membership card</span><span style="background:#6C8CFF;color:#fff">+ Laza playlist</span></div>
+</div></section>
+
+<section class="slide" data-key="next"><div class="in">
+  <div class="shead"><span class="eb">Next</span><span class="eb" style="opacity:.55">Handoff + round 2</span></div>
+  <div class="next">
+    <div class="card"><h3>Questions for Moose</h3><ol>
+      <li>Does "Laza" come from لذّة (delight)? If so, it's the brand story.</li>
+      <li>Which tennis-project blue? A hex or photo lets us test it against Laza Sky.</li>
+      <li>Is "Yochi" Yo-Chi, the Australian chain?</li>
+      <li>Which Instagram handle is official: @lazacafe or @laza.cafe?</li>
+      <li>Which one or two worlds go to round 2?</li>
+    </ol></div>
+    <div class="card"><h3>Round 2 deliverables</h3><ol>
+      <li>Custom wordmark, with Latin and Arabic drawn together.</li>
+      <li>The blue tested on lacquer, tile and cup stock at 2700K and 4000K.</li>
+      <li>Architectural plan and renders on the Bay Ridge floor plate.</li>
+      <li>Packaging dummies: cup family, kunafa box, bag, stickers.</li>
+      <li>Voice + music guide: 30 lines, 3 dayparts.</li>
+      <li>Kit of parts: the 6 elements every store must carry.</li>
+    </ol></div>
+    <div class="card links"><h3>Working files</h3>
+      <a href="https://claude.ai/artifact/JM3QZYzoYQdZxVqozey8PQ" target="_blank" rel="noopener">Identity system: 13 boards <span>Claude Design</span></a>
+      <a href="https://miro.com/app/board/uXjVHglzmhY=/" target="_blank" rel="noopener">Renders + moodboard <span>Miro</span></a>
+      <a href="https://claude.ai/artifact/X6A4BP4AY8ukYnB3vGXxp6" target="_blank" rel="noopener">Round 1 research + references <span>Claude</span></a>
+    </div>
+  </div>
+  <p class="fine">Renders are AI concept visualizations for mood and direction, not final architecture or artwork. Lettering on packaging and signage is a placeholder until the custom wordmark is drawn. Plans are zoning diagrams, not to scale. Reference projects are credited to their studios.</p>
+</div></section>
+
+<section class="slide thanks intro" data-key="next"><div class="in">
+  <div class="wm" style="font-size:clamp(90px,16vw,240px)">thank you.</div>
+  <div class="sub">Laza · Four worlds · Round 1</div>
+</div></section>
+
+</main>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="lbx">Close</button><img id="lbi" alt=""><p id="lbc"></p></div>
+<script>
+var bar=document.getElementById('bar'),keys=[].slice.call(bar.querySelectorAll('[data-key]'));
+var slides=[].slice.call(document.querySelectorAll('#deck .slide'));
+function go(k){var t=document.querySelector('#deck .slide[data-key="'+k+'"]');if(t)t.scrollIntoView({behavior:'smooth'});}
+[].slice.call(document.querySelectorAll('[data-key]')).forEach(function(b){if(b.tagName==='BUTTON')b.addEventListener('click',function(){go(b.dataset.key);});});
+function cur(){var c=0,bd=1e9;slides.forEach(function(s,i){var d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;c=i;}});return c;}
+addEventListener('keydown',function(e){if(lb.classList.contains('open')){if(e.key==='Escape')close();return;}
+  var d=0;if(e.key==='ArrowDown'||e.key==='PageDown'||(e.key===' '&&!e.shiftKey))d=1;else if(e.key==='ArrowUp'||e.key==='PageUp')d=-1;else return;
+  e.preventDefault();var n=Math.max(0,Math.min(slides.length-1,cur()+d));slides[n].scrollIntoView({behavior:'smooth'});});
+var prog=document.getElementById('prog');
+function onScroll(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?scrollY/h*100:0)+'%';
+  var k=slides[cur()].dataset.key;keys.forEach(function(b){var on=b.dataset.key===k&&b.classList.contains('k');b.classList.toggle('on',on);if(on)bar.scrollLeft=b.offsetLeft-80;});}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+var lb=document.getElementById('lb'),lbi=document.getElementById('lbi'),lbc=document.getElementById('lbc');
+function close(){lb.classList.remove('open');lbi.removeAttribute('src');}
+document.getElementById('lbx').addEventListener('click',close);lb.addEventListener('click',function(e){if(e.target===lb)close();});
+[].slice.call(document.querySelectorAll('.views img')).forEach(function(im){im.addEventListener('click',function(){lbi.src=im.src;lbi.alt=im.alt;lbc.textContent=im.dataset.cap||'';lb.classList.add('open');});});
+</script>
+</body>
+</html>

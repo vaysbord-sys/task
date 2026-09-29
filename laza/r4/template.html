@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAZA — Five Places · Round 4</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600&family=Readex+Pro:wght@400;600&family=Aref+Ruqaa:wght@400;700&family=Libre+Caslon+Display&family=Instrument+Sans:wght@400;500;600&family=Archivo:wdth,wght@62..125,400..900&family=Geist:wght@400;500;600&family=Alexandria:wght@500;700&family=Gloock&family=El+Messiri:wght@500;700&family=Unbounded:wght@500;700;800&family=Figtree:wght@400;500;600&family=Marhey:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Round 4 · YONEX-format: near-full-screen image slides with descriptive text; fade in/out on scroll. 8pt spacing. */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#161616;--mute:#666;--rule:#E6E6E6;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--helv:"Helvetica Neue",Helvetica,Arial,sans-serif;color-scheme:light}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.eb{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:clamp(16px,4vw,56px)}
+
+/* centered thin menu */
+.nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:2px;padding:4px;height:36px;max-width:calc(100vw - 24px);border-radius:99px;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.06),0 6px 24px -12px rgba(0,0,0,.25);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font:500 12px/1 var(--helv);text-decoration:none;color:#444;padding:7px 11px;border-radius:99px;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.nav a:hover{background:rgba(0,0,0,.06);color:#000}
+.nav a.on{background:#161616;color:#fff}
+.nav i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.nav .sep{width:1px;height:18px;background:rgba(0,0,0,.15);margin:0 4px;flex:none}
+.nav .v{font-family:var(--mono);letter-spacing:.06em}
+
+/* reveal: fade in when entering, fade out when leaving */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+/* intro + brief (Helvetica) */
+.intro{min-height:100svh;display:flex;align-items:flex-end;padding-block:120px 64px}
+.intro h1{font:400 clamp(52px,8vw,128px)/.95 "Gloock",Georgia,serif;letter-spacing:-.02em;max-width:14ch}
+.lede{font-size:clamp(18px,1.7vw,22px);line-height:1.55;max-width:62ch;margin-top:32px;color:#333}
+.five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:56px}
+.five a{text-decoration:none;display:grid;gap:10px}
+.five .ph{aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:#eee}
+.five .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.five a:hover img{transform:scale(1.04)}
+.five b{font-size:17px}.five span{font-size:13.5px;color:#555}
+@media (max-width:900px){.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.brief{font-family:var(--helv);padding-block:128px;border-top:1px solid var(--rule)}
+.brief h2{font:700 clamp(36px,4.6vw,68px)/1.02 var(--helv);letter-spacing:-.035em;max-width:18ch;margin-top:16px}
+.bgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 24px;margin-top:56px}
+.bgrid p{font:400 15px/1.5 var(--helv);color:#333;border-top:2px solid #161616;padding-top:12px}
+.bgrid b{display:block;font:700 17px/1.25 var(--helv);color:#161616;margin-bottom:6px;letter-spacing:-.01em}
+@media (max-width:900px){.bgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.bgrid{grid-template-columns:1fr}}
+.map{padding-block:128px;border-top:1px solid var(--rule)}
+.map h2{font:400 clamp(34px,4vw,56px)/1.05 "Gloock",serif;max-width:22ch;margin-top:16px}
+.scroll{overflow-x:auto;margin-top:40px}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--rule)}
+thead th{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+tbody th{font-weight:600}
+
+/* slides */
+.slide{position:relative}
+.full{height:94svh;min-height:520px;margin-block:3svh;overflow:hidden}
+.full .bg{position:absolute;inset:0}
+.full .bg img{width:100%;height:100%;object-fit:cover}
+.full::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);pointer-events:none}
+.full:has(.cap.right)::after{background:linear-gradient(270deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%)}
+.cap{position:absolute;z-index:2;bottom:clamp(24px,6vh,72px);max-width:min(520px,86vw);color:#fff}
+.cap.left{left:clamp(16px,4vw,64px)}.cap.right{right:clamp(16px,4vw,64px)}
+.cap h3{font:600 clamp(24px,2.6vw,36px)/1.1 var(--helv);letter-spacing:-.02em;margin-bottom:12px}
+.cap p{font:400 clamp(15px,1.3vw,18px)/1.55 var(--helv);text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.cap .eb{color:#fff;opacity:.9;margin-bottom:12px}
+.hero{height:100svh;margin-block:0}
+.hero .cap{max-width:min(620px,90vw)}
+.hero .dname{font-size:clamp(72px,12vw,180px);line-height:.88;letter-spacing:-.02em;margin-bottom:12px}
+.hero .dline{font-size:clamp(22px,2.4vw,32px);line-height:1.2;margin-bottom:16px}
+.text{padding-block:112px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:40px}}
+.roots{list-style:none;display:grid;gap:14px;margin-top:20px}
+.roots li{font-size:17px;line-height:1.55;padding-left:22px;position:relative}
+.roots li::before{content:"";position:absolute;left:0;top:.75em;width:12px;height:2px;background:currentColor}
+.roots a{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-left:6px}
+.lens{font:500 12px/1.5 var(--mono);letter-spacing:.06em;margin-top:24px;opacity:.85}
+.so{font-size:clamp(20px,2vw,28px);line-height:1.4;margin-top:20px}
+.logos{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:20px}
+.lg{border-radius:4px;overflow:hidden;aspect-ratio:16/9}.lg.sq{aspect-ratio:auto;height:100%}
+.lg img{width:100%;height:100%;object-fit:contain}
+.logos figure{display:grid;grid-template-rows:1fr auto;gap:10px}
+figcaption{font-size:14px;line-height:1.45;opacity:.85}
+@media (max-width:760px){.logos{grid-template-columns:1fr}.lg.sq{aspect-ratio:1/1;height:auto}}
+.pal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:20px}
+.chip{display:grid;gap:4px}.chip .c{height:120px;border-radius:4px}.chip b{font-size:15px}.chip span{font:400 12px var(--mono);opacity:.75}
+@media (max-width:760px){.pal{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.small{font-size:13.5px;opacity:.8;margin-top:12px}
+.ty{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-top:48px}
+.ty .d{font-size:clamp(44px,5.6vw,96px);line-height:1}
+.ty .ar{font-size:clamp(40px,5vw,80px);line-height:1.3;text-align:right}
+@media (max-width:760px){.ty{grid-template-columns:1fr}.ty .ar{text-align:left}}
+.pair{padding-block:3svh}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two figure{display:grid;gap:16px;align-content:start}
+.two .ph{height:78svh;min-height:420px;overflow:hidden;border-radius:2px;background:rgba(0,0,0,.06)}
+.two .ph img{width:100%;height:100%;object-fit:cover}
+.two h3{font:600 22px/1.2 var(--helv);letter-spacing:-.01em;margin-bottom:6px}
+.two p{font:400 15.5px/1.55 var(--helv);max-width:52ch}
+@media (max-width:760px){.two{grid-template-columns:1fr}.two .ph{height:auto;aspect-ratio:4/5;min-height:0}}
+.vo{list-style:none;display:grid;gap:14px;margin-top:20px}
+.vo li{font-size:clamp(24px,2.6vw,36px);line-height:1.15}
+.bg img,.ph img,.lg img{cursor:zoom-in}
+
+/* direction themes */
+.E{background:#EFE2CC;color:#5A3A29;font-family:"Hanken Grotesk",sans-serif}.E .dname,.E .so,.E .vo li{font-family:"Young Serif",Georgia,serif}
+.O{background:#F7F0E3;color:#23408E}.O .dname,.O .so,.O .vo li{font-family:"Libre Caslon Display",Georgia,serif}
+.L{background:#EEE9FF;color:#1B1F5E;font-family:Geist,sans-serif}.L .dname{font-family:Archivo,sans-serif;font-weight:800;font-variation-settings:"wdth" 125;letter-spacing:-.03em}.L .so,.L .vo li{font-family:Archivo,sans-serif;font-weight:700;font-variation-settings:"wdth" 110}.L .ty .d{font-weight:800;font-variation-settings:"wdth" 125}
+.B{background:#EAF4FD;color:#1F3A7A}.B .dname,.B .so,.B .vo li{font-family:"Gloock",Georgia,serif}
+.Y{background:#FFF8E6;color:#14285C;font-family:Figtree,sans-serif}.Y .dname,.Y .vo li{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-.03em}.Y .so{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}.Y .ty .d{font-weight:800}
+.Y .text{background:#FFC21A}
+.hero .dname,.hero .dline{color:#fff}
+
+.close{padding-block:128px;border-top:1px solid var(--rule)}
+.close h2{font:400 clamp(34px,4vw,56px)/1.05 "Gloock",serif;max-width:22ch}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:48px}
+.grid3 p{font:400 15px/1.55 var(--helv);color:#333}
+.grid3 b{display:block;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;color:#161616}
+@media (max-width:900px){.grid3{grid-template-columns:1fr}}
+footer{padding-block:48px;border-top:1px solid var(--rule);font:400 12px/1.6 var(--mono);color:var(--mute)}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(10,10,10,.94);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;object-fit:contain}
+.lb button{position:absolute;top:16px;right:18px;border:0;background:#fff;border-radius:99px;padding:8px 14px;font:600 14px var(--helv);cursor:pointer}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<nav class="nav" aria-label="Sections">
+  <a href="#brief">Brief</a>
+  <a href="#oasis"><i style="background:#C4623A"></i>Oasis</a>
+  <a href="#teta"><i style="background:#B7283A"></i>Teta</a>
+  <a href="#aegean"><i style="background:#2438D6"></i>Aegean</a>
+  <a href="#island"><i style="background:#9CCBF2"></i>Island</a>
+  <a href="#yalla"><i style="background:#FFC21A"></i>Yalla</a>
+  <a href="#next">Next</a>
+  <span class="sep"></span>
+  <a class="v on" href="./" aria-current="page">New</a><a class="v" href="./old/">Old</a>
+</nav>
+
+<header class="intro"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">Laza Dessert Café · Round 4 · 29 Sep 2026</p>
+  <h1>Five places Laza can take you.</h1>
+  <p class="lede">An oasis, grandma's kitchen, the Turkish coast, an island, and pure sunshine. For each we researched where the feeling comes from, then let that shape the logo, the room, the uniform and the cup. Warm, cozy and generous first; cool second. Everything here was made for Laza.</p>
+  <div class="five">
+    <a href="#oasis"><div class="ph"><img src="HERO_oasis" alt="Oasis"></div><b>01 Oasis</b><span>Desert oasis × Dubai chocolate</span></a>
+    <a href="#teta"><div class="ph"><img src="HERO_teta" alt="Teta"></div><b>02 Teta</b><span>Grandma's kitchen × lokanta</span></a>
+    <a href="#aegean"><div class="ph"><img src="HERO_aegean" alt="Aegean"></div><b>03 Aegean</b><span>The Turkish coast</span></a>
+    <a href="#island"><div class="ph"><img src="HERO_island" alt="Island"></div><b>04 Island</b><span>Baby blue, mango core</span></a>
+    <a href="#yalla"><div class="ph"><img src="HERO_yalla" alt="Yalla"></div><b>05 Yalla</b><span>Sun yellow first, blue second</span></a>
+  </div>
+</div></header>
+
+<section id="brief" class="brief"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">Moose's brief, extracted</p>
+  <h2>People come to feel Laza, not just for dessert.</h2>
+  <div class="bgrid">
+    <p><b>Lift the mood</b>Exciting, happy, playful, cozy and energized from the moment you walk in.</p>
+    <p><b>One color that carries it</b>La La Land's yellow is the model. A lighter, happier blue replaces the royal blue.</p>
+    <p><b>Oak and chrome</b>The warmth of a beautiful home, the energy of now. Tile welcome.</p>
+    <p><b>The 20-minute hang</b>Close seating, music and movement. A day-club feeling without the club.</p>
+    <p><b>One WOW on entry</b>Photogenic at 8 or 9 out of 10, without trying. No neon or flower walls.</p>
+    <p><b>High design, accessible</b>No gold, marble or hotel luxury. Not cheap, not childish.</p>
+    <p><b>A whole world</b>Cups, uniforms, menus, music, social and furniture. Recognizable without the logo.</p>
+    <p><b>The persona</b>The person everyone wants to be around. Twenty minutes with them and your day is better.</p>
+  </div>
+</div></section>
+
+<section class="map"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">The five places</p>
+  <h2>Each place, a studio lens, and the part of the brief it serves.</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Direction</th><th>Place</th><th>Studio lens</th><th>Answers best</th><th>Logo</th></tr></thead>
+    <tbody>
+      <tr><th>01 Oasis</th><td>Desert oasis, inside a Dubai chocolate bar</td><td>Arabic-contemporary · Mythology</td><td>Rest, generosity, the 2am stop</td><td>Kashida wordmark · dallah symbol</td></tr>
+      <tr><th>02 Teta</th><td>Grandma's kitchen, Turkish lokanta</td><td>Brooklyn · Red Antler</td><td>"Makes you feel seen"</td><td>Nuqta wordmark · teapot symbol</td></tr>
+      <tr><th>03 Aegean</th><td>Bodrum to Kaş</td><td>Northern European · Koto</td><td>Photogenic without trying</td><td>Crescent wordmark · maraş cone</td></tr>
+      <tr><th>04 Island</th><td>A tropical island, Brooklyn hours</td><td>LA · Media.Monks</td><td>The happier blue, the unhurried hang</td><td>Naskh-curl wordmark · mango kunafa</td></tr>
+      <tr><th>05 Yalla</th><td>Sunshine you can walk into</td><td>New York pop · Brooklyn × LA</td><td>La La Land's yellow, with the blue</td><td>Floating-dot wordmark · ma'amoul</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small" style="margin-top:16px;color:#555">Every blue sits with oak and a warm lead color. Wordmarks are one color; symbols are three, round and smooth. All Arabic needs native proofing, and precedents we couldn't verify are marked unverified.</p>
+</div></section>
+
+<!--DIRECTIONS-->
+
+<section id="next" class="close"><div class="wrap">
+  <p class="eb" style="color:var(--mute)">Next</p>
+  <h2>Pick a place. We'll build the whole world around it.</h2>
+  <div class="grid3">
+    <p><b>Our read</b>Yalla is the most direct answer to the La La Land brief. Teta is the hardest to copy and the most human. A Yalla color system inside a Teta room, with its tray wall and its host, is the strongest merge to explore next.</p>
+    <p><b>Full execution</b>Production redraw of the wordmark with Latin and Arabic drawn together, the symbol set, packaging dielines, uniform tech packs, signage, menu, social templates, an interior plan on the Bay Ridge footprint, and a motion sting.</p>
+    <p><b>Caveats</b>Marks and images are AI-generated concept work. They need a type-designer pass and a native Arabic proof before trademark filing or production. Menu items and lines are illustrative.</p>
+  </div>
+</div></section>
+<footer><div class="wrap">Laza · Round 4 · Logos, symbols and imagery generated bespoke in Higgsfield (Recraft V4.1 vector, GPT Image 2.5), with the real wordmarks as references. Research sources are linked inline. <a href="./old/">Round 3 →</a></div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button type="button" id="lbx">Close</button><img id="lbi" alt=""></div>
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting);});},{threshold:0.18});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  var links=[].slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.dir,#brief,#next').forEach(function(s){so.observe(s);});
+  var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+  document.querySelectorAll('.bg img,.ph img,.lg img').forEach(function(im){im.tabIndex=0;function o(){lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');document.getElementById('lbx').focus();}im.addEventListener('click',o);im.addEventListener('keydown',function(e){if(e.key==='Enter')o();});});
+  document.getElementById('lbx').addEventListener('click',function(){lb.classList.remove('open');});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open');});
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+})();
+</script>
+</body>
+</html>
