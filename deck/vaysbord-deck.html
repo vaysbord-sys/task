@@ -6,674 +6,577 @@
 <title>Maxim Vaysbord — Creative Director // 2025</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ============================================================
+     VAYSBORD — Creative Director Portfolio
+     Design system (applied skills: Taste Skill anti-slop + Emil
+     Kowalski design-eng philosophy):
+     · ONE locked accent (signal red). No second accent. No AI-purple.
+     · Shape lock: everything sharp (radius 0). No pills.
+     · Eyebrow restraint: labels only on dividers / structural slides.
+     · Type: Space Grotesk (display) + Geist (body) + Geist Mono (meta).
+     · 6 rotating layout families, ≤2 consecutive splits.
+     · Honest, captioned image zones (no div-based fake screenshots).
+     ============================================================ */
   :root{
-    --ink:#0B0B0C;
-    --ink-2:#141416;
-    --paper:#F4F1EA;
-    --paper-dim:#B8B4AC;
-    --muted:#7C7872;
-    --line:rgba(244,241,234,0.14);
-    --line-strong:rgba(244,241,234,0.28);
-    --accent:#F2402E;
-    --gold:#C9A46A;
-    --pad:84px;
+    --ink:#0A0A0B;
+    --raise:#121214;
+    --raise-2:#191A1D;
+    --paper:#F3F1EB;
+    --paper-dim:#A8A49C;
+    --muted:#6E6A64;
+    --faint:#48453F;
+    --line:rgba(243,241,235,0.12);
+    --line-2:rgba(243,241,235,0.22);
+    --accent:#E8452E;      /* single locked accent */
+    --accent-dim:rgba(232,69,46,0.14);
+    --pad:88px;
+    --r:0px;               /* shape lock */
   }
-
   *{ margin:0; padding:0; box-sizing:border-box; }
-
   @page{ size:1280px 720px; margin:0; }
-
-  html,body{ background:#222; }
-
+  html,body{ background:#1c1c1e; }
   body{
-    font-family:"Inter",-apple-system,sans-serif;
+    font-family:"Geist","Inter",-apple-system,sans-serif;
     color:var(--paper);
     -webkit-font-smoothing:antialiased;
     text-rendering:geometricPrecision;
+    font-feature-settings:"ss01","cv01";
   }
 
   .slide{
-    position:relative;
-    width:1280px;
-    height:720px;
-    background:var(--ink);
-    overflow:hidden;
-    page-break-after:always;
-    break-after:page;
-    display:flex;
-    flex-direction:column;
+    position:relative; width:1280px; height:720px;
+    background:var(--ink); overflow:hidden;
+    page-break-after:always; break-after:page;
+    display:flex; flex-direction:column;
   }
   .slide:last-child{ page-break-after:auto; break-after:auto; }
-
-  /* ---- subtle film grain / vignette over dark slides ---- */
-  .slide::after{
-    content:"";
-    position:absolute; inset:0;
-    background:radial-gradient(130% 115% at 50% -10%, rgba(255,255,255,0.045), rgba(255,255,255,0) 55%);
-    pointer-events:none;
+  .slide::after{  /* faint top vignette, no gradient-blob cliché */
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(120% 90% at 50% -20%, rgba(255,255,255,0.035), transparent 60%);
   }
 
-  /* ================= CHROME (header / footer) ================= */
+  /* ---------------- chrome ---------------- */
   .chrome{
     position:absolute; left:var(--pad); right:var(--pad);
     display:flex; align-items:center; justify-content:space-between;
-    font-family:"Space Grotesk"; font-weight:500;
-    font-size:12.5px; letter-spacing:.26em; text-transform:uppercase;
-    color:var(--paper-dim); z-index:5;
+    font-family:"Geist Mono",monospace; font-weight:400;
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--muted); z-index:6;
   }
-  .chrome.top{ top:46px; }
-  .chrome.bot{ bottom:44px; color:var(--muted); }
-  .chrome .mark{ color:var(--paper); letter-spacing:.3em; }
-  .chrome .mark b{ color:var(--accent); font-weight:700; }
-  .chrome .dot{ display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--accent); margin:0 12px 2px; vertical-align:middle; }
-  .rule-top{ position:absolute; left:var(--pad); right:var(--pad); top:76px; height:1px; background:var(--line); z-index:4; }
-  .rule-bot{ position:absolute; left:var(--pad); right:var(--pad); bottom:74px; height:1px; background:var(--line); z-index:4; }
+  .chrome.top{ top:50px; }
+  .chrome.bot{ bottom:48px; }
+  .chrome .mark{ color:var(--paper); letter-spacing:.26em; font-weight:500; }
+  .chrome .mark i{ color:var(--accent); font-style:normal; }
+  .chrome .pg{ color:var(--paper-dim); }
+  .rule{ position:absolute; left:var(--pad); right:var(--pad); height:1px; background:var(--line); z-index:5; }
+  .rule.top{ top:80px; } .rule.bot{ bottom:78px; }
+  .body{ position:absolute; left:var(--pad); right:var(--pad); top:122px; bottom:112px; z-index:3; display:flex; flex-direction:column; }
 
-  .body{ position:absolute; left:var(--pad); right:var(--pad); top:118px; bottom:108px; z-index:3; }
+  /* ---------------- type ---------------- */
+  h1,h2,h3{ font-family:"Space Grotesk"; font-weight:600; line-height:.96; letter-spacing:-.025em; }
+  .label{ font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
+  .meta{ font-family:"Geist Mono",monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--paper-dim); }
+  .meta b{ color:var(--muted); font-weight:400; }
+  .lead{ font-family:"Geist"; font-size:17px; line-height:1.6; color:var(--paper-dim); font-weight:300; max-width:50ch; }
+  .lead b{ color:var(--paper); font-weight:500; }
+  .small{ font-size:13.5px; line-height:1.62; color:var(--muted); font-weight:300; }
 
-  /* ================= TYPE ================= */
-  .kicker{
-    font-family:"Space Grotesk"; font-weight:500;
-    font-size:13px; letter-spacing:.34em; text-transform:uppercase;
-    color:var(--accent); display:flex; align-items:center; gap:14px;
-  }
-  .kicker::before{ content:""; width:30px; height:1px; background:var(--accent); display:inline-block; }
-  .kicker.gold{ color:var(--gold); }
-  .kicker.gold::before{ background:var(--gold); }
-
-  h1,h2,h3{ font-family:"Space Grotesk"; font-weight:600; line-height:.98; letter-spacing:-.02em; }
-
-  .lead{ font-size:17px; line-height:1.62; color:var(--paper-dim); font-weight:300; max-width:52ch; }
-  .lead strong{ color:var(--paper); font-weight:500; }
-  .small{ font-size:13.5px; line-height:1.6; color:var(--muted); font-weight:300; }
-
-  .ghost-no{
-    position:absolute; font-family:"Space Grotesk"; font-weight:700;
-    color:rgba(244,241,234,0.045); line-height:.8; letter-spacing:-.04em;
-    z-index:1; user-select:none;
-  }
-
-  /* ================= IMAGE ZONES ================= */
+  /* ---------------- image zones (honest, captioned, sharp) ---------------- */
   .frame{
-    position:relative; border:1px solid var(--line-strong); overflow:hidden;
-    background:
-      linear-gradient(135deg, rgba(242,64,46,0.07), rgba(255,255,255,0) 60%),
-      linear-gradient(315deg, rgba(201,164,106,0.06), rgba(255,255,255,0) 55%),
-      var(--ink-2);
-    display:flex; align-items:center; justify-content:center; text-align:center;
+    position:relative; border:1px solid var(--line-2); border-radius:var(--r); overflow:hidden;
+    background:linear-gradient(145deg, var(--raise-2), var(--raise) 70%);
+    display:flex; align-items:flex-end;
   }
-  .frame::before,.frame::after{
-    content:""; position:absolute; width:16px; height:16px; opacity:.6;
-    border-color:var(--paper-dim); border-style:solid;
-  }
-  .frame::before{ top:12px; left:12px; border-width:1px 0 0 1px; }
-  .frame::after{ bottom:12px; right:12px; border-width:0 1px 1px 0; }
-  .frame .cap{
-    font-family:"Space Grotesk"; font-weight:500; font-size:11px;
-    letter-spacing:.28em; text-transform:uppercase; color:var(--muted);
-    padding:0 20px;
-  }
-  .frame .cap b{ display:block; color:var(--paper-dim); font-weight:600; letter-spacing:.2em; margin-bottom:7px; font-size:11.5px; }
-  .frame.accent{ background:
-      linear-gradient(135deg, rgba(242,64,46,0.16), rgba(242,64,46,0) 62%),
-      linear-gradient(315deg, rgba(0,0,0,0.3), rgba(255,255,255,0) 55%),
-      var(--ink-2); }
+  .frame.spark{ background:linear-gradient(145deg, var(--accent-dim), var(--raise) 58%); }
+  .frame .tick{ position:absolute; top:13px; left:13px; width:13px; height:13px; border:1px solid var(--paper-dim); border-right:0; border-bottom:0; opacity:.55; }
+  .frame .cap{ font-family:"Geist Mono",monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding:14px 15px; line-height:1.5; }
+  .frame .cap b{ display:block; color:var(--paper-dim); font-weight:500; letter-spacing:.14em; margin-bottom:3px; }
+  .frame.big .cap{ font-size:11px; padding:20px 22px; }
 
-  /* ================= COVER ================= */
+  /* ---------------- stats ---------------- */
+  .stats{ display:flex; gap:56px; }
+  .stat .n{ font-family:"Space Grotesk"; font-weight:600; font-size:40px; letter-spacing:-.02em; line-height:1; }
+  .stat .n u{ text-decoration:none; color:var(--accent); }
+  .stat .l{ font-family:"Geist Mono",monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:11px; line-height:1.5; max-width:20ch; }
+
+  .grow{ flex:1 1 auto; } .mt-auto{ margin-top:auto; }
+
+  /* ============================================================ COVER */
   .cover{ justify-content:center; padding:0 var(--pad); }
-  .cover .edge{
-    position:absolute; inset:46px var(--pad); border:1px solid var(--line);
-    pointer-events:none; z-index:2;
-  }
-  .cover .no{
-    position:absolute; right:var(--pad); bottom:70px;
-    font-family:"Space Grotesk"; font-weight:700; font-size:300px; line-height:.72;
-    color:rgba(244,241,234,0.05); z-index:1; letter-spacing:-.04em;
-  }
-  .cover-main{ position:relative; z-index:3; }
-  .cover h1{ font-size:132px; line-height:.86; letter-spacing:-.035em; }
-  .cover h1 .fade{ color:var(--muted); }
-  .cover .role{
-    font-family:"Space Grotesk"; font-weight:500; font-size:19px;
-    letter-spacing:.3em; text-transform:uppercase; color:var(--accent);
-    margin-top:30px;
-  }
-  .cover .meta{
-    display:flex; gap:40px; margin-top:40px;
-    font-family:"Space Grotesk"; font-size:13px; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--paper-dim);
-  }
-  .cover .meta span b{ display:block; color:var(--muted); font-size:10.5px; letter-spacing:.26em; margin-bottom:6px; font-weight:500; }
+  .cover .edge{ position:absolute; inset:50px var(--pad); border:1px solid var(--line); z-index:2; pointer-events:none; }
+  .cover .ghost{ position:absolute; right:calc(var(--pad) - 10px); bottom:44px; font-family:"Space Grotesk"; font-weight:700; font-size:320px; line-height:.7; color:rgba(243,241,235,0.045); z-index:1; letter-spacing:-.05em; }
+  .cover .main{ position:relative; z-index:3; }
+  .cover h1{ font-size:138px; line-height:.84; letter-spacing:-.04em; }
+  .cover h1 .d{ color:var(--accent); }
+  .cover .role{ font-family:"Geist Mono",monospace; font-size:14px; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-dim); margin-top:34px; }
+  .cover .info{ display:flex; gap:48px; margin-top:38px; }
+  .cover .info div{ font-family:"Geist Mono",monospace; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--paper); }
+  .cover .info span{ display:block; color:var(--muted); font-size:9.5px; letter-spacing:.22em; margin-bottom:7px; }
 
-  /* ================= SECTION DIVIDER ================= */
-  .divider{ justify-content:center; }
-  .divider .body{ display:flex; flex-direction:column; justify-content:center; }
-  .divider .seg{
-    font-family:"Space Grotesk"; font-weight:500; font-size:14px;
-    letter-spacing:.3em; text-transform:uppercase; color:var(--accent); margin-bottom:26px;
-  }
-  .divider h2{ font-size:104px; letter-spacing:-.035em; }
-  .divider .sub{ margin-top:30px; font-size:17px; color:var(--paper-dim); font-weight:300; max-width:56ch; line-height:1.6; }
-  .divider .bignum{
-    position:absolute; right:0; top:50%; transform:translateY(-50%);
-    font-family:"Space Grotesk"; font-weight:700; font-size:240px; line-height:.8;
-    color:rgba(244,241,234,0.05); z-index:1;
-  }
+  /* ============================================================ DIVIDER */
+  .divider .body{ justify-content:center; }
+  .divider .seg{ font-family:"Geist Mono",monospace; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent); margin-bottom:28px; display:flex; align-items:center; gap:14px; }
+  .divider .seg::before{ content:""; width:28px; height:1px; background:var(--accent); }
+  .divider h2{ font-size:108px; letter-spacing:-.04em; }
+  .divider .sub{ margin-top:30px; font-size:16px; color:var(--paper-dim); font-weight:300; max-width:52ch; line-height:1.6; font-family:"Geist"; }
+  .divider .bignum{ position:absolute; right:-6px; top:50%; transform:translateY(-50%); font-family:"Space Grotesk"; font-weight:700; font-size:300px; line-height:.72; color:rgba(243,241,235,0.045); z-index:1; letter-spacing:-.05em; }
 
-  /* ================= GRID HELPERS ================= */
-  .split{ display:grid; grid-template-columns:1.05fr 1fr; gap:60px; height:100%; }
-  .split.wide-img{ grid-template-columns:.92fr 1.18fr; }
-  .col{ display:flex; flex-direction:column; }
-  .col.center{ justify-content:center; }
-  .stat-row{ display:flex; gap:46px; margin-top:auto; padding-top:26px; }
-  .stat .n{ font-family:"Space Grotesk"; font-weight:600; font-size:38px; letter-spacing:-.02em; color:var(--paper); }
-  .stat .n .u{ color:var(--accent); }
-  .stat .l{ font-family:"Space Grotesk"; font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); margin-top:8px; }
+  /* ============================================================ LAYOUT FAMILIES */
+  /* A — statement + stat band (image-light) */
+  .fam-statement h2{ font-size:66px; max-width:16ch; }
+  /* B — editorial split */
+  .split{ display:grid; grid-template-columns:1.02fr 1.1fr; gap:64px; flex:1; }
+  .split.img-wide{ grid-template-columns:.86fr 1.28fr; }
+  .cx{ display:flex; flex-direction:column; justify-content:center; }
+  .cx h2{ font-size:54px; }
+  /* C — hero frame dominant */
+  .hero-grid{ display:grid; grid-template-columns:1.55fr 1fr; gap:22px; flex:1; }
+  .hero-grid .side{ display:flex; flex-direction:column; justify-content:flex-end; }
+  .hero-grid .side h2{ font-size:46px; }
+  /* D — frame grid with title bar */
+  .barhead{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:26px; }
+  .barhead h2{ font-size:46px; }
+  .gridframes{ display:grid; gap:16px; flex:1; }
+  .g4{ grid-template-columns:repeat(4,1fr); }
+  .g3{ grid-template-columns:repeat(3,1fr); }
+  .g5{ grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr; }
+  .g5 .frame.span2{ grid-column:span 2; }
+  /* E — three column */
+  .three{ display:grid; grid-template-columns:repeat(3,1fr); gap:46px; flex:1; align-content:center; }
+  .three h4{ font-family:"Space Grotesk"; font-weight:600; font-size:17px; margin-bottom:18px; color:var(--paper); display:flex; align-items:center; gap:11px; }
+  .three h4::before{ content:""; width:7px; height:7px; background:var(--accent); }
+  .three ul{ list-style:none; }
+  .three li{ font-family:"Geist"; font-size:13.5px; line-height:1.5; color:var(--paper-dim); font-weight:300; padding:10px 0; border-top:1px solid var(--line); }
+  .three li:first-child{ border-top:none; }
+  .three li b{ color:var(--paper); font-weight:500; }
+  /* F — quote led */
+  .quote{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .quote .big{ font-family:"Space Grotesk"; font-weight:500; font-size:40px; line-height:1.14; letter-spacing:-.02em; max-width:24ch; }
+  .quote .big u{ text-decoration:none; color:var(--accent); }
+  .quote .by{ font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:30px; }
 
-  .tags{ display:flex; flex-wrap:wrap; gap:9px; margin-top:26px; }
-  .tag{
-    font-family:"Space Grotesk"; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--paper-dim); border:1px solid var(--line-strong); padding:7px 13px; border-radius:999px;
-  }
-
-  h2.title{ font-size:52px; margin-top:20px; }
-  h2.title.lg{ font-size:62px; }
-
-  /* intro columns */
-  .three{ display:grid; grid-template-columns:repeat(3,1fr); gap:44px; height:100%; }
-  .three .blk h4{ font-family:"Space Grotesk"; font-weight:600; font-size:16px; letter-spacing:.02em; margin-bottom:16px; color:var(--paper); display:flex; align-items:center; gap:12px; }
-  .three .blk h4::before{ content:""; width:8px; height:8px; background:var(--accent); display:inline-block; }
-  .three .blk ul{ list-style:none; }
-  .three .blk li{ font-size:13.5px; line-height:1.5; color:var(--paper-dim); font-weight:300; padding:9px 0; border-top:1px solid var(--line); }
-  .three .blk li:first-child{ border-top:none; }
-  .three .blk li b{ color:var(--paper); font-weight:500; }
-
-  /* media list */
-  .medialist{ columns:2; column-gap:60px; margin-top:8px; }
-  .medialist .mi{ break-inside:avoid; display:flex; gap:16px; align-items:baseline; padding:13px 0; border-top:1px solid var(--line); }
-  .medialist .mi .ix{ font-family:"Space Grotesk"; font-size:11px; color:var(--accent); letter-spacing:.1em; min-width:26px; }
-  .medialist .mi .tx{ font-size:14px; color:var(--paper-dim); font-weight:300; line-height:1.4; }
-  .medialist .mi .tx b{ color:var(--paper); font-weight:500; }
+  /* clustered media index */
+  .clusters{ display:grid; grid-template-columns:repeat(3,1fr); gap:48px; flex:1; align-content:start; margin-top:6px; }
+  .cluster h5{ font-family:"Geist Mono",monospace; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); padding-bottom:12px; border-bottom:1px solid var(--line-2); margin-bottom:4px; }
+  .cluster .it{ font-family:"Geist"; font-size:13.5px; line-height:1.4; color:var(--paper-dim); font-weight:300; padding:12px 0; border-top:1px solid var(--line); }
+  .cluster .it:first-of-type{ border-top:none; }
+  .cluster .it b{ color:var(--paper); font-weight:500; }
 
   /* closing */
-  .close{ justify-content:center; }
-  .close .body{ display:flex; flex-direction:column; justify-content:center; }
-  .close h2{ font-size:120px; letter-spacing:-.03em; }
-  .close .contacts{ display:flex; gap:52px; margin-top:44px; }
-  .close .contacts a, .close .contacts span{
-    font-family:"Space Grotesk"; font-size:15px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--paper-dim); text-decoration:none;
-  }
-  .close .contacts .lab{ display:block; color:var(--muted); font-size:10px; letter-spacing:.26em; margin-bottom:8px; }
-  .close .contacts .val{ color:var(--paper); }
-
-  .imgstack{ display:grid; gap:14px; height:100%; }
-  .imgstack.two{ grid-template-rows:1fr 1fr; }
-  .imgstack.twocol{ grid-template-columns:1fr 1fr; grid-auto-rows:1fr; }
-  .imgstack.lead{ grid-template-rows:1.5fr 1fr; }
+  .close .body{ justify-content:center; }
+  .close h2{ font-size:124px; letter-spacing:-.04em; }
+  .close h2 .d{ color:var(--accent); }
+  .close .contacts{ display:flex; gap:56px; margin-top:46px; }
+  .close .contacts div{ font-family:"Geist Mono",monospace; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--paper); }
+  .close .contacts span{ display:block; color:var(--muted); font-size:9.5px; letter-spacing:.22em; margin-bottom:9px; }
+  .close .ghost{ position:absolute; right:calc(var(--pad) - 10px); bottom:30px; font-family:"Space Grotesk"; font-weight:700; font-size:300px; line-height:.7; color:rgba(243,241,235,0.045); z-index:1; }
 </style>
 </head>
 <body>
 
-<!-- ============ 01 COVER ============ -->
+<!-- 01 COVER -->
 <section class="slide cover">
   <div class="edge"></div>
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Portfolio — General Management</span></div>
-  <div class="no">01</div>
-  <div class="cover-main">
-    <h1>Maxim<br>Vaysbord<span class="fade">.</span></h1>
-    <div class="role">Creative Director &nbsp;·&nbsp; Brand Strategist</div>
-    <div class="meta">
-      <span><b>Edition</b>2025 — GM</span>
-      <span><b>Web</b>vaysbord.com</span>
-      <span><b>Contact</b>vaysbord@gmail.com</span>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Portfolio — GM 2025</span></div>
+  <div class="ghost">01</div>
+  <div class="main">
+    <h1>Maxim<br>Vaysbord<span class="d">.</span></h1>
+    <div class="role">Creative Director · Brand Strategist</div>
+    <div class="info">
+      <div><span>Edition</span>2025 / GM</div>
+      <div><span>Web</span>vaysbord.com</div>
+      <div><span>Contact</span>vaysbord@gmail.com</div>
     </div>
   </div>
-  <div class="chrome bot"><span>Creative Direction × Brand Strategy</span><span>01 / 19</span></div>
+  <div class="chrome bot"><span>Creative Direction × Brand Strategy</span><span class="pg">01 / 19</span></div>
 </section>
 
-<!-- ============ 02 INTRO ============ -->
+<!-- 02 INTRO (family E) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Intro<span class="dot"></span>2025</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Intro</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="kicker">Introduction</div>
-    <h2 class="title lg" style="margin-top:18px; max-width:18ch;">Building brands at the intersection of<br>culture, data &amp; craft.</h2>
-    <div class="three" style="margin-top:46px; height:auto;">
-      <div class="blk">
+    <div class="label" style="margin-bottom:16px;">Introduction</div>
+    <h2 style="font-size:58px; max-width:19ch;">Building brands at the intersection of culture, data &amp; craft.</h2>
+    <div class="three" style="flex:0; margin-top:46px;">
+      <div>
         <h4>About</h4>
         <ul>
-          <li>Entrepreneur &amp; Creative Director with <b>15+ years</b> of experience.</li>
-          <li>Collaborated with <b>40+ global brands</b> — Coinbase, AC&nbsp;Milan, Mattel, Azuki, PUMA.</li>
-          <li>Excels at building brands grounded in <b>marketing data, trends &amp; strategy</b>.</li>
+          <li>Entrepreneur &amp; Creative Director, <b>15+ years</b>.</li>
+          <li>Worked with <b>40+ global brands</b>: Coinbase, AC&nbsp;Milan, Mattel, Azuki, PUMA.</li>
+          <li>Builds brands grounded in <b>data, trends &amp; strategy</b>.</li>
         </ul>
       </div>
-      <div class="blk">
+      <div>
         <h4>Experience</h4>
         <ul>
-          <li>Head of Brand &amp; Creative — <b>COTI</b> &amp; <b>LINEUP&nbsp;GAMES</b></li>
-          <li>Creative Director — <b>Azuki</b></li>
-          <li>Creative Director — <b>PUMA</b></li>
-          <li>Founder — <b>Outlaw</b> fashion brand</li>
+          <li>Head of Brand &amp; Creative, <b>COTI</b> &amp; <b>LINEUP&nbsp;GAMES</b></li>
+          <li>Creative Director, <b>Azuki</b></li>
+          <li>Creative Director, <b>PUMA</b></li>
+          <li>Founder, <b>Outlaw</b> fashion brand</li>
         </ul>
       </div>
-      <div class="blk">
-        <h4>Notable Projects</h4>
+      <div>
+        <h4>Notable</h4>
         <ul>
-          <li>Azuki partnership with <b>Dentsu</b></li>
+          <li>Azuki × <b>Dentsu</b> partnership</li>
           <li>Launch of <b>Azuki Studio</b></li>
-          <li><b>anime.com</b> — web3 anime hub</li>
+          <li><b>anime.com</b> web3 hub</li>
           <li>PUMA × Outlaw, Daily&nbsp;Paper, Ader&nbsp;Error</li>
-          <li>Multiple <b>fashion &amp; design awards</b></li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Intro</span><span>02 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Introduction</span><span class="pg">02 / 19</span></div>
 </section>
 
-<!-- ============ 03 SECTION: SELECTED WORK ============ -->
+<!-- 03 DIVIDER -->
 <section class="slide divider">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Section 01<span class="dot"></span>2025</span></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Section 01</span></div>
   <div class="bignum">01</div>
   <div class="body">
     <div class="seg">Section 01 — Portfolio</div>
     <h2>Selected<br>Projects</h2>
-    <p class="sub">A decade and a half of creative direction across Web3, gaming, fashion and global brand partnerships — from concept and context through to crafted execution.</p>
+    <p class="sub">Fifteen years of creative direction across Web3, gaming, fashion and global partnerships. From concept and context through to crafted execution.</p>
   </div>
-  <div class="chrome bot"><span>Selected Work</span><span>03 / 19</span></div>
+  <div class="chrome bot"><span>Selected Work</span><span class="pg">03 / 19</span></div>
 </section>
 
-<!-- ============ 04 AZUKI OVERVIEW ============ -->
+<!-- 04 AZUKI OVERVIEW (family A — statement + stat band, image-light) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Azuki<span class="dot"></span>Creative Direction</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Azuki · Creative Direction</span></div>
+  <div class="rule top"></div>
+  <div class="body fam-statement">
+    <h2 style="margin-top:8px;">Content &amp; lore for a<br>global anime universe.</h2>
+    <p class="lead" style="margin-top:28px;">Led content and lore development for Azuki, architecting the narrative world that brings mainstream audiences into a Web3 ecosystem. <b>Studio Azuki</b> was established as a dedicated production arm with <b>Westbrook</b>, Will &amp; Jada Pinkett Smith's media company.</p>
+    <div class="stats mt-auto">
+      <div class="stat"><div class="n">anime<u>.com</u></div><div class="l">Acquired for mainstream onboarding</div></div>
+      <div class="stat"><div class="n">Dentsu</div><div class="l">Strategic partner, Japan's largest</div></div>
+      <div class="stat"><div class="n">Westbrook</div><div class="l">Studio Azuki production arm</div></div>
+    </div>
+  </div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Azuki — Overview</span><span class="pg">04 / 19</span></div>
+</section>
+
+<!-- 05 AZUKI AMBUSH / LORE / BEANZ (family D — frame grid + title bar) -->
+<section class="slide">
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Azuki · Collaboration</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="split wide-img">
-      <div class="col center">
-        <div class="kicker">Azuki — Web3 Anime</div>
-        <h2 class="title lg" style="margin-top:16px;">Content &amp; lore<br>for a global<br>anime universe.</h2>
-        <p class="lead" style="margin-top:24px;">Led content &amp; lore development for Azuki — architecting the narrative world that onboards mainstream audiences into a Web3 ecosystem. <strong>Studio Azuki</strong> was established as a dedicated production arm with <strong>Westbrook</strong> (Will &amp; Jada Pinkett Smith's media company).</p>
-        <div class="stat-row">
-          <div class="stat"><div class="n">anime<span class="u">.com</span></div><div class="l">Acquired for mainstream onboarding</div></div>
-          <div class="stat"><div class="n">Dentsu</div><div class="l">Strategic partnership — Japan's largest</div></div>
-        </div>
-      </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>Azuki — Hero Visual</b>Key art / brand world</div></div>
-        <div class="imgstack twocol">
-          <div class="frame"><div class="cap">Studio Azuki</div></div>
-          <div class="frame"><div class="cap">anime.com hub</div></div>
+    <div class="barhead">
+      <h2>Lore, BEANZ &amp;<br>the digital flagship.</h2>
+      <p class="meta" style="text-align:right; max-width:30ch; line-height:1.7;">Azuki × AMBUSH led end to end.<br><b>Context · Concept · Crafting</b></p>
+    </div>
+    <div class="gridframes g4">
+      <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Azuki × AMBUSH</b>Collaboration</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>BEANZ</b>Companion drop</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>Lore</b>Narrative world</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>Website</b>UI / UX</div></div>
+    </div>
+  </div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Azuki — AMBUSH / Lore</span><span class="pg">05 / 19</span></div>
+</section>
+
+<!-- 06 AZUKI GOLDEN SKATEBOARD (family C — hero frame dominant) -->
+<section class="slide">
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Azuki · Activation</span></div>
+  <div class="rule top"></div>
+  <div class="body">
+    <div class="hero-grid">
+      <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Golden Skateboard · hero object</b>'Proof of Skate' · K11 Musea, Hong Kong</div></div>
+      <div class="side">
+        <h2>Azuki Golden<br>Skateboard.</h2>
+        <p class="lead" style="margin-top:20px; font-size:15.5px;">Led conceptual development for the activation and directed the physical <b>'Proof of Skate'</b> exhibition at K11 Musea, Hong Kong.</p>
+        <div class="stats" style="margin-top:30px; gap:40px;">
+          <div class="stat"><div class="n"><u>$2.5</u>M</div><div class="l">Generated in auction sales</div></div>
+          <div class="stat"><div class="n">HK</div><div class="l">K11 Musea exhibition</div></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Azuki — Overview</span><span>04 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Azuki — Golden Skateboard</span><span class="pg">06 / 19</span></div>
 </section>
 
-<!-- ============ 05 AZUKI x AMBUSH / LORE ============ -->
+<!-- 07 AZUKI TWIN TIGER JACKET (family B — editorial split #1) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Azuki<span class="dot"></span>Collaboration</span></div>
-  <div class="rule-top"></div>
-  <div class="body">
-    <div class="split">
-      <div class="col center">
-        <div class="kicker">Azuki × AMBUSH</div>
-        <h2 class="title" style="margin-top:16px;">Lore, BEANZ &amp;<br>the digital flagship.</h2>
-        <p class="lead" style="margin-top:22px;"><strong>Azuki × AMBUSH</strong> — led the project across context, concept and crafting phases. Also drove <strong>Azuki Lore, BEANZ</strong> and the <strong>website UI/UX</strong> through context and concept.</p>
-        <div class="tags">
-          <span class="tag">Context</span><span class="tag">Concept</span><span class="tag">Crafting</span>
-          <span class="tag">UI / UX</span><span class="tag">World-building</span>
-        </div>
-      </div>
-      <div class="imgstack twocol">
-        <div class="frame accent"><div class="cap"><b>Azuki × AMBUSH</b>Collaboration</div></div>
-        <div class="frame"><div class="cap">BEANZ</div></div>
-        <div class="frame"><div class="cap">Lore</div></div>
-        <div class="frame"><div class="cap">Website UI / UX</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Azuki — AMBUSH / Lore</span><span>05 / 19</span></div>
-</section>
-
-<!-- ============ 06 AZUKI GOLDEN SKATEBOARD ============ -->
-<section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Azuki<span class="dot"></span>Activation</span></div>
-  <div class="rule-top"></div>
-  <div class="body">
-    <div class="split wide-img">
-      <div class="col center">
-        <div class="kicker gold">Proof of Skate</div>
-        <h2 class="title lg" style="margin-top:16px;">Azuki Golden<br>Skateboard.</h2>
-        <p class="lead" style="margin-top:22px;">Led conceptual development for the Golden Skateboard activation and directed creative direction for the physical <strong>'Proof of Skate'</strong> exhibition at <strong>K11 Musea, Hong Kong</strong>.</p>
-        <div class="stat-row">
-          <div class="stat"><div class="n">$2.5<span class="u">M</span></div><div class="l">Generated in auction sales</div></div>
-          <div class="stat"><div class="n">K11 Musea</div><div class="l">Physical exhibition — Hong Kong</div></div>
-        </div>
-      </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>Golden Skateboard</b>Hero object</div></div>
-        <div class="frame"><div class="cap"><b>Proof of Skate</b>K11 Musea exhibition</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Azuki — Golden Skateboard</span><span>06 / 19</span></div>
-</section>
-
-<!-- ============ 07 AZUKI TWIN TIGER JACKET ============ -->
-<section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Azuki<span class="dot"></span>Fashion × Web3</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Azuki · Fashion × Web3</span></div>
+  <div class="rule top"></div>
   <div class="body">
     <div class="split">
-      <div class="col center">
-        <div class="kicker">Azuki Twin Tiger Jacket</div>
-        <h2 class="title" style="margin-top:16px;">Concept to<br>completion.</h2>
-        <p class="lead" style="margin-top:22px;">Led the design from concept to completion — overseeing both creative direction and production. A limited run launched and showcased at <strong>NFT NYC</strong>, making a strong impact across fashion and Web3.</p>
-        <div class="stat-row">
-          <div class="stat"><div class="n">10<span class="u">,000</span></div><div class="l">Bomber jackets produced</div></div>
-          <div class="stat"><div class="n">$2<span class="u">,000</span></div><div class="l">Price per jacket</div></div>
-          <div class="stat"><div class="n">NFT<span class="u"> NYC</span></div><div class="l">Launch showcase</div></div>
+      <div class="cx">
+        <h2>Twin Tiger Jacket.<br>Concept to<br>completion.</h2>
+        <p class="lead" style="margin-top:24px;">Led the design from concept to completion, overseeing both creative direction and production. The limited run launched and showed at <b>NFT NYC</b>, landing across fashion and Web3.</p>
+        <div class="stats" style="margin-top:34px;">
+          <div class="stat"><div class="n">10<u>k</u></div><div class="l">Bomber jackets produced</div></div>
+          <div class="stat"><div class="n"><u>$2</u>k</div><div class="l">Price per jacket</div></div>
         </div>
       </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>Twin Tiger Jacket</b>Product hero</div></div>
-        <div class="imgstack twocol">
-          <div class="frame"><div class="cap">Detail</div></div>
-          <div class="frame"><div class="cap">NFT NYC launch</div></div>
+      <div style="display:grid; grid-template-rows:1.5fr 1fr; gap:16px;">
+        <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Twin Tiger Jacket</b>Product hero</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="frame"><span class="tick"></span><div class="cap">Detail</div></div>
+          <div class="frame"><span class="tick"></span><div class="cap">NFT NYC launch</div></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Azuki — Twin Tiger Jacket</span><span>07 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Azuki — Twin Tiger Jacket</span><span class="pg">07 / 19</span></div>
 </section>
 
-<!-- ============ 08 FASHION FILM AWARDS ============ -->
+<!-- 08 FASHION FILM AWARDS (family F — quote led) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Awards<span class="dot"></span>Film</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Awards · Film</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="split">
-      <div class="col center">
-        <div class="kicker gold">Fashion Film Awards</div>
-        <h2 class="title" style="margin-top:16px;">Award-winning<br>direction.</h2>
-        <p class="lead" style="margin-top:22px;">As Creative Director, won multiple fashion film awards — including one by <strong>Nick Knight &amp; SHOWstudio</strong> (2016). Supported by <strong>RED</strong>, <strong>i-D magazine</strong> and <strong>SHOWstudio</strong> to premiere.</p>
-        <div class="tags">
-          <span class="tag">SHOWstudio</span><span class="tag">Nick Knight</span><span class="tag">RED</span><span class="tag">i-D Magazine</span>
-        </div>
-      </div>
-      <div class="imgstack twocol">
-        <div class="frame accent"><div class="cap"><b>Award Film</b>Still</div></div>
-        <div class="frame"><div class="cap">SHOWstudio</div></div>
-        <div class="frame"><div class="cap">i-D premiere</div></div>
-        <div class="frame"><div class="cap">RED / behind the scenes</div></div>
-      </div>
+    <div class="quote">
+      <div class="label" style="margin-bottom:24px;">Fashion Film Awards</div>
+      <p class="big">Award-winning direction, premiered by <u>Nick Knight &amp; SHOWstudio</u>, and supported by RED and i-D.</p>
+      <p class="by">Multiple fashion film awards as Creative Director · SHOWstudio 2016</p>
+    </div>
+    <div class="gridframes g3" style="flex:0; height:168px;">
+      <div class="frame"><div class="cap"><b>Award film</b>Still</div></div>
+      <div class="frame"><div class="cap"><b>SHOWstudio</b>Premiere</div></div>
+      <div class="frame"><div class="cap"><b>i-D · RED</b>Support</div></div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Fashion Film Awards</span><span>08 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Fashion Film Awards</span><span class="pg">08 / 19</span></div>
 </section>
 
-<!-- ============ 09 SECTION: LINEUP GAMES ============ -->
+<!-- 09 DIVIDER -->
 <section class="slide divider">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Section 02<span class="dot"></span>2025</span></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Section 02</span></div>
   <div class="bignum">02</div>
   <div class="body">
     <div class="seg">Section 02 — Head of Brand &amp; Creative</div>
     <h2>LINEUP<br>GAMES</h2>
-    <p class="sub">UNKJD · Strikers League — a Web3 gaming studio backed by Griffin Gaming, DraftKings and Solana Ventures. Full rebrand: identity, world-building, brand book, website &amp; art book.</p>
+    <p class="sub">UNKJD · Strikers League. A Web3 gaming studio backed by Griffin Gaming, DraftKings and Solana Ventures. Full rebrand across identity, world-building, brand book, website and art book.</p>
   </div>
-  <div class="chrome bot"><span>LINEUP GAMES</span><span>09 / 19</span></div>
+  <div class="chrome bot"><span>LINEUP GAMES</span><span class="pg">09 / 19</span></div>
 </section>
 
-<!-- ============ 10 LINEUP CONTEXT ============ -->
+<!-- 10 LINEUP CONTEXT (family A — statement + stat band) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>LINEUP GAMES<span class="dot"></span>Context</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>LINEUP Games · Context</span></div>
+  <div class="rule top"></div>
+  <div class="body fam-statement">
+    <h2 style="margin-top:8px;">A $26M studio,<br>fully rebranded.</h2>
+    <p class="lead" style="margin-top:28px;">A Web3 gaming studio backed by <b>Griffin Gaming, DraftKings and Solana Ventures</b>, founded by the former CPO of Playtika. As Head of Brand &amp; Creative, I led the full rebrand: identity, world-building, brand book, website and art book.</p>
+    <div class="stats mt-auto">
+      <div class="stat"><div class="n"><u>$26</u>M</div><div class="l">Series A raised</div></div>
+      <div class="stat"><div class="n">Playtika</div><div class="l">Founded by former CPO</div></div>
+      <div class="stat"><div class="n">Solana</div><div class="l">Griffin · DraftKings · Solana</div></div>
+    </div>
+  </div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>LINEUP — Context</span><span class="pg">10 / 19</span></div>
+</section>
+
+<!-- 11 LINEUP CONCEPT (family B — editorial split) -->
+<section class="slide">
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>LINEUP Games · Concept</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="split">
-      <div class="col center">
-        <div class="kicker">LINEUP Games — Context</div>
-        <h2 class="title" style="margin-top:16px;">A $26M studio,<br>fully rebranded.</h2>
-        <p class="lead" style="margin-top:22px;">A Web3 gaming studio backed by <strong>Griffin Gaming, DraftKings &amp; Solana Ventures</strong>, founded by the former CPO of Playtika. As Head of Brand &amp; Creative, I led the full rebrand — identity, world-building, brand book, website and art book.</p>
-        <div class="stat-row">
-          <div class="stat"><div class="n">$26<span class="u">M</span></div><div class="l">Series A raised</div></div>
-          <div class="stat"><div class="n">Playtika</div><div class="l">Founded by former CPO</div></div>
-        </div>
+    <div class="split img-wide">
+      <div class="cx">
+        <h2>Defining the<br>website direction.</h2>
+        <p class="lead" style="margin-top:24px;">Led concept and context for the website redesign, defining the <b>UI/UX direction, tone of voice and creative vision</b>. Execution and craft delivered with <b>Dogstudio</b>.</p>
+        <p class="meta" style="margin-top:28px; line-height:1.9;"><b>UI/UX · Tone of voice · Creative vision · Craft w/ Dogstudio</b></p>
       </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>LINEUP GAMES</b>Brand identity</div></div>
-        <div class="imgstack twocol">
-          <div class="frame"><div class="cap">Brand book</div></div>
-          <div class="frame"><div class="cap">Art book</div></div>
-        </div>
+      <div style="display:grid; grid-template-rows:1.5fr 1fr; gap:16px;">
+        <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Website redesign</b>Concept · UI direction</div></div>
+        <div class="frame"><span class="tick"></span><div class="cap">Look &amp; feel exploration</div></div>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>LINEUP — Context</span><span>10 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>LINEUP — Concept</span><span class="pg">11 / 19</span></div>
 </section>
 
-<!-- ============ 11 LINEUP CONCEPT ============ -->
+<!-- 12 LINEUP CRAFT (family D — frame grid + title bar) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>LINEUP GAMES<span class="dot"></span>Concept</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>LINEUP Games · Craft</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="split wide-img">
-      <div class="col center">
-        <div class="kicker">LINEUP Games — Concept</div>
-        <h2 class="title" style="margin-top:16px;">Defining the<br>website direction.</h2>
-        <p class="lead" style="margin-top:22px;">Led the concept &amp; context phase for the website redesign — defining the <strong>UI/UX direction, tone of voice, creative vision</strong> and overall look and feel. Execution &amp; craft delivered in close collaboration with <strong>Dogstudio</strong>.</p>
-        <div class="tags">
-          <span class="tag">UI / UX Direction</span><span class="tag">Tone of Voice</span><span class="tag">Creative Vision</span><span class="tag">× Dogstudio</span>
-        </div>
-      </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>Website Redesign</b>Concept / UI</div></div>
-        <div class="frame"><div class="cap">Look &amp; feel exploration</div></div>
-      </div>
+    <div class="barhead">
+      <h2>Directing the<br>final look &amp; feel.</h2>
+      <p class="meta" style="text-align:right; max-width:30ch; line-height:1.7;">In-house art team across concept, 3D and art.<br><b>Plus major brand partnerships.</b></p>
+    </div>
+    <div class="gridframes g4">
+      <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Strikers League</b>In-game art</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>PUMA</b>Two-year deal</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>AC Milan</b>Partnership</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>Mattel · Bandai Namco</b>Partnerships</div></div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>LINEUP — Concept</span><span>11 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>LINEUP — Craft</span><span class="pg">12 / 19</span></div>
 </section>
 
-<!-- ============ 12 LINEUP CRAFT ============ -->
-<section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>LINEUP GAMES<span class="dot"></span>Craft</span></div>
-  <div class="rule-top"></div>
-  <div class="body">
-    <div class="split">
-      <div class="col center">
-        <div class="kicker">LINEUP Games — Craft</div>
-        <h2 class="title" style="margin-top:16px;">Directing the<br>final look &amp; feel.</h2>
-        <p class="lead" style="margin-top:22px;">Directed the in-house art team — across concept, 3D and art — to deliver the final look and feel of both brand and game. Also led major brand partnerships.</p>
-        <div class="tags">
-          <span class="tag">AC Milan</span><span class="tag">PUMA — 2-year deal</span><span class="tag">Mattel</span><span class="tag">Bandai Namco</span>
-        </div>
-      </div>
-      <div class="imgstack twocol">
-        <div class="frame accent"><div class="cap"><b>Strikers League</b>In-game art</div></div>
-        <div class="frame"><div class="cap">3D / characters</div></div>
-        <div class="frame"><div class="cap">PUMA partnership</div></div>
-        <div class="frame"><div class="cap">AC Milan</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>LINEUP — Craft</span><span>12 / 19</span></div>
-</section>
-
-<!-- ============ 13 SECTION: COTI ============ -->
+<!-- 13 DIVIDER -->
 <section class="slide divider">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Section 03<span class="dot"></span>2025</span></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Section 03</span></div>
   <div class="bignum">03</div>
   <div class="body">
     <div class="seg">Section 03 — Internal Creative Agency</div>
     <h2>COTI<br>Group</h2>
-    <p class="sub">Directing the internal creative agency across a multi-brand portfolio — COTI Foundation, LINEUP GAMES, NFA Club, Yaru and Viper Wallet.</p>
+    <p class="sub">Directing the internal creative agency across a multi-brand portfolio: COTI Foundation, LINEUP GAMES, NFA Club, Yaru and Viper Wallet.</p>
   </div>
-  <div class="chrome bot"><span>COTI Group</span><span>13 / 19</span></div>
+  <div class="chrome bot"><span>COTI Group</span><span class="pg">13 / 19</span></div>
 </section>
 
-<!-- ============ 14 COTI REBRAND ============ -->
+<!-- 14 COTI REBRAND (family D — portfolio grid, 5 cells) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>COTI Group<span class="dot"></span>Rebrand</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>COTI Group · Rebrand</span></div>
+  <div class="rule top"></div>
+  <div class="body">
+    <div class="barhead">
+      <h2>One agency,<br>five brands.</h2>
+      <p class="meta" style="text-align:right; max-width:32ch; line-height:1.7;">Two years directing COTI's internal agency.<br><b>Concept · Context · Creative strategy</b></p>
+    </div>
+    <div class="gridframes g5">
+      <div class="frame spark span2 big"><span class="tick"></span><div class="cap"><b>COTI</b>Comprehensive rebrand</div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>Viper Wallet</b></div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>NFA Club</b></div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>Yaru</b></div></div>
+      <div class="frame"><span class="tick"></span><div class="cap"><b>COTI Foundation</b></div></div>
+    </div>
+  </div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>COTI — Rebrand</span><span class="pg">14 / 19</span></div>
+</section>
+
+<!-- 15 COTI AI (family C — hero frame dominant) -->
+<section class="slide">
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>COTI Group · AI Campaigns</span></div>
+  <div class="rule top"></div>
+  <div class="body">
+    <div class="hero-grid">
+      <div class="frame spark big"><span class="tick"></span><div class="cap"><b>AI showreel · hero frame</b>COTI Foundation · Battle Chess · Fog of War</div></div>
+      <div class="side">
+        <h2>AI-driven<br>storytelling.</h2>
+        <p class="lead" style="margin-top:20px; font-size:15.5px;">An AI showreel spanning several projects, pushing generative craft into brand and entertainment.</p>
+        <p class="meta" style="margin-top:26px; line-height:1.9;"><b>COTI Foundation<br>Battle Chess Game<br>Fog of War, TV show</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>COTI — AI Campaigns</span><span class="pg">15 / 19</span></div>
+</section>
+
+<!-- 16 EXTRA / OUTLAW (family B — editorial split + quote, split #2 ok) -->
+<section class="slide">
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Extra · Founder</span></div>
+  <div class="rule top"></div>
   <div class="body">
     <div class="split">
-      <div class="col center">
-        <div class="kicker">COTI — Rebrand</div>
-        <h2 class="title" style="margin-top:16px;">One agency,<br>five brands.</h2>
-        <p class="lead" style="margin-top:22px;">For two years, directed the internal creative agency at COTI Group — managing multiple brands. Spearheaded COTI's comprehensive rebrand while overseeing <strong>conceptual development, contextual positioning &amp; creative strategy</strong> across the portfolio.</p>
-        <div class="tags">
-          <span class="tag">COTI Foundation</span><span class="tag">LINEUP GAMES</span><span class="tag">NFA Club</span><span class="tag">Yaru</span><span class="tag">Viper Wallet</span>
-        </div>
+      <div class="cx">
+        <h2 style="font-size:48px;">Founder of a leading<br>European streetwear<br>brand.</h2>
+        <p class="lead" style="margin-top:22px;">Built <b>Outlaw</b> into a global presence through collaborations with <b>PUMA, Farfetch, Beats by Dre and Martini</b>. Fashion film work featured by <b>Vogue, GQ and CNN Style</b>.</p>
+        <p class="small" style="margin-top:20px; max-width:44ch;">To show the real Mexico, free from stereotypes, Maxim traveled through 21 cities with 55 artists, anthropologists, historians and locals.</p>
       </div>
-      <div class="imgstack twocol">
-        <div class="frame accent"><div class="cap"><b>COTI</b>Rebrand identity</div></div>
-        <div class="frame"><div class="cap">Viper Wallet</div></div>
-        <div class="frame"><div class="cap">NFA Club</div></div>
-        <div class="frame"><div class="cap">Yaru</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>COTI — Rebrand</span><span>14 / 19</span></div>
-</section>
-
-<!-- ============ 15 COTI AI ============ -->
-<section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>COTI Group<span class="dot"></span>AI Campaigns</span></div>
-  <div class="rule-top"></div>
-  <div class="body">
-    <div class="split wide-img">
-      <div class="col center">
-        <div class="kicker">COTI — AI Campaigns</div>
-        <h2 class="title lg" style="margin-top:16px;">AI-driven<br>storytelling.</h2>
-        <p class="lead" style="margin-top:22px;">AI showreel created across several projects — <strong>COTI Foundation</strong>, <strong>Battle Chess Game</strong>, <strong>Fog of War</strong> TV show, and more — pushing generative craft into brand and entertainment.</p>
-        <div class="tags">
-          <span class="tag">Generative</span><span class="tag">Showreel</span><span class="tag">Battle Chess</span><span class="tag">Fog of War</span>
-        </div>
-      </div>
-      <div class="imgstack lead">
-        <div class="frame accent"><div class="cap"><b>AI Showreel</b>Hero frame</div></div>
-        <div class="imgstack twocol">
-          <div class="frame"><div class="cap">Battle Chess</div></div>
-          <div class="frame"><div class="cap">Fog of War</div></div>
+      <div style="display:grid; grid-template-rows:1.4fr 1fr; gap:16px;">
+        <div class="frame spark big"><span class="tick"></span><div class="cap"><b>Outlaw</b>Campaign</div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="frame"><span class="tick"></span><div class="cap">PUMA collab</div></div>
+          <div class="frame"><span class="tick"></span><div class="cap">Mexico film</div></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>COTI — AI Campaigns</span><span>15 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Extra — Outlaw</span><span class="pg">16 / 19</span></div>
 </section>
 
-<!-- ============ 16 EXTRA: OUTLAW ============ -->
+<!-- 17 CAPABILITIES (family E — three column) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Extra<span class="dot"></span>Founder</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Capabilities</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="split">
-      <div class="col center">
-        <div class="kicker gold">Extra — Outlaw</div>
-        <h2 class="title" style="margin-top:14px;">Founder of one<br>of Europe's leading<br>streetwear brands.</h2>
-        <p class="lead" style="margin-top:20px;">Built <strong>Outlaw</strong> into a global presence through high-impact collaborations with <strong>PUMA, Farfetch, Beats by Dre &amp; Martini</strong>. Won multiple fashion film awards — featured by <strong>Vogue, GQ &amp; CNN Style</strong>.</p>
-        <p class="small" style="margin-top:18px; max-width:46ch; font-style:italic;">"To show the real Mexico — free from stereotypes — Maxim traveled through 21 cities, collaborating with 55 artists, anthropologists, historians and locals."</p>
-      </div>
-      <div class="imgstack twocol">
-        <div class="frame accent"><div class="cap"><b>Outlaw</b>Campaign</div></div>
-        <div class="frame"><div class="cap">PUMA collab</div></div>
-        <div class="frame"><div class="cap">Mexico film</div></div>
-        <div class="frame"><div class="cap">Vogue / GQ / CNN</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Extra — Outlaw</span><span>16 / 19</span></div>
-</section>
-
-<!-- ============ 17 CAPABILITIES ============ -->
-<section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Capabilities<span class="dot"></span>2025</span></div>
-  <div class="rule-top"></div>
-  <div class="body">
-    <div class="kicker">What I Deliver</div>
-    <h2 class="title lg" style="margin-top:16px; max-width:20ch;">From strategy to pixel —<br>end-to-end creative direction.</h2>
-    <div class="three" style="margin-top:50px; height:auto;">
-      <div class="blk">
+    <div class="label" style="margin-bottom:16px;">What I Deliver</div>
+    <h2 style="font-size:54px; max-width:20ch;">From strategy to pixel.<br>End-to-end creative direction.</h2>
+    <div class="three" style="flex:0; margin-top:52px;">
+      <div>
         <h4>UI / UX — Marketplace</h4>
         <ul>
-          <li>Interface direction for Web3 marketplaces &amp; platforms.</li>
+          <li>Interface direction for Web3 marketplaces and platforms.</li>
           <li>Flows, systems and look &amp; feel grounded in user data.</li>
         </ul>
       </div>
-      <div class="blk">
+      <div>
         <h4>UI / UX — Game</h4>
         <ul>
-          <li>In-game interface &amp; experience direction.</li>
+          <li>In-game interface and experience direction.</li>
           <li>Concept, 3D and art pipeline across brand and game.</li>
         </ul>
       </div>
-      <div class="blk">
+      <div>
         <h4>Creative Direction</h4>
         <ul>
-          <li>TV series &amp; fashion brand direction.</li>
+          <li>TV series and fashion brand direction.</li>
           <li>Campaigns, world-building and global partnerships.</li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Capabilities</span><span>17 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Capabilities</span><span class="pg">17 / 19</span></div>
 </section>
 
-<!-- ============ 18 MEDIA ============ -->
+<!-- 18 MEDIA (clustered index, not 11 hairlines) -->
 <section class="slide">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Media<span class="dot"></span>Press &amp; Coverage</span></div>
-  <div class="rule-top"></div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Media · Press</span></div>
+  <div class="rule top"></div>
   <div class="body">
-    <div class="kicker">Media — Selected Press</div>
-    <div class="medialist">
-      <div class="mi"><span class="ix">01</span><span class="tx"><b>Azuki Twin Tiger Jacket</b> — fashion × Web3 launch</span></div>
-      <div class="mi"><span class="ix">02</span><span class="tx"><b>Maxim joins UNKJD</b> / Strikers League</span></div>
-      <div class="mi"><span class="ix">03</span><span class="tx"><b>Azuki Golden Skateboard</b> auction — $2.5M in sales</span></div>
-      <div class="mi"><span class="ix">04</span><span class="tx"><b>Azuki BEANZ</b></span></div>
-      <div class="mi"><span class="ix">05</span><span class="tx"><b>Azuki × AMBUSH</b> collaboration</span></div>
-      <div class="mi"><span class="ix">06</span><span class="tx"><b>Outlaw Moscow</b> — i-D Magazine</span></div>
-      <div class="mi"><span class="ix">07</span><span class="tx"><b>Outlaw Moscow × PUMA</b> collaboration</span></div>
-      <div class="mi"><span class="ix">08</span><span class="tx"><b>Maksim Bashkaev</b> — award-winning designer &amp; film director</span></div>
-      <div class="mi"><span class="ix">09</span><span class="tx"><b>GQ</b> interview with Maksim Bashkaev</span></div>
-      <div class="mi"><span class="ix">10</span><span class="tx"><b>Outlaw Moscow × PUMA</b> — second collaboration</span></div>
-      <div class="mi"><span class="ix">11</span><span class="tx"><b>CNN Style</b> on the award-winning fashion film</span></div>
+    <div class="label" style="margin-bottom:28px;">Media — Selected Press</div>
+    <div class="clusters">
+      <div class="cluster">
+        <h5>Azuki &amp; Web3</h5>
+        <div class="it"><b>Twin Tiger Jacket</b>, fashion × Web3 launch</div>
+        <div class="it"><b>Golden Skateboard</b> auction, $2.5M in sales</div>
+        <div class="it"><b>Azuki BEANZ</b></div>
+        <div class="it"><b>Azuki × AMBUSH</b> collaboration</div>
+        <div class="it"><b>Maxim joins UNKJD</b>, Strikers League</div>
+      </div>
+      <div class="cluster">
+        <h5>Outlaw &amp; Fashion</h5>
+        <div class="it"><b>Outlaw Moscow</b> in i-D Magazine</div>
+        <div class="it"><b>Outlaw × PUMA</b> collaboration</div>
+        <div class="it"><b>Outlaw × PUMA</b> second collaboration</div>
+      </div>
+      <div class="cluster">
+        <h5>Press &amp; Film</h5>
+        <div class="it"><b>GQ</b> interview, Maksim Bashkaev</div>
+        <div class="it"><b>CNN Style</b> on the award-winning film</div>
+        <div class="it"><b>Maksim Bashkaev</b>, designer &amp; film director</div>
+      </div>
     </div>
   </div>
-  <div class="rule-bot"></div>
-  <div class="chrome bot"><span>Media</span><span>18 / 19</span></div>
+  <div class="rule bot"></div>
+  <div class="chrome bot"><span>Media</span><span class="pg">18 / 19</span></div>
 </section>
 
-<!-- ============ 19 CLOSING ============ -->
+<!-- 19 CLOSING -->
 <section class="slide close">
-  <div class="chrome top"><span class="mark"><b>/</b> VAYSBORD</span><span>Thank You<span class="dot"></span>2025</span></div>
-  <div class="ghost-no" style="right:var(--pad); bottom:30px; font-size:300px;">19</div>
+  <div class="chrome top"><span class="mark"><i>/</i> VAYSBORD</span><span>Thank You</span></div>
+  <div class="ghost">19</div>
   <div class="body">
-    <div class="kicker">Let's build something</div>
-    <h2>Thanks<span style="color:var(--accent);">.</span></h2>
+    <div class="label" style="margin-bottom:22px;">Let's build something</div>
+    <h2>Thanks<span class="d">.</span></h2>
     <div class="contacts">
-      <span><span class="lab">Email</span><span class="val">vaysbord@gmail.com</span></span>
-      <span><span class="lab">Web</span><span class="val">vaysbord.com</span></span>
-      <span><span class="lab">Network</span><span class="val">LinkedIn</span></span>
+      <div><span>Email</span>vaysbord@gmail.com</div>
+      <div><span>Web</span>vaysbord.com</div>
+      <div><span>Network</span>LinkedIn</div>
     </div>
   </div>
-  <div class="chrome bot"><span>Maxim Vaysbord — Creative Director</span><span>19 / 19</span></div>
+  <div class="chrome bot"><span>Maxim Vaysbord — Creative Director</span><span class="pg">19 / 19</span></div>
 </section>
 
 </body>
