@@ -1,0 +1,1423 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Partnerships Mastery</title>
+<style>
+  /* Layout: fixed quiet sidebar nav + single centered reading column; one module + one language visible at a time */
+  :root{
+    --bg:#fbfbfc; --surface:#f3f3f6; --fg:#18181b; --muted:#6c6c76;
+    --border:#e7e7ec; --accent:#4f4bd0; --accent-soft:#ecebfb;
+    --maxread:44rem;
+    --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0f0f12; --surface:#1a1a20; --fg:#e9e9ec; --muted:#9a9aa4;
+    --border:#272730; --accent:#9a97f2; --accent-soft:#1d1c33; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0f0f12; --surface:#1a1a20; --fg:#e9e9ec; --muted:#9a9aa4;
+    --border:#272730; --accent:#9a97f2; --accent-soft:#1d1c33; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:2px;width:0;background:var(--accent);z-index:40;transition:width .12s linear}
+  @media (prefers-reduced-motion:reduce){.progress{transition:none}*{scroll-behavior:auto!important}}
+
+  /* language toggle */
+  .lang-ru{display:none}
+  :root[data-lang="ru"] .lang-en{display:none}
+  :root[data-lang="ru"] .lang-ru{display:block}
+
+  /* shell */
+  .shell{display:flex;min-height:100%}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:17rem;border-right:1px solid var(--border);background:var(--bg);
+    display:flex;flex-direction:column;padding:calc(1.6rem + env(safe-area-inset-top,0px)) 0 1rem;z-index:30;overflow-y:auto}
+  .brand{padding:0 1.6rem 1.3rem}
+  .brand h1{font-family:var(--f-display);font-weight:700;font-size:1.12rem;letter-spacing:-.01em;margin:0;line-height:1.25}
+  .brand p{font-size:.82rem;line-height:1.45;color:var(--muted);margin:.5rem 0 0;font-family:var(--f-display);font-weight:500}
+  nav{display:flex;flex-direction:column;padding:0 .75rem;gap:1px;flex:1}
+  .navbtn{display:flex;gap:.7rem;align-items:baseline;width:100%;text-align:left;background:none;border:0;cursor:pointer;
+    color:var(--fg);font-family:var(--f-display);font-size:.92rem;font-weight:500;padding:.55rem .85rem;border-radius:7px;line-height:1.3}
+  .navbtn .idx{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);min-width:1.5rem}
+  .navbtn:hover{background:var(--surface)}
+  .navbtn[aria-current="true"]{background:var(--accent-soft);color:var(--accent)}
+  .navbtn[aria-current="true"] .idx{color:var(--accent)}
+  .foot{padding:1rem 1.6rem 0;border-top:1px solid var(--border);margin-top:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .pill{background:none;border:1px solid var(--border);border-radius:999px;color:var(--muted);cursor:pointer;
+    font-family:var(--f-display);font-size:.74rem;font-weight:500;padding:.35rem .7rem;white-space:nowrap}
+  .pill:hover{color:var(--fg);border-color:var(--muted)}
+  .segmented{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden}
+  .segmented button{background:none;border:0;cursor:pointer;color:var(--muted);font-family:var(--f-display);font-weight:600;
+    font-size:.72rem;padding:.32rem .62rem}
+  .segmented button[aria-pressed="true"]{background:var(--accent);color:#fff}
+  :root[data-theme="dark"] .segmented button[aria-pressed="true"]{color:#0f0f12}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .segmented button[aria-pressed="true"]{color:#0f0f12}}
+  .foot small{color:var(--muted);font-family:var(--f-mono);font-size:.68rem;margin-left:auto}
+
+  /* main */
+  main{margin-left:17rem;flex:1;min-width:0;padding:0 2.2rem}
+  .wrap{max-width:var(--maxread);margin:0 auto;padding-block:clamp(2.4rem,5vw,4.5rem)}
+  .module[hidden]{display:none!important}
+  .eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}
+  h2.title{font-family:var(--f-display);font-weight:700;font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1.08;letter-spacing:-.02em;
+    margin:0 0 1rem;text-wrap:balance}
+  .lede{font-size:1.18rem;line-height:1.6;color:var(--muted);margin:0 0 2.2rem;max-width:38rem}
+  h3{font-family:var(--f-display);font-weight:600;font-size:1.32rem;letter-spacing:-.01em;margin:2.6rem 0 .8rem;text-wrap:balance;scroll-margin-top:2rem}
+  h4{font-family:var(--f-display);font-weight:600;font-size:1.04rem;margin:1.8rem 0 .5rem;color:var(--fg)}
+  p{margin:0 0 1.1rem}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+  ul,ol{margin:0 0 1.2rem;padding-left:1.3rem}
+  li{margin:.42rem 0}
+  li::marker{color:var(--muted)}
+  strong{font-weight:600}
+  em{font-style:italic}
+  hr{border:0;border-top:1px solid var(--border);margin:2.6rem 0}
+  .muted{color:var(--muted)}
+  code{font-family:var(--f-mono);font-size:.82em;background:var(--surface);padding:.1em .38em;border-radius:5px}
+  .scroll{overflow-x:auto;margin:0 0 1.4rem;border:1px solid var(--border);border-radius:10px}
+  pre{font-family:var(--f-mono);font-size:.72rem;line-height:1.5;margin:0;padding:1.1rem 1.2rem;white-space:pre;min-width:0}
+  pre code{background:none;padding:0;font-size:inherit}
+  table{border-collapse:collapse;width:100%;font-family:var(--f-display);font-size:.86rem;line-height:1.45}
+  .scroll table{margin:0}
+  th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-weight:600;background:var(--surface);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:0}
+
+  .note{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.15rem;margin:0 0 1.4rem;font-size:.95rem;line-height:1.6}
+  .note .tag{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.4rem}
+  .flag{font-family:var(--f-mono);font-size:.72em;color:var(--accent);background:var(--accent-soft);padding:.05em .4em;border-radius:4px;white-space:nowrap}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.9rem;margin:0 0 1.6rem}
+  .card{text-align:left;background:none;border:1px solid var(--border);border-radius:11px;padding:1.1rem 1.15rem;cursor:pointer;
+    color:var(--fg);display:flex;flex-direction:column;gap:.35rem;font-family:inherit}
+  .card:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .card .idx{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+  .card .h{font-family:var(--f-display);font-weight:600;font-size:1rem;line-height:1.25}
+  .card .d{font-size:.86rem;line-height:1.45;color:var(--muted)}
+
+  .pager{display:flex;justify-content:space-between;gap:1rem;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--border)}
+  .pager button{flex:1;text-align:left;background:none;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;cursor:pointer;color:var(--fg);font-family:var(--f-display)}
+  .pager button:hover{border-color:var(--accent)}
+  .pager button.next{text-align:right}
+  .pager .k{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.15rem}
+  .pager .v{font-weight:600;font-size:.95rem}
+  .pager button:disabled{opacity:.35;cursor:default;border-color:var(--border)}
+
+  .topbar{display:none}
+  .scrim{display:none}
+  @media (max-width:860px){
+    .topbar{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:25;align-items:center;gap:.8rem;
+      padding:.7rem 1rem;background:var(--bg);border-bottom:1px solid var(--border)}
+    .topbar .menu{background:none;border:1px solid var(--border);border-radius:8px;padding:.4rem .7rem;cursor:pointer;color:var(--fg);font-family:var(--f-display);font-size:.9rem}
+    .topbar .t{font-family:var(--f-display);font-weight:700;font-size:.98rem}
+    main{margin-left:0;padding:0 1.1rem}
+    .sidebar{transform:translateX(-102%);transition:transform .22s ease;box-shadow:0 0 40px rgba(0,0,0,.25);width:min(20rem,86vw)}
+    .sidebar.open{transform:none}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:29}
+    @media (prefers-reduced-motion:reduce){.sidebar{transition:none}}
+  }
+</style>
+
+<div class="progress" id="progress"></div>
+
+<div class="topbar">
+  <button class="menu" id="menuBtn" aria-label="Menu">☰ <span id="menuLabel">Menu</span></button>
+  <span class="t">Partnerships Mastery</span>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>Partnerships Mastery</h1>
+      <p id="brandSub">Education center — Head of Global Channel Partnerships</p>
+    </div>
+    <nav id="nav"></nav>
+    <div class="foot">
+      <span class="segmented" role="group" aria-label="Language">
+        <button id="langEn" type="button" aria-pressed="true">EN</button>
+        <button id="langRu" type="button" aria-pressed="false">RU</button>
+      </span>
+      <button class="pill" id="themeBtn">◐ <span id="themeLabel">Theme</span></button>
+      <small id="modCount">8 modules</small>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="wrap">
+
+      <!-- ============ 0 OVERVIEW ============ -->
+      <section class="module" id="overview">
+        <div class="lang-en">
+          <p class="eyebrow">Start here</p>
+          <h2 class="title">From near-zero to pro</h2>
+          <p class="lede">A complete self-study program for becoming a Head of Global Channel / Strategic Partnerships at an AI creative-tech company — built from the Magnific/Freepik job description and equally applicable to the Higgsfield AI partnership roles.</p>
+          <h3>The job in one paragraph</h3>
+          <p>You build a company's <strong>partner ecosystem from zero</strong>: you decide which <em>types</em> of partners (agencies, studios, resellers, technology/platform partners) to recruit, you design the <strong>program</strong> that governs them (tiers, commercial terms, incentives, rules of engagement), you <strong>negotiate and close</strong> strategic deals, you make the <strong>direct sales team and partners cooperate instead of collide</strong>, you prove it all with <strong>clean Salesforce attribution</strong> (partner-sourced vs. partner-influenced pipeline), and eventually you <strong>hire and lead</strong> regional managers. The whole function is judged on one thing: <strong>qualified pipeline and revenue that would not exist without partners.</strong></p>
+          <h3>The five skills that make you a pro</h3>
+          <ol>
+            <li><strong>Commercial judgment</strong> — knowing which partnerships actually move revenue, and killing the ones that don't.</li>
+            <li><strong>Program design</strong> — turning relationships into a repeatable, self-serve system (tiers, deal registration, incentives).</li>
+            <li><strong>Negotiation</strong> — structuring and closing partner deals (tactical empathy, not positional haggling).</li>
+            <li><strong>Cross-functional influence</strong> — getting Sales, Product, Marketing, Legal and Finance to act without controlling any of them.</li>
+            <li><strong>Data discipline</strong> — defending the function in the exec team's language: sourced/influenced pipeline, activation rate, ROI.</li>
+          </ol>
+          <h3>The eight modules</h3>
+          <div class="grid" id="homeGrid-en"></div>
+          <div class="note">
+            <span class="tag">How this was built</span>
+            Six research agents searched the web (Oct 2026) for the best current thought leaders, podcasts, books, articles, courses, contract structures and partner-operations practices. Everything here is synthesized from that research. Items that could not be verified are flagged <span class="flag">verify</span> throughout — treat them as leads to confirm, not facts. Benchmark numbers come mostly from vendor blogs, so they are directional. This is educational material, <strong>not legal, financial or investment advice.</strong>
+          </div>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Начните здесь</p>
+          <h2 class="title">От нуля до профессионала</h2>
+          <p class="lede">Полная программа самостоятельного обучения, чтобы стать руководителем глобальных канальных / стратегических партнёрств в AI-компании в сфере креативных технологий — построена на описании вакансии Magnific/Freepik и в равной мере применима к партнёрским ролям в Higgsfield AI.</p>
+          <h3>Суть работы в одном абзаце</h3>
+          <p>Вы строите <strong>партнёрскую экосистему компании с нуля</strong>: решаете, какие <em>типы</em> партнёров (агентства, студии, реселлеры, технологические/платформенные партнёры) привлекать; проектируете <strong>программу</strong>, которая ими управляет (уровни, коммерческие условия, стимулы, правила взаимодействия); <strong>ведёте переговоры и закрываете</strong> стратегические сделки; добиваетесь, чтобы <strong>прямой отдел продаж и партнёры сотрудничали, а не конфликтовали</strong>; подтверждаете всё <strong>чистой атрибуцией в Salesforce</strong> (воронка, созданная партнёром, против воронки, на которую партнёр повлиял); и в итоге <strong>нанимаете и руководите</strong> региональными менеджерами. Всю функцию оценивают по одному: <strong>квалифицированная воронка и выручка, которых не было бы без партнёров.</strong></p>
+          <h3>Пять навыков, которые делают вас профессионалом</h3>
+          <ol>
+            <li><strong>Коммерческое чутьё</strong> — понимать, какие партнёрства реально двигают выручку, и закрывать те, что не двигают.</li>
+            <li><strong>Дизайн программы</strong> — превращать отношения в воспроизводимую, самообслуживаемую систему (уровни, регистрация сделок, стимулы).</li>
+            <li><strong>Переговоры</strong> — структурировать и закрывать партнёрские сделки (тактическая эмпатия, а не позиционный торг).</li>
+            <li><strong>Межфункциональное влияние</strong> — заставлять продажи, продукт, маркетинг, юристов и финансы действовать, не управляя ни одним из них напрямую.</li>
+            <li><strong>Дисциплина данных</strong> — защищать функцию на языке руководства: воронка source/influence, доля активированных партнёров, ROI.</li>
+          </ol>
+          <h3>Восемь модулей</h3>
+          <div class="grid" id="homeGrid-ru"></div>
+          <div class="note">
+            <span class="tag">Как это собрано</span>
+            Шесть исследовательских агентов искали в интернете (окт. 2026) лучших актуальных экспертов, подкасты, книги, статьи, курсы, структуры договоров и практики партнёрских операций. Всё здесь — синтез этого исследования. Непроверенные пункты помечены <span class="flag">проверить</span> — считайте их зацепками для проверки, а не фактами. Цифры-ориентиры взяты в основном из блогов вендоров, поэтому они приблизительны. Это учебный материал, <strong>а не юридическая, финансовая или инвестиционная консультация.</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 1 CURRICULUM ============ -->
+      <section class="module" id="curriculum" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 01</p>
+          <h2 class="title">Curriculum &amp; 12-week path</h2>
+          <p class="lede">Your structured on-ramp — roughly 5–7 focused hours a week. Each week has a goal, inputs, and an output, because you only learn this job by making the artifacts.</p>
+          <h3>The mental model first</h3>
+          <p>A channel/partnerships leader runs a <strong>flywheel</strong>, not a pipeline:</p>
+          <div class="scroll"><pre>   IDENTIFY  ──►  RECRUIT  ──►  ONBOARD  ──►  ENABLE  ──►  ACTIVATE  ──►  GROW
+   right-fit      sign the      make them     make them     first        QBRs,
+   partners       partner       operational   competent     sourced deal  expand, re-tier
+      ▲                                                                      │
+      └──────────────────  sunset dead partners, reinvest  ◄────────────────┘</pre></div>
+          <p>Everything maps to one of two questions:</p>
+          <ol>
+            <li><strong>Am I recruiting the <em>right</em> partners?</strong> (Fit over volume — the #1 cause of dead programs is signing everyone.)</li>
+            <li><strong>Am I moving partners from signed → activated (first real deal)?</strong> (The enrollment→activation gap is where most programs leak.)</li>
+          </ol>
+          <p>Your scoreboard is <strong>partner-sourced</strong> and <strong>partner-influenced</strong> pipeline/revenue — kept as <em>separate</em> numbers, never blended.</p>
+          <hr>
+          <h3>Phase 1 — Why partnerships exist</h3>
+          <h4>Week 1 · The ecosystem thesis</h4>
+          <p><em>Goal:</em> understand why the channel shifted from reselling to ecosystems, and why buyers trust "who" over "what." <em>Inputs:</em> Jay McBain content; start Bob Moore's <em>Ecosystem-Led Growth</em>; subscribe to ELG Insider. <em>Output:</em> one page — "Why would Magnific (1M+ self-serve subscribers) need a partner channel at all?" Answer in revenue terms.</p>
+          <h4>Week 2 · The nearbound worldview</h4>
+          <p><em>Goal:</em> learn the "who economy" and the difference between inbound, outbound and nearbound. <em>Inputs:</em> Jared Fuller's <em>Nearbound</em>; 2–3 Nearbound Podcast episodes. <em>Output:</em> list the 7–10 partner types that sit "near" an AI-creative buyer.</p>
+          <h3>Phase 2 — How you build the program</h3>
+          <h4>Week 3 · The partner lifecycle</h4>
+          <p><em>Goal:</em> memorize recruit → onboard → enable → activate → grow and each stage's exit criteria. <em>Output:</em> draw the lifecycle from memory, annotate each stage with its one key metric.</p>
+          <h4>Week 4 · Partner types &amp; motions</h4>
+          <p><em>Goal:</em> cleanly distinguish referral vs. reseller vs. co-sell vs. tech/ISV. <em>Output:</em> a one-page decision tree — "given this partner, which motion and which contract?"</p>
+          <h4>Week 5 · Program design: tiers, incentives, rules of engagement</h4>
+          <p><em>Goal:</em> design a 3-tier program with thresholds, benefits and conflict rules. <em>Output:</em> a tier table (Registered → Gold → Platinum) for an AI creative platform.</p>
+          <h4>Week 6 · Deal registration &amp; channel conflict</h4>
+          <p><em>Goal:</em> understand the single most important operational control. <em>Output:</em> write your deal-registration policy — what qualifies, protection window, discount uplift, conflict resolution, who approves and in what SLA.</p>
+          <h3>Phase 3 — The hard skills</h3>
+          <h4>Week 7 · Negotiation</h4>
+          <p><em>Goal:</em> replace positional haggling with tactical empathy. <em>Inputs:</em> Chris Voss + Black Swan; Kwame Christian's <em>Negotiate Anything</em>. <em>Output:</em> script a mock negotiation — a reseller wants 40% margin, you can give 25%.</p>
+          <h4>Week 8 · Salesforce attribution</h4>
+          <p><em>Goal:</em> model partners in a CRM and separate sourced vs. influenced. <em>Output:</em> sketch the data model and the two reports you'd show a CRO.</p>
+          <h4>Week 9 · Metrics &amp; the ROI case</h4>
+          <p><em>Goal:</em> speak the exec language — activation rate, sourced pipeline, revenue per active partner, program ROI. <em>Output:</em> a one-screen partner dashboard spec.</p>
+          <h3>Phase 4 — Put it together</h3>
+          <h4>Week 10 · The company &amp; market</h4>
+          <p><em>Output:</em> a SWOT of the company's partner opportunity + a named list of 20 real target partners.</p>
+          <h4>Week 11 · Co-sell &amp; technology partnerships</h4>
+          <p><em>Output:</em> a co-sell "rules of engagement" one-pager for a hypothetical Adobe or Figma partnership.</p>
+          <h4>Week 12 · Your 90-day plan</h4>
+          <p><em>Output:</em> your own tailored 30/60/90, with named first-wave partners, the first motion you'd prove, and the metric you'd commit to.</p>
+          <hr>
+          <h3>Fastest credible on-ramp</h3>
+          <ol>
+            <li><strong>Read:</strong> <em>Nearbound</em> (the why) → <em>Ecosystem-Led Growth</em> by Bob Moore (the how) → <em>Never Split the Difference</em> (before your first contract).</li>
+            <li><strong>Take one course:</strong> impact.com's Partnerships Experience Academy (free fundamentals); consider PARTNERNOMICS SPLP for a credential or Firneo's cohort.</li>
+            <li><strong>Join one community:</strong> Partnership Leaders.</li>
+            <li><strong>Subscribe:</strong> ELG Insider + follow McBain, Fuller, Moore, Rowley on LinkedIn.</li>
+            <li><strong>Listen weekly:</strong> Howdy Partners + 30 Minutes to President's Club + Negotiate Anything.</li>
+          </ol>
+          <p class="muted">Verify current pricing for all paid options — figures move and sources conflicted. <span class="flag">verify</span></p>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 01</p>
+          <h2 class="title">Программа и путь на 12 недель</h2>
+          <p class="lede">Ваш структурированный вход — примерно 5–7 сфокусированных часов в неделю. У каждой недели есть цель, материалы и результат, потому что этой работе учатся, только создавая артефакты.</p>
+          <h3>Сначала — ментальная модель</h3>
+          <p>Руководитель каналов/партнёрств управляет <strong>маховиком</strong>, а не воронкой:</p>
+          <div class="scroll"><pre>   IDENTIFY  ──►  RECRUIT  ──►  ONBOARD  ──►  ENABLE  ──►  ACTIVATE  ──►  GROW
+   right-fit      sign the      make them     make them     first        QBRs,
+   partners       partner       operational   competent     sourced deal  expand, re-tier
+      ▲                                                                      │
+      └──────────────────  sunset dead partners, reinvest  ◄────────────────┘</pre></div>
+          <p>Всё сводится к одному из двух вопросов:</p>
+          <ol>
+            <li><strong>Привлекаю ли я <em>правильных</em> партнёров?</strong> (Соответствие важнее количества — главная причина мёртвых программ в том, что подписывают всех подряд.)</li>
+            <li><strong>Перевожу ли я партнёров из «подписан» → «активирован» (первая реальная сделка)?</strong> (Разрыв между регистрацией и активацией — там, где протекает большинство программ.)</li>
+          </ol>
+          <p>Ваше табло — воронка/выручка <strong>source</strong> (создана партнёром) и <strong>influence</strong> (партнёр повлиял), которые держат как <em>отдельные</em> числа, никогда не смешивая.</p>
+          <hr>
+          <h3>Фаза 1 — Зачем существуют партнёрства</h3>
+          <h4>Неделя 1 · Тезис об экосистеме</h4>
+          <p><em>Цель:</em> понять, почему канал сместился от перепродажи к экосистемам и почему покупатели доверяют «кому», а не «чему». <em>Материалы:</em> контент Jay McBain; начните книгу Bob Moore <em>Ecosystem-Led Growth</em>; подпишитесь на ELG Insider. <em>Результат:</em> одна страница — «Зачем Magnific (1M+ самостоятельных подписчиков) вообще нужен партнёрский канал?» Ответьте в терминах выручки.</p>
+          <h4>Неделя 2 · Мировоззрение nearbound</h4>
+          <p><em>Цель:</em> освоить «экономику кого» и разницу между inbound, outbound и nearbound. <em>Материалы:</em> книга Jared Fuller <em>Nearbound</em>; 2–3 выпуска Nearbound Podcast. <em>Результат:</em> список из 7–10 типов партнёров, которые находятся «рядом» с покупателем AI-креатива.</p>
+          <h3>Фаза 2 — Как вы строите программу</h3>
+          <h4>Неделя 3 · Жизненный цикл партнёра</h4>
+          <p><em>Цель:</em> выучить recruit → onboard → enable → activate → grow и критерии выхода каждого этапа. <em>Результат:</em> нарисуйте жизненный цикл по памяти, пометив у каждого этапа его ключевую метрику.</p>
+          <h4>Неделя 4 · Типы партнёров и модели (motions)</h4>
+          <p><em>Цель:</em> чётко различать referral, reseller, co-sell и tech/ISV. <em>Результат:</em> дерево решений на одну страницу — «для этого партнёра: какая модель и какой договор?»</p>
+          <h4>Неделя 5 · Дизайн программы: уровни, стимулы, правила взаимодействия</h4>
+          <p><em>Цель:</em> спроектировать программу из 3 уровней с порогами, выгодами и правилами разрешения конфликтов. <em>Результат:</em> таблица уровней (Registered → Gold → Platinum) для AI-креативной платформы.</p>
+          <h4>Неделя 6 · Регистрация сделок и конфликт каналов</h4>
+          <p><em>Цель:</em> понять самый важный операционный механизм контроля. <em>Результат:</em> напишите свою политику регистрации сделок — что квалифицируется, окно защиты, надбавка к скидке, разрешение конфликтов, кто утверждает и в какой SLA.</p>
+          <h3>Фаза 3 — Жёсткие навыки</h3>
+          <h4>Неделя 7 · Переговоры</h4>
+          <p><em>Цель:</em> заменить позиционный торг тактической эмпатией. <em>Материалы:</em> Chris Voss + Black Swan; <em>Negotiate Anything</em> Кваме Кристиана. <em>Результат:</em> сценарий учебных переговоров — реселлер хочет маржу 40%, вы можете дать 25%.</p>
+          <h4>Неделя 8 · Атрибуция в Salesforce</h4>
+          <p><em>Цель:</em> смоделировать партнёров в CRM и разделить source и influence. <em>Результат:</em> набросайте модель данных и два отчёта, которые показали бы CRO.</p>
+          <h4>Неделя 9 · Метрики и обоснование ROI</h4>
+          <p><em>Цель:</em> говорить на языке руководства — доля активации, воронка source, выручка на активного партнёра, ROI программы. <em>Результат:</em> спецификация дашборда партнёров на один экран.</p>
+          <h3>Фаза 4 — Соберите всё вместе</h3>
+          <h4>Неделя 10 · Компания и рынок</h4>
+          <p><em>Результат:</em> SWOT партнёрской возможности компании + поимённый список из 20 реальных целевых партнёров.</p>
+          <h4>Неделя 11 · Co-sell и технологические партнёрства</h4>
+          <p><em>Результат:</em> одностраничные «правила взаимодействия» co-sell для гипотетического партнёрства с Adobe или Figma.</p>
+          <h4>Неделя 12 · Ваш план на 90 дней</h4>
+          <p><em>Результат:</em> ваш собственный план 30/60/90 с поимённо названными партнёрами первой волны, первой моделью, которую вы докажете, и метрикой, под которой подпишетесь.</p>
+          <hr>
+          <h3>Самый быстрый надёжный вход</h3>
+          <ol>
+            <li><strong>Прочитать:</strong> <em>Nearbound</em> (зачем) → <em>Ecosystem-Led Growth</em> Bob Moore (как) → <em>Never Split the Difference</em> (перед первым договором).</li>
+            <li><strong>Пройти один курс:</strong> Partnerships Experience Academy от impact.com (бесплатные основы); рассмотрите PARTNERNOMICS SPLP для сертификата или когорту Firneo.</li>
+            <li><strong>Вступить в одно сообщество:</strong> Partnership Leaders.</li>
+            <li><strong>Подписаться:</strong> ELG Insider + подписка на McBain, Fuller, Moore, Rowley в LinkedIn.</li>
+            <li><strong>Слушать еженедельно:</strong> Howdy Partners + 30 Minutes to President's Club + Negotiate Anything.</li>
+          </ol>
+          <p class="muted">Проверяйте актуальные цены по всем платным опциям — суммы меняются, источники расходились. <span class="flag">проверить</span></p>
+        </div>
+      </section>
+
+      <!-- ============ 2 RESOURCES ============ -->
+      <section class="module" id="resources" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 02</p>
+          <h2 class="title">The curated canon</h2>
+          <p class="lede">Everything worth your attention — people, podcasts, YouTube, books, courses and articles — each with why it matters and the one takeaway. LinkedIn handles, some URLs and exact prices are flagged <span class="flag">verify</span>.</p>
+          <h3>Thought leaders — know these cold</h3>
+          <h4>Jay McBain — Chief Analyst, Canalys / Omdia (ex-Forrester)</h4>
+          <p>The most-cited channel analyst alive; frames the shift from reseller channels to multi-partner ecosystems. <em>Takeaway:</em> up to ~75% of world trade flows indirectly, and buyers are influenced by many partners before a vendor engages — design for <strong>influence</strong> partners, not just transacting resellers.</p>
+          <h4>Bob Moore — Co-founder &amp; CEO, Crossbeam · author, <em>Ecosystem-Led Growth</em> (2024)</h4>
+          <p>Coined/popularized Ecosystem-Led Growth and built the leading account-mapping platform. <em>Takeaway:</em> your partners' overlapping-customer data is your highest-signal GTM asset — start every partnership by mapping account overlaps.</p>
+          <h4>Jared Fuller — Co-founder, nearbound.com · author, <em>Nearbound and the Rise of the Who Economy</em></h4>
+          <p>The loudest evangelist of nearbound. <em>Takeaway:</em> buyers shifted from "how do I solve this?" to "who can help me?" Position your company inside the trusted recommendations buyers already rely on.</p>
+          <h4>Jill Rowley — GTM advisor; LP, Stage 2 Capital</h4>
+          <p>Ties social selling to partner-led motions; credible with revenue leaders. <em>Takeaway:</em> "Trust is the new data." Partnerships win because they transfer trust.</p>
+          <h4>Allan Adler — Managing Partner, Digital Bridge Partners · GoToEcosystem framework</h4>
+          <p>The go-to consultant for organizational alignment around ecosystems. <em>Takeaway:</em> ecosystem is a CEO function, not a side team — treat cross-functional alignment as your first deliverable.</p>
+          <h4 class="muted">Community &amp; program authorities</h4>
+          <ul>
+            <li><strong>Asher Mathew</strong> (CEO, Partnership Leaders) — build with executive metrics from day one, not activity metrics.</li>
+            <li><strong>Tai Rattigan</strong> (Partnership Leaders; ex-Deel) — partnerships scale when productized and self-serve.</li>
+            <li><strong>Scott Pollack</strong> (Firneo) — partnerships has a learnable, repeatable playbook; invest in frameworks early.</li>
+            <li><strong>Norma Watenpaugh</strong> (PhoenixCG; led ISO 44001) — strategic alliances need governance, not just a signed agreement.</li>
+            <li><strong>Mark Brigman</strong> (PARTNERNOMICS) — treat partnership management as a discipline, not charisma.</li>
+          </ul>
+          <h4 class="muted">Operators &amp; platform founders</h4>
+          <ul>
+            <li><strong>Mayank Bawa</strong> (WorkSpan) — for AI/SaaS, hyperscaler marketplaces are now a primary channel.</li>
+            <li><strong>Greg Portnoy</strong> (Euler) — partnerships is influence without authority.</li>
+            <li><strong>Pete Caputa</strong> (Databox; built HubSpot's agency program) — a channel works when you make your partners money.</li>
+            <li><strong>Rob Rebholz</strong> (Superglue) — co-sell scales only when you systematize partner-manager actions.</li>
+            <li><strong>Will Taylor, Ben Wright, Tom Burgess</strong> (Howdy Partners) — focus partner time on revenue-generating activity.</li>
+          </ul>
+          <h3>Communities &amp; organizations</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Organization</th><th>What it is</th></tr></thead>
+            <tbody>
+              <tr><td>Partnership Leaders</td><td>Leading invite-based community for partnership execs; playbooks, the Catalyst conference.</td></tr>
+              <tr><td>Crossbeam (merged w/ Reveal)</td><td>The ELG/account-mapping platform; publishes ELG Insider, the Nearbound &amp; Howdy Partners podcasts, runs Supernode.</td></tr>
+              <tr><td>nearbound.com</td><td>The nearbound movement's content hub.</td></tr>
+              <tr><td>Firneo</td><td>Cohort-based training &amp; certification (8-week bootcamp). <span class="flag">verify</span></td></tr>
+              <tr><td>PARTNERNOMICS</td><td>Training + the accredited SPLP certification.</td></tr>
+              <tr><td>ASAP</td><td>Certifies alliance management (CA-AM, CSAP) — enterprise/alliance rigor.</td></tr>
+              <tr><td>Cloud Software Association</td><td>SaaS partnership network; runs SaaS Connect (integration focus).</td></tr>
+              <tr><td>Canalys/Omdia · Forrester · Gartner</td><td>Analyst coverage of channel/ecosystem (McBain at Omdia; Laz Gonzalez at Gartner on co-sell).</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Podcasts</h3>
+          <p class="muted">ACTIVE = recent 2025–2026 episodes · ARCHIVE = high-value back catalog.</p>
+          <h4>Partnerships-specific</h4>
+          <ul>
+            <li><strong>The Nearbound Podcast</strong> (formerly PartnerUp) — Fuller &amp; Morehouse. <em>ARCHIVE, essential.</em> The intellectual backbone of ELG. Best: the two Jay McBain episodes and #148 on partner-program challenges.</li>
+            <li><strong>Howdy Partners</strong> — Taylor, Wright, Burgess. <em>ARCHIVE (~76 eps).</em> The best operator tactics for a first-time leader. Standout: the internal/external enablement episode (#76).</li>
+            <li><strong>Friends with Benefits</strong> — Jason &amp; Sam Yarborough. <em>ACTIVE.</em> The human/relational side: trust, internal politics.</li>
+            <li><strong>The Partnership Economy</strong> (impact.com). <em>ACTIVE.</em> Breadth across affiliate/referral/B2B/B2C; brand-side cases.</li>
+            <li><strong>The PARTNERNOMICS Show</strong> — Mark Brigman. <em>ACTIVE.</em> Structured frameworks, governance, vocabulary.</li>
+            <li><strong>Inside Partnering</strong> + the <strong>Ecosystem Aces</strong> archive — Chip Rodgers. <em>ACTIVE / deep archive.</em> The best source on enterprise co-sell with AWS/Microsoft/Google/SAP.</li>
+          </ul>
+          <h4>Sales &amp; GTM (the skills layer under every partner-sourced deal)</h4>
+          <ul>
+            <li><strong>30 Minutes to President's Club</strong> — Cegelski &amp; Farrokh. <em>ACTIVE, top pick.</em> Hyper-actionable top-1% sales tactics.</li>
+            <li><strong>The Transaction</strong> — Rosenberg &amp; Amundson. <em>ACTIVE.</em> System-level modern B2B GTM.</li>
+            <li><strong>The GTM Podcast</strong> (GTMnow) — Scott Barker. <em>ACTIVE.</em> Org design, scaling, comp.</li>
+            <li><strong>The Official SaaStr Podcast</strong> — Jason Lemkin. <em>ACTIVE.</em> Exec/board altitude.</li>
+            <li><strong>Make It Happen Mondays</strong> — John Barrows. <em>ACTIVE.</em> Sales fundamentals &amp; leadership.</li>
+          </ul>
+          <h4>Negotiation</h4>
+          <ul>
+            <li><strong>Negotiate Anything</strong> — Kwame Christian. <em>ACTIVE, #1 negotiation podcast.</em> Much of it internal/relational — your daily reality.</li>
+            <li><strong>Chris Voss / The Black Swan Group</strong> — ex-FBI lead negotiator; <em>Never Split the Difference.</em> Tactical empathy: mirroring, labeling, calibrated questions.</li>
+          </ul>
+          <h3>YouTube channels</h3>
+          <ol>
+            <li><strong>The Black Swan Group (Chris Voss)</strong> — short negotiation drills. <span class="flag">verify handle</span></li>
+            <li><strong>30 Minutes to President's Club</strong> — best single sales-skills channel.</li>
+            <li><strong>pclub.io / Chris Orlob</strong> (ex-Gong) — enterprise discovery, demos, deal strategy.</li>
+            <li><strong>Jay McBain</strong> — definitive channel/ecosystem trend data.</li>
+            <li><strong>SaaStr (Jason Lemkin)</strong> — SaaS scaling, GTM, AI-GTM talks.</li>
+            <li><strong>Winning by Design</strong> — diagram-driven revenue-lifecycle frameworks (the bowtie model).</li>
+            <li><strong>GTMnow / GTMfund</strong> — operator-level GTM strategy.</li>
+            <li><strong>Crossbeam / ELG Insider</strong> — the home of ELG content.</li>
+          </ol>
+          <h3>Books (read in this order)</h3>
+          <ol>
+            <li><strong>Nearbound and the Rise of the Who Economy</strong> — Jared Fuller (2024). The "why."</li>
+            <li><strong>Ecosystem-Led Growth</strong> — Bob Moore (Wiley, 2024). The "how." <em>(This is Moore's book — not Fuller's or Rowley's.)</em></li>
+            <li><strong>Never Split the Difference</strong> — Chris Voss (2016). Read before your first partner contract.</li>
+            <li><strong>The Alliance</strong> — Hoffman, Casnocha, Yeh (2014). The canonical alliance-thinking model.</li>
+            <li><strong>Partnernomics</strong> / <strong>LAUNCH</strong> — Mark Brigman. The structured "science of partnering." <span class="flag">verify edition</span></li>
+            <li><strong>Strategic Alliance Management</strong> — Tjemkes, Vos, Burgers (3rd ed., 2023). Academic depth. <span class="flag">verify</span></li>
+          </ol>
+          <p class="muted">Browse wider: Omdia's "Top 55 Channel Ecosystem Books" (May 2024) is an annotated canon.</p>
+          <h3>Courses &amp; certifications</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Program</th><th>Teaches</th><th>Rough cost</th></tr></thead>
+            <tbody>
+              <tr><td>impact.com — PXA</td><td>Fundamentals + associate certs; live sessions.</td><td>Free fundamentals</td></tr>
+              <tr><td>PARTNERNOMICS — SPLP</td><td>Partnering foundations, indirect sales, the SPLM model; exam + accredited badge.</td><td>Exam ~$395; membership ~$495 lifetime <span class="flag">verify</span></td></tr>
+              <tr><td>Firneo</td><td>8-week cohort bootcamp (qualification, program design, live cases).</td><td><span class="flag">verify</span></td></tr>
+              <tr><td>Partnership Leaders + Catalyst</td><td>Peer playbooks, chapters, conference.</td><td>~$50–100/mo <span class="flag">verify</span></td></tr>
+              <tr><td>ASAP — CA-AM / CSAP</td><td>Formal alliance-management certification.</td><td>CSAP ~$699–875 <span class="flag">verify</span></td></tr>
+              <tr><td>LinkedIn Learning</td><td>Channel sales, strategic alliances, partnership management.</td><td>Cheap (Premium)</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Must-read articles &amp; free frameworks</h3>
+          <ul>
+            <li><strong>Partner Tiers Cheat Sheet</strong> — Crossbeam/ELG Insider.</li>
+            <li><strong>Build a Channel Partner Program from Scratch</strong> — Partner Standard. Key line: "Partners accelerate what already works; they don't fix what's broken."</li>
+            <li><strong>Co-Selling: The Complete Guide</strong> — Magentrix.</li>
+            <li><strong>Partner Motions</strong> (reseller vs. referral vs. tech vs. co-sell) — Unifyr Atlas; <strong>Partner Pipeline / attribution</strong> — Introw.</li>
+            <li><strong>Deal Registration Process</strong> — Channeltivity.</li>
+            <li><strong>McBain / Canalys-Omdia commentary (2025–26)</strong> — where channel value is moving. <em>(The popular "85% of software sold through partners by 2030" stat is widely attributed to McBain but could not be verified — cite with care. <span class="flag">verify</span>)</em></li>
+          </ul>
+          <h3>Newsletters</h3>
+          <ul>
+            <li><strong>ELG Insider (Weekly)</strong> — Crossbeam. The single most important thread in modern partnerships.</li>
+            <li><strong>Partner Insight (Substack)</strong> — strong on AI partnerships, marketplaces, McBain-style macro.</li>
+            <li><strong>Follow on LinkedIn:</strong> McBain, Fuller, Moore, Rowley — in this field LinkedIn <em>is</em> the newsletter. <span class="flag">verify handles</span></li>
+          </ul>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 02</p>
+          <h2 class="title">Отобранный канон</h2>
+          <p class="lede">Всё, что заслуживает вашего внимания — люди, подкасты, YouTube, книги, курсы и статьи — с указанием, почему это важно, и одним главным выводом. Аккаунты LinkedIn, некоторые ссылки и точные цены помечены <span class="flag">проверить</span>.</p>
+          <h3>Лидеры мысли — знать назубок</h3>
+          <h4>Jay McBain — Chief Analyst, Canalys / Omdia (экс-Forrester)</h4>
+          <p>Самый цитируемый аналитик по каналам; формулирует сдвиг от реселлерских каналов к многопартнёрским экосистемам. <em>Вывод:</em> до ~75% мировой торговли идёт непрямым путём, и на покупателя влияют многие партнёры ещё до контакта с вендором — проектируйте под партнёров <strong>влияния</strong>, а не только под транзакционных реселлеров.</p>
+          <h4>Bob Moore — сооснователь и CEO Crossbeam · автор <em>Ecosystem-Led Growth</em> (2024)</h4>
+          <p>Ввёл/популяризировал Ecosystem-Led Growth и построил ведущую платформу сопоставления аккаунтов. <em>Вывод:</em> данные о пересечении клиентов ваших партнёров — ваш самый сигнальный GTM-актив; начинайте любое партнёрство с картирования пересечений аккаунтов.</p>
+          <h4>Jared Fuller — сооснователь nearbound.com · автор <em>Nearbound and the Rise of the Who Economy</em></h4>
+          <p>Главный евангелист nearbound. <em>Вывод:</em> покупатели перешли от «как мне это решить?» к «кто может мне помочь?» Размещайте компанию внутри доверенных рекомендаций, на которые покупатели уже полагаются.</p>
+          <h4>Jill Rowley — GTM-советник; LP в Stage 2 Capital</h4>
+          <p>Связывает социальные продажи с партнёрскими моделями; авторитетна у лидеров по выручке. <em>Вывод:</em> «Доверие — это новые данные». Партнёрства выигрывают, потому что передают доверие.</p>
+          <h4>Allan Adler — управляющий партнёр Digital Bridge Partners · фреймворк GoToEcosystem</h4>
+          <p>Главный консультант по организационной согласованности вокруг экосистем. <em>Вывод:</em> экосистема — функция CEO, а не отдельной команды; считайте межфункциональную согласованность своим первым результатом.</p>
+          <h4 class="muted">Авторитеты сообществ и программ</h4>
+          <ul>
+            <li><strong>Asher Mathew</strong> (CEO, Partnership Leaders) — стройте на управленческих метриках с первого дня, а не на метриках активности.</li>
+            <li><strong>Tai Rattigan</strong> (Partnership Leaders; экс-Deel) — партнёрства масштабируются, когда их продуктизируют и делают самообслуживаемыми.</li>
+            <li><strong>Scott Pollack</strong> (Firneo) — у партнёрств есть выучиваемый, воспроизводимый плейбук; вкладывайтесь во фреймворки рано.</li>
+            <li><strong>Norma Watenpaugh</strong> (PhoenixCG; вела ISO 44001) — стратегическим альянсам нужно управление (governance), а не только подписанный договор.</li>
+            <li><strong>Mark Brigman</strong> (PARTNERNOMICS) — относитесь к управлению партнёрствами как к дисциплине, а не харизме.</li>
+          </ul>
+          <h4 class="muted">Практики и основатели платформ</h4>
+          <ul>
+            <li><strong>Mayank Bawa</strong> (WorkSpan) — для AI/SaaS маркетплейсы гиперскейлеров теперь основной канал.</li>
+            <li><strong>Greg Portnoy</strong> (Euler) — партнёрства — это влияние без полномочий.</li>
+            <li><strong>Pete Caputa</strong> (Databox; построил агентскую программу HubSpot) — канал работает, когда вы даёте партнёрам заработать.</li>
+            <li><strong>Rob Rebholz</strong> (Superglue) — co-sell масштабируется, только когда вы систематизируете действия партнёрских менеджеров.</li>
+            <li><strong>Will Taylor, Ben Wright, Tom Burgess</strong> (Howdy Partners) — направляйте время партнёра на деятельность, создающую выручку.</li>
+          </ul>
+          <h3>Сообщества и организации</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Организация</th><th>Что это</th></tr></thead>
+            <tbody>
+              <tr><td>Partnership Leaders</td><td>Ведущее закрытое сообщество руководителей партнёрств; плейбуки, конференция Catalyst.</td></tr>
+              <tr><td>Crossbeam (объед. с Reveal)</td><td>Платформа ELG/сопоставления аккаунтов; издаёт ELG Insider, подкасты Nearbound и Howdy Partners, проводит Supernode.</td></tr>
+              <tr><td>nearbound.com</td><td>Контент-хаб движения nearbound.</td></tr>
+              <tr><td>Firneo</td><td>Когортное обучение и сертификация (8-недельный буткемп). <span class="flag">проверить</span></td></tr>
+              <tr><td>PARTNERNOMICS</td><td>Обучение + аккредитованная сертификация SPLP.</td></tr>
+              <tr><td>ASAP</td><td>Сертифицирует управление альянсами (CA-AM, CSAP) — корпоративная/альянсовая строгость.</td></tr>
+              <tr><td>Cloud Software Association</td><td>Сеть SaaS-партнёрств; проводит SaaS Connect (фокус на интеграциях).</td></tr>
+              <tr><td>Canalys/Omdia · Forrester · Gartner</td><td>Аналитика по каналам/экосистемам (McBain в Omdia; Laz Gonzalez в Gartner по co-sell).</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Подкасты</h3>
+          <p class="muted">ACTIVE = свежие выпуски 2025–2026 · ARCHIVE = ценный архив.</p>
+          <h4>Про партнёрства</h4>
+          <ul>
+            <li><strong>The Nearbound Podcast</strong> (ранее PartnerUp) — Fuller и Morehouse. <em>ARCHIVE, обязательно.</em> Интеллектуальная основа ELG. Лучшее: два выпуска с Jay McBain и #148 о вызовах партнёрских программ.</li>
+            <li><strong>Howdy Partners</strong> — Taylor, Wright, Burgess. <em>ARCHIVE (~76 выпусков).</em> Лучшая тактика для начинающего руководителя. Выделяется выпуск о внутреннем/внешнем enablement (#76).</li>
+            <li><strong>Friends with Benefits</strong> — Jason и Sam Yarborough. <em>ACTIVE.</em> Человеческая/отношенческая сторона: доверие, внутренняя политика.</li>
+            <li><strong>The Partnership Economy</strong> (impact.com). <em>ACTIVE.</em> Широта: affiliate/referral/B2B/B2C; кейсы со стороны брендов.</li>
+            <li><strong>The PARTNERNOMICS Show</strong> — Mark Brigman. <em>ACTIVE.</em> Структурированные фреймворки, governance, лексика.</li>
+            <li><strong>Inside Partnering</strong> + архив <strong>Ecosystem Aces</strong> — Chip Rodgers. <em>ACTIVE / глубокий архив.</em> Лучший источник по корпоративному co-sell с AWS/Microsoft/Google/SAP.</li>
+          </ul>
+          <h4>Продажи и GTM (слой навыков под каждой partner-sourced сделкой)</h4>
+          <ul>
+            <li><strong>30 Minutes to President's Club</strong> — Cegelski и Farrokh. <em>ACTIVE, топ-выбор.</em> Предельно практичная тактика продаж топ-1%.</li>
+            <li><strong>The Transaction</strong> — Rosenberg и Amundson. <em>ACTIVE.</em> Системный взгляд на современный B2B GTM.</li>
+            <li><strong>The GTM Podcast</strong> (GTMnow) — Scott Barker. <em>ACTIVE.</em> Орг-дизайн, масштабирование, компенсации.</li>
+            <li><strong>The Official SaaStr Podcast</strong> — Jason Lemkin. <em>ACTIVE.</em> Уровень руководства/совета директоров.</li>
+            <li><strong>Make It Happen Mondays</strong> — John Barrows. <em>ACTIVE.</em> Основы продаж и лидерство.</li>
+          </ul>
+          <h4>Переговоры</h4>
+          <ul>
+            <li><strong>Negotiate Anything</strong> — Kwame Christian. <em>ACTIVE, подкаст №1 о переговорах.</em> Во многом о внутренних/отношенческих — вашей ежедневной реальности.</li>
+            <li><strong>Chris Voss / The Black Swan Group</strong> — экс-ведущий переговорщик ФБР; <em>Never Split the Difference.</em> Тактическая эмпатия: отзеркаливание, называние, калиброванные вопросы.</li>
+          </ul>
+          <h3>Каналы YouTube</h3>
+          <ol>
+            <li><strong>The Black Swan Group (Chris Voss)</strong> — короткие тренировки по переговорам. <span class="flag">проверить аккаунт</span></li>
+            <li><strong>30 Minutes to President's Club</strong> — лучший единый канал по навыкам продаж.</li>
+            <li><strong>pclub.io / Chris Orlob</strong> (экс-Gong) — корпоративный discovery, демо, стратегия сделок.</li>
+            <li><strong>Jay McBain</strong> — эталонные данные о трендах каналов/экосистем.</li>
+            <li><strong>SaaStr (Jason Lemkin)</strong> — масштабирование SaaS, GTM, AI-GTM.</li>
+            <li><strong>Winning by Design</strong> — фреймворки жизненного цикла выручки на диаграммах (модель bowtie).</li>
+            <li><strong>GTMnow / GTMfund</strong> — GTM-стратегия уровня практика.</li>
+            <li><strong>Crossbeam / ELG Insider</strong> — дом контента ELG.</li>
+          </ol>
+          <h3>Книги (читать в этом порядке)</h3>
+          <ol>
+            <li><strong>Nearbound and the Rise of the Who Economy</strong> — Jared Fuller (2024). «Зачем».</li>
+            <li><strong>Ecosystem-Led Growth</strong> — Bob Moore (Wiley, 2024). «Как». <em>(Это книга Moore — не Fuller и не Rowley.)</em></li>
+            <li><strong>Never Split the Difference</strong> — Chris Voss (2016). Читать перед первым партнёрским договором.</li>
+            <li><strong>The Alliance</strong> — Hoffman, Casnocha, Yeh (2014). Каноническая модель мышления об альянсах.</li>
+            <li><strong>Partnernomics</strong> / <strong>LAUNCH</strong> — Mark Brigman. Структурированная «наука партнёрства». <span class="flag">проверить издание</span></li>
+            <li><strong>Strategic Alliance Management</strong> — Tjemkes, Vos, Burgers (3-е изд., 2023). Академическая глубина. <span class="flag">проверить</span></li>
+          </ol>
+          <p class="muted">Шире: «Top 55 Channel Ecosystem Books» от Omdia (май 2024) — аннотированный канон.</p>
+          <h3>Курсы и сертификации</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Программа</th><th>Чему учит</th><th>Примерная цена</th></tr></thead>
+            <tbody>
+              <tr><td>impact.com — PXA</td><td>Основы + сертификаты уровня associate; живые сессии.</td><td>Основы бесплатно</td></tr>
+              <tr><td>PARTNERNOMICS — SPLP</td><td>Основы партнёрства, непрямые продажи, модель SPLM; экзамен + аккредитованный бейдж.</td><td>Экзамен ~$395; членство ~$495 пожизненно <span class="flag">проверить</span></td></tr>
+              <tr><td>Firneo</td><td>8-недельный когортный буткемп (квалификация, дизайн программы, живые кейсы).</td><td><span class="flag">проверить</span></td></tr>
+              <tr><td>Partnership Leaders + Catalyst</td><td>Плейбуки от коллег, отделения, конференция.</td><td>~$50–100/мес <span class="flag">проверить</span></td></tr>
+              <tr><td>ASAP — CA-AM / CSAP</td><td>Формальная сертификация по управлению альянсами.</td><td>CSAP ~$699–875 <span class="flag">проверить</span></td></tr>
+              <tr><td>LinkedIn Learning</td><td>Канальные продажи, стратегические альянсы, управление партнёрствами.</td><td>Недорого (Premium)</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Обязательные статьи и бесплатные фреймворки</h3>
+          <ul>
+            <li><strong>Partner Tiers Cheat Sheet</strong> — Crossbeam/ELG Insider.</li>
+            <li><strong>Build a Channel Partner Program from Scratch</strong> — Partner Standard. Ключевая мысль: «Партнёры ускоряют то, что уже работает; они не чинят то, что сломано».</li>
+            <li><strong>Co-Selling: The Complete Guide</strong> — Magentrix.</li>
+            <li><strong>Partner Motions</strong> (reseller vs. referral vs. tech vs. co-sell) — Unifyr Atlas; <strong>Partner Pipeline / атрибуция</strong> — Introw.</li>
+            <li><strong>Deal Registration Process</strong> — Channeltivity.</li>
+            <li><strong>Комментарии McBain / Canalys-Omdia (2025–26)</strong> — куда движется ценность канала. <em>(Популярную статистику «85% ПО продаётся через партнёров к 2030» широко приписывают McBain, но подтвердить не удалось — ссылайтесь осторожно. <span class="flag">проверить</span>)</em></li>
+          </ul>
+          <h3>Рассылки</h3>
+          <ul>
+            <li><strong>ELG Insider (еженедельно)</strong> — Crossbeam. Самая важная нить в современных партнёрствах.</li>
+            <li><strong>Partner Insight (Substack)</strong> — сильно по AI-партнёрствам, маркетплейсам, макро в духе McBain.</li>
+            <li><strong>Подписка в LinkedIn:</strong> McBain, Fuller, Moore, Rowley — в этой сфере LinkedIn <em>и есть</em> рассылка. <span class="flag">проверить аккаунты</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 3 FRAMEWORKS ============ -->
+      <section class="module" id="frameworks" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 03</p>
+          <h2 class="title">Frameworks &amp; synthesized knowledge</h2>
+          <p class="lede">The "study the transcripts and teach me" module. Part 1 is the working vocabulary you'll be judged in. Part 2 is the 22 core lessons distilled from the podcasts. Part 3 is the negotiation playbook.</p>
+          <h3>Part 1 — The frameworks (your working vocabulary)</h3>
+          <h4>Ideal Partner Profile (IPP)</h4>
+          <p>The partner-side version of an ICP. Defines the attributes of a partner most likely to succeed: customer-base overlap with your ICP, complementary (not competing) product, delivery capability, economic motivation, cultural fit. Build it <em>before</em> recruiting so you chase fit over volume. A weak IPP is why programs drown in signed-but-dormant partners.</p>
+          <h4>The Partner Lifecycle</h4>
+          <p>Recruit → Onboard → Enable → Activate → Manage → Grow. <em>Activate</em> (first registered/sourced deal) is the hardest step; most partners never activate. Program health ≈ "what % move from onboarded to activated."</p>
+          <h4>Partner Motions — name the motion before you design anything</h4>
+          <ul>
+            <li><strong>Referral</strong> — partner passes a lead for a fee and steps out. Lowest involvement.</li>
+            <li><strong>Reseller / VAR</strong> — partner buys at a discount and owns the transaction, pricing (within bands), often first-line support.</li>
+            <li><strong>Co-sell</strong> — both companies work the same live deal together. Highest yield; the default in cloud-marketplace enterprise deals.</li>
+            <li><strong>Technology / ISV</strong> — a product integration with a shared customer base; usually no resale mechanics.</li>
+          </ul>
+          <p>Each needs different contracts, incentives and metrics. Mixing them is the #1 cause of live-deal disputes.</p>
+          <h4>Program Tiers</h4>
+          <p>A hierarchy (Registered → Silver → Gold → Platinum) that allocates <em>your finite attention</em> to partners who produce. Keep it simple early — 3 tiers, 5–7 plain-language criteria each mapped to a CRM field. Status is not permanent — demote for inactivity. Don't promise tier benefits you can't yet service.</p>
+          <h4>Rules of Engagement (RoE)</h4>
+          <p>The written rules for who owns a customer/deal and how direct reps and partners interact, including conflict resolution. RoE is the trust contract of your ecosystem. Publish it, align sales comp to it, enforce it visibly.</p>
+          <h4>Deal Registration</h4>
+          <p>The partner formally claims an opportunity; you validate it's net-new and qualified, then grant a protection window and better economics. It's the single most important channel-conflict control and the source of clean <em>sourced</em> attribution. Works only with a fast SLA (24–48h), clear net-new criteria and CRM de-duplication.</p>
+          <h4>Nearbound / Ecosystem-Led Growth (ELG)</h4>
+          <p>Buyers trust <em>who</em> they already know, so the fastest path to revenue is operating <em>through</em> partners who surround your buyer. Operationally: use partner account-overlap data to source warm intros, accelerate stuck deals, and expand accounts. The practical unlock is data — map overlaps (Crossbeam/Reveal) and turn relationships into measurable pipeline.</p>
+          <h4>QBRs &amp; Joint Business Plans</h4>
+          <p>The QBR is the governance cadence with each strategic partner: review pipeline and sourced/influenced revenue against a joint business plan. Each quarter decide to invest more, hold, or sunset. A QBR without a pre-agreed plan is just a status meeting.</p>
+          <h4>Attribution: Sourced vs. Influenced</h4>
+          <p><strong>Sourced</strong> = the partner originated the opportunity (deal wouldn't exist without them). <strong>Influenced</strong> = you originated it; a partner materially helped advance it. <em>The counterfactual test:</em> "Would this deal still close — but slower or smaller — without the partner? If yes, it's influenced, not sourced." Keep them in <strong>separate fields</strong>; blending them inflates numbers and destroys CFO/CRO trust.</p>
+          <h4>MDF vs. Co-op</h4>
+          <p><strong>MDF</strong> — discretionary vendor money for partner marketing, pre-approved against a plan, paid on proof of performance. <strong>Co-op</strong> — earned as a % of partner sales.</p>
+          <h4>ROI metrics</h4>
+          <p>Partner-sourced revenue/pipeline; influenced revenue (reported separately); activation rate; time-to-first-deal; win-rate/attach lift on partner-involved deals; co-sell cycle time vs. direct; marketplace-sourced revenue; MDF/program ROI. The maturity signal is moving from activity metrics to outcome metrics.</p>
+          <hr>
+          <h3>Part 2 — The 22 synthesized core lessons</h3>
+          <h4>Building a program from zero</h4>
+          <ol>
+            <li><strong>Start with one revenue-producing play, not a portfolio.</strong> Prove one motion produces pipeline, then templatize.</li>
+            <li><strong>Get executive sponsorship and sales-comp alignment before recruiting.</strong> Programs die from internal misalignment, not partner quality.</li>
+            <li><strong>Pick one north-star early:</strong> partner-sourced + influenced pipeline/revenue. Report outcomes, not activity.</li>
+            <li><strong>Validate cheaply before scaling headcount</strong> — a fractional leader or a single play can de-risk the case.</li>
+            <li><strong>Partners accelerate what already works; they don't fix what's broken.</strong></li>
+          </ol>
+          <h4>Recruiting &amp; activating partners</h4>
+          <ol start="6">
+            <li><strong>Fit over volume — qualification is the weakest point.</strong> Score against the IPP; don't approve everyone.</li>
+            <li><strong>Over-invest in the few.</strong> A small subset drives most results.</li>
+            <li><strong>Re-activate before you recruit.</strong> Re-engaging dormant partners usually beats chasing net-new logos.</li>
+            <li><strong>Reduce friction to near-zero.</strong> Make registering a deal a single form or Slack message.</li>
+            <li><strong>Enable internally first, externally second.</strong> Your reps must know when/how to pull a partner in.</li>
+            <li><strong>Build a "first 90 days" partner path:</strong> what we do, how we co-sell, how to register, what's in it for them.</li>
+            <li><strong>The enrollment→activation gap is where programs leak.</strong> Fix the stage with the steepest drop-off first.</li>
+          </ol>
+          <h4>Co-sell motions</h4>
+          <ol start="13">
+            <li><strong>The highest-leverage artifact is a shared account map.</strong> Overlap data is where partner pipeline comes from.</li>
+            <li><strong>Co-sell is rep-to-rep trust, manufactured at scale.</strong></li>
+            <li><strong>For hyperscaler co-sell, align to the partner's field incentives and marketplace mechanics.</strong> Win by making their seller look good.</li>
+            <li><strong>Buyers trust the ecosystem before they trust you</strong> — ~two-thirds of the journey happens via third parties.</li>
+            <li><strong>Don't single-thread through the partner.</strong> Their one champion is a single point of failure.</li>
+          </ol>
+          <h4>Negotiation</h4>
+          <ol start="18">
+            <li><strong>Use tactical empathy and labeling</strong> to defuse tension and surface the real interest before bargaining.</li>
+            <li><strong>Ask calibrated "How/What" questions</strong> to shift problem-solving onto the other side; aim for "No"-safe questions.</li>
+            <li><strong>Run an accusation audit</strong> — name their likely objections first.</li>
+            <li><strong>Lead with compassionate curiosity, not persuasion.</strong> Reframe so they choose your outcome.</li>
+          </ol>
+          <h4>Partner–direct sales alignment (the make-or-break)</h4>
+          <ol start="22">
+            <li><strong>Eliminate channel conflict by design, not after the fight.</strong> Clear deal-reg rules, territory/account rules, and crediting so a partner deal adds to a rep's number — and pay direct reps to support partner deals. Partnerships must plug into the core GTM narrative and share a number with sales/marketing.</li>
+          </ol>
+          <hr>
+          <h3>Part 3 — The negotiation playbook</h3>
+          <p>You negotiate constantly: partner terms, revenue splits, internal resourcing, comp fights with sales. Use tactical empathy (Voss) and compassionate curiosity (Christian), not positional haggling.</p>
+          <h4>The six moves</h4>
+          <ol>
+            <li><strong>Accusation audit (open with it).</strong> "You probably think we're going to favor our direct team and hand you the scraps." Naming the fear defuses it.</li>
+            <li><strong>Labeling.</strong> "It seems like protecting your implementation-services revenue matters more than the headline discount." Surfaces the real interest.</li>
+            <li><strong>Mirroring.</strong> Repeat their last 1–3 words as a question, then stay silent ~4 seconds, and they elaborate.</li>
+            <li><strong>Calibrated "How/What" questions.</strong> "How am I supposed to offer 40% margin and still fund the co-marketing you're asking for?"</li>
+            <li><strong>Go for "No," not "Yes."</strong> "Is it a bad idea to start with a 90-day co-sell pilot before we commit to annual minimums?"</li>
+            <li><strong>"That's right" &gt; "You're right."</strong> Summarize their worldview until they say "that's right" — the signal they feel understood.</li>
+          </ol>
+          <h4>Worked example — reseller wants 40%, you can give 25%</h4>
+          <ol>
+            <li><em>Accusation audit:</em> "You probably think 25% is us lowballing you and that we don't value the work you put in."</li>
+            <li><em>Label:</em> "It sounds like the number has to cover real delivery cost, not just referral effort."</li>
+            <li><em>Calibrated question:</em> "What would the margin need to protect for this to be worth building a practice around?"</li>
+            <li><em>Reframe to total economics:</em> trade headline margin for things that cost you less than cash — deal-reg protection, qualified leads, MDF, co-marketing, early product access, a renewal/upsell commission tail.</li>
+            <li><em>Tier it:</em> 25% base, uplift to 30%+ at Gold on proven volume — so the higher number is earned.</li>
+            <li><em>Go for "No":</em> "Is it crazy to lock 25% now with a written path to 30% at $250K, rather than stall the whole deal over 15 points today?"</li>
+          </ol>
+          <div class="note"><span class="tag">The thread through all of it</span>Negotiate the whole economic relationship (leads, MDF, protection, renewals, early access), not the single margin number. That's how you turn a zero-sum fight into a bigger pie.</div>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 03</p>
+          <h2 class="title">Фреймворки и синтез знаний</h2>
+          <p class="lede">Модуль «изучи транскрипты и научи меня». Часть 1 — рабочая лексика, по которой вас будут оценивать. Часть 2 — 22 ключевых урока, выжатых из подкастов. Часть 3 — плейбук переговоров.</p>
+          <h3>Часть 1 — Фреймворки (ваша рабочая лексика)</h3>
+          <h4>Идеальный профиль партнёра (IPP)</h4>
+          <p>Партнёрская версия ICP. Задаёт свойства партнёра с наибольшими шансами на успех: пересечение клиентской базы с вашим ICP, дополняющий (не конкурирующий) продукт, способность к внедрению, экономическая мотивация, культурное соответствие. Составьте его <em>до</em> привлечения, чтобы гнаться за соответствием, а не за количеством. Слабый IPP — причина, по которой программы тонут в подписанных, но спящих партнёрах.</p>
+          <h4>Жизненный цикл партнёра</h4>
+          <p>Recruit → Onboard → Enable → Activate → Manage → Grow. <em>Activate</em> (первая зарегистрированная/source-сделка) — самый сложный шаг; большинство партнёров так и не активируются. Здоровье программы ≈ «какой % переходит из onboarded в activated».</p>
+          <h4>Модели партнёрства — назовите модель, прежде чем что-либо проектировать</h4>
+          <ul>
+            <li><strong>Referral</strong> — партнёр передаёт лид за вознаграждение и выходит из сделки. Минимальная вовлечённость.</li>
+            <li><strong>Reseller / VAR</strong> — партнёр покупает со скидкой и владеет транзакцией, ценой (в рамках), часто первой линией поддержки.</li>
+            <li><strong>Co-sell</strong> — обе компании вместе работают над одной живой сделкой. Наибольшая отдача; стандарт в корпоративных сделках через маркетплейсы облаков.</li>
+            <li><strong>Technology / ISV</strong> — продуктовая интеграция с общей клиентской базой; обычно без механики перепродажи.</li>
+          </ul>
+          <p>Каждой нужны свои договоры, стимулы и метрики. Их смешение — причина №1 споров по живым сделкам.</p>
+          <h4>Уровни программы</h4>
+          <p>Иерархия (Registered → Silver → Gold → Platinum), распределяющая <em>ваше ограниченное внимание</em> тем партнёрам, кто приносит результат. В начале держите просто — 3 уровня, 5–7 понятных критериев, каждый привязан к полю CRM. Статус не вечен — понижайте за бездействие. Не обещайте выгоды уровня, которые пока не можете обеспечить.</p>
+          <h4>Правила взаимодействия (RoE)</h4>
+          <p>Письменные правила о том, кто владеет клиентом/сделкой и как взаимодействуют прямые продавцы и партнёры, включая разрешение конфликтов. RoE — договор о доверии вашей экосистемы. Опубликуйте их, согласуйте с ними компенсацию продаж, явно соблюдайте.</p>
+          <h4>Регистрация сделок</h4>
+          <p>Партнёр официально заявляет возможность; вы проверяете, что она новая и квалифицированная, затем даёте окно защиты и лучшую экономику. Это важнейший механизм контроля конфликта каналов и источник чистой атрибуции <em>source</em>. Работает только при быстром SLA (24–48 ч), чётких критериях «новизны» и дедупликации в CRM.</p>
+          <h4>Nearbound / Ecosystem-Led Growth (ELG)</h4>
+          <p>Покупатели доверяют тем, <em>кого</em> уже знают, поэтому самый быстрый путь к выручке — работать <em>через</em> партнёров, окружающих покупателя. Операционно: используйте данные о пересечении аккаунтов для тёплых интро, ускорения застрявших сделок и расширения аккаунтов. Практический рычаг — данные: картируйте пересечения (Crossbeam/Reveal) и превращайте отношения в измеримую воронку.</p>
+          <h4>QBR и совместные бизнес-планы</h4>
+          <p>QBR — ритм управления с каждым стратегическим партнёром: сверяйте воронку и выручку source/influence с совместным бизнес-планом. Каждый квартал решайте — вкладывать больше, держать или сворачивать. QBR без заранее согласованного плана — просто статус-встреча.</p>
+          <h4>Атрибуция: Sourced vs. Influenced</h4>
+          <p><strong>Sourced</strong> = партнёр создал возможность (без него сделки бы не было). <strong>Influenced</strong> = вы её создали; партнёр существенно помог продвинуть. <em>Контрфактический тест:</em> «Закрылась бы эта сделка — но медленнее или меньше — без партнёра? Если да, это influence, а не source». Держите их в <strong>отдельных полях</strong>; их смешение завышает цифры и разрушает доверие CFO/CRO.</p>
+          <h4>MDF vs. Co-op</h4>
+          <p><strong>MDF</strong> — дискреционные деньги вендора на маркетинг партнёра, предварительно одобренные под план, выплачиваемые по доказательству результата. <strong>Co-op</strong> — зарабатывается как % от продаж партнёра.</p>
+          <h4>Метрики ROI</h4>
+          <p>Выручка/воронка source; influence-выручка (отдельно); доля активации; время до первой сделки; прирост win-rate/attach на сделках с партнёром; длина цикла co-sell против прямых продаж; выручка из маркетплейсов; ROI MDF/программы. Признак зрелости — переход от метрик активности к метрикам результата.</p>
+          <hr>
+          <h3>Часть 2 — 22 ключевых урока</h3>
+          <h4>Построение программы с нуля</h4>
+          <ol>
+            <li><strong>Начните с одной модели, приносящей выручку, а не с портфеля.</strong> Докажите, что одна модель даёт воронку, затем шаблонизируйте.</li>
+            <li><strong>Получите поддержку руководства и согласование компенсации продаж до привлечения.</strong> Программы гибнут от внутренней рассогласованности, а не от качества партнёров.</li>
+            <li><strong>Выберите одну «путеводную звезду» рано:</strong> воронка/выручка source + influence. Отчитывайтесь результатами, а не активностью.</li>
+            <li><strong>Проверяйте дёшево, прежде чем масштабировать штат</strong> — дробный (fractional) руководитель или одна модель снижают риск.</li>
+            <li><strong>Партнёры ускоряют то, что уже работает; они не чинят то, что сломано.</strong></li>
+          </ol>
+          <h4>Привлечение и активация партнёров</h4>
+          <ol start="6">
+            <li><strong>Соответствие важнее количества — квалификация самое слабое место.</strong> Оценивайте по IPP; не одобряйте всех.</li>
+            <li><strong>Вкладывайтесь в немногих.</strong> Небольшое подмножество даёт большую часть результата.</li>
+            <li><strong>Реактивируйте прежде, чем привлекать.</strong> Пробудить спящих партнёров обычно выгоднее, чем гнаться за новыми логотипами.</li>
+            <li><strong>Сведите трение к нулю.</strong> Сделайте регистрацию сделки одной формой или сообщением в Slack.</li>
+            <li><strong>Сначала enablement внутри, потом снаружи.</strong> Ваши продавцы должны знать, когда/как подключать партнёра.</li>
+            <li><strong>Постройте «первые 90 дней» для партнёра:</strong> что мы делаем, как сопродаём, как регистрировать, что в этом для них.</li>
+            <li><strong>Разрыв регистрация→активация — где программы протекают.</strong> Сначала чините этап с самым резким провалом.</li>
+          </ol>
+          <h4>Модели co-sell</h4>
+          <ol start="13">
+            <li><strong>Артефакт с наибольшим рычагом — общая карта аккаунтов.</strong> Данные о пересечении — откуда берётся партнёрская воронка.</li>
+            <li><strong>Co-sell — это доверие «продавец–продавцу», произведённое в масштабе.</strong></li>
+            <li><strong>Для co-sell с гиперскейлером подстраивайтесь под полевые стимулы партнёра и механику маркетплейса.</strong> Выигрываете, делая их продавца успешным.</li>
+            <li><strong>Покупатели доверяют экосистеме раньше, чем вам</strong> — ~две трети пути проходит через третьи стороны.</li>
+            <li><strong>Не замыкайтесь на одном контакте в партнёре.</strong> Их единственный чемпион — единая точка отказа.</li>
+          </ol>
+          <h4>Переговоры</h4>
+          <ol start="18">
+            <li><strong>Используйте тактическую эмпатию и называние</strong>, чтобы снять напряжение и вскрыть реальный интерес до торга.</li>
+            <li><strong>Задавайте калиброванные вопросы «Как/Что»</strong>, перекладывая решение задачи на другую сторону; стремитесь к вопросам, безопасным для «Нет».</li>
+            <li><strong>Проведите аудит обвинений</strong> — назовите вероятные возражения первыми.</li>
+            <li><strong>Ведите сострадательным любопытством, а не убеждением.</strong> Переформулируйте так, чтобы они сами выбрали ваш исход.</li>
+          </ol>
+          <h4>Согласование партнёров и прямых продаж (решающее)</h4>
+          <ol start="22">
+            <li><strong>Устраняйте конфликт каналов дизайном, а не после драки.</strong> Чёткие правила регистрации, правила по территориям/аккаунтам и зачёт так, чтобы партнёрская сделка добавлялась к плану продавца — и платите прямым продавцам за поддержку партнёрских сделок. Партнёрства должны встраиваться в основную GTM-историю и делить число с продажами/маркетингом.</li>
+          </ol>
+          <hr>
+          <h3>Часть 3 — Плейбук переговоров</h3>
+          <p>Вы ведёте переговоры постоянно: условия партнёров, деления выручки, внутренние ресурсы, споры о компенсации с продажами. Используйте тактическую эмпатию (Voss) и сострадательное любопытство (Christian), а не позиционный торг.</p>
+          <h4>Шесть приёмов</h4>
+          <ol>
+            <li><strong>Аудит обвинений (начните с него).</strong> «Вы, наверное, думаете, что мы отдадим приоритет своей прямой команде, а вам достанутся объедки». Называние страха обезвреживает его.</li>
+            <li><strong>Называние (labeling).</strong> «Похоже, защита вашей выручки от услуг внедрения важнее заявленной скидки». Вскрывает реальный интерес.</li>
+            <li><strong>Отзеркаливание.</strong> Повторите их последние 1–3 слова вопросом, затем помолчите ~4 секунды — и они раскроются.</li>
+            <li><strong>Калиброванные вопросы «Как/Что».</strong> «Как мне дать маржу 40% и при этом профинансировать co-marketing, который вы просите?»</li>
+            <li><strong>Идите к «Нет», а не к «Да».</strong> «Плохая ли идея начать с 90-дневного co-sell-пилота, прежде чем брать годовые минимумы?»</li>
+            <li><strong>«Именно так» &gt; «Вы правы».</strong> Резюмируйте их картину мира, пока они не скажут «именно так» — сигнал, что их поняли.</li>
+          </ol>
+          <h4>Разобранный пример — реселлер хочет 40%, вы можете дать 25%</h4>
+          <ol>
+            <li><em>Аудит обвинений:</em> «Вы, наверное, думаете, что 25% — это мы занижаем и не ценим вашу работу».</li>
+            <li><em>Называние:</em> «Звучит так, будто число должно покрывать реальные затраты на внедрение, а не только усилие по рекомендации».</li>
+            <li><em>Калиброванный вопрос:</em> «Что должна защищать маржа, чтобы под неё стоило строить практику?»</li>
+            <li><em>Переформулируйте к полной экономике:</em> меняйте заявленную маржу на то, что дешевле денег — защита регистрации, квалифицированные лиды, MDF, co-marketing, ранний доступ к продукту, «хвост» комиссии за продления/апсейл.</li>
+            <li><em>Сделайте уровневым:</em> 25% базово, рост до 30%+ на Gold при подтверждённом объёме — так большее число заработано.</li>
+            <li><em>Идите к «Нет»:</em> «Безумие ли зафиксировать 25% сейчас с письменным путём к 30% при $250K, вместо того чтобы застрять на 15 пунктах сегодня?»</li>
+          </ol>
+          <div class="note"><span class="tag">Нить через всё это</span>Договаривайтесь обо всей экономике отношений (лиды, MDF, защита, продления, ранний доступ), а не об одном числе маржи. Так вы превращаете игру с нулевой суммой в больший пирог.</div>
+        </div>
+      </section>
+
+      <!-- ============ 4 COMPANY ============ -->
+      <section class="module" id="company" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 04</p>
+          <h2 class="title">Company &amp; market briefing</h2>
+          <p class="lede">Interview-ready intelligence on Magnific, Higgsfield and the AI-creative ecosystem. Facts are labeled VERIFIED, CONFLICTING or INFERENCE. The companies' own domains were partly blocked during research — confirm live pricing and programs on the company sites before any interview.</p>
+          <h3>1 · Magnific / Freepik</h3>
+          <div class="note"><span class="tag">The one fact to anchor on</span>"Magnific" now means two things. (1) The original <strong>Magnific AI</strong> product — an AI image upscaler/enhancer acquired by Freepik in May 2024. (2) The <strong>whole company</strong>: on April 28, 2026, Freepik Company rebranded the entire business as "Magnific." A "Head of Global Channel Partnerships at Magnific" almost certainly sits at the parent-company level.</div>
+          <h4>The product — VERIFIED</h4>
+          <p>Magnific AI is an AI image upscaler/enhancer that <em>invents</em> plausible new detail at high "creativity/HDR" settings rather than just sharpening. Users: creatives, designers, concept artists, photographers, agencies, studios. Founders: <strong>Javi López</strong> and <strong>Emilio Nicolás</strong>, founded Nov 2023 in Murcia, Spain.</p>
+          <h4>The company (ex-Freepik) — VERIFIED with caveats</h4>
+          <ul>
+            <li>Spanish company founded 2010 in Málaga by Alejandro Sánchez, Pablo Blanes and Joaquín Cuenca Abela (CEO).</li>
+            <li>Portfolio: Freepik, Flaticon, Slidesgo, Wepik, Videvo, Iconfinder, EyeEm, plus a large AI suite.</li>
+            <li>The AI suite is a <strong>model aggregator</strong> bundling third-party models (OpenAI, Google, Black Forest Labs/Flux, ByteDance, Kling, Runway, Recraft, Ideogram, xAI, MiniMax) alongside its own model Mystic.</li>
+            <li>At the April 2026 rebrand: ~<strong>$230M ARR</strong>, <strong>&gt;1M paying subscribers</strong>, ~4M images/day, and <strong>video now ~half of revenue</strong>. Enterprise logos: BBC, Puma, Amazon Prime Video. Enterprise count ~250–290 <span class="flag">conflicting</span>.</li>
+            <li><strong>Ownership nuance — say this precisely:</strong> bootstrapped 2010–2020, but private-equity firm EQT took a majority stake in May 2020. So "bootstrapped, no VC" is true of its origin/style, but it's been majority PE-owned since 2020.</li>
+          </ul>
+          <h4>Pricing — VERIFIED in principle; numbers unreliable</h4>
+          <p>Credit/consumption-based: a shared pool of credits across image/video/audio, valid ~1 year, no monthly reset. Exact prices <strong>verify live</strong> (figures cluster around Premium ~$16/mo, Premium+ ~$37/mo, Pro ~$90/mo). <span class="flag">verify</span></p>
+          <h4>Existing programs — VERIFIED to exist</h4>
+          <p>Affiliate program; Creative Partners program (creator-facing); an AI Partners page (likely model/integration — INFERENCE); the Magnific API (shifting to credit-based, enterprise features incl. legal indemnification); an active enterprise motion (250–290 teams) plus a €10M fund for European in-house marketing teams (May 2026).</p>
+          <div class="note"><span class="tag">The opportunity — inference</span>Affiliate at the bottom, technology/model partnerships at the top, and a direct enterprise motion — but <strong>no publicly evident formal reseller/VAR/co-sell channel with tiered margins.</strong> Building that middle layer is very likely the core mandate.</div>
+          <h4>Realistic partner types to target</h4>
+          <ul>
+            <li><strong>Technology/embed (verified):</strong> plugins already in Adobe Photoshop, Illustrator, Figma, ComfyUI; a Make.com integration. Targets: Canva, Blender, Unreal/Unity, CapCut, DAM/MarTech, API marketplaces.</li>
+            <li><strong>Model/supply-side (verified):</strong> MiniMax, Google, Black Forest Labs, ByteDance, Kling, Runway, Recraft, Ideogram, OpenAI, xAI.</li>
+            <li><strong>Demand-side channel (inference):</strong> creative &amp; production studios; marketing/ad agencies &amp; networks; resellers/VARs; systems integrators; education/community/affiliate creators.</li>
+          </ul>
+          <h3>2 · Higgsfield AI</h3>
+          <p>A generative AI video + image platform, a direct peer in the AI-creative space — the playbook transfers almost 1:1.</p>
+          <ul>
+            <li><strong>Founded 2023</strong> by former Snap AI exec Alex Mashrabov and Yerzat Dulat (reported as Kazakhstan's first unicorn).</li>
+            <li><strong>Products:</strong> a "visual reasoning engine" for cinematic video, images and voice/audio; tools include Cinema Studio and Marketing Studio. Like Magnific, integrates third-party models.</li>
+            <li><strong>Funding/scale:</strong> ~$80M at &gt;$1.3B (Jan 2026); then a $400M Series B at $5.4B (reported Aug 2026). Company-reported ~$700M annualized revenue, 30M users across 200 countries. <em>(Company-stated, not independently verified.)</em></li>
+            <li><strong>Enterprise focus:</strong> cites partnerships with 390 Fortune 500 companies.</li>
+          </ul>
+          <h4>The Higgsfield partnership roles</h4>
+          <p>Your exact Ashby link wouldn't load in this environment, but it's one of several open roles:</p>
+          <ul>
+            <li><strong>General Manager, International Partnerships</strong> — owns global B2B partnerships end-to-end; designs models, pricing and GTM from scratch; multi-million revenue targets; paid pilots → multi-year agreements. 7+ yrs enterprise sales/BD/partnerships, 3+ yrs international; one listing wants English + Russian, 0→1 process-building.</li>
+            <li><strong>Director of Partnerships, AI Model &amp; Ecosystem</strong> — cloud infra, GPU providers, hardware/compute; leads commercial negotiations. ~$250–350K.</li>
+            <li><strong>Head of Entertainment GTM</strong> — studios, streaming, agencies, creator businesses; 10+ yrs; ~$250–320K.</li>
+            <li><strong>Senior AE, Agency Partnerships</strong> — sells generative video to ad/creative agencies; ~$125–220K.</li>
+          </ul>
+          <p class="muted">Action: open your exact Ashby URL in a browser to capture the precise title, responsibilities and comp.</p>
+          <h3>3 · The AI-creative competitive map</h3>
+          <p class="muted">Most comparison sources are SEO/affiliate blogs, not audited market-share data.</p>
+          <div class="scroll"><table>
+            <thead><tr><th>Player</th><th>Position</th></tr></thead>
+            <tbody>
+              <tr><td>Magnific/Freepik</td><td>Broad aggregator-style AI creative platform at consumer→enterprise scale; pivoting to video.</td></tr>
+              <tr><td>Higgsfield</td><td>AI cinematic video-first platform; enterprise + entertainment push; $5.4B valuation.</td></tr>
+              <tr><td>Krea AI</td><td>Closest strategic peer — all-in-one generate+enhance+edit; well-funded (~$500M valuation).</td></tr>
+              <tr><td>Adobe Firefly</td><td>The enterprise / commercial-safety default; licensed data, IP indemnification, native in Photoshop/Illustrator.</td></tr>
+              <tr><td>Midjourney</td><td>Aesthetic/quality leader for image generation.</td></tr>
+              <tr><td>Leonardo.ai</td><td>Concept artists / game dev; strong free tier.</td></tr>
+              <tr><td>Runway / Pika / Luma / Sora</td><td>AI video generation leaders.</td></tr>
+              <tr><td>Topaz Labs</td><td>The "faithful/fidelity" upscaler for real photos; runs locally on GPU.</td></tr>
+              <tr><td>Ideogram · Recraft</td><td>Text-in-image/typography · production-ready vector output.</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Trends 2024–26:</strong> multimodal convergence; legal provenance/indemnification as an enterprise buying criterion; aggregation of many models behind one UI + credit wallet; the frontier moving to video.</p>
+          <h3>4 · The consumption/credit model — what's different for partners</h3>
+          <p>Margin attaches to credits consumed / credit-pack resale, not a fixed subscription. Four structures (inference): (1) reseller credit margin (buy wholesale, resell at list, 20–40%); (2) consumption revenue share (ongoing % of credits a referred account actually burns); (3) referral/affiliate bounty; (4) co-sell/MDF for enterprise. <strong>Tensions to raise:</strong> who bears unused/expired credits; overage pricing; avoiding conflict with the self-serve/PLG motion; floating credit value across image/video/audio makes "margin" harder to express.</p>
+          <h3>5 · Interview-ready talking points</h3>
+          <ol>
+            <li>"You've built affiliate at the bottom and model/integration partnerships at the top, but there's no structured reseller/SI/co-sell channel in between — that's the gap I'd build, without cannibalizing the self-serve engine."</li>
+            <li>"Credit-based pricing means I'd tie partner commissions to consumption, not just acquisition, so partners drive real usage and reduce credit breakage."</li>
+            <li>"Your plugins in Photoshop, Illustrator, Figma and ComfyUI are the entry ticket to co-marketing and co-sell — integration comes first, then the commercial motion."</li>
+            <li>"For an AI company, the make-or-break clause in any integration partnership is data-use and model-training rights — I'd standardize a DPA + no-model-training stance."</li>
+            <li>"I'd prove one motion first, show partner-sourced pipeline, then templatize and hire regionally (US + EMEA)."</li>
+            <li>"I'd stand up clean Salesforce attribution from day one — sourced vs. influenced in separate fields, anchored on dated deal-registration records."</li>
+          </ol>
+          <p class="muted">Always close an uncertain fact with: "I'd confirm the current numbers live, since the April 2026 rebrand changed the tiers."</p>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 04</p>
+          <h2 class="title">Бриф по компании и рынку</h2>
+          <p class="lede">Готовая к собеседованию аналитика по Magnific, Higgsfield и экосистеме AI-креатива. Факты помечены VERIFIED (подтверждено), CONFLICTING (противоречиво) или INFERENCE (вывод). Домены самих компаний были частично заблокированы при исследовании — подтвердите актуальные цены и программы на сайтах компаний перед собеседованием.</p>
+          <h3>1 · Magnific / Freepik</h3>
+          <div class="note"><span class="tag">Главный факт-якорь</span>«Magnific» теперь означает две вещи. (1) Исходный продукт <strong>Magnific AI</strong> — AI-апскейлер/улучшатель изображений, купленный Freepik в мае 2024. (2) <strong>Вся компания</strong>: 28 апреля 2026 Freepik Company переименовала весь бизнес в «Magnific». Роль «Head of Global Channel Partnerships at Magnific» почти наверняка на уровне головной компании.</div>
+          <h4>Продукт — VERIFIED</h4>
+          <p>Magnific AI — AI-апскейлер/улучшатель, который на высоких настройках «creativity/HDR» <em>дорисовывает</em> правдоподобные новые детали, а не просто повышает резкость. Пользователи: креаторы, дизайнеры, концепт-художники, фотографы, агентства, студии. Основатели: <strong>Javi López</strong> и <strong>Emilio Nicolás</strong>, основан в ноябре 2023 в Мурсии, Испания.</p>
+          <h4>Компания (экс-Freepik) — VERIFIED с оговорками</h4>
+          <ul>
+            <li>Испанская компания, основана в 2010 в Малаге (Alejandro Sánchez, Pablo Blanes, Joaquín Cuenca Abela — CEO).</li>
+            <li>Портфель: Freepik, Flaticon, Slidesgo, Wepik, Videvo, Iconfinder, EyeEm, плюс большой AI-пакет.</li>
+            <li>AI-пакет — <strong>агрегатор моделей</strong>, объединяющий сторонние модели (OpenAI, Google, Black Forest Labs/Flux, ByteDance, Kling, Runway, Recraft, Ideogram, xAI, MiniMax) вместе с собственной моделью Mystic.</li>
+            <li>На ребрендинге апреля 2026: ~<strong>$230M ARR</strong>, <strong>&gt;1M платящих подписчиков</strong>, ~4M изображений/день, <strong>видео теперь ~половина выручки</strong>. Корпоративные клиенты: BBC, Puma, Amazon Prime Video. Число enterprise ~250–290 <span class="flag">противоречиво</span>.</li>
+            <li><strong>Нюанс о собственности — говорите точно:</strong> bootstrapped в 2010–2020, но в мае 2020 PE-фирма EQT получила контрольную долю. Так что «bootstrapped, без VC» верно для истории/стиля, но с 2020 компания мажоритарно принадлежит PE.</li>
+          </ul>
+          <h4>Цены — VERIFIED в принципе; цифры ненадёжны</h4>
+          <p>На основе кредитов/потребления: общий пул кредитов на изображения/видео/аудио, срок ~1 год, без ежемесячного сброса. Точные цены <strong>проверять вживую</strong> (ориентир: Premium ~$16/мес, Premium+ ~$37/мес, Pro ~$90/мес). <span class="flag">проверить</span></p>
+          <h4>Существующие программы — VERIFIED (существуют)</h4>
+          <p>Партнёрская (affiliate) программа; программа Creative Partners (для креаторов); страница AI Partners (вероятно, модели/интеграции — INFERENCE); Magnific API (переход на кредиты, enterprise-функции вкл. юридическую indemnification); активная enterprise-модель (250–290 команд) плюс фонд €10M для европейских внутренних маркетинг-команд (май 2026).</p>
+          <div class="note"><span class="tag">Возможность — вывод</span>Affiliate снизу, технологические/модельные партнёрства сверху и прямая enterprise-модель — но <strong>нет публично заметного формального reseller/VAR/co-sell канала с уровневыми маржами.</strong> Построить этот средний слой — весьма вероятно ядро мандата.</div>
+          <h4>Реалистичные типы целевых партнёров</h4>
+          <ul>
+            <li><strong>Технологические/embed (подтверждено):</strong> плагины уже в Adobe Photoshop, Illustrator, Figma, ComfyUI; интеграция с Make.com. Цели: Canva, Blender, Unreal/Unity, CapCut, DAM/MarTech, API-маркетплейсы.</li>
+            <li><strong>Модели/со стороны предложения (подтверждено):</strong> MiniMax, Google, Black Forest Labs, ByteDance, Kling, Runway, Recraft, Ideogram, OpenAI, xAI.</li>
+            <li><strong>Канал со стороны спроса (вывод):</strong> креативные и продакшн-студии; маркетинговые/рекламные агентства и сети; реселлеры/VAR; системные интеграторы; образование/сообщества/affiliate-креаторы.</li>
+          </ul>
+          <h3>2 · Higgsfield AI</h3>
+          <p>Платформа генеративного AI-видео и изображений, прямой аналог в сфере AI-креатива — плейбук переносится почти 1:1.</p>
+          <ul>
+            <li><strong>Основана в 2023</strong> бывшим AI-руководителем Snap Alex Mashrabov и Yerzat Dulat (сообщается как первый единорог Казахстана).</li>
+            <li><strong>Продукты:</strong> «движок визуального рассуждения» для кинематографичного видео, изображений и голоса/аудио; инструменты Cinema Studio и Marketing Studio. Как и Magnific, интегрирует сторонние модели.</li>
+            <li><strong>Финансирование/масштаб:</strong> ~$80M при &gt;$1.3B (янв. 2026); затем Series B $400M при $5.4B (сообщается, авг. 2026). Заявленная компанией годовая выручка ~$700M, 30M пользователей в 200 странах. <em>(По заявлениям компании, без независимой проверки.)</em></li>
+            <li><strong>Фокус на enterprise:</strong> упоминаются партнёрства с 390 компаниями Fortune 500.</li>
+          </ul>
+          <h4>Партнёрские роли Higgsfield</h4>
+          <p>Ваша точная ссылка на Ashby не открылась в этой среде, но это одна из нескольких открытых ролей:</p>
+          <ul>
+            <li><strong>General Manager, International Partnerships</strong> — владеет глобальными B2B-партнёрствами от и до; проектирует модели, ценообразование и GTM с нуля; многомиллионные цели по выручке; платные пилоты → многолетние соглашения. 7+ лет enterprise-продаж/BD/партнёрств, 3+ года в международных рынках; одна вакансия требует английский + русский, построение процессов 0→1.</li>
+            <li><strong>Director of Partnerships, AI Model &amp; Ecosystem</strong> — облачная инфраструктура, GPU-провайдеры, железо/вычисления; ведёт коммерческие переговоры. ~$250–350K.</li>
+            <li><strong>Head of Entertainment GTM</strong> — студии, стриминг, агентства, бизнесы креаторов; 10+ лет; ~$250–320K.</li>
+            <li><strong>Senior AE, Agency Partnerships</strong> — продаёт генеративное видео рекламным/креативным агентствам; ~$125–220K.</li>
+          </ul>
+          <p class="muted">Действие: откройте вашу точную ссылку на Ashby в браузере, чтобы зафиксировать точное название, обязанности и компенсацию.</p>
+          <h3>3 · Конкурентная карта AI-креатива</h3>
+          <p class="muted">Большинство сравнительных источников — SEO/affiliate-блоги, а не аудированные данные о долях рынка.</p>
+          <div class="scroll"><table>
+            <thead><tr><th>Игрок</th><th>Позиция</th></tr></thead>
+            <tbody>
+              <tr><td>Magnific/Freepik</td><td>Широкая платформа-агрегатор AI-креатива от потребителя до enterprise; разворот к видео.</td></tr>
+              <tr><td>Higgsfield</td><td>AI-платформа «видео прежде всего»; упор на enterprise + развлечения; оценка $5.4B.</td></tr>
+              <tr><td>Krea AI</td><td>Ближайший стратегический аналог — всё-в-одном: генерация+улучшение+редактирование; хорошо профинансирован (~$500M).</td></tr>
+              <tr><td>Adobe Firefly</td><td>Enterprise / «коммерчески безопасный» выбор; лицензированные данные, IP-indemnification, встроен в Photoshop/Illustrator.</td></tr>
+              <tr><td>Midjourney</td><td>Лидер эстетики/качества генерации изображений.</td></tr>
+              <tr><td>Leonardo.ai</td><td>Концепт-художники / геймдев; сильный бесплатный тариф.</td></tr>
+              <tr><td>Runway / Pika / Luma / Sora</td><td>Лидеры генерации AI-видео.</td></tr>
+              <tr><td>Topaz Labs</td><td>«Достоверный» апскейлер для реальных фото; работает локально на GPU.</td></tr>
+              <tr><td>Ideogram · Recraft</td><td>Текст-в-изображении/типографика · готовый к продакшену вектор.</td></tr>
+            </tbody>
+          </table></div>
+          <p><strong>Тренды 2024–26:</strong> мультимодальная конвергенция; юридическое происхождение/indemnification как критерий корпоративной закупки; агрегация многих моделей за одним UI + кредитным кошельком; фронтир смещается к видео.</p>
+          <h3>4 · Модель кредитов/потребления — что иначе для партнёров</h3>
+          <p>Маржа привязана к потреблённым кредитам / перепродаже пакетов кредитов, а не к фиксированной подписке. Четыре структуры (вывод): (1) reseller-маржа на кредитах (купить оптом, перепродать по прайсу, 20–40%); (2) доля от потребления (постоянный % кредитов, которые реально «сжигает» приведённый аккаунт); (3) referral/affiliate-бонус; (4) co-sell/MDF для enterprise. <strong>Напряжения, которые стоит поднять:</strong> кто несёт неиспользованные/сгоревшие кредиты; цена за перерасход; избегание конфликта с self-serve/PLG-моделью; плавающая ценность кредита по изображениям/видео/аудио усложняет выражение «маржи».</p>
+          <h3>5 · Тезисы, готовые к собеседованию</h3>
+          <ol>
+            <li>«Вы построили affiliate снизу и модельные/интеграционные партнёрства сверху, но между ними нет структурированного reseller/SI/co-sell канала — именно этот разрыв я бы закрыл, не каннибализируя self-serve-движок».</li>
+            <li>«Кредитное ценообразование означает, что я привяжу комиссии партнёров к потреблению, а не только к привлечению, чтобы партнёры стимулировали реальное использование и снижали «сгорание» кредитов».</li>
+            <li>«Ваши плагины в Photoshop, Illustrator, Figma и ComfyUI — входной билет к co-marketing и co-sell: интеграция идёт первой, затем коммерческая модель».</li>
+            <li>«Для AI-компании решающая оговорка в любом интеграционном партнёрстве — использование данных и права на обучение моделей; я бы стандартизировал DPA + позицию «не обучать модели»».</li>
+            <li>«Я бы сначала доказал одну модель, показал partner-sourced воронку, затем шаблонизировал и нанял регионально (US + EMEA)».</li>
+            <li>«Я бы с первого дня наладил чистую атрибуцию в Salesforce — source vs. influence в отдельных полях, с опорой на датированные записи регистрации сделок».</li>
+          </ol>
+          <p class="muted">Любой неуверенный факт закрывайте так: «Я бы подтвердил актуальные цифры вживую, ведь ребрендинг апреля 2026 изменил тарифы».</p>
+        </div>
+      </section>
+
+      <!-- ============ 5 CONTRACTS ============ -->
+      <section class="module" id="contracts" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 05</p>
+          <h2 class="title">Contract mockups</h2>
+          <div class="note"><span class="tag">Template mockups — not legal advice</span>Educational skeletons to teach you the structure and levers of partner contracts, and to use as drafting starting points. Have qualified counsel review and localize anything before use. Benchmarks are directional. Fields appear as <code>[like this]</code>.</div>
+          <p>The golden rule: keep the master agreement short and put all volatile commercial terms (pricing, discounts, MDF %, tier thresholds, SLAs) in <strong>Exhibits/Schedules/Addenda</strong> so they update without reopening the contract.</p>
+          <h3>1 · Referral Partner Agreement</h3>
+          <p class="muted">Partner introduces leads; you close, bill and support; partner earns a commission.</p>
+          <div class="scroll"><pre>REFERRAL PARTNER AGREEMENT  — [Company] &amp; [Partner], as of [Effective Date]
+1. DEFINITIONS — "Qualified Referral" (net-new, ICP, accepted §3); "Eligibility Window" [180] days
+2. APPOINTMENT — [non-exclusive]; Partner independent, NO authority to bind/quote/price
+3. SUBMISSION &amp; ACCEPTANCE — via [portal/form]; Company may accept/reject at its discretion
+4. REFERRAL FEE (Schedule A) — [__]% of [first-year ARR]; [one-time / recurring __ mo]
+5. PAYMENT — accrues when [customer pays]; within [30] days; clawback on refund
+6. MULTIPLE REFERRERS — good-faith split / first accepted   7. PARTNER OBLIGATIONS
+8. NON-SOLICIT / NON-CIRCUMVENTION [12] mo   9. CONFIDENTIALITY [or the Mutual NDA]
+10. TERM &amp; TERMINATION — [12] mo; convenience [14] days; cause [30]-day cure
+11. SURVIVAL / TAIL — pre-termination referrals payable [3–12] months   12. BOILERPLATE</pre></div>
+          <p><strong>Levers:</strong> rate &amp; base (one-time vs. recurring); window length; first-transaction vs. renewals; tail. <strong>Benchmark:</strong> pure referral 10–15% of first-year ARR; recurring 20–30%.</p>
+          <h3>2 · Reseller / Channel Partner Agreement</h3>
+          <p class="muted">Partner resells, often owns the customer, prices within bands, sometimes first-line support.</p>
+          <div class="scroll"><pre>3. Appointment &amp; license grant — grant BEFORE price; [excl/non-excl]
+4. Territory &amp; channels — precise; named-account carve-outs
+5. Pricing, discount &amp; margin (EXHIBIT B) — discount off LIST; price protection; margin floor
+6. Pricing authority   7. Deal registration — window [__d]; uplift [__%]; first-to-register
+8. Order-to-cash — who collects payment; vendor due [__d]   9. Minimum commitments
+10. Customer ownership &amp; data   11. Support (EXHIBIT C: SLAs)   12. EULA flow-down
+13. IP &amp; branding   15. Indemnity/liability cap   17. Term &amp; wind-down [60–90d notice]</pre></div>
+          <p><strong>Levers:</strong> base discount vs. tier uplift; exclusivity ↔ minimum commitment; deal-reg window &amp; uplift; who owns renewals. <strong>Benchmark:</strong> margins 20–40%.</p>
+          <h3>3 · Co-Sell / Strategic Alliance Agreement</h3>
+          <p class="muted">Joint selling with a tech/platform partner — a light master agreement + a Rules-of-Engagement doc.</p>
+          <div class="scroll"><pre>Rules of Engagement — one-pager:
+WHO LEADS:    [Partner owns the customer; Company leads product/technical]
+HOW TO ENGAGE: Register the joint opp in [tool] before first customer meeting
+RESPONSE SLA:  Next step within 48h; auto-escalate after 24h silence
+CONFLICT:      First-to-register on net-new; disputes → the two alliance leads
+CREDIT:        Sourced = originator; Influenced = materially advanced</pre></div>
+          <p><strong>Benchmark (directional):</strong> MDF often 2–5% of partner revenue, ~50% match on approved costs.</p>
+          <h3>4 · Technology / Integration Partnership Agreement</h3>
+          <p class="muted">Governs an API/integration. For an AI company, the data/model-training clause matters most.</p>
+          <div class="scroll"><pre>3. API LICENSE &amp; ACCESS GRANT — derivative-work ownership; [sandbox/prod]
+5. DEPRECATION NOTICE — [__] days before breaking changes
+6. DATA, PRIVACY &amp; SECURITY ★ AI-CRITICAL ★ — may shared data TRAIN MODELS / go to third
+   parties? [NO]; breach notice [__ hrs]; standard [SOC 2 / ISO 27001]; attach a DPA
+10. REVENUE SHARE (if any) — [__]% of net; put the % in an ADDENDUM
+11. WARRANTIES, INDEMNITY (esp. IP), LIABILITY CAP</pre></div>
+          <p><strong>Levers (AI-first):</strong> data-use / no-model-training restrictions; deprecation notice &amp; API SLA; exclusivity; rev-share base; IP indemnity.</p>
+          <h3>5 · Mutual NDA</h3>
+          <p class="muted">Bilateral. Watch the two different clocks.</p>
+          <div class="scroll"><pre>7. TERM vs. SURVIVAL — TWO CLOCKS:
+     Disclosure Term = how long info may be exchanged      → typical [1–3] years
+     Survival Period = how long obligations continue after → typical [2–5] years
+     (common partnership pattern: 2-year disclosure, 3-year survival)
+8. TRADE SECRETS — protected indefinitely (handle separately)</pre></div>
+          <p><strong>Pitfalls:</strong> state when survival runs from; list which sections survive; keep trade-secret protection perpetual. <strong>MSA:</strong> the umbrella; economics live in order forms/SOWs beneath it.</p>
+          <h3>6 · Partner Program Terms / Rules of Engagement</h3>
+          <h4>Illustrative tier table (set yours against your own data)</h4>
+          <div class="scroll"><table>
+            <thead><tr><th></th><th>Registered / Silver</th><th>Gold</th><th>Platinum</th></tr></thead>
+            <tbody>
+              <tr><td>Annual revenue</td><td>$50K–$100K</td><td>~$250K</td><td>~$1M</td></tr>
+              <tr><td>Certified staff</td><td>1</td><td>3</td><td>6</td></tr>
+              <tr><td>Margin uplift</td><td>base</td><td>+2–4 pts</td><td>+5–8 pts</td></tr>
+              <tr><td>MDF</td><td>standard pool</td><td>up to ~$10K</td><td>~$50K, priority</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Benchmark terms table</h3>
+          <p class="muted">Directional — cite as "typical range reported by [source]."</p>
+          <div class="scroll"><table>
+            <thead><tr><th>Term</th><th>Typical range reported</th></tr></thead>
+            <tbody>
+              <tr><td>Referral commission (pure)</td><td>10–15% of first-year ARR</td></tr>
+              <tr><td>Reseller / VAR commission</td><td>20–30% of first-year ARR</td></tr>
+              <tr><td>Reseller gross margin (off list)</td><td>20–40%</td></tr>
+              <tr><td>Deal-reg protection window</td><td>30–90 days; 90–180 argued for SaaS</td></tr>
+              <tr><td>MDF</td><td>2–5% of partner revenue; ~50% match</td></tr>
+              <tr><td>NDA disclosure / survival</td><td>1–3 yr term; 2–5 yr survival</td></tr>
+            </tbody>
+          </table></div>
+          <h4>Where to get real templates to adapt</h4>
+          <p>Impartner, Introw (free reseller + referral); Referral Rock, Signaturely, Juro, Fynk; PandaDoc, Bonsai. Real agreements to study: Helcim Integration Partner Program Agreement; Kubermatic Referral Fee Agreement; ezel.ai AI Integration Partnership Agreement. Not template sources: Ironclad's Clause Library; YC's SAFE.</p>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 05</p>
+          <h2 class="title">Макеты договоров</h2>
+          <div class="note"><span class="tag">Шаблоны-макеты — не юридическая консультация</span>Учебные каркасы, чтобы показать структуру и рычаги партнёрских договоров и служить отправной точкой. Перед использованием дайте проверить и локализовать квалифицированному юристу. Ориентиры приблизительны. Поля выглядят как <code>[так]</code>.</div>
+          <p>Золотое правило: держите основной договор коротким, а все изменчивые коммерческие условия (цены, скидки, % MDF, пороги уровней, SLA) выносите в <strong>Приложения/Графики/Дополнения</strong>, чтобы обновлять их без переоткрытия договора.</p>
+          <h3>1 · Referral Partner Agreement</h3>
+          <p class="muted">Партнёр приводит лиды; вы закрываете, выставляете счёт и поддерживаете; партнёр получает комиссию.</p>
+          <div class="scroll"><pre>REFERRAL PARTNER AGREEMENT  — [Company] &amp; [Partner], as of [Effective Date]
+1. DEFINITIONS — "Qualified Referral" (net-new, ICP, accepted §3); "Eligibility Window" [180] days
+2. APPOINTMENT — [non-exclusive]; Partner independent, NO authority to bind/quote/price
+3. SUBMISSION &amp; ACCEPTANCE — via [portal/form]; Company may accept/reject at its discretion
+4. REFERRAL FEE (Schedule A) — [__]% of [first-year ARR]; [one-time / recurring __ mo]
+5. PAYMENT — accrues when [customer pays]; within [30] days; clawback on refund
+6. MULTIPLE REFERRERS — good-faith split / first accepted   7. PARTNER OBLIGATIONS
+8. NON-SOLICIT / NON-CIRCUMVENTION [12] mo   9. CONFIDENTIALITY [or the Mutual NDA]
+10. TERM &amp; TERMINATION — [12] mo; convenience [14] days; cause [30]-day cure
+11. SURVIVAL / TAIL — pre-termination referrals payable [3–12] months   12. BOILERPLATE</pre></div>
+          <p><strong>Рычаги:</strong> ставка и база (разовая vs. регулярная); длина окна; первая сделка vs. продления; «хвост». <strong>Ориентир:</strong> чистый referral 10–15% от ARR первого года; регулярный 20–30%.</p>
+          <h3>2 · Reseller / Channel Partner Agreement</h3>
+          <p class="muted">Партнёр перепродаёт, часто владеет клиентом, назначает цену в рамках, иногда первая линия поддержки.</p>
+          <div class="scroll"><pre>3. Appointment &amp; license grant — grant BEFORE price; [excl/non-excl]
+4. Territory &amp; channels — precise; named-account carve-outs
+5. Pricing, discount &amp; margin (EXHIBIT B) — discount off LIST; price protection; margin floor
+6. Pricing authority   7. Deal registration — window [__d]; uplift [__%]; first-to-register
+8. Order-to-cash — who collects payment; vendor due [__d]   9. Minimum commitments
+10. Customer ownership &amp; data   11. Support (EXHIBIT C: SLAs)   12. EULA flow-down
+13. IP &amp; branding   15. Indemnity/liability cap   17. Term &amp; wind-down [60–90d notice]</pre></div>
+          <p><strong>Рычаги:</strong> базовая скидка vs. надбавка по уровню; эксклюзивность ↔ минимальные обязательства; окно/надбавка регистрации; кто владеет продлениями. <strong>Ориентир:</strong> маржа 20–40%.</p>
+          <h3>3 · Co-Sell / Strategic Alliance Agreement</h3>
+          <p class="muted">Совместные продажи с технологическим/платформенным партнёром — лёгкий основной договор + документ Rules of Engagement.</p>
+          <div class="scroll"><pre>Rules of Engagement — one-pager:
+WHO LEADS:    [Partner owns the customer; Company leads product/technical]
+HOW TO ENGAGE: Register the joint opp in [tool] before first customer meeting
+RESPONSE SLA:  Next step within 48h; auto-escalate after 24h silence
+CONFLICT:      First-to-register on net-new; disputes → the two alliance leads
+CREDIT:        Sourced = originator; Influenced = materially advanced</pre></div>
+          <p><strong>Ориентир (приблизительно):</strong> MDF часто 2–5% от выручки партнёра, ~50% софинансирования одобренных затрат.</p>
+          <h3>4 · Technology / Integration Partnership Agreement</h3>
+          <p class="muted">Регулирует API/интеграцию. Для AI-компании важнее всего оговорка о данных/обучении моделей.</p>
+          <div class="scroll"><pre>3. API LICENSE &amp; ACCESS GRANT — derivative-work ownership; [sandbox/prod]
+5. DEPRECATION NOTICE — [__] days before breaking changes
+6. DATA, PRIVACY &amp; SECURITY ★ AI-CRITICAL ★ — may shared data TRAIN MODELS / go to third
+   parties? [NO]; breach notice [__ hrs]; standard [SOC 2 / ISO 27001]; attach a DPA
+10. REVENUE SHARE (if any) — [__]% of net; put the % in an ADDENDUM
+11. WARRANTIES, INDEMNITY (esp. IP), LIABILITY CAP</pre></div>
+          <p><strong>Рычаги (сначала AI):</strong> ограничения на использование данных / запрет обучения моделей; срок уведомления об устаревании и SLA API; эксклюзивность; база rev-share; IP-indemnity.</p>
+          <h3>5 · Mutual NDA</h3>
+          <p class="muted">Двустороннее. Следите за двумя разными «часами».</p>
+          <div class="scroll"><pre>7. TERM vs. SURVIVAL — TWO CLOCKS:
+     Disclosure Term = how long info may be exchanged      → typical [1–3] years
+     Survival Period = how long obligations continue after → typical [2–5] years
+     (common partnership pattern: 2-year disclosure, 3-year survival)
+8. TRADE SECRETS — protected indefinitely (handle separately)</pre></div>
+          <p><strong>Подводные камни:</strong> укажите, с какого момента отсчитывается survival; перечислите, какие разделы сохраняются; защита коммерческой тайны — бессрочная. <strong>MSA:</strong> зонтик; экономика живёт в order forms/SOW под ним.</p>
+          <h3>6 · Partner Program Terms / Rules of Engagement</h3>
+          <h4>Пример таблицы уровней (свою настройте под свои данные)</h4>
+          <div class="scroll"><table>
+            <thead><tr><th></th><th>Registered / Silver</th><th>Gold</th><th>Platinum</th></tr></thead>
+            <tbody>
+              <tr><td>Годовая выручка</td><td>$50K–$100K</td><td>~$250K</td><td>~$1M</td></tr>
+              <tr><td>Сертиф. сотрудники</td><td>1</td><td>3</td><td>6</td></tr>
+              <tr><td>Надбавка к марже</td><td>базовая</td><td>+2–4 п.</td><td>+5–8 п.</td></tr>
+              <tr><td>MDF</td><td>общий пул</td><td>до ~$10K</td><td>~$50K, приоритет</td></tr>
+            </tbody>
+          </table></div>
+          <h3>Таблица ориентиров по условиям</h3>
+          <p class="muted">Приблизительно — ссылайтесь как «типичный диапазон по данным [источник]».</p>
+          <div class="scroll"><table>
+            <thead><tr><th>Условие</th><th>Типичный заявленный диапазон</th></tr></thead>
+            <tbody>
+              <tr><td>Referral-комиссия (чистая)</td><td>10–15% от ARR первого года</td></tr>
+              <tr><td>Reseller / VAR-комиссия</td><td>20–30% от ARR первого года</td></tr>
+              <tr><td>Валовая маржа reseller (от прайса)</td><td>20–40%</td></tr>
+              <tr><td>Окно защиты регистрации</td><td>30–90 дней; 90–180 — аргумент для SaaS</td></tr>
+              <tr><td>MDF</td><td>2–5% от выручки партнёра; ~50% софинансирования</td></tr>
+              <tr><td>NDA: раскрытие / survival</td><td>срок 1–3 г.; survival 2–5 л.</td></tr>
+            </tbody>
+          </table></div>
+          <h4>Где взять реальные шаблоны для адаптации</h4>
+          <p>Impartner, Introw (бесплатные reseller + referral); Referral Rock, Signaturely, Juro, Fynk; PandaDoc, Bonsai. Реальные договоры для изучения: Helcim Integration Partner Program Agreement; Kubermatic Referral Fee Agreement; ezel.ai AI Integration Partnership Agreement. Не источники шаблонов: Ironclad Clause Library; SAFE от YC.</p>
+        </div>
+      </section>
+
+      <!-- ============ 6 WORKFLOWS ============ -->
+      <section class="module" id="workflows" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 06</p>
+          <h2 class="title">Workflow mockups</h2>
+          <p class="lede">The operational machine, drawn to be build-ready. Benchmarks are directional. Salesforce object/field names are vendor-claimed — verify against official Salesforce documentation before building.</p>
+          <h3>1 · The partner lifecycle</h3>
+          <div class="scroll"><pre>IDENTIFY ─► RECRUIT ─► VET/QUALIFY ─► CONTRACT ─► ONBOARD ─► ENABLE/TRAIN ─► ACTIVATE
+ IPP +      outreach,  fit-score,    agreement,  portal,    role-based     first
+ ecosystem  pitch,     reference     RoE, tier,  admin,     training,      REGISTERED
+ mapping    value prop checks        CLM sign    kickoff    certs          deal/opp
+                                                                              │
+                              RENEW ◄── GROW/QBR ◄── MANAGE ◄──────────────────┘
+                           (or EXIT)  joint plan,  cadence calls,
+                           re-tier    tier upgrade pipeline reviews</pre></div>
+          <div class="note"><span class="tag">Burn this in</span>The biggest leak is the enrollment → activation gap. Low activation despite good onboarding almost always means you recruited the wrong partners. Fix qualification first.</div>
+          <h3>2 · Program design — tiers, incentives, rules of engagement</h3>
+          <h4>The four incentive levers</h4>
+          <ul>
+            <li><strong>Margin/discount</strong> — baseline reseller economics, uplifted by tier.</li>
+            <li><strong>MDF</strong> — vendor money for partner marketing, pre-approved + proof of spend.</li>
+            <li><strong>Rebates</strong> — back-end reward on volume/growth targets.</li>
+            <li><strong>SPIFFs</strong> — short-term, rep-level cash on specific products/motions.</li>
+          </ul>
+          <h4>Rules of engagement — the conflict-prevention core</h4>
+          <div class="scroll"><pre>1. Define partner-sourced vs. vendor-sourced leads UP FRONT
+2. Reserve named segments/accounts for the direct team
+3. First-to-register wins net-new; territory/vertical carve-outs
+4. Disputes go to the channel manager (human), never auto-reject
+5. ★ Pay direct reps to SUPPORT (not compete with) partner deals ★</pre></div>
+          <h3>3 · Salesforce / CRM attribution model</h3>
+          <p class="muted">Vendor-claimed field/object names — verify in Salesforce docs.</p>
+          <div class="scroll"><pre>The counterfactual test:
+  "Would this deal still close — but slower or smaller — WITHOUT the partner?"
+       YES ─────────────────────────────────────►  = INFLUENCED
+       NO (deal wouldn't exist) ──────────────────►  = SOURCED
+
+Keep sourced &amp; influenced in SEPARATE fields. Anchor "sourced" on a dated
+Deal_Registration record created before the deal is contested. Validate
+influence with account-overlap data (Crossbeam/Reveal), not self-report.</pre></div>
+          <h3>4 · The metrics dashboard</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Metric</th><th>Directional benchmark</th></tr></thead>
+            <tbody>
+              <tr><td>Partner-SOURCED pipeline / ARR</td><td>20–30% of new pipeline (early); 40–50%+ (mature)</td></tr>
+              <tr><td>Partner activation rate (1st deal ≤90d)</td><td>30–50%; &gt;60% high performers</td></tr>
+              <tr><td>Time to first deal</td><td>60–120 days</td></tr>
+              <tr><td>Partner deal conversion (reg→won)</td><td>15–25%</td></tr>
+              <tr><td>Partner NPS</td><td>goal 40+</td></tr>
+              <tr><td>Program ROI</td><td>(sourced+influenced margin) ÷ (headcount + MDF + tooling)</td></tr>
+            </tbody>
+          </table></div>
+          <p class="muted">Partner count alone is a weak signal — pair with activation + sourced pipeline + revenue-per-active-partner. Baseline against your own data.</p>
+          <h3>5 · Referral &amp; co-sell mechanics</h3>
+          <div class="scroll"><pre>REFERRAL: submit ─► QUALIFY FAST ─► status to partner ─► customer signs ─►
+          billing confirms ─► commission ELIGIBLE ─► finance approves ─► PAYOUT
+CO-SELL:  account mapping ─► find overlaps ─► register JOINT opp ─►
+          shared account plan + roles ─► co-work rep-to-rep ─► close ─► credit</pre></div>
+          <h3>6 · The tool stack</h3>
+          <div class="scroll"><pre>CRM / attribution ──── Salesforce (deal-reg object + sourced/influenced fields) [START HERE]
+PRM ──────────────────  PartnerStack / Impartner / Allbound / Magentrix       [PICK ONE]
+Ecosystem mapping ────  Crossbeam (merged w/ Reveal)                           [HIGH LEVERAGE]
+Contracts (CLM) ──────  DocuSign CLM / Ironclad / PandaDoc                     [STANDALONE]</pre></div>
+          <p><strong>Minimum viable stack:</strong> Salesforce + one PRM + Crossbeam + a CLM.</p>
+          <h3>7 · The build-from-zero sequence</h3>
+          <div class="scroll"><pre>DAYS 1–30   ORIENT &amp; DESIGN — IPP, program thesis, first motion; tiers/RoE/deal-reg; CRM attribution
+DAYS 31–60  JOINT PLANNING — account mapping; first co-marketing; recruit first wave; onboard
+DAYS 61–90  EXECUTION — first REGISTERED deal; first co-sell; dated 30/60/90 joint plan per partner
+MONTHS 4–12 PROVE → SCALE → HIRE — activation >50%; formalize MDF/tiering; hire US + EMEA</pre></div>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 06</p>
+          <h2 class="title">Макеты рабочих процессов</h2>
+          <p class="lede">Операционная машина, нарисованная для внедрения. Ориентиры приблизительны. Названия объектов/полей Salesforce заявлены вендорами — сверяйте с официальной документацией Salesforce перед сборкой.</p>
+          <h3>1 · Жизненный цикл партнёра</h3>
+          <div class="scroll"><pre>IDENTIFY ─► RECRUIT ─► VET/QUALIFY ─► CONTRACT ─► ONBOARD ─► ENABLE/TRAIN ─► ACTIVATE
+ IPP +      outreach,  fit-score,    agreement,  portal,    role-based     first
+ ecosystem  pitch,     reference     RoE, tier,  admin,     training,      REGISTERED
+ mapping    value prop checks        CLM sign    kickoff    certs          deal/opp
+                                                                              │
+                              RENEW ◄── GROW/QBR ◄── MANAGE ◄──────────────────┘
+                           (or EXIT)  joint plan,  cadence calls,
+                           re-tier    tier upgrade pipeline reviews</pre></div>
+          <div class="note"><span class="tag">Вбейте в память</span>Главная утечка — разрыв между регистрацией и активацией. Низкая активация при хорошем онбординге почти всегда означает, что вы привлекли не тех партнёров. Сначала чините квалификацию.</div>
+          <h3>2 · Дизайн программы — уровни, стимулы, правила взаимодействия</h3>
+          <h4>Четыре рычага стимулов</h4>
+          <ul>
+            <li><strong>Маржа/скидка</strong> — базовая экономика reseller, растёт с уровнем.</li>
+            <li><strong>MDF</strong> — деньги вендора на маркетинг партнёра, предодобренные + доказательство расхода.</li>
+            <li><strong>Рибейты</strong> — задняя награда за объём/цели роста.</li>
+            <li><strong>SPIFF</strong> — краткосрочные выплаты на уровне продавца за конкретные продукты/модели.</li>
+          </ul>
+          <h4>Правила взаимодействия — ядро предотвращения конфликтов</h4>
+          <div class="scroll"><pre>1. Define partner-sourced vs. vendor-sourced leads UP FRONT
+2. Reserve named segments/accounts for the direct team
+3. First-to-register wins net-new; territory/vertical carve-outs
+4. Disputes go to the channel manager (human), never auto-reject
+5. ★ Pay direct reps to SUPPORT (not compete with) partner deals ★</pre></div>
+          <h3>3 · Модель атрибуции Salesforce / CRM</h3>
+          <p class="muted">Названия полей/объектов заявлены вендорами — сверяйте в документации Salesforce.</p>
+          <div class="scroll"><pre>The counterfactual test:
+  "Would this deal still close — but slower or smaller — WITHOUT the partner?"
+       YES ─────────────────────────────────────►  = INFLUENCED
+       NO (deal wouldn't exist) ──────────────────►  = SOURCED
+
+Keep sourced &amp; influenced in SEPARATE fields. Anchor "sourced" on a dated
+Deal_Registration record created before the deal is contested. Validate
+influence with account-overlap data (Crossbeam/Reveal), not self-report.</pre></div>
+          <h3>4 · Дашборд метрик</h3>
+          <div class="scroll"><table>
+            <thead><tr><th>Метрика</th><th>Приблизительный ориентир</th></tr></thead>
+            <tbody>
+              <tr><td>Воронка/ARR source партнёра</td><td>20–30% новой воронки (ранняя стадия); 40–50%+ (зрелая)</td></tr>
+              <tr><td>Доля активации (1-я сделка ≤90д)</td><td>30–50%; &gt;60% у лучших</td></tr>
+              <tr><td>Время до первой сделки</td><td>60–120 дней</td></tr>
+              <tr><td>Конверсия сделок (рег.→won)</td><td>15–25%</td></tr>
+              <tr><td>Partner NPS</td><td>цель 40+</td></tr>
+              <tr><td>ROI программы</td><td>(маржа source+influence) ÷ (штат + MDF + инструменты)</td></tr>
+            </tbody>
+          </table></div>
+          <p class="muted">Число партнёров само по себе — слабый сигнал; сочетайте с активацией + source-воронкой + выручкой на активного партнёра. Базируйтесь на своих данных.</p>
+          <h3>5 · Механика referral и co-sell</h3>
+          <div class="scroll"><pre>REFERRAL: submit ─► QUALIFY FAST ─► status to partner ─► customer signs ─►
+          billing confirms ─► commission ELIGIBLE ─► finance approves ─► PAYOUT
+CO-SELL:  account mapping ─► find overlaps ─► register JOINT opp ─►
+          shared account plan + roles ─► co-work rep-to-rep ─► close ─► credit</pre></div>
+          <h3>6 · Стек инструментов</h3>
+          <div class="scroll"><pre>CRM / attribution ──── Salesforce (deal-reg object + sourced/influenced fields) [START HERE]
+PRM ──────────────────  PartnerStack / Impartner / Allbound / Magentrix       [PICK ONE]
+Ecosystem mapping ────  Crossbeam (merged w/ Reveal)                           [HIGH LEVERAGE]
+Contracts (CLM) ──────  DocuSign CLM / Ironclad / PandaDoc                     [STANDALONE]</pre></div>
+          <p><strong>Минимально жизнеспособный стек:</strong> Salesforce + один PRM + Crossbeam + CLM.</p>
+          <h3>7 · Последовательность построения с нуля</h3>
+          <div class="scroll"><pre>DAYS 1–30   ORIENT &amp; DESIGN — IPP, program thesis, first motion; tiers/RoE/deal-reg; CRM attribution
+DAYS 31–60  JOINT PLANNING — account mapping; first co-marketing; recruit first wave; onboard
+DAYS 61–90  EXECUTION — first REGISTERED deal; first co-sell; dated 30/60/90 joint plan per partner
+MONTHS 4–12 PROVE → SCALE → HIRE — activation >50%; formalize MDF/tiering; hire US + EMEA</pre></div>
+        </div>
+      </section>
+
+      <!-- ============ 7 PLAN ============ -->
+      <section class="module" id="plan" hidden>
+        <div class="lang-en">
+          <p class="eyebrow">Module 07</p>
+          <h2 class="title">Your first 90 days</h2>
+          <p class="lede">A concrete operating plan tailored to Magnific, transferable to Higgsfield. It maps directly to the JD: global channel strategy, ecosystem from zero, tech partnerships, program design, co-sell/reseller motions, hiring US+EMEA, Salesforce attribution, pipeline/ROI.</p>
+          <div class="note"><span class="tag">Open with this framing</span>"Magnific already has affiliate at the bottom and model/integration partnerships at the top, plus a direct enterprise motion with a €10M EU marketing fund. My mandate is the missing middle — a structured reseller/SI/agency channel and a repeatable co-sell motion — built without cannibalizing the 1M-subscriber self-serve engine."</div>
+          <h3>Days 1–30 — Listen, baseline, design</h3>
+          <ul>
+            <li>Deep-dive the product, the credit/consumption pricing, and every existing program. Build on what exists.</li>
+            <li>Meet Sales, Product, Eng, Marketing, Legal, Finance, RevOps. Your first deliverable is cross-functional alignment, not a partner. Do direct reps get credited for partner-involved deals today?</li>
+            <li>Get exec sponsorship and a written mandate: which revenue number partnerships owns, and the rules of engagement with direct sales.</li>
+            <li>Write the IPP; pick the first motion to prove (agency/studio reseller OR co-sell with one creative-tool platform). One motion, not a portfolio.</li>
+            <li>Stand up Salesforce attribution: partner Accounts, a deal-registration object, separate sourced/influenced fields.</li>
+          </ul>
+          <h3>Days 31–60 — Recruit the first wave, build the plumbing</h3>
+          <ul>
+            <li>Account-map with Crossbeam; prioritize partners whose customers match the ICP.</li>
+            <li>Recruit 5–8 first-wave partners against the IPP. Launch the first co-marketing; run a deal-reg practice run.</li>
+            <li>Begin onboarding; select the PRM; settle the AI integration stance with Legal (DPA + no-model-training default).</li>
+          </ul>
+          <h3>Days 61–90 — Produce proof</h3>
+          <ul>
+            <li>Target outputs: first partner-sourced registered deal, first co-selling conversation, first joint pitch.</li>
+            <li>Ship v1 of the partner program guide and the metrics dashboard.</li>
+            <li>Report to execs in their language — pipeline, activation rate, ROI — with an "invest / hold / sunset" call per partner.</li>
+          </ul>
+          <h3>Months 4–12 — Prove → scale → hire</h3>
+          <ul>
+            <li><strong>Q2 — Prove:</strong> drive activation &gt;50% within 90 days of signing; run first QBRs; validate the consumption model.</li>
+            <li><strong>Q3 — Scale:</strong> expand; formalize MDF/rebate/SPIFF; launch tiering; begin a second motion.</li>
+            <li><strong>Q4 — Operationalize &amp; staff:</strong> hit 20–30% partner-sourced new pipeline; hire regional Channel Partner Managers (US + EMEA) once the motion is repeatable.</li>
+          </ul>
+          <div class="note"><span class="tag">For the Higgsfield version</span>Swap in: video-first platform, Cinema/Marketing Studios, 30M users, enterprise + entertainment focus, and (for the International Partnerships role) the 0→1, international emphasis and the paid-pilot → multi-year deal shape. The AI Model &amp; Ecosystem variant leans toward compute/GPU/model partnerships — there your first-wave "partners" are infrastructure and model providers.</div>
+        </div>
+        <div class="lang-ru">
+          <p class="eyebrow">Модуль 07</p>
+          <h2 class="title">Ваши первые 90 дней</h2>
+          <p class="lede">Конкретный операционный план под Magnific, переносимый на Higgsfield. Прямо отображает вакансию: глобальная стратегия канала, экосистема с нуля, технологические партнёрства, дизайн программы, модели co-sell/reseller, найм US+EMEA, атрибуция Salesforce, воронка/ROI.</p>
+          <div class="note"><span class="tag">Начните с этой рамки</span>«У Magnific уже есть affiliate снизу и модельные/интеграционные партнёрства сверху, плюс прямая enterprise-модель с фондом €10M на EU-маркетинг. Мой мандат — недостающая середина: структурированный reseller/SI/агентский канал и воспроизводимая co-sell-модель, построенные без каннибализации self-serve-движка на 1M подписчиков».</div>
+          <h3>Дни 1–30 — Слушать, замерять, проектировать</h3>
+          <ul>
+            <li>Глубоко разберитесь в продукте, кредитном/потребительском ценообразовании и всех существующих программах. Стройте на том, что есть.</li>
+            <li>Встретьтесь с продажами, продуктом, инженерией, маркетингом, юристами, финансами, RevOps. Ваш первый результат — межфункциональная согласованность, а не партнёр. Получают ли прямые продавцы зачёт за сделки с партнёром сейчас?</li>
+            <li>Получите поддержку руководства и письменный мандат: какое число выручки принадлежит партнёрствам и правила взаимодействия с прямыми продажами.</li>
+            <li>Напишите IPP; выберите первую модель для доказательства (reseller с агентством/студией ИЛИ co-sell с одной креативной платформой). Одна модель, не портфель.</li>
+            <li>Наладьте атрибуцию Salesforce: партнёрские Accounts, объект регистрации сделок, отдельные поля source/influence.</li>
+          </ul>
+          <h3>Дни 31–60 — Привлечь первую волну, построить инфраструктуру</h3>
+          <ul>
+            <li>Сопоставьте аккаунты через Crossbeam; приоритет партнёрам, чьи клиенты совпадают с ICP.</li>
+            <li>Привлеките 5–8 партнёров первой волны по IPP. Запустите первый co-marketing; проведите тестовый прогон регистрации сделки.</li>
+            <li>Начните онбординг; выберите PRM; согласуйте с юристами позицию по AI-интеграциям (DPA + запрет обучения моделей по умолчанию).</li>
+          </ul>
+          <h3>Дни 61–90 — Произвести доказательство</h3>
+          <ul>
+            <li>Целевые результаты: первая partner-sourced зарегистрированная сделка, первый разговор co-sell, первый совместный питч.</li>
+            <li>Выпустите v1 руководства по программе партнёров и дашборда метрик.</li>
+            <li>Отчитайтесь руководству на их языке — воронка, доля активации, ROI — с решением «инвестировать / держать / сворачивать» по каждому партнёру.</li>
+          </ul>
+          <h3>Месяцы 4–12 — Доказать → масштабировать → нанимать</h3>
+          <ul>
+            <li><strong>Q2 — Доказать:</strong> активация &gt;50% в течение 90 дней после подписания; первые QBR; валидация модели потребления.</li>
+            <li><strong>Q3 — Масштабировать:</strong> расширение; формализация MDF/рибейтов/SPIFF; запуск уровней; начало второй модели.</li>
+            <li><strong>Q4 — Операционализировать и укомплектовать:</strong> выйти на 20–30% partner-sourced новой воронки; нанять региональных Channel Partner Managers (US + EMEA), когда модель станет воспроизводимой.</li>
+          </ul>
+          <div class="note"><span class="tag">Версия для Higgsfield</span>Подставьте: платформа «видео прежде всего», Cinema/Marketing Studios, 30M пользователей, фокус enterprise + развлечения, и (для роли International Partnerships) акцент 0→1, международность и формат «платный пилот → многолетнее соглашение». Вариант AI Model &amp; Ecosystem склоняется к партнёрствам по вычислениям/GPU/моделям — там ваши «партнёры» первой волны — провайдеры инфраструктуры и моделей.</div>
+        </div>
+      </section>
+
+      <div class="pager" id="pager"></div>
+    </div>
+  </main>
+</div>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<script>
+(function(){
+  "use strict";
+  var MODULES=[
+    {id:"overview",  idx:"00", label:{en:"Overview",en_:"",ru:"Обзор"},            desc:{en:"",ru:""}},
+    {id:"curriculum",idx:"01", label:{en:"Curriculum",ru:"Программа"},             desc:{en:"A 12-week path: goals, inputs, outputs.",ru:"Путь на 12 недель: цели, материалы, результаты."}},
+    {id:"resources", idx:"02", label:{en:"The Canon",ru:"Канон"},                  desc:{en:"People, podcasts, books, courses, articles.",ru:"Люди, подкасты, книги, курсы, статьи."}},
+    {id:"frameworks",idx:"03", label:{en:"Frameworks & Lessons",ru:"Фреймворки и уроки"}, desc:{en:"The vocabulary + 22 lessons + negotiation.",ru:"Лексика + 22 урока + переговоры."}},
+    {id:"company",   idx:"04", label:{en:"Company & Market",ru:"Компания и рынок"}, desc:{en:"Magnific, Higgsfield, the competitive map.",ru:"Magnific, Higgsfield, карта конкурентов."}},
+    {id:"contracts", idx:"05", label:{en:"Contract Mockups",ru:"Макеты договоров"}, desc:{en:"Fill-in-the-blank templates for 6 agreements.",ru:"Шаблоны с полями для 6 договоров."}},
+    {id:"workflows", idx:"06", label:{en:"Workflow Mockups",ru:"Макеты процессов"}, desc:{en:"Lifecycle, tiers, attribution, metrics, stack.",ru:"Жизненный цикл, уровни, атрибуция, метрики, стек."}},
+    {id:"plan",      idx:"07", label:{en:"First 90 Days",ru:"Первые 90 дней"},     desc:{en:"A 30/60/90 operating plan you can present.",ru:"Операционный план 30/60/90 для презентации."}}
+  ];
+  var UI={
+    brandSub:{en:"Education center — Head of Global Channel Partnerships",ru:"Образовательный центр — Head of Global Channel Partnerships"},
+    theme:{en:"Theme",ru:"Тема"}, menu:{en:"Menu",ru:"Меню"},
+    prev:{en:"Previous",ru:"Назад"}, next:{en:"Next",ru:"Далее"},
+    count:{en:"8 modules",ru:"8 модулей"}
+  };
+
+  var navEl=document.getElementById("nav"),pagerEl=document.getElementById("pager"),
+      sidebar=document.getElementById("sidebar"),scrim=document.getElementById("scrim"),
+      progress=document.getElementById("progress");
+  function $(id){return document.getElementById(id);}
+  function safeGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+  function safeSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+
+  var lang=(safeGet("pm:lang")==="ru")?"ru":"en";
+  var current=null;
+
+  function t(o){return (o&&o[lang])||(o&&o.en)||"";}
+
+  function renderNav(){
+    navEl.innerHTML="";
+    MODULES.forEach(function(m){
+      var b=document.createElement("button");
+      b.className="navbtn";b.type="button";b.dataset.target=m.id;
+      b.setAttribute("aria-current", m.id===current?"true":"false");
+      b.innerHTML='<span class="idx">'+m.idx+'</span><span>'+t(m.label)+'</span>';
+      b.addEventListener("click",function(){go(m.id);closeNav();});
+      navEl.appendChild(b);
+    });
+  }
+  function renderCards(){
+    ["en","ru"].forEach(function(lg){
+      var grid=$("homeGrid-"+lg); if(!grid) return;
+      grid.innerHTML="";
+      MODULES.slice(1).forEach(function(m){
+        var c=document.createElement("button");
+        c.className="card";c.type="button";
+        c.innerHTML='<span class="idx">'+m.idx+'</span><span class="h">'+(m.label[lg]||m.label.en)+'</span><span class="d">'+(m.desc[lg]||m.desc.en)+'</span>';
+        c.addEventListener("click",function(){go(m.id);});
+        grid.appendChild(c);
+      });
+    });
+  }
+  function buildPager(id){
+    var i=-1;MODULES.forEach(function(m,k){if(m.id===id)i=k;});
+    var prev=MODULES[i-1],next=MODULES[i+1];
+    pagerEl.innerHTML="";
+    var pb=document.createElement("button");pb.className="prev";
+    pb.innerHTML='<span class="k">'+t(UI.prev)+'</span><span class="v">'+(prev?t(prev.label):"—")+'</span>';
+    if(prev){pb.addEventListener("click",function(){go(prev.id);});}else{pb.disabled=true;}
+    var nb=document.createElement("button");nb.className="next";
+    nb.innerHTML='<span class="k">'+t(UI.next)+'</span><span class="v">'+(next?t(next.label):"—")+'</span>';
+    if(next){nb.addEventListener("click",function(){go(next.id);});}else{nb.disabled=true;}
+    pagerEl.appendChild(pb);pagerEl.appendChild(nb);
+  }
+  function applyStaticText(){
+    $("brandSub").textContent=t(UI.brandSub);
+    $("themeLabel").textContent=t(UI.theme);
+    $("menuLabel").textContent=t(UI.menu);
+    $("modCount").textContent=t(UI.count);
+  }
+
+  function go(id,fromHash){
+    var ok=false;MODULES.forEach(function(m){if(m.id===id)ok=true;});
+    if(!ok)id="overview";
+    current=id;
+    MODULES.forEach(function(m){var s=$(m.id);if(s)s.hidden=(m.id!==id);});
+    Array.prototype.forEach.call(navEl.children,function(b){b.setAttribute("aria-current",b.dataset.target===id?"true":"false");});
+    buildPager(id);
+    if(!fromHash){try{history.replaceState(null,"","#"+id);}catch(e){location.hash=id;}}
+    safeSet("pm:last",id);
+    window.scrollTo(0,0);updateProgress();
+  }
+
+  function setLang(l){
+    lang=(l==="ru")?"ru":"en";
+    document.documentElement.setAttribute("data-lang",lang);
+    document.documentElement.setAttribute("lang",lang);
+    $("langEn").setAttribute("aria-pressed",lang==="en"?"true":"false");
+    $("langRu").setAttribute("aria-pressed",lang==="ru"?"true":"false");
+    safeSet("pm:lang",lang);
+    applyStaticText();renderNav();buildPager(current);
+  }
+
+  // theme
+  var savedTheme=safeGet("pm:theme");
+  if(savedTheme==="dark"||savedTheme==="light")document.documentElement.setAttribute("data-theme",savedTheme);
+  $("themeBtn").addEventListener("click",function(){
+    var cur=document.documentElement.getAttribute("data-theme"),isDark;
+    if(cur)isDark=cur==="dark";
+    else isDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var n=isDark?"light":"dark";
+    document.documentElement.setAttribute("data-theme",n);safeSet("pm:theme",n);
+  });
+  // language buttons
+  $("langEn").addEventListener("click",function(){setLang("en");});
+  $("langRu").addEventListener("click",function(){setLang("ru");});
+
+  // mobile nav
+  function openNav(){sidebar.classList.add("open");scrim.classList.add("show");}
+  function closeNav(){sidebar.classList.remove("open");scrim.classList.remove("show");}
+  var mb=$("menuBtn");if(mb)mb.addEventListener("click",openNav);
+  scrim.addEventListener("click",closeNav);
+
+  // progress
+  function updateProgress(){
+    var d=document.documentElement,st=window.pageYOffset||d.scrollTop||0,sh=(d.scrollHeight-d.clientHeight)||0;
+    progress.style.width=(sh>0?Math.min(1,Math.max(0,st/sh))*100:0).toFixed(1)+"%";
+  }
+  window.addEventListener("scroll",updateProgress,{passive:true});
+  window.addEventListener("resize",updateProgress);
+  window.addEventListener("hashchange",function(){
+    var h=(location.hash||"").replace(/^#/,"");MODULES.forEach(function(m){if(m.id===h)go(h,true);});
+  });
+
+  // init
+  document.documentElement.setAttribute("data-lang",lang);
+  document.documentElement.setAttribute("lang",lang);
+  $("langEn").setAttribute("aria-pressed",lang==="en"?"true":"false");
+  $("langRu").setAttribute("aria-pressed",lang==="ru"?"true":"false");
+  applyStaticText();renderCards();
+  var startH=(location.hash||"").replace(/^#/,""),start="overview";
+  MODULES.forEach(function(m){if(m.id===startH)start=startH;});
+  if(start==="overview"){var ls=safeGet("pm:last");if(ls)MODULES.forEach(function(m){if(m.id===ls)start=ls;});}
+  current=start;renderNav();go(start,true);
+})();
+</script>
