@@ -1,0 +1,43 @@
+<section id="economics" data-transition="fade" style="background:#F5F4EF;color:#1B1F26;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#A8431A;letter-spacing:2px;text-transform:uppercase">Часть 3 · GPU и юнит-экономика</p>
+<h2 style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">30-секундный ролик: $1,7–33 тыс. против $50–500 тыс.</h2>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">Минимум</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $1,7 тыс.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">База</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $7,8 тыс.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">Максимум</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $33 тыс.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#12161C;padding:20px 24px;border-radius:12px">
+<p style="font-size:24px;color:#B9BEC7">Каждый доп. вариант</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#F08A5D">≈ $60</p>
+</div>
+</div>
+<div style="display:flex;gap:40px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-size:32px;font-weight:600">Что определяет стоимость</h3>
+<ul style="font-size:24px;line-height:1.3;color:#2C323C">
+<li>За пригодный кадр: секунды × $/с × генерации до удачной. Kalshi оставил 15 из 300–400</li>
+<li>Генерация — 5–12% стоимости; остальное — люди и итерации. Продаём долю удачных</li>
+<li>Сначала картинки: базовая генерация с $960 до ~$240</li>
+<li>Инфраструктура: общее облако; выделенные мощности для SLA в дни матчей; VPC — только при требовании резидентности</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-size:32px;font-weight:600">Возражения</h3>
+<p style="font-size:24px;line-height:1.3;color:#2C323C"><b>«Запустим open source на своих GPU».</b> Сервер 8×H100 — $300–400 тыс., во вторник простаивает. Три ML-инженера ≈ $1,1 млн в год ≈ 2,75 млн секунд Veo. Каждая смена модели — ваша миграция.</p>
+<p style="font-size:24px;line-height:1.3;color:#2C323C"><b>«Что с ценой, когда GPU подешевеют?»</b> Они и дорожают: аренда B200 +79% за 3 месяца. Вы платите за результат; ставка снижается вместе с прайсом, маршрут — раз в квартал.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7280">Порядок величины; допущения мои, кроме прайсов и пропорции Kalshi</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;text-align:right;font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#6B7280">8 / 9</p>
+<aside>Базовый сценарий: 15 кадров, 20 генераций на удачную, 8 оплачиваемых секунд, $0,40/с Veo Standard = $960 на генерацию, плюс $4,8 тыс. на людей и $2 тыс. на музыку, озвучку и юристов, итого около $7,8 тыс. Это примерно в 45 раз ниже среднего $354 тыс. по 4A's (данные 2011 г.). Против соцролика за $10–50 тыс. верхний сценарий не дешевле однозначно, поэтому для спортбука ROI — это набор вариантов: около $60 за каждую дополнительную версию под штат или канал после утверждения основных кадров. Про open source: лучшая свободно лицензированная модель отстаёт от Veo 3.1 примерно на 30–35 Elo; лицензия MiniMax H3 исключает США, ЕС и Великобританию; Wan 2.2 у себя обходится примерно в $0,09–0,14/с — цена Veo Fast при худшем качестве. Про GPU: аренда H100 упала примерно на 64% с 2024 по середину 2025 г., затем выросла примерно на 38% с октября 2025 по март 2026 г.; цены моделей падают быстрее железа (Veo Lite $0,05/с против $0,40 у Standard). Источники: прайсы Vertex, eWeek, Ornn, Levels.fyi.</aside>
+</section>

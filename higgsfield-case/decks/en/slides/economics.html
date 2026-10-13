@@ -1,0 +1,43 @@
+<section id="economics" data-transition="fade" style="background:#F5F4EF;color:#1B1F26;font-family:'IBM Plex Sans', Arial, sans-serif;padding:96px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#A8431A;letter-spacing:2px;text-transform:uppercase">Part 3 · GPU and unit economics</p>
+<h2 style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">A usable 30-second ad: $1.7K–$33K against $50K–$500K</h2>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">Low</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $1.7K</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">Base</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $7.8K</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#FCFBF8;padding:20px 24px;border:1px solid #DEDBD2;border-radius:12px">
+<p style="font-size:24px;color:#6B7280">High</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#1B1F26">≈ $33K</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:4px;background:#12161C;padding:20px 24px;border-radius:12px">
+<p style="font-size:24px;color:#B9BEC7">Each extra variant</p>
+<p style="font-size:48px;font-weight:600;line-height:1.1;color:#F08A5D">≈ $60</p>
+</div>
+</div>
+<div style="display:flex;gap:40px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-size:32px;font-weight:600">What drives cost</h3>
+<ul style="font-size:24px;line-height:1.35;color:#2C323C">
+<li>Per usable shot: seconds × $/s × generations per keeper. Kalshi kept 15 of 300–400</li>
+<li>Generation is 5–12% of cost; people and iteration are the rest. We sell keep-rate</li>
+<li>Image-first routing cuts base generation from $960 to ~$240</li>
+<li>Infra: shared cloud first; dedicated lanes for game-day SLAs; VPC only for residency</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<h3 style="font-size:32px;font-weight:600">The objections</h3>
+<p style="font-size:24px;line-height:1.35;color:#2C323C"><b>"Run open source on our GPUs."</b> An 8×H100 server is $300–400K and idle on Tuesday. Three ML engineers ≈ $1.1M a year ≈ 2.75M seconds of Veo. Every model change is your migration.</p>
+<p style="font-size:24px;line-height:1.35;color:#2C323C"><b>"Price when GPUs drop?"</b> They also rise: B200 rental +79% in 3 months. You pay per output; the rate steps down with list, re-routed quarterly.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#6B7280">Order of magnitude; my assumptions except list prices and the Kalshi ratio. Sources: Vertex pricing, eWeek, Ornn, Levels.fyi</p>
+<p style="position:absolute;right:128px;bottom:64px;width:120px;text-align:right;font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#6B7280">8 / 9</p>
+<aside>The base case: 15 shots, 20 generations per keeper, 8 seconds billed, $0.40/s Veo Standard = $960 generation, plus $4.8K people and $2K music, VO and legal = about $7.8K. That is roughly 45x below the $354K 4A's average (2011 data). Against a $10–50K social spot the high case is not clearly cheaper, so for a sportsbook the ROI is the variant set: about $60 per extra state or channel version once hero shots are approved. Open-source answer: the best freely licensed open model trails Veo 3.1 by roughly 30–35 Elo; MiniMax H3's license excludes US, EU and UK use; self-hosted Wan 2.2 lands at about $0.09–0.14/s, the price of Veo Fast at lower quality. GPU answer: H100 rental fell about 64% from 2024 to mid-2025, then rose about 38% from October 2025 to March 2026; model prices fall faster than hardware (Veo Lite $0.05/s against $0.40 Standard).</aside>
+</section>
